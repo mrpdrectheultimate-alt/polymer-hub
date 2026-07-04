@@ -1,0 +1,199 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@layer base {
+  :root {
+    /* shadcn CSS variables — v3 bold palette */
+    --background: 0 0% 100%;           /* #FFFFFF white canvas */
+    --foreground: 0 0% 4%;             /* #0A0A0A near-black */
+
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 4%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 4%;
+
+    --primary: 224 71% 45%;            /* #1D4ED8 blue */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 4%;
+
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 42%;
+
+    --accent: 21 90% 48%;              /* #EA580C orange */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
+    --ring: 224 71% 45%;
+
+    --radius: 0px;                     /* neobrutalism: sharp corners */
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #FFFFFF;
+    color: #0A0A0A;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Selection highlight — blue */
+  ::selection {
+    background-color: #1D4ED8;
+    color: #FFFFFF;
+  }
+}
+
+@layer components {
+  /* ─── Neobrutalist card base ─────────────────────────────── */
+  .cn-card {
+    @apply border-4 border-ink bg-canvas;
+    box-shadow: 4px 4px 0px 0px #0A0A0A;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .cn-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px 0px #0A0A0A;
+  }
+
+  /* ─── Domain color card variants ────────────────────────── */
+  .cn-card-blue {
+    @apply cn-card border-blue;
+    box-shadow: 4px 4px 0px 0px #1D4ED8;
+  }
+  .cn-card-blue:hover {
+    box-shadow: 6px 6px 0px 0px #1D4ED8;
+  }
+
+  .cn-card-orange {
+    @apply cn-card border-orange;
+    box-shadow: 4px 4px 0px 0px #EA580C;
+  }
+  .cn-card-orange:hover {
+    box-shadow: 6px 6px 0px 0px #EA580C;
+  }
+
+  .cn-card-green {
+    @apply cn-card border-green;
+    box-shadow: 4px 4px 0px 0px #15803D;
+  }
+  .cn-card-green:hover {
+    box-shadow: 6px 6px 0px 0px #15803D;
+  }
+
+  .cn-card-violet {
+    @apply cn-card border-violet;
+    box-shadow: 4px 4px 0px 0px #7C3AED;
+  }
+  .cn-card-violet:hover {
+    box-shadow: 6px 6px 0px 0px #7C3AED;
+  }
+
+  .cn-card-yellow {
+    @apply cn-card border-yellow;
+    box-shadow: 4px 4px 0px 0px #CA8A04;
+  }
+  .cn-card-yellow:hover {
+    box-shadow: 6px 6px 0px 0px #CA8A04;
+  }
+
+  /* ─── Neobrutalist button ────────────────────────────────── */
+  .cn-btn {
+    @apply border-4 border-ink font-bold uppercase tracking-wider px-6 py-3 inline-flex items-center gap-2;
+    box-shadow: 4px 4px 0px 0px #0A0A0A;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+
+  .cn-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px 0px #0A0A0A;
+  }
+
+  .cn-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px 0px #0A0A0A;
+  }
+
+  .cn-btn-blue { @apply cn-btn bg-blue text-white; }
+  .cn-btn-orange { @apply cn-btn bg-orange text-white; }
+  .cn-btn-green { @apply cn-btn bg-green text-white; }
+  .cn-btn-yellow { @apply cn-btn bg-yellow-bright text-ink; }
+  .cn-btn-violet { @apply cn-btn bg-violet text-white; }
+  .cn-btn-black { @apply cn-btn bg-ink text-white; }
+  .cn-btn-white { @apply cn-btn bg-white text-ink; }
+
+  /* ─── Section band ───────────────────────────────────────── */
+  .cn-band {
+    @apply border-y-4 border-ink;
+  }
+
+  /* ─── Quote breaker ──────────────────────────────────────── */
+  .cn-quote {
+    @apply bg-ink text-canvas border-y-4 border-ink py-16 px-6 text-center;
+  }
+
+  .cn-quote-text {
+    font-family: 'Fraunces', serif;
+    @apply text-4xl md:text-5xl font-black italic leading-tight;
+  }
+
+  /* ─── Domain label pill ──────────────────────────────────── */
+  .cn-label {
+    @apply border-2 border-ink font-mono text-xs font-bold uppercase tracking-widest px-3 py-1 inline-block;
+  }
+}
+
+@layer utilities {
+  /* ─── Ticker animation ───────────────────────────────────── */
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-ticker {
+    animation: ticker 35s linear infinite;
+  }
+
+  /* ─── Fade up ────────────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.4s ease-out both;
+  }
+
+  /* ─── Fraunces display headline helper ───────────────────── */
+  .font-display {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+  }
+
+  /* ─── Hard shadow utilities ──────────────────────────────── */
+  .shadow-hard { box-shadow: 4px 4px 0px 0px #0A0A0A; }
+  .shadow-hard-sm { box-shadow: 2px 2px 0px 0px #0A0A0A; }
+  .shadow-hard-lg { box-shadow: 6px 6px 0px 0px #0A0A0A; }
+  .shadow-hard-blue { box-shadow: 4px 4px 0px 0px #1D4ED8; }
+  .shadow-hard-orange { box-shadow: 4px 4px 0px 0px #EA580C; }
+  .shadow-hard-green { box-shadow: 4px 4px 0px 0px #15803D; }
+  .shadow-hard-violet { box-shadow: 4px 4px 0px 0px #7C3AED; }
+}
