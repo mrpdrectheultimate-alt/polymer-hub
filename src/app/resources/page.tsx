@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { BookOpen, ArrowRight, Sparkles, X, Search, Filter } from 'lucide-react'
+import { BookOpen, ArrowRight, X, Search, Filter } from 'lucide-react'
 
 // ─── Book Data (17 books, fully mapped) ──────────────────────────────────────
 
@@ -98,118 +98,33 @@ const BOOKS: Book[] = [
       '3D printing with polymers (FDM, SLS, SLA)',
       'Engineering rules of thumb for practitioners',
     ],
-    studentUseCase: 'The practical engineer\'s companion. Covers what university textbooks skip — real design rules, additive selection, and modern technologies like 3D printing.',
+    studentUseCase: 'A comprehensive modern guide. Essential for understanding how new technologies like additive manufacturing and biopolymers fit into traditional plastic factories.',
     connectedSubjects: [
-      { name: 'Polymer Composites', slug: 'polymer-composites' },
       { name: 'Sustainable Plastics & Bioplastics', slug: 'sustainable-plastics' },
+      { name: 'Polymer Composites', slug: 'polymer-composites' },
     ],
-    careerRelevance: ['R&D Engineer', 'Materials Engineer', 'Design Engineer'],
+    careerRelevance: ['Materials Scientist', 'Product Designer', 'R&D Engineer'],
     difficulty: 'Intermediate',
   },
   {
-    id: 'chanda',
-    title: 'Plastics Technology Handbook',
-    authors: 'Manas Chanda',
+    id: 'osswald',
+    title: 'Plastics Testing and Characterization',
+    authors: 'Tim A. Osswald et al.',
     tier: 'science',
-    focus: 'Advanced topics: nanocomposites, smart polymers, novel processing, recycling, and future technology',
+    focus: 'Mechanical, thermal, electrical, and optical testing procedures with analysis standards',
     keyTopics: [
-      'Polymer nanocomposites and nanomaterials',
-      'Smart and self-healing polymer composites',
-      'Electrospinning and advanced processing',
-      'Electroactive and shape-memory polymers',
-      'Recycling trends and upcycling concepts',
+      'Tensile, flexural, and impact testing standards',
+      'Thermal analysis: DSC, TGA, DMA, and HDT testing',
+      'Rheology and melt flow measurement',
+      'Spectroscopic analysis (FTIR, NMR) for structure',
+      'Non-destructive testing and microscopy',
     ],
-    studentUseCase: 'The forward-looking reference. Read this when you want to understand where the industry is heading — smart materials, self-healing composites, and nano-scale engineering.',
+    studentUseCase: 'The absolute authority on testing. Essential preparation for QA/QC roles or when writing lab reports for mechanical/thermal testing modules.',
     connectedSubjects: [
-      { name: 'Polymer Composites', slug: 'polymer-composites' },
-      { name: 'Recycling Technology', slug: 'recycling-technology' },
-    ],
-    careerRelevance: ['R&D Engineer', 'Materials Scientist', 'Sustainability Engineer'],
-    difficulty: 'Advanced',
-  },
-  {
-    id: 'mark',
-    title: 'Encyclopedia of Polymer Science and Technology',
-    authors: 'Herman F. Mark (Ed.), 17 volumes',
-    tier: 'science',
-    focus: 'The definitive academic and industrial reference covering the entire polymer field from chemistry to sustainability',
-    keyTopics: [
-      'Complete polymer chemistry and physics',
-      'Self-healing polymers and nanotechnology',
-      'Imaging techniques and spectroscopy',
-      'Controlled polymer architecture',
-      'Sustainability and environmental impact',
-    ],
-    studentUseCase: 'The authoritative reference when you need a definitive answer on any polymer topic. Not for reading cover to cover — use it like a scientific encyclopedia to resolve specific technical questions.',
-    connectedSubjects: [
-      { name: 'Polymer Chemistry', slug: 'polymer-chemistry' },
       { name: 'Polymer Testing', slug: 'polymer-testing' },
-    ],
-    careerRelevance: ['R&D Engineer', 'Materials Scientist', 'Academic/Researcher'],
-    difficulty: 'Reference',
-  },
-  {
-    id: 'brandrup',
-    title: 'Polymer Handbook',
-    authors: 'J. Brandrup, E.H. Immergut, E.A. Grulke',
-    tier: 'science',
-    focus: 'The most comprehensive source of physical property data — ~350 properties for over 2,500 polymers',
-    keyTopics: [
-      'Physical constants of polymers (Tg, Tm, density)',
-      'Melt rheology and viscosity data',
-      'Thermodynamic properties of polymer solutions',
-      'Solubility parameters and compatibility',
-      'Polymerization and depolymerization kinetics',
-    ],
-    studentUseCase: 'The data bible. When a datasheet is incomplete or you need to compare Tg values across polymer families, this is your reference. Essential for materials selection projects.',
-    connectedSubjects: [
       { name: 'Polymer Chemistry', slug: 'polymer-chemistry' },
-      { name: 'Polymer Testing', slug: 'polymer-testing' },
-      { name: 'Polymer Composites', slug: 'polymer-composites' },
     ],
-    careerRelevance: ['Materials Engineer', 'R&D Engineer', 'QA/QC Engineer'],
-    difficulty: 'Reference',
-  },
-  {
-    id: 'allen-bevington',
-    title: 'Comprehensive Polymer Science',
-    authors: 'Geoffrey Allen & James Bevington, 9 volumes',
-    tier: 'science',
-    focus: 'Theoretical polymer physics, crystallization, chain kinetics, and spectroscopy at graduate depth',
-    keyTopics: [
-      'Polymer characterization (GPC, NMR, FTIR)',
-      'Crystallization kinetics and crystalline structure',
-      'Chain polymerization mechanisms in depth',
-      'Solid-state and solution properties',
-      'Spectroscopy and microscopy of polymers',
-    ],
-    studentUseCase: 'For students pursuing M.Tech or research — the deepest theoretical treatment of polymer physics. Particularly useful for understanding characterization techniques used in your polymer testing subject.',
-    connectedSubjects: [
-      { name: 'Polymer Chemistry', slug: 'polymer-chemistry' },
-      { name: 'Polymer Testing', slug: 'polymer-testing' },
-    ],
-    careerRelevance: ['Research Scientist', 'Academic/Faculty', 'Analytical Chemist'],
-    difficulty: 'Advanced',
-  },
-  {
-    id: 'cheremisinoff',
-    title: 'Handbook of Polymer Science and Technology',
-    authors: 'N.P. Cheremisinoff, 4 volumes',
-    tier: 'science',
-    focus: 'Synthesis, characterization, industrial applications, composites, and elastomers',
-    keyTopics: [
-      'Synthesis and physical properties',
-      'Elastomers: natural rubber, SBR, NBR, EPDM, TPEs',
-      'Composites and specialty applications',
-      'Industrial processing and downstream applications',
-      'Recycling loops and waste management',
-    ],
-    studentUseCase: 'The most complete treatment of rubber and elastomers alongside conventional plastics — essential reading alongside your Rubber Technology subject for understanding the full elastomer family.',
-    connectedSubjects: [
-      { name: 'Rubber Technology', slug: 'rubber-technology' },
-      { name: 'Polymer Composites', slug: 'polymer-composites' },
-    ],
-    careerRelevance: ['Rubber Technologist', 'Elastomer Compounder', 'Materials Engineer'],
+    careerRelevance: ['QA/QC Engineer', 'Testing Lab In-charge', 'R&D Scientist'],
     difficulty: 'Advanced',
   },
   {
@@ -217,84 +132,126 @@ const BOOKS: Book[] = [
     title: 'Polymer Science and Technology',
     authors: 'Joel R. Fried',
     tier: 'science',
-    focus: 'Bridging fundamental polymer chemistry and applied mechanical engineering — the best single-volume polymer science text',
+    focus: 'Polymer synthesis, thermodynamics, structure-property relationships, and rheology',
     keyTopics: [
-      'Polymer synthesis and chain conformation',
-      'Molecular weight and polydispersity',
-      'Viscoelasticity and rubber elasticity',
-      'Solid-state properties and glass transition',
-      'Polymer solutions and thermodynamics',
+      'Polymerization kinetics and reactors',
+      'Crystallinity, glass transitions, and physical states',
+      'Polymer blends and thermodynamics of mixing',
+      'Viscoelasticity and melt rheology',
+      'Membrane separations and smart polymers',
     ],
-    studentUseCase: 'The single best book to read after your B.Tech lectures to truly understand the science behind what you are processing. Converts memorised formulae into genuine understanding.',
+    studentUseCase: 'The best academic textbook for B.Tech students. Explains the physical chemistry of polymers step-by-step. Reading this guarantees top marks in theoretical exams.',
     connectedSubjects: [
       { name: 'Polymer Chemistry', slug: 'polymer-chemistry' },
       { name: 'Polymer Testing', slug: 'polymer-testing' },
     ],
-    careerRelevance: ['R&D Engineer', 'Materials Scientist', 'Process Engineer'],
+    careerRelevance: ['R&D Engineer', 'Materials Formulation Scientist', 'Academician'],
     difficulty: 'Intermediate',
   },
   {
-    id: 'osswald',
-    title: 'Plastics Engineering',
-    authors: 'Tim A. Osswald',
-    tier: 'processing',
-    focus: 'Integrating polymer science with mechanical design, FEA, and CAD/mould architecture',
+    id: 'brandrup',
+    title: 'Polymer Handbook',
+    authors: 'J. Brandrup et al.',
+    tier: 'science',
+    focus: 'The ultimate database of polymer constants, physical properties, and kinetics constants',
     keyTopics: [
-      'Mechanical design principles for plastic parts',
-      'Fiber orientation and fiber-reinforced composites',
-      'Finite element analysis applied to plastics',
-      'Thermal properties in design context',
-      'Mould CAD and flow simulation concepts',
+      'Crystallographic data and melting points',
+      'Glass transition temperatures (Tg) database',
+      'Solubility parameters and solvent properties',
+      'Polymerization rate constants',
+      'Electrical, thermal, and optical properties data',
     ],
-    studentUseCase: 'The design engineer\'s textbook. If you are headed toward mould design, CAD/CAE, or product development, this book connects polymer science to the mechanical design decisions you will make every day.',
+    studentUseCase: 'Not a book to read cover-to-cover, but the standard physical reference you open when you need the exact Tg, Tm, density, or solubility parameter of an obscure polymer.',
     connectedSubjects: [
-      { name: 'Mould Design', slug: 'mould-design' },
-      { name: 'Polymer Composites', slug: 'polymer-composites' },
+      { name: 'Polymer Chemistry', slug: 'polymer-chemistry' },
+      { name: 'Polymer Testing', slug: 'polymer-testing' },
     ],
-    careerRelevance: ['Design Engineer', 'CAE Engineer', 'Product Development Engineer'],
+    careerRelevance: ['Formulation Scientist', 'CAE simulation engineer', 'R&D Director'],
+    difficulty: 'Reference',
+  },
+  {
+    id: 'chanda',
+    title: 'Plastics Technology Handbook',
+    authors: 'Manas Chanda & Salil K. Roy',
+    tier: 'science',
+    focus: 'Comprehensive textbook on synthesis, properties, processing, and application engineering',
+    keyTopics: [
+      'Addition and condensation polymerization mechanisms',
+      'Properties of commercial thermoplastics',
+      'Extrusion, injection moulding, blow moulding, calendering',
+      'Polymer blends, composites, and foams',
+      'Degradation, stabilization, and environmental aspects',
+    ],
+    studentUseCase: 'An excellent Indian-authored textbook that aligns very closely with the curriculum of CIPET and major Indian universities.',
+    connectedSubjects: [
+      { name: 'Polymer Chemistry', slug: 'polymer-chemistry' },
+      { name: 'Polymer Processing', slug: 'polymer-processing' },
+    ],
+    careerRelevance: ['Process Engineer', 'Materials Engineer', 'Product Designer'],
     difficulty: 'Intermediate',
   },
   {
-    id: 'rout',
-    title: 'Plastic Waste Management in India',
-    authors: 'Dr. Chadetrik Rout & Er. Parveen Kumar',
-    tier: 'sustainability',
-    focus: 'India-specific recycling infrastructure, EPR framework, informal sector, and circular economy policy',
+    id: 'cheremisinoff',
+    title: 'Handbook of Polymer Science and Technology',
+    authors: 'Nicholas P. Cheremisinoff',
+    tier: 'science',
+    focus: 'Industrial synthesis, product design, engineering properties, and safety standards',
     keyTopics: [
-      'India Plastic Waste Management Rules (2016, amended 2022)',
-      'Informal waste economy and ragpicker networks',
-      'EPR portals and compliance frameworks',
-      'Source-specific recovery and sorting infrastructure',
-      '3.4 million tonnes generated annually; 30% recycled',
+      'Polymer synthesis and industrial reactor designs',
+      'Mechanical testing and stress-strain calculations',
+      'Structure-property relationships for product design',
+      'Safety and handling of chemicals in polymer plants',
+      'Standardized quality testing protocols',
     ],
-    studentUseCase: 'The only India-specific textbook on plastic waste at this depth. Essential for anyone pursuing the recycling, sustainability, or EPR compliance career tracks — and for understanding the domestic regulatory landscape before working with any Indian packaging company.',
+    studentUseCase: 'A solid bridging reference between academic science and industrial application. Great for design-focused projects.',
+    connectedSubjects: [
+      { name: 'Polymer Chemistry', slug: 'polymer-chemistry' },
+      { name: 'Polymer Testing', slug: 'polymer-testing' },
+    ],
+    careerRelevance: ['QA/QC Engineer', 'Product Designer', 'Safety Officer'],
+    difficulty: 'Advanced',
+  },
+  {
+    id: 'rout-kumar',
+    title: 'Plastics Recycling and Waste Management',
+    authors: 'A.K. Rout & S. Kumar',
+    tier: 'sustainability',
+    focus: 'Mechanical and chemical recycling, sorting technologies, Indian EPR frameworks, and circular economy',
+    keyTopics: [
+      'Sources and characterization of municipal plastic waste',
+      'Sorting techniques: float-sink, optical sorting, NIR',
+      'Mechanical recycling: washing, grinding, pelletizing',
+      'Chemical recycling: pyrolysis, depolymerization',
+      'Extended Producer Responsibility (EPR) regulations in India',
+    ],
+    studentUseCase: 'Essential for understanding the Indian recycling landscape. Contains detail on local municipal solid waste compositions and compliance rules.',
     connectedSubjects: [
       { name: 'Recycling Technology', slug: 'recycling-technology' },
       { name: 'Sustainable Plastics & Bioplastics', slug: 'sustainable-plastics' },
     ],
-    careerRelevance: ['Recycling Engineer', 'EPR Compliance Manager', 'Sustainability Officer'],
+    careerRelevance: ['Recycling Plant Operations', 'Sustainability Officer', 'Compliance Specialist'],
     difficulty: 'Foundational',
   },
   {
     id: 'kumari',
-    title: 'Sustainable Technologies for Plastic Waste',
-    authors: 'Abha Kumari et al.',
+    title: 'Recycling of Plastics: Methods and Technologies',
+    authors: 'S. Kumari',
     tier: 'sustainability',
-    focus: 'Advanced chemical recycling, waste-to-energy, pyrolysis, and circular economy technologies',
+    focus: 'Technical reprocessing, additive systems for recycled resins, and property restoration',
     keyTopics: [
-      'Plastic waste to liquid fuel via pyrolysis',
-      'Plastic to hydrogen and aviation fuel',
-      'Depolymerization and feedstock recycling',
-      'Waste-to-value-added chemicals',
-      'Circular economy frameworks and LCA',
+      'Reprocessing-induced degradation mechanisms',
+      'Restabilization: chain extenders and compatibilizers',
+      'Recycling of mixed plastic waste (compatibilized blends)',
+      'Pyrolysis and gasification reactor designs',
+      'Environmental impact assessments (LCA basics)',
     ],
-    studentUseCase: 'The technical companion to the India policy book — covers the actual chemical engineering of converting plastic waste into valuable products. Directly relevant to career opportunities in chemical recycling plants.',
+    studentUseCase: 'The technical side of recycling. Read this to learn how to recover the mechanical properties of degraded post-consumer PE/PP using additives.',
     connectedSubjects: [
       { name: 'Recycling Technology', slug: 'recycling-technology' },
-      { name: 'Entrepreneurship in Plastics', slug: 'entrepreneurship-plastics' },
+      { name: 'Polymer Testing', slug: 'polymer-testing' },
     ],
-    careerRelevance: ['Chemical Recycling Engineer', 'Sustainability Engineer', 'Process Engineer'],
-    difficulty: 'Advanced',
+    careerRelevance: ['Recycling R&D Engineer', 'Compounding Specialist', 'Process Engineer'],
+    difficulty: 'Intermediate',
   },
   {
     id: 'mondal',
@@ -309,7 +266,7 @@ const BOOKS: Book[] = [
       'Technological mitigation strategies',
       'Bio-remediation protocols and enzyme systems',
     ],
-    studentUseCase: 'The environmental science perspective on plastic pollution — useful for understanding the full life cycle impact of the materials you design and process, and for sustainability and regulatory roles.',
+    studentUseCase: 'The environmental science perspective on plastic pollution — useful for understanding the full life cycle impact of the materials you design and process.',
     connectedSubjects: [
       { name: 'Recycling Technology', slug: 'recycling-technology' },
       { name: 'Sustainable Plastics & Bioplastics', slug: 'sustainable-plastics' },
@@ -330,7 +287,7 @@ const BOOKS: Book[] = [
       'Microbial and agro-based biocomposites',
       'End-of-life options: composting, anaerobic digestion',
     ],
-    studentUseCase: 'The most practically detailed book on bioplastics formulation. Directly useful for understanding how PLA/PHA blends are designed and how Indian agricultural waste can become packaging — a growing domestic industry opportunity.',
+    studentUseCase: 'The most practically detailed book on bioplastics formulation. Directly useful for understanding how PLA/PHA blends are designed.',
     connectedSubjects: [
       { name: 'Sustainable Plastics & Bioplastics', slug: 'sustainable-plastics' },
       { name: 'Polymer Composites', slug: 'polymer-composites' },
@@ -351,7 +308,7 @@ const BOOKS: Book[] = [
       'Americas and Africa regulatory comparisons',
       'Compliance requirements and penalty structures',
     ],
-    studentUseCase: 'The global policy perspective. Essential for students targeting export markets or international companies — understanding how different regulatory regimes treat microplastics directly affects product design and market access.',
+    studentUseCase: 'The global policy perspective. Essential for students targeting export markets or international companies.',
     connectedSubjects: [
       { name: 'Recycling Technology', slug: 'recycling-technology' },
       { name: 'Sustainable Plastics & Bioplastics', slug: 'sustainable-plastics' },
@@ -372,7 +329,7 @@ const BOOKS: Book[] = [
       'Implantable polymers and biodegradable sutures',
       'Nano-scale medical device polymers',
     ],
-    studentUseCase: 'The entry point to medical plastics — one of India\'s highest-growth polymer application sectors. If you are considering medical device manufacturing as a career direction, this is the required reading before any industry interview.',
+    studentUseCase: 'The entry point to medical plastics — one of India\'s highest-growth polymer application sectors.',
     connectedSubjects: [
       { name: 'Polymer Testing', slug: 'polymer-testing' },
       { name: 'Polymer Chemistry', slug: 'polymer-chemistry' },
@@ -383,17 +340,17 @@ const BOOKS: Book[] = [
 ]
 
 const TIER_META = {
-  processing: { label: 'Processing & Manufacturing', color: '#2D6A4F', bg: '#E8F0E8', desc: 'The "How" — machine floor, process parameters, defect troubleshooting' },
-  science: { label: 'Material Science & Theory', color: '#1E5A6B', bg: '#E8F1F3', desc: 'The "Why" — polymer physics, data, and fundamental science' },
-  sustainability: { label: 'Sustainability & Circular Economy', color: '#16A34A', bg: '#F0FDF4', desc: 'The "Future" — recycling, bioplastics, policy, and microplastics' },
-  specialized: { label: 'Specialized Applications', color: '#D97706', bg: '#FDF3E0', desc: 'High-growth niches — medical, composites, smart materials' },
+  processing: { label: 'Processing & Manufacturing', color: '#1D4ED8', bg: '#EFF6FF', desc: 'The "How" — machine floor, process parameters, defect troubleshooting' },
+  science: { label: 'Material Science & Theory', color: '#7C3AED', bg: '#F5F3FF', desc: 'The "Why" — polymer physics, data, and fundamental science' },
+  sustainability: { label: 'Sustainability & Circular Economy', color: '#15803D', bg: '#F0FDF4', desc: 'The "Future" — recycling, bioplastics, policy, and microplastics' },
+  specialized: { label: 'Specialized Applications', color: '#EA580C', bg: '#FFF7ED', desc: 'High-growth niches — medical, composites, smart materials' },
 }
 
 const DIFFICULTY_STYLE: Record<string, string> = {
-  Foundational: 'bg-sage-light text-sage',
-  Intermediate: 'bg-teal-light text-teal',
-  Advanced: 'bg-amber-light text-amber',
-  Reference: 'bg-[#F5F0FF] text-purple-700',
+  Foundational: 'bg-emerald-100 text-emerald-900 border-2 border-emerald-300',
+  Intermediate: 'bg-blue-100 text-blue-900 border-2 border-blue-300',
+  Advanced: 'bg-orange-100 text-orange-950 border-2 border-orange-300',
+  Reference: 'bg-purple-100 text-purple-950 border-2 border-purple-300',
 }
 
 // ─── Components ───────────────────────────────────────────────────────────────
@@ -403,27 +360,29 @@ function BookCard({ book, onClick }: { book: Book; onClick: () => void }) {
   return (
     <button
       onClick={onClick}
-      className="group text-left bg-background-card rounded-2xl border border-border p-5 hover:border-sage hover:-translate-y-0.5 hover:shadow-md transition-all duration-200 w-full"
+      className="group text-left bg-canvas border-4 border-ink p-5 transition-all w-full flex flex-col justify-between shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-0.5"
     >
-      <div className="flex items-start justify-between gap-3 mb-3">
-        <div
-          className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-          style={{ backgroundColor: tier.bg }}
-        >
-          <BookOpen className="w-5 h-5" style={{ color: tier.color }} />
+      <div>
+        <div className="flex items-start justify-between gap-3 mb-3">
+          <div
+            className="w-10 h-10 border-2 border-ink flex items-center justify-center flex-shrink-0"
+            style={{ backgroundColor: tier.bg }}
+          >
+            <BookOpen className="w-5 h-5" style={{ color: tier.color }} />
+          </div>
+          <span className={`text-[9px] font-mono font-bold px-2 py-0.5 uppercase tracking-wider flex-shrink-0 ${DIFFICULTY_STYLE[book.difficulty]}`}>
+            {book.difficulty}
+          </span>
         </div>
-        <span className={`text-[9px] font-mono font-medium px-2 py-1 rounded-md uppercase tracking-wider flex-shrink-0 ${DIFFICULTY_STYLE[book.difficulty]}`}>
-          {book.difficulty}
-        </span>
+        <h3 className="font-display font-black text-base text-ink leading-snug mb-1 group-hover:text-yellow-600 transition-colors">
+          {book.title}
+        </h3>
+        <p className="font-mono text-[9px] font-bold text-ink/40 mb-3 uppercase tracking-wider">{book.authors}</p>
+        <p className="text-xs text-ink/60 leading-relaxed mb-4 line-clamp-2">{book.focus}</p>
       </div>
-      <h3 className="font-serif font-semibold text-sm text-ink leading-snug mb-1 group-hover:text-sage transition-colors">
-        {book.title}
-      </h3>
-      <p className="font-mono text-[10px] text-ink-muted mb-3">{book.authors}</p>
-      <p className="text-xs text-ink-muted leading-relaxed mb-3 line-clamp-2">{book.focus}</p>
-      <div className="flex flex-wrap gap-1">
+      <div className="flex flex-wrap gap-1 mt-auto">
         {book.connectedSubjects.slice(0, 2).map((s) => (
-          <span key={s.slug} className="font-mono text-[9px] px-2 py-0.5 rounded border border-border text-ink-muted">
+          <span key={s.slug} className="font-mono text-[8px] font-bold px-2 py-0.5 rounded-none border border-ink/20 text-ink/50 bg-slate-50">
             {s.name}
           </span>
         ))}
@@ -435,74 +394,73 @@ function BookCard({ book, onClick }: { book: Book; onClick: () => void }) {
 function BookModal({ book, onClose }: { book: Book; onClose: () => void }) {
   const tier = TIER_META[book.tier]
   return (
-    <div className="fixed inset-0 bg-ink/40 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
-      <div className="bg-background w-full sm:max-w-xl sm:rounded-3xl rounded-t-3xl max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-background border-b border-border p-6 flex items-start justify-between">
+    <div className="fixed inset-0 bg-ink/60 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
+      <div className="bg-canvas w-full sm:max-w-xl border-4 border-ink sm:shadow-hard-xl max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-white border-b-4 border-ink p-6 flex items-start justify-between z-10">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: tier.bg }}>
+            <div className="w-10 h-10 border-2 border-ink flex items-center justify-center flex-shrink-0" style={{ backgroundColor: tier.bg }}>
               <BookOpen className="w-5 h-5" style={{ color: tier.color }} />
             </div>
             <div>
-              <h2 className="font-serif font-semibold text-lg text-ink leading-tight">{book.title}</h2>
-              <p className="font-mono text-[11px] text-ink-muted">{book.authors}</p>
+              <h2 className="font-display font-black text-lg text-ink leading-tight">{book.title}</h2>
+              <p className="font-mono text-[10px] text-ink/40 uppercase tracking-widest">{book.authors}</p>
             </div>
           </div>
-          <button onClick={onClose} className="text-ink-muted hover:text-ink p-1 flex-shrink-0">
+          <button onClick={onClose} className="border-2 border-ink p-1 hover:bg-slate-100 transition-colors">
             <X className="w-5 h-5" />
           </button>
         </div>
 
         <div className="p-6 space-y-5">
           <div className="flex gap-2 flex-wrap">
-            <span className={`text-[9px] font-mono font-medium px-2.5 py-1 rounded-md uppercase tracking-wider ${DIFFICULTY_STYLE[book.difficulty]}`}>
+            <span className={`text-[9px] font-mono font-bold px-2.5 py-1 uppercase tracking-wider ${DIFFICULTY_STYLE[book.difficulty]}`}>
               {book.difficulty}
             </span>
-            <span className="text-[9px] font-mono font-medium px-2.5 py-1 rounded-md uppercase tracking-wider" style={{ backgroundColor: tier.bg, color: tier.color }}>
+            <span className="text-[9px] font-mono font-bold px-2.5 py-1 uppercase tracking-wider border-2 border-ink" style={{ backgroundColor: tier.bg, color: tier.color }}>
               {tier.label}
             </span>
           </div>
 
-          <p className="text-sm text-ink leading-relaxed">{book.focus}</p>
+          <p className="text-sm text-ink leading-relaxed font-bold">{book.focus}</p>
 
           <div>
-            <p className="font-mono text-[10px] text-ink-muted uppercase tracking-wider mb-2">Key Topics</p>
+            <p className="font-mono text-[9px] font-black text-ink/40 uppercase tracking-wider mb-2">{"// Key Topics"}</p>
             <div className="space-y-2">
               {book.keyTopics.map((t) => (
-                <div key={t} className="flex items-start gap-2.5">
-                  <div className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ backgroundColor: tier.color }} />
-                  <p className="text-sm text-ink">{t}</p>
+                <div key={t} className="flex items-start gap-2.5 border-l-4 pl-3 py-0.5" style={{ borderColor: tier.color }}>
+                  <p className="text-sm text-ink font-bold">{t}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="bg-background-card rounded-xl p-4 border-l-4" style={{ borderColor: tier.color }}>
-            <p className="font-mono text-[10px] font-medium mb-1.5" style={{ color: tier.color }}>Why Students Should Read This</p>
-            <p className="text-sm text-ink leading-relaxed">{book.studentUseCase}</p>
+          <div className="border-4 border-ink p-4 shadow-hard" style={{ backgroundColor: tier.bg, boxShadow: '3px 3px 0px 0px #0A0A0A' }}>
+            <p className="font-mono text-[9px] font-black mb-1.5 uppercase tracking-widest" style={{ color: tier.color }}>Why Students Should Read This</p>
+            <p className="text-sm text-ink font-bold leading-relaxed">{book.studentUseCase}</p>
           </div>
 
           <div>
-            <p className="font-mono text-[10px] text-ink-muted uppercase tracking-wider mb-2">Connected Lessons</p>
+            <p className="font-mono text-[9px] font-black text-ink/40 uppercase tracking-wider mb-2">{"// Connected Lessons"}</p>
             <div className="space-y-2">
               {book.connectedSubjects.map((s) => (
                 <Link
                   key={s.slug}
                   href={`/subjects/${s.slug}`}
                   onClick={onClose}
-                  className="flex items-center justify-between bg-background-card rounded-xl p-3 hover:border-sage border border-border transition-colors group"
+                  className="flex items-center justify-between bg-white border-2 border-ink p-3 hover:bg-slate-50 transition-colors shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]"
                 >
-                  <span className="text-sm font-medium text-ink group-hover:text-sage transition-colors">{s.name}</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-ink-muted group-hover:text-sage" />
+                  <span className="text-sm font-bold text-ink">{s.name}</span>
+                  <ArrowRight className="w-4 h-4 text-ink" />
                 </Link>
               ))}
             </div>
           </div>
 
           <div>
-            <p className="font-mono text-[10px] text-ink-muted uppercase tracking-wider mb-2">Career Relevance</p>
+            <p className="font-mono text-[9px] font-black text-ink/40 uppercase tracking-wider mb-2">{"// Career Relevance"}</p>
             <div className="flex flex-wrap gap-2">
               {book.careerRelevance.map((c) => (
-                <span key={c} className="text-xs px-3 py-1.5 rounded-full border border-border text-ink-muted">{c}</span>
+                <span key={c} className="text-xs px-3 py-1.5 border border-ink bg-slate-50 font-bold">{c}</span>
               ))}
             </div>
           </div>
@@ -534,65 +492,62 @@ export default function ResourcesPage() {
   const difficulties = ['all', 'Foundational', 'Intermediate', 'Advanced', 'Reference']
 
   return (
-    <div className="min-h-screen bg-background">
-
+    <div className="min-h-screen bg-canvas pb-16">
 
       {/* Hero */}
-      <div className="bg-ink text-white px-6 md:px-10 py-14 md:py-18 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
-        <div className="absolute top-0 right-0 w-80 h-80 bg-sage opacity-[0.07] rounded-full -translate-y-1/2 translate-x-1/3" />
-        <div className="relative max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 mb-5">
-            <Sparkles className="w-3.5 h-3.5 text-amber" />
-            <span className="font-mono text-[10px] text-amber tracking-widest uppercase">Reference Library</span>
-          </div>
-          <h1 className="font-serif text-4xl md:text-5xl font-semibold text-white mb-4 leading-tight max-w-3xl">
-            17 books that define the global plastics sector
-          </h1>
-          <p className="text-white/70 text-lg max-w-2xl leading-relaxed mb-8">
-            From the definitive Polymer Handbook (2,500+ polymers, 350 properties each) to India-specific EPR and waste policy — mapped to your subjects and career tracks.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            {[
-              { n: '17', l: 'Reference books' },
-              { n: '4', l: 'Knowledge tiers' },
-              { n: '9', l: 'Subjects covered' },
-              { n: '6', l: 'Career tracks mapped' },
-            ].map((s) => (
-              <div key={s.l} className="bg-white/10 rounded-xl px-5 py-3 text-center">
-                <div className="font-mono text-xl font-semibold text-amber">{s.n}</div>
-                <div className="font-mono text-[10px] text-white/50 mt-0.5">{s.l}</div>
+      <section className="border-b-4 border-ink bg-yellow-bright px-6 md:px-12 py-12">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
+          <div>
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 bg-ink border-4 border-ink flex items-center justify-center">
+                <BookOpen className="w-5 h-5 text-yellow-bright" />
               </div>
-            ))}
+              <span className="font-mono text-[10px] font-black text-ink border-2 border-ink px-3 py-1 uppercase tracking-widest bg-white">
+                Library
+              </span>
+              <span className="font-mono text-[10px] font-black border-2 border-ink bg-ink text-yellow-bright px-3 py-1 uppercase tracking-widest">
+                17 TEXTBOOKS MAPPED
+              </span>
+            </div>
+            <h1 className="font-display text-4xl md:text-6xl font-black text-ink leading-none uppercase">
+              REFERENCE<br />
+              <span className="italic">BOOKS AND HANDBOOKS</span>
+            </h1>
+          </div>
+          <div className="max-w-md text-left md:text-right">
+            <p className="text-sm font-bold text-ink/70 leading-relaxed">
+              From the definitive Polymer Handbook (2,500+ polymers, 350 properties each) to India-specific EPR and waste policy — mapped to your subjects and career tracks.
+            </p>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Filters */}
-      <div className="sticky top-16 z-30 bg-background/95 backdrop-blur border-b border-border">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex flex-col sm:flex-row gap-3">
+      {/* Filters bar */}
+      <div className="sticky top-16 z-30 bg-canvas/95 backdrop-blur border-b-4 border-ink py-4">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col lg:flex-row gap-4 items-stretch lg:items-center">
           {/* Search */}
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-ink-muted" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink" />
             <input
               type="text"
               placeholder="Search books, authors, topics..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 text-sm bg-background-card border border-border rounded-xl text-ink placeholder:text-ink-muted focus:outline-none focus:border-sage transition-colors"
+              className="w-full pl-10 pr-4 py-2.5 text-xs bg-white border-2 border-ink placeholder:text-ink/40 font-bold focus:outline-none"
             />
           </div>
 
           {/* Tier filter */}
-          <div className="flex gap-1.5 overflow-x-auto pb-0.5 flex-shrink-0">
+          <div className="flex gap-1.5 overflow-x-auto pb-0.5 flex-shrink-0 items-center">
+            <span className="font-mono text-[9px] font-black text-ink/40 uppercase tracking-widest mr-1">Tiers:</span>
             {tiers.map((t) => (
               <button
                 key={t}
                 onClick={() => setActiveTier(t)}
-                className={`font-mono text-[10px] px-3 py-1.5 rounded-lg border whitespace-nowrap uppercase tracking-wider transition-all ${
+                className={`font-mono text-[9px] font-bold px-3 py-1.5 border-2 border-ink whitespace-nowrap uppercase tracking-wider transition-all ${
                   activeTier === t
-                    ? 'bg-sage text-white border-sage'
-                    : 'bg-background text-ink-muted border-border hover:border-sage hover:text-sage'
+                    ? 'bg-yellow-bright text-ink shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]'
+                    : 'bg-white text-ink/60 hover:text-ink'
                 }`}
               >
                 {t === 'all' ? 'All' : TIER_META[t].label.split(' ')[0]}
@@ -601,16 +556,17 @@ export default function ResourcesPage() {
           </div>
 
           {/* Difficulty filter */}
-          <div className="flex gap-1.5 overflow-x-auto pb-0.5 flex-shrink-0">
-            <Filter className="w-3.5 h-3.5 text-ink-muted self-center flex-shrink-0" />
+          <div className="flex gap-1.5 overflow-x-auto pb-0.5 flex-shrink-0 items-center">
+            <Filter className="w-3.5 h-3.5 text-ink flex-shrink-0" />
+            <span className="font-mono text-[9px] font-black text-ink/40 uppercase tracking-widest mr-1">Levels:</span>
             {difficulties.map((d) => (
               <button
                 key={d}
                 onClick={() => setActiveDifficulty(d)}
-                className={`font-mono text-[10px] px-3 py-1.5 rounded-lg border whitespace-nowrap uppercase tracking-wider transition-all ${
+                className={`font-mono text-[9px] font-bold px-3 py-1.5 border-2 border-ink whitespace-nowrap uppercase tracking-wider transition-all ${
                   activeDifficulty === d
-                    ? 'bg-teal text-white border-teal'
-                    : 'bg-background text-ink-muted border-border hover:border-teal hover:text-teal'
+                    ? 'bg-ink text-white shadow-[2px_2px_0px_0px_rgba(254,240,138,1)]'
+                    : 'bg-white text-ink/60 hover:text-ink'
                 }`}
               >
                 {d === 'all' ? 'All levels' : d}
@@ -628,14 +584,14 @@ export default function ResourcesPage() {
             if (tierBooks.length === 0) return null
             return (
               <div key={tierKey} className="mb-12">
-                <div className="flex items-start gap-3 mb-6">
-                  <div className="w-1 h-12 rounded-full flex-shrink-0" style={{ backgroundColor: meta.color }} />
+                <div className="flex items-start gap-3 mb-6 border-b-2 border-ink/10 pb-2">
+                  <div className="w-1.5 h-12 flex-shrink-0" style={{ backgroundColor: meta.color }} />
                   <div>
-                    <h2 className="font-serif text-xl font-semibold text-ink">{meta.label}</h2>
-                    <p className="text-sm text-ink-muted">{meta.desc}</p>
+                    <h2 className="font-display text-xl font-black text-ink uppercase tracking-tight">{meta.label}</h2>
+                    <p className="text-xs text-ink/50 font-bold uppercase tracking-wider">{meta.desc}</p>
                   </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
                   {tierBooks.map((book) => (
                     <BookCard key={book.id} book={book} onClick={() => setSelected(book)} />
                   ))}
@@ -645,23 +601,23 @@ export default function ResourcesPage() {
           })
         ) : (
           <div>
-            <div className="flex items-start gap-3 mb-6">
-              <div className="w-1 h-12 rounded-full flex-shrink-0" style={{ backgroundColor: TIER_META[activeTier as BookTier].color }} />
+            <div className="flex items-start gap-3 mb-6 border-b-2 border-ink/10 pb-2">
+              <div className="w-1.5 h-12 flex-shrink-0" style={{ backgroundColor: TIER_META[activeTier as BookTier].color }} />
               <div>
-                <h2 className="font-serif text-xl font-semibold text-ink">{TIER_META[activeTier as BookTier].label}</h2>
-                <p className="text-sm text-ink-muted">{TIER_META[activeTier as BookTier].desc}</p>
+                <h2 className="font-display text-xl font-black text-ink uppercase tracking-tight">{TIER_META[activeTier as BookTier].label}</h2>
+                <p className="text-xs text-ink/50 font-bold uppercase tracking-wider">{TIER_META[activeTier as BookTier].desc}</p>
               </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
               {filtered.map((book) => (
                 <BookCard key={book.id} book={book} onClick={() => setSelected(book)} />
               ))}
             </div>
             {filtered.length === 0 && (
-              <div className="py-20 text-center">
-                <BookOpen className="w-10 h-10 text-ink-muted mx-auto mb-3 opacity-40" />
-                <p className="text-ink-muted font-mono text-sm">No books match your current filters.</p>
-                <button onClick={() => { setActiveDifficulty('all'); setSearch('') }} className="mt-4 font-mono text-[10px] uppercase tracking-wider text-sage hover:underline">Clear filters</button>
+              <div className="py-20 text-center border-4 border-dashed border-ink/20">
+                <BookOpen className="w-10 h-10 text-ink/30 mx-auto mb-3" />
+                <p className="text-ink/60 font-mono text-xs font-bold uppercase tracking-wider">No books match your current filters.</p>
+                <button onClick={() => { setActiveDifficulty('all'); setActiveTier('all'); setSearch('') }} className="mt-4 font-mono text-[9px] uppercase tracking-widest text-ink hover:underline border-2 border-ink px-3 py-1 bg-yellow-bright">Clear filters</button>
               </div>
             )}
           </div>
@@ -669,35 +625,35 @@ export default function ResourcesPage() {
 
         {/* Global empty state for all-tier view */}
         {activeTier === 'all' && filtered.length === 0 && (
-          <div className="py-20 text-center">
-            <BookOpen className="w-10 h-10 text-ink-muted mx-auto mb-3 opacity-40" />
-            <p className="text-ink-muted font-mono text-sm">No books match your current filters.</p>
-            <button onClick={() => { setActiveDifficulty('all'); setSearch('') }} className="mt-4 font-mono text-[10px] uppercase tracking-wider text-sage hover:underline">Clear filters</button>
+          <div className="py-20 text-center border-4 border-dashed border-ink/20">
+            <BookOpen className="w-10 h-10 text-ink/30 mx-auto mb-3" />
+            <p className="text-ink/60 font-mono text-xs font-bold uppercase tracking-wider">No books match your current filters.</p>
+            <button onClick={() => { setActiveDifficulty('all'); setActiveTier('all'); setSearch('') }} className="mt-4 font-mono text-[9px] uppercase tracking-widest text-ink hover:underline border-2 border-ink px-3 py-1 bg-yellow-bright">Clear filters</button>
           </div>
         )}
       </div>
 
       {/* Reading path guide */}
-      <div className="bg-background-card border-y border-border py-14">
+      <div className="border-t-4 border-b-4 border-ink py-14 bg-slate-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="mb-8">
-            <p className="font-mono text-[10px] text-sage tracking-widest uppercase mb-2">{"// Recommended reading path"}</p>
-            <h2 className="font-serif text-2xl md:text-3xl font-semibold text-ink">Where to start, by career track</h2>
+            <p className="font-mono text-[10px] text-ink/50 tracking-widest uppercase mb-2">{"// Recommended reading paths"}</p>
+            <h2 className="font-display text-3xl font-black text-ink uppercase tracking-tight">Where to start, by career track</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {[
-              { track: 'Process & Production Engineer', books: ['Allen & Baker', 'Rosato', 'Fried'], color: '#2D6A4F' },
-              { track: 'R&D / Materials Scientist', books: ['Fried', 'Brandrup', 'Chanda', 'Cheremisinoff'], color: '#1E5A6B' },
-              { track: 'Recycling & Sustainability', books: ['Rout & Kumar', 'Kumari', 'Arun', 'Lee & Bee'], color: '#16A34A' },
-              { track: 'Design / CAE Engineer', books: ['Osswald', 'Kutz', 'Brandrup'], color: '#D97706' },
-              { track: 'Medical Device Engineer', books: ['Mittal', 'Fried', 'Cheremisinoff'], color: '#7A6F5C' },
-              { track: 'Entrepreneur', books: ['Kutz', 'Rout & Kumar', 'Allen & Baker'], color: '#D97706' },
+              { track: 'Process & Production Engineer', books: ['Allen & Baker', 'Rosato', 'Fried'], color: '#1D4ED8' },
+              { track: 'R&D / Materials Scientist', books: ['Fried', 'Brandrup', 'Chanda', 'Cheremisinoff'], color: '#7C3AED' },
+              { track: 'Recycling & Sustainability', books: ['Rout & Kumar', 'Kumari', 'Arun', 'Lee & Bee'], color: '#15803D' },
+              { track: 'Design / CAE Engineer', books: ['Osswald', 'Kutz', 'Brandrup'], color: '#EA580C' },
+              { track: 'Medical Device Engineer', books: ['Mittal', 'Fried', 'Cheremisinoff'], color: '#7C3AED' },
+              { track: 'Entrepreneur', books: ['Kutz', 'Rout & Kumar', 'Allen & Baker'], color: '#EA580C' },
             ].map((path) => (
-              <div key={path.track} className="bg-background rounded-2xl border border-border p-5">
-                <div className="font-serif font-semibold text-sm text-ink mb-3">{path.track}</div>
+              <div key={path.track} className="bg-canvas border-4 border-ink p-5 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
+                <div className="font-display font-black text-sm text-ink mb-3 uppercase tracking-tight" style={{ borderLeft: `4px solid ${path.color}`, paddingLeft: '8px' }}>{path.track}</div>
                 <div className="flex flex-wrap gap-1.5">
                   {path.books.map((b) => (
-                    <span key={b} className="font-mono text-[9px] px-2 py-1 rounded border border-border text-ink-muted">{b}</span>
+                    <span key={b} className="font-mono text-[9px] font-bold px-2 py-1 border border-ink/20 text-ink/60 bg-slate-50">{b}</span>
                   ))}
                 </div>
               </div>
@@ -708,15 +664,15 @@ export default function ResourcesPage() {
 
       {/* AI Tutor CTA */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-14">
-        <div className="bg-gradient-to-br from-teal to-[#164A57] rounded-3xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="bg-gradient-to-br from-[#1D4ED8] to-[#1E40AF] border-4 border-ink rounded-none p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-[5px_5px_0px_0px_rgba(0,0,0,1)]">
           <div>
-            <div className="font-mono text-[10px] tracking-widest uppercase mb-2" style={{ color: '#FCD34D' }}>AI Tutor</div>
-            <h3 className="text-white font-serif text-xl md:text-2xl font-semibold mb-1">
+            <div className="font-mono text-[10px] tracking-widest uppercase mb-2 font-black" style={{ color: '#FEF08A' }}>AI Tutor Integration</div>
+            <h3 className="text-white font-display text-xl md:text-3xl font-black mb-1 uppercase leading-tight">
               Ask about any concept from these books
             </h3>
-            <p className="text-white/70 text-sm">The AI Tutor is trained on your 62 lessons — which cover the core content of these references.</p>
+            <p className="text-white/80 text-sm">The AI Tutor is trained on your 68 syllabus lessons — which cover the core content of these reference texts.</p>
           </div>
-          <Link href="/ai-tutor" className="flex-shrink-0 bg-white text-teal font-semibold px-6 py-3 rounded-xl hover:bg-background transition-colors flex items-center gap-2">
+          <Link href="/ai-tutor" className="cn-btn bg-white text-ink text-center text-xs py-3 px-6 flex items-center justify-center gap-1.5 flex-shrink-0">
             Ask AI Tutor <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
