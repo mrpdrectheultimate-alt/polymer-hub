@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { ArrowRight, AlertTriangle, CheckCircle, ChevronDown, RotateCcw, Wrench, Sparkles } from 'lucide-react'
+import { AlertTriangle, CheckCircle, ChevronDown, RotateCcw, Wrench, Sparkles, BookOpen, Brain } from 'lucide-react'
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
 
@@ -276,9 +276,9 @@ const DATA: Record<Process, ProcessData> = {
 }
 
 const SEV: Record<Severity, { badge: string; label: string }> = {
-  critical: { badge: 'bg-red-50 text-red-700 border-red-200', label: 'Critical' },
-  moderate: { badge: 'bg-amber-light text-amber border-amber-border', label: 'Moderate' },
-  minor: { badge: 'bg-sage-light text-sage border-sage/20', label: 'Minor' },
+  critical: { badge: 'bg-rose-500 text-white border-2 border-ink font-bold', label: 'CRITICAL' },
+  moderate: { badge: 'bg-orange text-white border-2 border-ink font-bold', label: 'MODERATE' },
+  minor: { badge: 'bg-yellow-bright text-ink border-2 border-ink font-bold', label: 'MINOR' },
 }
 
 // ─── Page ──────────────────────────────────────────────────────────────────────
@@ -292,77 +292,129 @@ export default function TroubleshooterPage() {
   const processKeys: Process[] = ['injection', 'extrusion', 'blow']
 
   return (
-    <div className="min-h-screen bg-background">
-
-
-
-      {/* ── Hero ── */}
-      <div className="bg-background-card border-b border-border px-6 md:px-10 py-10 md:py-12">
-        <div className="max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-sage-light rounded-full px-4 py-1.5 mb-5">
-            <Wrench className="w-3.5 h-3.5 text-sage" />
-            <span className="font-mono text-[10px] text-sage tracking-widest uppercase">Defect Troubleshooter</span>
+    <div className="min-h-screen bg-canvas pb-16">
+      {/* Yellow Hero Band */}
+      <section className="border-b-4 border-ink bg-yellow-bright px-6 md:px-12 py-12">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
+          <div>
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 bg-ink border-4 border-ink flex items-center justify-center">
+                <Wrench className="w-5 h-5 text-yellow-bright" />
+              </div>
+              <span className="font-mono text-[10px] font-black text-ink border-2 border-ink px-3 py-1 uppercase tracking-widest bg-white">
+                Troubleshooter
+              </span>
+              <span className="font-mono text-[10px] font-black border-2 border-ink bg-ink text-yellow-bright px-3 py-1 uppercase tracking-widest">
+                12 DEFECTS MAPPED
+              </span>
+            </div>
+            <h1 className="font-display text-4xl md:text-6xl font-black text-ink leading-none uppercase">
+              DIAGNOSE AND FIX<br />
+              <span className="italic">PROCESSING DEFECTS</span>
+            </h1>
           </div>
-          <h1 className="font-serif text-3xl md:text-4xl font-semibold text-ink mb-3 leading-tight">
-            Diagnose and fix plastic processing defects
-          </h1>
-          <p className="text-ink-muted max-w-xl leading-relaxed mb-2">
-            Select your process, then select the defect. Get specific corrective actions drawn from Rosato&apos;s Data Handbook and Allen &amp; Baker&apos;s Handbook of Plastic Technology.
-          </p>
-          <p className="font-mono text-[11px] text-ink-muted">Sources: D.V. Rosato · Allen &amp; Baker · Osswald</p>
+          <div className="max-w-md text-left md:text-right">
+            <p className="text-sm font-bold text-ink/70 leading-relaxed">
+              Specific corrective actions drawn from Rosato&apos;s Data Handbook and Allen &amp; Baker&apos;s Handbook of Plastic Technology.
+            </p>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10">
+      {/* Main Grid */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10">
 
-        {/* ── Step 1: Select process ── */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="font-mono text-[11px] text-ink-muted uppercase tracking-widest">Step 1 — Select process</h2>
+        {/* Step 1: Select process */}
+        <div className="mb-10">
+          <div className="flex items-center justify-between mb-4 border-b-4 border-ink pb-2">
+            <h2 className="font-mono text-xs font-black text-ink uppercase tracking-widest">
+              Step 1 — Select processing method
+            </h2>
             {process && (
-              <button onClick={reset} className="font-mono text-[10px] text-ink-muted hover:text-sage flex items-center gap-1 transition-colors">
-                <RotateCcw className="w-3 h-3" /> Reset
+              <button
+                onClick={reset}
+                className="font-mono text-[10px] font-black border-2 border-ink px-2.5 py-1 uppercase bg-canvas hover:bg-ink hover:text-white transition-colors flex items-center gap-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]"
+              >
+                <RotateCcw className="w-3 h-3" /> Reset all
               </button>
             )}
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
             {processKeys.map((p) => {
               const d = DATA[p]
               const sel = process === p
+              const accentColor = p === 'injection' ? '#1D4ED8' : p === 'extrusion' ? '#EA580C' : '#7C3AED'
+
               return (
                 <button
                   key={p}
-                  onClick={() => { setProcess(p); setDefect(null); setExpandedFix(null) }}
-                  className={`text-left rounded-2xl border p-5 transition-all ${sel ? 'border-sage bg-sage-light' : 'border-border bg-background-card hover:border-sage hover:-translate-y-0.5'}`}
+                  onClick={() => {
+                    setProcess(p)
+                    setDefect(null)
+                    setExpandedFix(null)
+                  }}
+                  className={`text-left border-4 border-ink p-5 transition-all w-full select-none ${
+                    sel ? '-translate-y-1' : 'hover:-translate-y-0.5'
+                  }`}
+                  style={{
+                    backgroundColor: '#FFFFFF',
+                    boxShadow: sel ? `6px 6px 0px 0px ${accentColor}` : `4px 4px 0px 0px #0A0A0A`,
+                  }}
                 >
-                  <div className="text-2xl mb-2">{d.icon}</div>
-                  <div className={`font-semibold text-sm ${sel ? 'text-sage' : 'text-ink'}`}>{d.label}</div>
-                  <div className="font-mono text-[10px] text-ink-muted mt-1">{d.defects.length} defects mapped</div>
+                  <div className="text-3xl mb-3">{d.icon}</div>
+                  <div className="font-display text-xl font-black text-ink leading-tight">
+                    {d.label}
+                  </div>
+                  <div className="font-mono text-[9px] font-bold text-ink/40 mt-1 uppercase tracking-wider">
+                    {d.defects.length} defects mapped
+                  </div>
                 </button>
               )
             })}
           </div>
         </div>
 
-        {/* ── Step 2: Select defect ── */}
+        {/* Step 2: Select defect */}
         {process && (
-          <div className="mb-8">
-            <h2 className="font-mono text-[11px] text-ink-muted uppercase tracking-widest mb-4">Step 2 — Select defect</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="mb-10 animate-fadeIn">
+            <div className="border-b-4 border-ink pb-2 mb-5">
+              <h2 className="font-mono text-xs font-black text-ink uppercase tracking-widest">
+                Step 2 — Select the defect symptoms
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {DATA[process].defects.map((d) => {
                 const sel = defect?.id === d.id
                 const sev = SEV[d.severity]
+                const accentColor = process === 'injection' ? '#1D4ED8' : process === 'extrusion' ? '#EA580C' : '#7C3AED'
+
                 return (
                   <button
                     key={d.id}
-                    onClick={() => { setDefect(d); setExpandedFix(null) }}
-                    className={`text-left rounded-2xl border p-4 transition-all ${sel ? 'border-sage bg-sage-light' : 'border-border bg-background-card hover:border-sage hover:-translate-y-0.5'}`}
+                    onClick={() => {
+                      setDefect(d)
+                      setExpandedFix(null)
+                    }}
+                    className={`text-left border-4 border-ink p-5 transition-all w-full ${
+                      sel ? '-translate-y-1' : 'hover:-translate-y-0.5'
+                    }`}
+                    style={{
+                      backgroundColor: '#FFFFFF',
+                      boxShadow: sel ? `6px 6px 0px 0px ${accentColor}` : `4px 4px 0px 0px #0A0A0A`,
+                    }}
                   >
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className={`font-semibold text-sm ${sel ? 'text-sage' : 'text-ink'}`}>{d.name}</h3>
-                      <span className={`font-mono text-[9px] px-2 py-0.5 rounded border ${sev.badge}`}>{sev.label}</span>
+                    <div className="flex items-start justify-between gap-3 mb-2">
+                      <h3 className="font-display text-lg font-black text-ink leading-tight">
+                        {d.name}
+                      </h3>
+                      <span className={`font-mono text-[8px] uppercase px-2 py-0.5 flex-shrink-0 ${sev.badge}`}>
+                        {sev.label}
+                      </span>
                     </div>
-                    <p className="text-xs text-ink-muted leading-relaxed line-clamp-2">{d.description}</p>
+                    <p className="text-xs text-ink/60 leading-relaxed line-clamp-2">
+                      {d.description}
+                    </p>
                   </button>
                 )
               })}
@@ -370,100 +422,161 @@ export default function TroubleshooterPage() {
           </div>
         )}
 
-        {/* ── Step 3: Results ── */}
+        {/* Step 3: Corrective actions */}
         {defect && (
-          <div className="space-y-6">
-            <div className="border-t border-border pt-6">
-              <h2 className="font-mono text-[11px] text-ink-muted uppercase tracking-widest mb-5">Step 3 — Corrective actions</h2>
+          <div className="space-y-8 animate-fadeIn">
+            <div className="border-b-4 border-ink pb-2">
+              <h2 className="font-mono text-xs font-black text-ink uppercase tracking-widest">
+                Step 3 — Engineering diagnostics and fixes
+              </h2>
+            </div>
 
-              <div className="bg-background-card rounded-2xl border border-border p-5 mb-5">
-                <div className="flex items-start justify-between gap-3 mb-3">
-                  <h3 className="font-serif font-semibold text-lg text-ink">{defect.name}</h3>
-                  <span className={`font-mono text-[9px] px-2.5 py-1 rounded border flex-shrink-0 ${SEV[defect.severity].badge}`}>{SEV[defect.severity].label}</span>
+            {/* Defect Overview Panel */}
+            <div className="border-4 border-ink bg-canvas p-6 shadow-hard" style={{ boxShadow: '5px 5px 0px 0px #0A0A0A' }}>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
+                <div>
+                  <div className="font-mono text-[9px] font-bold text-ink/40 uppercase tracking-widest mb-1">{"// Defect Description"}</div>
+                  <h3 className="font-display text-3xl font-black text-ink leading-tight">{defect.name}</h3>
                 </div>
-                <p className="text-sm text-ink-muted leading-relaxed mb-4">{defect.description}</p>
-                <p className="font-mono text-[10px] text-ink-muted uppercase tracking-wider mb-2">Root Causes</p>
-                <div className="space-y-1.5">
+                <span className={`font-mono text-[10px] px-3 py-1 flex-shrink-0 ${SEV[defect.severity].badge}`}>
+                  {SEV[defect.severity].label} SEVERITY
+                </span>
+              </div>
+              <p className="text-sm text-ink/75 leading-relaxed mb-6 border-l-4 border-ink pl-4 py-1 italic">
+                {defect.description}
+              </p>
+
+              {/* Causes block */}
+              <div className="border-t-2 border-ink/10 pt-5">
+                <div className="font-mono text-[10px] font-black text-ink uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                  <AlertTriangle className="w-4 h-4 text-orange" /> Potential Root Causes
+                </div>
+                <div className="space-y-3">
                   {defect.causes.map((c, i) => (
-                    <div key={i} className="flex items-start gap-2.5">
-                      <AlertTriangle className="w-3.5 h-3.5 text-amber flex-shrink-0 mt-0.5" />
-                      <p className="text-sm text-ink leading-relaxed">{c}</p>
+                    <div key={i} className="flex items-start gap-3 bg-amber-50/50 border-2 border-ink p-3 rounded-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                      <div className="w-5 h-5 bg-ink text-yellow-bright flex items-center justify-center font-mono text-[10px] font-black flex-shrink-0 mt-0.5">
+                        {i + 1}
+                      </div>
+                      <p className="text-sm text-ink font-bold leading-relaxed">{c}</p>
                     </div>
                   ))}
                 </div>
               </div>
+            </div>
 
-              <div className="space-y-3 mb-5">
-                <p className="font-mono text-[10px] text-sage uppercase tracking-wider">Corrective Actions (try in order)</p>
+            {/* Corrective Actions Accordion */}
+            <div className="space-y-3">
+              <div className="font-mono text-[10px] font-black text-ink uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                🔧 Corrective Actions (Try in Order)
+              </div>
+
+              <div className="space-y-4">
                 {defect.fixes.map((fix, i) => {
                   const exp = expandedFix === i
+                  const accentColor = process === 'injection' ? '#1D4ED8' : process === 'extrusion' ? '#EA580C' : '#7C3AED'
                   return (
-                    <button
+                    <div
                       key={i}
-                      onClick={() => setExpandedFix(exp ? null : i)}
-                      className="w-full text-left bg-background-card rounded-2xl border border-border hover:border-sage transition-all overflow-hidden"
+                      className="border-4 border-ink bg-canvas transition-all overflow-hidden w-full block"
+                      style={{
+                        boxShadow: exp ? `4px 4px 0px 0px ${accentColor}` : `3px 3px 0px 0px #0A0A0A`
+                      }}
                     >
-                      <div className="flex items-center justify-between p-4">
-                        <div className="flex items-center gap-3 min-w-0">
-                          <div className="w-7 h-7 rounded-lg bg-sage text-white flex items-center justify-center flex-shrink-0 font-mono text-xs font-semibold">{i + 1}</div>
+                      <button
+                        onClick={() => setExpandedFix(exp ? null : i)}
+                        className="w-full text-left flex items-center justify-between p-5 hover:bg-slate-50 transition-colors"
+                      >
+                        <div className="flex items-center gap-4 min-w-0">
+                          <div className="w-8 h-8 bg-ink text-white flex items-center justify-center flex-shrink-0 font-mono text-sm font-black border-2 border-ink shadow-[2px_2px_0px_0px_rgba(254,240,138,1)]">
+                            {i + 1}
+                          </div>
                           <div className="min-w-0">
-                            <div className="font-mono text-[10px] text-ink-muted uppercase tracking-wider">{fix.parameter}</div>
-                            <div className="font-medium text-sm text-ink">{fix.action}</div>
+                            <div className="font-mono text-[9px] font-black text-ink/40 uppercase tracking-widest">
+                              {fix.parameter}
+                            </div>
+                            <div className="font-display text-lg font-black text-ink leading-tight">
+                              {fix.action}
+                            </div>
                           </div>
                         </div>
-                        <ChevronDown className={`w-4 h-4 text-ink-muted flex-shrink-0 transition-transform ${exp ? 'rotate-180' : ''}`} />
-                      </div>
+                        <ChevronDown className={`w-5 h-5 text-ink flex-shrink-0 transition-transform duration-200 ${exp ? 'rotate-180' : ''}`} />
+                      </button>
+
                       {exp && (
-                        <div className="px-4 pb-4 border-t border-border pt-3">
-                          <p className="text-sm text-ink leading-relaxed">{fix.detail}</p>
+                        <div className="px-5 pb-5 pt-3 border-t-2 border-ink bg-slate-50/50 animate-fadeIn">
+                          <div className="font-mono text-[9px] font-bold text-ink/40 uppercase tracking-widest mb-1.5">{"// Standard Operating Procedure"}</div>
+                          <p className="text-sm text-ink/80 leading-relaxed font-bold">
+                            {fix.detail}
+                          </p>
                         </div>
                       )}
-                    </button>
+                    </div>
                   )
                 })}
               </div>
+            </div>
 
-              <div className="bg-sage-light rounded-2xl p-5 border border-sage/20 mb-5">
-                <div className="flex items-center gap-2 mb-2">
-                  <CheckCircle className="w-4 h-4 text-sage" />
-                  <p className="font-mono text-[10px] text-sage uppercase tracking-wider">Prevention Tip</p>
-                </div>
-                <p className="text-sm text-ink leading-relaxed">{defect.preventionTip}</p>
+            {/* Prevention Banner */}
+            <div className="border-4 border-ink p-6 shadow-hard" style={{ backgroundColor: '#F0FDF4', boxShadow: '4px 4px 0px 0px #15803D' }}>
+              <div className="flex items-center gap-2 mb-3">
+                <CheckCircle className="w-5 h-5 text-emerald-700" />
+                <p className="font-mono text-[10px] font-black text-emerald-800 uppercase tracking-wider">
+                  Industrial Prevention Strategy
+                </p>
               </div>
+              <p className="text-sm text-emerald-950 font-bold leading-relaxed">
+                {defect.preventionTip}
+              </p>
+            </div>
 
-              <p className="font-mono text-[10px] text-ink-muted">Source: {defect.source}</p>
+            {/* Source credit */}
+            <div className="font-mono text-[9px] text-ink/40 text-right uppercase tracking-wider">
+              Recommended Literature: {defect.source}
             </div>
           </div>
         )}
 
         {!process && (
-          <div className="text-center py-16 text-ink-muted">
-            <Wrench className="w-8 h-8 mx-auto mb-3 opacity-30" />
-            <p className="font-mono text-sm">Select a process above to start diagnosing</p>
+          <div className="border-4 border-ink p-12 text-center shadow-hard bg-white">
+            <Wrench className="w-10 h-10 mx-auto mb-4 text-ink/40" />
+            <div className="font-display text-2xl font-black text-ink mb-2">Diagnostic Engine Offline</div>
+            <p className="text-ink/60 max-w-sm mx-auto font-mono text-xs">
+              Select a polymer manufacturing method above to load the corresponding defects and operation parameters.
+            </p>
           </div>
         )}
       </div>
 
-      {/* ── Footer CTA ── */}
-      <div className="bg-background-card border-t border-border px-6 py-10">
-        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-5">
+      {/* Footer CTA */}
+      <section className="border-t-4 border-ink bg-yellow-bright px-6 md:px-12 py-10 mt-16">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
-            <div className="flex items-center gap-2 mb-1">
-              <Sparkles className="w-4 h-4 text-sage" />
-              <span className="font-mono text-[10px] text-sage uppercase tracking-widest">Learn the theory behind the fix</span>
+            <div className="flex items-center gap-2 mb-2">
+              <Sparkles className="w-4 h-4 text-ink" />
+              <span className="font-mono text-[10px] font-black text-ink uppercase tracking-widest">
+                Learn the theory behind the fix
+              </span>
             </div>
-            <p className="font-serif text-lg font-medium text-ink">Understanding why defects happen makes you faster at fixing them</p>
+            <p className="font-display text-2xl font-black text-ink leading-tight">
+              Understanding why defects happen makes you a faster field engineer.
+            </p>
           </div>
-          <div className="flex gap-3 flex-shrink-0">
-            <Link href="/subjects/polymer-processing" className="inline-flex items-center gap-2 bg-sage hover:bg-sage-hover text-white font-semibold text-sm px-5 py-2.5 rounded-xl transition-colors">
-              Polymer Processing <ArrowRight className="w-3.5 h-3.5" />
+          <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto flex-shrink-0">
+            <Link
+              href="/subjects/polymer-processing"
+              className="cn-btn-black text-center text-xs py-3 px-5 flex items-center justify-center gap-1.5"
+            >
+              <BookOpen className="w-4 h-4" /> Study Processing Lessons
             </Link>
-            <Link href="/ai-tutor" className="inline-flex items-center gap-2 bg-background border border-border text-ink font-semibold text-sm px-5 py-2.5 rounded-xl hover:border-sage transition-colors">
-              Ask AI Tutor
+            <Link
+              href="/ai-tutor"
+              className="cn-btn bg-white text-ink text-center text-xs py-3 px-5 flex items-center justify-center gap-1.5"
+            >
+              <Brain className="w-4 h-4" /> Ask AI Tutor
             </Link>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }
