@@ -54,21 +54,21 @@ function PaymentModal({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-3xl w-full max-w-md shadow-2xl overflow-hidden">
+    <div className="fixed inset-0 bg-ink/60 z-50 flex items-center justify-center p-4">
+      <div className="bg-canvas border-4 border-ink w-full max-w-md shadow-hard-xl">
 
         {/* Header */}
-        <div className="bg-gradient-to-r from-[#0F4C81] to-[#1565A8] px-6 py-5 relative">
+        <div className="bg-blue border-b-4 border-ink px-6 py-5 relative">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-white/15 rounded-xl flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-white" />
+            <div className="w-8 h-8 bg-white border-2 border-ink flex items-center justify-center">
+              <Sparkles className="w-4 h-4 text-blue" />
             </div>
             <div>
-              <h2 className="text-white font-bold">Upgrade to Premium</h2>
-              <p className="text-blue-200 text-xs">₹149/month · UPI payment</p>
+              <h2 className="text-white font-display font-black uppercase text-base tracking-wide">Upgrade to Premium</h2>
+              <p className="text-white/80 font-mono text-[9px] font-bold uppercase tracking-wider">₹149/month · UPI payment</p>
             </div>
           </div>
-          <button onClick={onClose} className="absolute top-4 right-4 text-white/60 hover:text-white text-xl font-light">×</button>
+          <button onClick={onClose} className="absolute top-4 right-4 text-white hover:text-yellow-bright text-xl font-bold">×</button>
         </div>
 
         <div className="p-6">
@@ -76,93 +76,93 @@ function PaymentModal({ onClose }: { onClose: () => void }) {
           {step === 'info' && (
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-semibold text-[#0F172A] mb-1.5">Full Name</label>
+                <label className="block font-mono text-[10px] font-black text-ink uppercase tracking-wider mb-1.5">Full Name</label>
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Your name"
-                  className="w-full px-4 py-3 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#0F4C81] transition-all"
+                  className="w-full px-4 py-2.5 border-2 border-ink text-sm font-bold focus:outline-none"
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-[#0F172A] mb-1.5">Email address</label>
+                <label className="block font-mono text-[10px] font-black text-ink uppercase tracking-wider mb-1.5">Email address</label>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@college.edu.in"
-                  className="w-full px-4 py-3 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#0F4C81] transition-all"
+                  className="w-full px-4 py-2.5 border-2 border-ink text-sm font-bold focus:outline-none"
                 />
               </div>
               <button
                 onClick={() => setStep('payment')}
                 disabled={!name.trim() || !email.trim()}
-                className="w-full bg-[#0F4C81] hover:bg-[#0D3F6E] disabled:opacity-60 text-white font-semibold py-3.5 rounded-xl transition-colors flex items-center justify-center gap-2"
+                className="w-full border-4 border-ink bg-blue text-white font-mono font-black text-xs py-3 uppercase tracking-widest hover:bg-blue/90 disabled:opacity-60 disabled:cursor-not-allowed shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5"
               >
-                Continue to Payment <ArrowRight className="w-4 h-4" />
+                Continue to Payment
               </button>
             </div>
           )}
 
           {step === 'payment' && (
             <div className="space-y-4">
-              <div className="bg-slate-50 rounded-2xl p-4 text-center">
-                {/* UPI QR placeholder — replace with real QR image */}
-                <div className="w-40 h-40 bg-white border-2 border-slate-200 rounded-2xl mx-auto mb-3 flex items-center justify-center">
-                  <QrCode className="w-16 h-16 text-slate-300" />
+              <div className="border-4 border-ink p-4 text-center bg-slate-50 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
+                {/* UPI QR placeholder */}
+                <div className="w-40 h-40 bg-white border-4 border-ink rounded-none mx-auto mb-3 flex items-center justify-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                  <QrCode className="w-20 h-20 text-ink" />
                 </div>
-                <p className="text-sm font-semibold text-[#0F172A] mb-1">Scan & Pay ₹149</p>
-                <p className="text-xs text-slate-400">Google Pay · PhonePe · Paytm · Any UPI</p>
-                <div className="mt-3 bg-[#EEF4FF] rounded-xl px-4 py-2.5">
-                  <p className="text-xs text-slate-500 mb-1">UPI ID</p>
-                  <p className="text-sm font-bold text-[#0F4C81] font-mono">polymerhub@upi</p>
+                <p className="font-display font-black text-sm text-ink mb-1 uppercase tracking-tight">Scan and Pay ₹149</p>
+                <p className="text-[10px] font-mono text-ink/40 uppercase tracking-widest font-black">Paytm · PhonePe · Google Pay · BHIM</p>
+                <div className="mt-3 bg-yellow-bright border-2 border-ink px-4 py-2">
+                  <p className="font-mono text-[9px] font-black text-ink/40 uppercase tracking-widest">UPI ID</p>
+                  <p className="text-sm font-black text-ink font-mono tracking-tight select-all">polymerhub@upi</p>
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-[#0F172A] mb-1.5">
-                  UTR / Transaction Number
+                <label className="block font-mono text-[10px] font-black text-ink uppercase tracking-wider mb-1.5">
+                  UTR / Transaction ID
                 </label>
                 <input
                   type="text"
                   value={utrNumber}
                   onChange={(e) => setUtrNumber(e.target.value)}
                   placeholder="12-digit UTR number"
-                  className="w-full px-4 py-3 border border-slate-200 rounded-xl text-sm font-mono focus:outline-none focus:ring-2 focus:ring-[#0F4C81] transition-all"
+                  className="w-full px-4 py-2.5 border-2 border-ink text-sm font-mono font-bold focus:outline-none"
                 />
-                <p className="text-xs text-slate-400 mt-1">Found in your UPI app after payment</p>
+                <p className="text-[9px] font-mono text-ink/40 mt-1 uppercase tracking-wider font-bold">Found in your UPI app receipt details</p>
               </div>
 
               <button
                 onClick={() => setStep('upload')}
                 disabled={!utrNumber.trim()}
-                className="w-full bg-[#0F4C81] hover:bg-[#0D3F6E] disabled:opacity-60 text-white font-semibold py-3.5 rounded-xl transition-colors flex items-center justify-center gap-2"
+                className="w-full border-4 border-ink bg-blue text-white font-mono font-black text-xs py-3 uppercase tracking-widest hover:bg-blue/90 disabled:opacity-60 disabled:cursor-not-allowed shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5"
               >
-                I&apos;ve paid — Upload Screenshot <ArrowRight className="w-4 h-4" />
+                Upload Payment Screenshot
               </button>
             </div>
           )}
 
           {step === 'upload' && (
             <div className="space-y-4">
-              <div className="bg-green-50 border border-green-100 rounded-xl px-4 py-3 flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                <p className="text-sm text-green-700 font-medium">Payment recorded. Now upload your screenshot.</p>
+              <div className="border-2 border-green bg-green/10 p-3 flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green flex-shrink-0" />
+                <p className="font-mono text-[9px] font-black text-green uppercase tracking-wider">Payment ID recorded. Upload verification image.</p>
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-[#0F172A] mb-1.5">
+                <label className="block font-mono text-[10px] font-black text-ink uppercase tracking-wider mb-1.5">
                   Payment Screenshot
                 </label>
-                <label className={`flex flex-col items-center justify-center border-2 border-dashed rounded-2xl p-6 cursor-pointer transition-colors ${
-                  file ? 'border-[#0F4C81] bg-[#EEF4FF]' : 'border-slate-200 hover:border-[#0F4C81] hover:bg-slate-50'
+                <label className={`flex flex-col items-center justify-center border-4 border-dashed rounded-none p-6 cursor-pointer transition-colors ${
+                  file ? 'border-blue bg-blue/5' : 'border-ink/20 hover:border-ink hover:bg-slate-50'
                 }`}>
-                  <Upload className={`w-8 h-8 mb-2 ${file ? 'text-[#0F4C81]' : 'text-slate-300'}`} />
-                  <p className="text-sm font-medium text-slate-600">
+                  <Upload className={`w-8 h-8 mb-2 ${file ? 'text-blue' : 'text-ink/40'}`} />
+                  <p className="text-xs font-bold text-ink">
                     {file ? file.name : 'Tap to upload screenshot'}
                   </p>
-                  <p className="text-xs text-slate-400 mt-1">PNG, JPG up to 5MB</p>
+                  <p className="text-[9px] font-mono text-ink/40 mt-1 uppercase tracking-widest">PNG, JPG up to 5MB</p>
                   <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
                 </label>
               </div>
@@ -170,7 +170,7 @@ function PaymentModal({ onClose }: { onClose: () => void }) {
               <button
                 onClick={handleSubmit}
                 disabled={!file || uploading}
-                className="w-full bg-[#0F4C81] hover:bg-[#0D3F6E] disabled:opacity-60 text-white font-semibold py-3.5 rounded-xl transition-colors flex items-center justify-center gap-2"
+                className="w-full border-4 border-ink bg-blue text-white font-mono font-black text-xs py-3.5 uppercase tracking-widest hover:bg-blue/90 disabled:opacity-60 disabled:cursor-not-allowed shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5"
               >
                 {uploading ? (
                   <>
@@ -186,19 +186,19 @@ function PaymentModal({ onClose }: { onClose: () => void }) {
 
           {step === 'done' && (
             <div className="text-center py-4">
-              <div className="w-16 h-16 bg-green-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <CheckCircle className="w-8 h-8 text-green-500" />
+              <div className="w-16 h-16 bg-emerald-50 border-4 border-ink flex items-center justify-center mx-auto mb-4 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                <CheckCircle className="w-8 h-8 text-emerald-700" />
               </div>
-              <h3 className="text-xl font-bold text-[#0F172A] mb-2">Request submitted!</h3>
-              <p className="text-slate-500 text-sm mb-4 leading-relaxed">
-                We&apos;ll verify your payment and activate Premium within <strong>2 hours</strong>. You&apos;ll receive a confirmation email at <span className="text-[#0F4C81] font-medium">{email}</span>.
+              <h3 className="font-display font-black text-xl text-ink uppercase tracking-tight mb-2">Request submitted!</h3>
+              <p className="text-ink/65 text-xs font-bold mb-4 leading-relaxed">
+                We will verify your payment UTR and activate Premium within <strong>2 hours</strong>. Confirmation sent to <span className="text-blue font-bold">{email}</span>.
               </p>
-              <div className="bg-[#F8FAFC] rounded-2xl p-4 text-left mb-4">
-                <p className="text-xs text-slate-500">
-                  While you wait, you can continue reading free lessons. Premium access will unlock automatically once verified.
+              <div className="border-4 border-ink p-4 text-left mb-6 bg-slate-50">
+                <p className="text-[10px] font-mono font-bold text-ink/50 leading-relaxed uppercase">
+                  Verification runs automatically. You can read free lessons while waiting.
                 </p>
               </div>
-              <button onClick={onClose} className="text-sm text-slate-400 hover:text-[#0F4C81] transition-colors">
+              <button onClick={onClose} className="font-mono text-[10px] font-black border-2 border-ink px-4 py-2 uppercase hover:bg-ink hover:text-white transition-colors">
                 Back to PolymerHub
               </button>
             </div>
@@ -213,123 +213,129 @@ export default function PricingPage() {
   const [showModal, setShowModal] = useState(false)
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC]">
+    <div className="min-h-screen bg-canvas pb-16">
 
-
-      {/* ── Hero ── */}
-      <div className="bg-white border-b border-slate-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-16 text-center">
-          <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-100 rounded-full px-4 py-1.5 mb-5">
-            <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-            <span className="text-xs font-semibold text-amber-700">First 50 students get 3 months free with code PIIU2025</span>
+      {/* Hero */}
+      <section className="border-b-4 border-ink bg-yellow-bright px-6 md:px-12 py-12">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
+          <div>
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 bg-ink border-4 border-ink flex items-center justify-center">
+                <Zap className="w-5 h-5 text-yellow-bright" />
+              </div>
+              <span className="font-mono text-[10px] font-black text-ink border-2 border-ink px-3 py-1 uppercase tracking-widest bg-white">
+                Pricing
+              </span>
+              <span className="font-mono text-[10px] font-black border-2 border-ink bg-ink text-yellow-bright px-3 py-1 uppercase tracking-widest">
+                PLANS
+              </span>
+            </div>
+            <h1 className="font-display text-4xl md:text-6xl font-black text-ink leading-none uppercase">
+              SIMPLE, HONEST<br />
+              <span className="italic">PRICING PLANS</span>
+            </h1>
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-[#0F172A] mb-3">
-            Simple, honest pricing.
-          </h1>
-          <p className="text-slate-500 max-w-md mx-auto">
-            Core content is free forever. Premium unlocks everything else for less than two chais a week.
-          </p>
+          <div className="max-w-md text-left md:text-right">
+            <p className="text-sm font-bold text-ink/70 leading-relaxed">
+              Core B.Tech syllabus notes are free forever. Upgrade to Premium to unlock advanced tools, datasets, and unlimited AI tutoring support.
+            </p>
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* ── Pricing cards ── */}
+      {/* Pricing cards */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-          {/* Free */}
-          <div className="bg-white rounded-3xl border border-slate-100 p-7 md:p-8">
-            <div className="mb-6">
-              <h2 className="text-lg font-bold text-[#0F172A] mb-1">Free</h2>
-              <div className="flex items-baseline gap-1 mb-2">
-                <span className="text-4xl font-bold text-[#0F172A]">₹0</span>
-                <span className="text-slate-400 text-sm">/forever</span>
-              </div>
-              <p className="text-sm text-slate-500">Everything you need to get started.</p>
-            </div>
-
-            <div className="space-y-3 mb-8">
-              {FREE_FEATURES.map((f) => (
-                <div key={f.text} className="flex items-start gap-3">
-                  {f.included
-                    ? <Check className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                    : <X className="w-4 h-4 text-slate-200 flex-shrink-0 mt-0.5" />
-                  }
-                  <span className={`text-sm ${f.included ? 'text-slate-600' : 'text-slate-300'}`}>
-                    {f.text}
-                  </span>
+          {/* Free plan */}
+          <div className="bg-white border-4 border-ink p-7 md:p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between">
+            <div>
+              <div className="mb-6 border-b-2 border-ink/10 pb-4">
+                <h2 className="font-display font-black text-xl text-ink uppercase tracking-tight mb-1">Free Tier</h2>
+                <div className="flex items-baseline gap-1 mb-2">
+                  <span className="text-4xl font-black text-ink font-mono">₹0</span>
+                  <span className="text-ink/40 font-mono text-xs uppercase font-bold">/ forever</span>
                 </div>
-              ))}
+                <p className="text-xs font-bold text-ink/50 uppercase">Essential study tools to get started.</p>
+              </div>
+
+              <div className="space-y-3 mb-8">
+                {FREE_FEATURES.map((f) => (
+                  <div key={f.text} className="flex items-start gap-3">
+                    {f.included
+                      ? <Check className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                      : <X className="w-4 h-4 text-ink/20 flex-shrink-0 mt-0.5" />
+                    }
+                    <span className={`text-xs font-bold ${f.included ? 'text-ink' : 'text-ink/30'}`}>
+                      {f.text}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <Link
               href="/login"
-              className="w-full flex items-center justify-center gap-2 border-2 border-[#0F4C81] text-[#0F4C81] font-semibold py-3.5 rounded-xl hover:bg-[#EEF4FF] transition-colors"
+              className="w-full text-center border-4 border-ink bg-white hover:bg-slate-50 text-ink font-mono font-black text-xs py-3.5 uppercase tracking-wider shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5"
             >
               Get started free
             </Link>
           </div>
 
-          {/* Premium */}
-          <div className="relative bg-gradient-to-br from-[#0F4C81] to-[#1565A8] rounded-3xl p-7 md:p-8 overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-white rounded-full opacity-[0.04] -translate-y-8 translate-x-8" />
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-[#F97316] rounded-full opacity-[0.07] translate-y-8 -translate-x-8" />
-
-            <div className="relative">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-1.5 bg-[#F97316] text-white text-xs font-bold px-3 py-1 rounded-full mb-4">
-                <Zap className="w-3 h-3" /> Most Popular
-              </div>
-
-              <div className="mb-6">
-                <h2 className="text-lg font-bold text-white mb-1">Premium</h2>
-                <div className="flex items-baseline gap-1 mb-2">
-                  <span className="text-4xl font-bold text-white">₹149</span>
-                  <span className="text-blue-200 text-sm">/month</span>
+          {/* Premium plan */}
+          <div className="bg-white border-4 border-ink p-7 md:p-8 shadow-[4px_4px_0px_0px_rgba(29,78,216,1)] flex flex-col justify-between">
+            <div>
+              <div className="mb-6 border-b-2 border-ink/10 pb-4">
+                <div className="inline-flex items-center gap-1.5 bg-rose-500 text-white text-[9px] font-mono font-black px-2.5 py-1 uppercase border-2 border-ink shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] mb-3">
+                  <Zap className="w-3 h-3" /> Most Popular
                 </div>
-                <p className="text-sm text-blue-200">Unlock everything. Cancel anytime.</p>
+                <h2 className="font-display font-black text-xl text-ink uppercase tracking-tight mb-1">Premium Tier</h2>
+                <div className="flex items-baseline gap-1 mb-2">
+                  <span className="text-4xl font-black text-ink font-mono">₹149</span>
+                  <span className="text-blue font-mono text-xs uppercase font-bold">/ month</span>
+                </div>
+                <p className="text-xs font-bold text-blue uppercase">Complete platform unlock. Cancel anytime.</p>
               </div>
 
               <div className="space-y-3 mb-8">
                 {PREMIUM_FEATURES.map((f) => (
                   <div key={f.text} className="flex items-start gap-3">
-                    <Check className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm text-blue-100">{f.text}</span>
+                    <Check className="w-4 h-4 text-blue flex-shrink-0 mt-0.5" />
+                    <span className="text-xs font-bold text-ink">{f.text}</span>
                   </div>
                 ))}
               </div>
-
-              <button
-                onClick={() => setShowModal(true)}
-                className="w-full flex items-center justify-center gap-2 bg-white text-[#0F4C81] font-bold py-3.5 rounded-xl hover:bg-blue-50 transition-colors"
-              >
-                Upgrade to Premium <ArrowRight className="w-4 h-4" />
-              </button>
-
-              <p className="text-blue-300 text-xs text-center mt-3">
-                UPI payment · Activated within 2 hours
-              </p>
             </div>
+
+            <button
+              onClick={() => setShowModal(true)}
+              className="w-full border-4 border-ink bg-blue hover:bg-blue/90 text-white font-mono font-black text-xs py-3.5 uppercase tracking-wider shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5"
+            >
+              Upgrade to Premium
+            </button>
           </div>
         </div>
 
         {/* Promo code */}
-        <div className="mt-6 bg-amber-50 border border-amber-100 rounded-2xl p-5 flex items-center justify-between gap-4">
+        <div className="mt-6 border-4 border-ink p-5 shadow-hard" style={{ backgroundColor: '#FEFCE8', boxShadow: '3px 3px 0px 0px #EA580C' }}>
           <div className="flex items-start gap-3">
-            <Sparkles className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
+            <Sparkles className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
             <div>
-              <p className="text-sm font-bold text-[#0F172A] mb-1">
-                3 months free for first 50 students
+              <p className="font-display font-black text-sm text-ink uppercase tracking-tight mb-1">
+                3 months free promotion
               </p>
-              <p className="text-xs text-slate-500">
-                Use code <span className="font-bold text-[#0F4C81] bg-[#EEF4FF] px-1.5 py-0.5 rounded font-mono">PIIU2025</span> when upgrading. Mention it in the payment screenshot message.
+              <p className="text-xs text-ink/70 font-bold leading-normal">
+                Use code <span className="font-mono font-black bg-white border border-ink px-1.5 py-0.5">PIIU2025</span> when submitting payment. Paste it into the verification message input box.
               </p>
             </div>
           </div>
         </div>
 
         {/* FAQ */}
-        <div className="mt-10">
-          <h2 className="text-xl font-bold text-[#0F172A] mb-5">Common questions</h2>
+        <div className="mt-12">
+          <div className="border-b-4 border-ink pb-2 mb-6">
+            <h2 className="font-mono text-xs font-black text-ink uppercase tracking-widest">Common questions</h2>
+          </div>
           <div className="space-y-4">
             {[
               {
@@ -353,9 +359,9 @@ export default function PricingPage() {
                 a: 'Yes. Our lessons cover topics tested in GATE Polymer Science paper. The AI tutor is great for quick revision before the exam.',
               },
             ].map(({ q, a }) => (
-              <div key={q} className="bg-white rounded-2xl border border-slate-100 p-5">
-                <h3 className="font-semibold text-[#0F172A] text-sm mb-2">{q}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">{a}</p>
+              <div key={q} className="border-4 border-ink p-5 bg-white shadow-[2.5px_2.5px_0px_0px_rgba(0,0,0,1)]">
+                <h3 className="font-display font-black text-sm text-ink mb-2 uppercase tracking-tight">{q}</h3>
+                <p className="text-xs text-ink/70 font-bold leading-relaxed">{a}</p>
               </div>
             ))}
           </div>
