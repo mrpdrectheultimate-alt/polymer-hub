@@ -264,7 +264,7 @@ BEGIN
     'mcq',
     '["A) It has the best oil resistance of all synthetic rubbers", "B) Its saturated backbone (no double bonds in the main chain) gives outstanding resistance to ozone, UV, and weathering", "C) It has the lowest cost of all synthetic rubbers", "D) It has the highest tensile strength of all elastomers"]',
     'B',
-    'EPDM (Ethylene Propylene Diene Monomer) has a fully saturated backbone — the diene monomer introduces unsaturation into a pendant side chain only (not the main chain). Ozone and UV attack double bonds in the main chain (which is why NR, SBR, and BR crack outdoors without protection). Since EPDM main chain has no double bonds, ozone and UV cannot attack it — giving exceptional outdoor durability without antiozonants. EPDM\'s weakness: poor oil/fuel resistance (saturated backbone does not swell in non-polar solvents effectively).',
+    'EPDM (Ethylene Propylene Diene Monomer) has a fully saturated backbone — the diene monomer introduces unsaturation into a pendant side chain only (not the main chain). Ozone and UV attack double bonds in the main chain (which is why NR, SBR, and BR crack outdoors without protection). Since EPDM main chain has no double bonds, ozone and UV cannot attack it — giving exceptional outdoor durability without antiozonants. EPDM''s weakness: poor oil/fuel resistance (saturated backbone does not swell in non-polar solvents effectively).',
     'medium', 'Synthetic Rubber Selection', false),
 
   (s_rubber,
@@ -280,13 +280,13 @@ BEGIN
     'mcq',
     '["A) The tensile strength of the vulcanized rubber", "B) The molecular weight and processability of the raw rubber — higher Mooney = higher MW = harder to process", "C) The degree of crosslinking achieved after vulcanization", "D) The carbon black loading in the compound"]',
     'B',
-    'Mooney viscosity is measured using a rotating disc in raw rubber at 100°C — it indicates the compound\'s resistance to shear flow, which correlates with molecular weight distribution. ML(1+4) = Large rotor, 1 minute preheat + 4 minutes test time. High Mooney viscosity (e.g., ML 80) means high MW rubber — better mechanical properties after vulcanization but harder to mix and process. Most processing lines prefer Mooney 45–70 for processability without sacrificing too much property.',
+    'Mooney viscosity is measured using a rotating disc in raw rubber at 100°C — it indicates the compound''s resistance to shear flow, which correlates with molecular weight distribution. ML(1+4) = Large rotor, 1 minute preheat + 4 minutes test time. High Mooney viscosity (e.g., ML 80) means high MW rubber — better mechanical properties after vulcanization but harder to mix and process. Most processing lines prefer Mooney 45–70 for processability without sacrificing too much property.',
     'medium', 'Rubber Characterization', false),
 
   (s_rubber,
     'In tyre construction, the innerliner is made from halobutyl rubber (chlorobutyl or bromobutyl) because:',
     'mcq',
-    '["A) Halobutyl has the best abrasion resistance of all rubbers", "B) Halobutyl\'s saturated backbone with halogen atoms gives exceptional air impermeability — critical for tubeless tyre pressure retention", "C) Halobutyl is the cheapest rubber available", "D) Halobutyl has the best adhesion to steel belts"]',
+    '["A) Halobutyl has the best abrasion resistance of all rubbers", "B) Halobutyl''s saturated backbone with halogen atoms gives exceptional air impermeability — critical for tubeless tyre pressure retention", "C) Halobutyl is the cheapest rubber available", "D) Halobutyl has the best adhesion to steel belts"]',
     'B',
     'Butyl rubber (IIR) is an isobutylene-isoprene copolymer with very low isoprene content — the near-saturated, tightly packed molecular structure gives it the lowest gas permeability of any commercial rubber (10× lower than NR). Halogenation (chloro- or bromo-butyl) improves adhesion to adjacent diene rubbers (NR/SBR carcass) via co-vulcanization. Without an impermeable innerliner, a tubeless tyre would lose pressure rapidly through the natural rubber carcass.',
     'hard', 'Tyre Construction', false);
@@ -302,11 +302,11 @@ BEGIN
     'medium', 'Mechanical Recycling Sorting', false),
 
   (s_recycling,
-    'India\'s EPR (Extended Producer Responsibility) framework under the Plastic Waste Management Rules 2022 requires:',
+    'India''s EPR (Extended Producer Responsibility) framework under the Plastic Waste Management Rules 2022 requires:',
     'mcq',
     '["A) Only export-oriented companies to register", "B) All Producers, Importers, and Brand Owners (PIBOs) of plastic packaging to register on the CPCB EPR portal and meet annual collection and recycling targets", "C) Only plastic manufacturers to pay recycling fees", "D) EPR registration only for companies with turnover above ₹100 crore"]',
     'B',
-    'India\'s EPR framework under PWM Rules 2022 (amended) mandates ALL PIBOs — any company that puts plastic packaging into the Indian market — to register on the CPCB EPR portal, submit annual plastic footprint declarations, and meet progressive collection+recycling targets (reaching 60% by 2025-26). Companies that cannot meet targets themselves must purchase EPR certificates from registered recyclers. This creates a legally mandated market for certified recycled material, fundamentally changing recycling economics.',
+    'India''s EPR framework under PWM Rules 2022 (amended) mandates ALL PIBOs — any company that puts plastic packaging into the Indian market — to register on the CPCB EPR portal, submit annual plastic footprint declarations, and meet progressive collection+recycling targets (reaching 60% by 2025-26). Companies that cannot meet targets themselves must purchase EPR certificates from registered recyclers. This creates a legally mandated market for certified recycled material, fundamentally changing recycling economics.',
     'medium', 'EPR Framework India', false),
 
   (s_recycling,
@@ -320,9 +320,9 @@ BEGIN
   (s_recycling,
     'PETase enzyme (discovered in Ideonella sakaiensis) achieves recycling of PET by:',
     'mcq',
-    '["A) Melting PET at high temperature and reforming it", "B) Hydrolyzing the ester bonds in PET\'s backbone using water, producing TPA and EG monomers", "C) Converting PET into carbon black for rubber compounding", "D) Crosslinking PET chains to improve its properties"]',
+    '["A) Melting PET at high temperature and reforming it", "B) Hydrolyzing the ester bonds in PET''s backbone using water, producing TPA and EG monomers", "C) Converting PET into carbon black for rubber compounding", "D) Crosslinking PET chains to improve its properties"]',
     'B',
-    'PETase is a hydrolase enzyme that cleaves PET\'s ester bonds using water molecules in a targeted enzymatic reaction — producing terephthalic acid (TPA) and ethylene glycol (EG), the exact monomers used to synthesize virgin PET. This enables true circular recycling: plastic in → monomers out → new virgin-quality plastic. Commercial-scale implementation by Carbios (France) at 72°C uses thermophilic FAST-PETase variants engineered for industrial speed, handling coloured and contaminated PET that mechanical recycling cannot process.',
+    'PETase is a hydrolase enzyme that cleaves PET''s ester bonds using water molecules in a targeted enzymatic reaction — producing terephthalic acid (TPA) and ethylene glycol (EG), the exact monomers used to synthesize virgin PET. This enables true circular recycling: plastic in → monomers out → new virgin-quality plastic. Commercial-scale implementation by Carbios (France) at 72°C uses thermophilic FAST-PETase variants engineered for industrial speed, handling coloured and contaminated PET that mechanical recycling cannot process.',
     'hard', 'Enzymatic Recycling', false),
 
   (s_recycling,
@@ -330,7 +330,7 @@ BEGIN
     'mcq',
     '["A) 5–10% lower", "B) 30–40% lower", "C) 60–75% lower", "D) Greater than virgin PET (recycling has higher carbon footprint)"]',
     'C',
-    'Mechanical recycling of PET bottles into rPET pellets requires significantly less energy than producing virgin PET from naphtha → paraxylene → terephthalic acid → polymerization. Published LCAs (Shen et al., WRAP UK, Carbios) consistently show rPET has 60–75% lower GWP than virgin PET, and approximately 50–65% lower fossil resource consumption. This is the core environmental and commercial argument for brand commitments to recycled content under EU PPWR and India\'s EPR targets.',
+    'Mechanical recycling of PET bottles into rPET pellets requires significantly less energy than producing virgin PET from naphtha → paraxylene → terephthalic acid → polymerization. Published LCAs (Shen et al., WRAP UK, Carbios) consistently show rPET has 60–75% lower GWP than virgin PET, and approximately 50–65% lower fossil resource consumption. This is the core environmental and commercial argument for brand commitments to recycled content under EU PPWR and India''s EPR targets.',
     'hard', 'Life Cycle Assessment', false);
 
   -- ── SUSTAINABLE PLASTICS ─────────────────────────────────────────────────────
@@ -474,7 +474,7 @@ BEGIN
     'mcq',
     '["A) It dissolves slowly inside the body to release medication", "B) It has an elastic modulus close to human cortical bone, reducing stress shielding, is highly radiolucent, and survives repeated autoclave sterilization", "C) It is the cheapest engineering plastic available", "D) It can be injected directly into the patient"]',
     'B',
-    'PEEK\'s modulus (~3.6–4 GPa unfilled) matches human bone closer than titanium or steel, avoiding "stress shielding" where stiff metal carries all load, causing surrounding bone to atrophy. It is radiolucent (invisible under X-ray, allowing doctors to monitor bone growth) and survives autoclave sterilization.',
+    'PEEK''s modulus (~3.6–4 GPa unfilled) matches human bone closer than titanium or steel, avoiding "stress shielding" where stiff metal carries all load, causing surrounding bone to atrophy. It is radiolucent (invisible under X-ray, allowing doctors to monitor bone growth) and survives autoclave sterilization.',
     'medium', 'PEEK Implantable Polymers', true),
 
   (s_medical,
@@ -488,7 +488,7 @@ BEGIN
   (s_medical,
     'Which sterilization method is NOT compatible with Teflon (PTFE) medical components?',
     'mcq',
-    '["A) Autoclaving (steam sterilization)", "B) Gamma radiation (triggers chain scission and degradation of Teflon\'s mechanical properties)", "C) Ethylene Oxide (EtO) gas", "D) Dry heat sterilization"]',
+    '["A) Autoclaving (steam sterilization)", "B) Gamma radiation (triggers chain scission and degradation of Teflon''s mechanical properties)", "C) Ethylene Oxide (EtO) gas", "D) Dry heat sterilization"]',
     'B',
     'Teflon (PTFE) is highly sensitive to radiation. Gamma radiation triggers extensive chain scission in the fluoropolymer, destroying its tensile strength and making it brittle and crumbly. Autoclaving, EtO, and electron beam are preferred sterilization methods for PTFE.',
     'hard', 'Sterilization Compatibility', true),
