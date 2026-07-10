@@ -172,15 +172,23 @@ export default async function SubjectDetailPage({
             {subject.description}
           </p>
 
-          {/* Start button */}
-          {lessons && lessons.length > 0 && (
+          {/* Start and Practice buttons */}
+          <div className="flex flex-wrap gap-4">
+            {lessons && lessons.length > 0 && (
+              <Link
+                href={`/lessons/${lessons[0].slug}`}
+                className="cn-btn bg-yellow-bright text-ink border-white font-black"
+              >
+                Start Lesson 1 <ArrowRight className="w-5 h-5" />
+              </Link>
+            )}
             <Link
-              href={`/lessons/${lessons[0].slug}`}
-              className="cn-btn bg-yellow-bright text-ink border-white font-black"
+              href={`/subjects/${params.slug}/practice`}
+              className="cn-btn bg-white text-ink border-white font-black"
             >
-              Start Lesson 1 <ArrowRight className="w-5 h-5" />
+              Take Practice Quiz <BookOpen className="w-5 h-5" />
             </Link>
-          )}
+          </div>
         </div>
       </section>
 
@@ -332,11 +340,11 @@ export default async function SubjectDetailPage({
             </p>
           </div>
           <div className="flex gap-3 flex-shrink-0">
-            <Link href="/ai-tutor" className="cn-btn-yellow text-sm">
-              <Brain className="w-4 h-4" /> Ask AI Tutor
+            <Link href={`/subjects/${params.slug}/practice`} className="cn-btn-yellow text-sm font-black">
+              Take Practice Quiz
             </Link>
-            <Link href="/subjects" className="cn-btn-white text-sm">
-              All Subjects
+            <Link href="/ai-tutor" className="cn-btn-white text-sm">
+              <Brain className="w-4 h-4" /> Ask AI Tutor
             </Link>
           </div>
         </div>
