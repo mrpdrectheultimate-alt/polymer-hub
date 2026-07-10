@@ -53,7 +53,7 @@ const BOOKS = [
   {
     id: 'fried', title: 'Polymer Science and Technology', authors: 'Joel R. Fried',
     tier: 'science', difficulty: 'Intermediate', color: '#1D4ED8', bg: '#EFF6FF',
-    focus: 'Bridging academic polymer chemistry and applied mechanical engineering',
+    focus: 'Bridging fundamental polymer chemistry and applied mechanical engineering',
     topics: ['Chain conformation', 'Molecular weight and MWD', 'Viscoelasticity', 'Glass transition', 'Polymer solutions'],
     studentUse: 'The single best book to truly understand the science behind what you are processing. Converts memorised formulae into genuine understanding.',
     careers: ['R&D Engineer', 'Materials Scientist', 'Process Engineer'],
