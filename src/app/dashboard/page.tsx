@@ -1,340 +1,384 @@
-import { createClient } from '@/lib/supabase/server'
-import { redirect } from 'next/navigation'
+'use client'
+
+import { useState, useEffect } from 'react'
+import { createClient } from '@/lib/supabase/client'
 import Link from 'next/link'
-import { 
-  FlaskConical, 
-  Settings, 
-  Layers, 
-  TestTube, 
-  Circle, 
-  Sparkles, 
-  ArrowRight, 
-  Brain, 
-  Database,
-  User, 
-  LogOut, 
-  CheckCircle2, 
-  Clock,
-  Recycle,
-  Leaf,
-  Microscope,
-  Rocket,
-  Zap,
-  type LucideIcon
-} from 'lucide-react'
+import { ArrowRight, Brain, BookOpen, Zap, Flame, Trophy, ChevronRight, User, Clock } from 'lucide-react'
 
-// Map slug to icon component
-const iconMap: Record<string, LucideIcon> = {
-  'polymer-chemistry': FlaskConical,
-  'polymer-processing': Settings,
-  'mould-design': Layers,
-  'polymer-testing': TestTube,
-  'rubber-technology': Circle,
-  'recycling-technology': Recycle,
-  'sustainable-plastics': Leaf,
-  'polymer-composites': Microscope,
-  'entrepreneurship-plastics': Rocket,
+// ─── Types ────────────────────────────────────────────────────────────────────
+
+type Profile = {
+  id: string
+  email: string
+  full_name: string | null
+  subscription_status: string | null
+  ai_queries_today: number | null
+  ai_queries_reset_at: string | null
+  created_at: string
 }
 
-// Map slug to color scheme
-const colorMap: { [key: string]: { color: string; bg: string; border: string; text: string } } = {
-  'polymer-chemistry': { color: '#0F4C81', bg: 'bg-[#EEF4FF]', border: 'border-blue-100', text: 'text-blue-700' },
-  'polymer-processing': { color: '#0891B2', bg: 'bg-cyan-50', border: 'border-cyan-100', text: 'text-cyan-700' },
-  'mould-design': { color: '#7C3AED', bg: 'bg-violet-50', border: 'border-violet-100', text: 'text-violet-700' },
-  'polymer-testing': { color: '#16A34A', bg: 'bg-emerald-50', border: 'border-emerald-100', text: 'text-emerald-700' },
-  'rubber-technology': { color: '#D97706', bg: 'bg-amber-50', border: 'border-amber-100', text: 'text-amber-700' },
-  'recycling-technology': { color: '#2D6A4F', bg: 'bg-green-50', border: 'border-green-100', text: 'text-green-700' },
-  'sustainable-plastics': { color: '#16A34A', bg: 'bg-emerald-50', border: 'border-emerald-100', text: 'text-emerald-700' },
-  'polymer-composites': { color: '#1E5A6B', bg: 'bg-teal-50', border: 'border-teal-100', text: 'text-teal-700' },
-  'entrepreneurship-plastics': { color: '#D97706', bg: 'bg-amber-50', border: 'border-amber-100', text: 'text-amber-700' },
+type Subject = {
+  id: string
+  name: string
+  slug: string
+  order_index: number
 }
 
-export default async function DashboardPage() {
+type Lesson = {
+  id: string
+  title: string
+  slug: string
+  subject_id: string
+  order_index: number
+  is_premium: boolean
+}
+
+const SUBJECT_COLORS: Record<string, { color: string; bg: string }> = {
+  'polymer-chemistry':         { color: '#1D4ED8', bg: '#EFF6FF' },
+  'polymer-processing':        { color: '#EA580C', bg: '#FFF7ED' },
+  'mould-design':              { color: '#EA580C', bg: '#FFF7ED' },
+  'polymer-testing':           { color: '#7C3AED', bg: '#F5F3FF' },
+  'rubber-technology':         { color: '#EA580C', bg: '#FFF7ED' },
+  'recycling-technology':      { color: '#15803D', bg: '#F0FDF4' },
+  'sustainable-plastics':      { color: '#15803D', bg: '#F0FDF4' },
+  'polymer-composites':        { color: '#1D4ED8', bg: '#EFF6FF' },
+  'entrepreneurship-plastics': { color: '#CA8A04', bg: '#FEFCE8' },
+  'medical-plastics':          { color: '#7C3AED', bg: '#F5F3FF' },
+}
+
+const QUICK_LINKS = [
+  { label: 'AI Tutor', href: '/ai-tutor', icon: Brain, color: '#15803D', bg: '#F0FDF4' },
+  { label: 'Practice Quiz', href: '/practice', icon: Zap, color: '#CA8A04', bg: '#FEFCE8' },
+  { label: 'Daily Pulse', href: '/today', icon: Flame, color: '#EA580C', bg: '#FFF7ED' },
+  { label: 'Comparator', href: '/comparator', icon: Trophy, color: '#1D4ED8', bg: '#EFF6FF' },
+]
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
+
+export default function DashboardPage() {
   const supabase = createClient()
-  
-  // Get active session
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) {
-    redirect('/login')
+  const [profile, setProfile] = useState<Profile | null>(null)
+  const [subjects, setSubjects] = useState<Subject[]>([])
+  const [lessons, setLessons] = useState<Lesson[]>([])
+  const [loading, setLoading] = useState(true)
+  const [recentLessons, setRecentLessons] = useState<string[]>([]) // lesson slugs from localStorage
+
+  useEffect(() => {
+    const load = async () => {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session) { window.location.href = '/login'; return }
+
+      const [{ data: prof }, { data: subs }, { data: less }] = await Promise.all([
+        supabase.from('profiles').select('*').eq('id', session.user.id).single(),
+        supabase.from('subjects').select('id, name, slug, order_index').order('order_index'),
+        supabase.from('lessons').select('id, title, slug, subject_id, order_index, is_premium').order('order_index'),
+      ])
+
+      if (prof) setProfile({ ...prof, email: session.user.email ?? '' })
+      if (subs) setSubjects(subs)
+      if (less) setLessons(less)
+
+      // Recent lessons from localStorage
+      const recent = JSON.parse(localStorage.getItem('ph_recent_lessons') ?? '[]')
+      setRecentLessons(recent.slice(0, 3))
+
+      setLoading(false)
+    }
+    load()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-canvas flex items-center justify-center">
+        <div className="border-4 border-ink p-8 text-center shadow-hard">
+          <div className="font-display text-2xl font-black text-ink animate-pulse">Loading your dashboard...</div>
+        </div>
+      </div>
+    )
   }
 
-  // Fetch or create profile
-  let { data: profile } = await supabase
-    .from('profiles')
-    .select('*')
-    .eq('id', user.id)
-    .single()
+  if (!profile) return null
 
-  if (!profile) {
-    const { data: newProfile } = await supabase
-      .from('profiles')
-      .insert({
-        id: user.id,
-        email: user.email,
-        full_name: user.user_metadata.full_name || 'PPE Student',
-        subscription_status: 'free',
-        queries_used: 0,
-        queries_reset_at: new Date().toISOString(),
-      })
-      .select()
-      .single()
-    if (newProfile) profile = newProfile
-  }
+  const isPremium = profile.subscription_status === 'premium'
+  const aiQueriesUsed = profile.ai_queries_today ?? 0
+  const aiQueriesMax = isPremium ? 999 : 15
+  const aiQueriesLeft = Math.max(0, aiQueriesMax - aiQueriesUsed)
+  const joinDate = new Date(profile.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
 
-  // Fetch subjects with lessons count
-  const { data: subjects } = await supabase
-    .from('subjects')
-    .select('*, lessons(id, title, is_premium)')
-    .order('order_index')
+  // Lessons grouped by subject
+  const lessonsBySubject = subjects.map((s) => ({
+    subject: s,
+    lessons: lessons.filter((l) => l.subject_id === s.id).sort((a, b) => a.order_index - b.order_index),
+  }))
 
-  // Calculate totals
-  const totalLessons = subjects?.reduce((acc: number, s: { lessons: unknown[] | null }) => acc + (s.lessons?.length || 0), 0) || 0
-  const isPremium = profile?.subscription_status === 'premium'
-  const queriesUsed = profile?.queries_used || 0
-  const maxQueries = 5
+  // Recent lesson objects
+  const recentLessonObjects = recentLessons
+    .map((slug) => lessons.find((l) => l.slug === slug))
+    .filter(Boolean) as Lesson[]
 
   return (
-    <div className="min-h-screen bg-slate-50/50 pb-12">
-      {/* Dashboard Nav */}
-      <header className="sticky top-0 z-40 bg-white border-b border-slate-100 shadow-sm backdrop-blur-md">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5">
-            <div className="w-8 h-8 bg-[#0F4C81] rounded-lg flex items-center justify-center">
-              <FlaskConical className="w-4 h-4 text-white" />
-            </div>
-            <span className="font-bold text-lg text-slate-800 tracking-tight">PolymerHub</span>
-          </Link>
+    <div className="min-h-screen bg-canvas">
+      <div className="h-2 bg-blue animate-pulse" />
 
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center border border-slate-200">
-                <User className="w-4 h-4 text-slate-600" />
+      {/* Header */}
+      <section className="border-b-4 border-ink bg-ink px-6 md:px-12 py-8">
+        <div className="max-w-6xl mx-auto flex items-start justify-between gap-4 flex-wrap">
+          <div>
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-10 h-10 bg-yellow-bright border-4 border-yellow-bright flex items-center justify-center">
+                <User className="w-5 h-5 text-ink" />
               </div>
-              <span className="hidden sm:inline text-sm font-semibold text-slate-700">
-                {profile?.full_name}
-              </span>
-            </div>
-
-            <form action="/auth/signout" method="POST">
-              <button
-                type="submit"
-                className="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg transition-colors"
-                title="Sign Out"
-              >
-                <LogOut className="w-4.5 h-4.5" />
-              </button>
-            </form>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 pt-8 space-y-8">
-        
-        {/* Welcome Banner */}
-        <div className="relative bg-gradient-to-r from-[#0F4C81] to-[#1565A8] rounded-3xl p-6 md:p-8 text-white overflow-hidden shadow-lg shadow-blue-900/10">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full opacity-[0.2] -translate-y-10 translate-x-10" />
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#F97316] rounded-full opacity-[0.05] translate-y-12 -translate-x-12" />
-
-          <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div>
-              <div className="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 rounded-full px-3 py-1 text-xs text-blue-100 font-semibold mb-3">
-                <Sparkles className="w-3.5 h-3.5 text-[#F97316]" />
-                B.Tech PPE Student Portal
-              </div>
-              <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight">
-                Namaste, {profile?.full_name?.split(' ')[0]}!
-              </h1>
-              <p className="text-blue-100 text-sm mt-2 max-w-xl">
-                Ready to study today? You have full access to core study guides. Explore our materials table or start your lessons below.
-              </p>
-            </div>
-
-            {/* Status Card */}
-            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-5 min-w-[240px]">
-              <div className="text-xs text-blue-200 font-medium">Subscription Level</div>
-              <div className="flex items-center justify-between mt-1 mb-4">
-                <span className="text-xl font-bold tracking-tight">
-                  {isPremium ? 'Premium Plan' : 'Free Account'}
-                </span>
-                <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${isPremium ? 'bg-orange-500 text-white' : 'bg-white/20 text-blue-100'}`}>
-                  {isPremium ? 'PRO' : 'Basic'}
-                </span>
-              </div>
-              {!isPremium && (
-                <Link
-                  href="/pricing"
-                  className="w-full inline-flex items-center justify-center gap-1.5 bg-[#F97316] hover:bg-[#EA6C0A] text-white text-xs font-bold py-2 rounded-xl transition-all shadow-md shadow-orange-950/10"
-                >
-                  Upgrade for ₹99/mo <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              )}
-              {isPremium && (
-                <div className="flex items-center gap-1 text-xs text-emerald-300 font-semibold">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  Premium active
+              <div>
+                <div className="font-mono text-[9px] text-white/40 uppercase tracking-widest">Your Dashboard</div>
+                <div className="font-display text-xl font-black text-white leading-tight">
+                  {profile.full_name || profile.email.split('@')[0]}
                 </div>
-              )}
+              </div>
             </div>
+            <div className="font-mono text-[9px] text-white/40 mt-1">Member since {joinDate}</div>
+          </div>
+          <div className="flex items-center gap-3">
+            {isPremium ? (
+              <span className="font-mono text-[10px] font-black border-2 border-yellow-bright text-yellow-bright px-3 py-1 uppercase tracking-widest">
+                ⭐ Premium
+              </span>
+            ) : (
+              <Link href="/pricing" className="cn-btn-yellow text-xs">
+                Upgrade to Premium <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            )}
           </div>
         </div>
+      </section>
 
-        {/* Dashboard Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-          
-          {/* Left / Core Subjects Grid (2/3 width) */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+          {/* ── LEFT COLUMN ──────────────────────────────────── */}
           <div className="lg:col-span-2 space-y-6">
-            <div className="flex items-center justify-between">
-              <h2 className="text-lg font-bold text-slate-800">Your Core PPE Subjects</h2>
-              <span className="text-xs text-slate-400 font-medium">{totalLessons} lessons total</span>
+
+            {/* Stats strip */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {[
+                { val: `${aiQueriesLeft}`, label: 'AI queries left today', color: '#15803D', bg: '#F0FDF4', sub: isPremium ? 'Unlimited' : `of ${aiQueriesMax}` },
+                { val: `${subjects.length}`, label: 'Subjects available', color: '#1D4ED8', bg: '#EFF6FF', sub: '10 total' },
+                { val: `${lessons.filter((l) => !l.is_premium).length}`, label: 'Free lessons', color: '#EA580C', bg: '#FFF7ED', sub: `of ${lessons.length} total` },
+                { val: isPremium ? '∞' : '15', label: 'AI queries/day', color: '#7C3AED', bg: '#F5F3FF', sub: isPremium ? 'Premium' : 'Free tier' },
+              ].map((s) => (
+                <div key={s.label} className="border-4 border-ink p-4 text-center shadow-hard-sm" style={{ backgroundColor: s.bg }}>
+                  <div className="font-display text-3xl font-black" style={{ color: s.color }}>{s.val}</div>
+                  <div className="font-mono text-[8px] text-ink/50 uppercase tracking-wider mt-0.5 leading-snug">{s.label}</div>
+                  <div className="font-mono text-[8px] font-bold mt-1" style={{ color: s.color }}>{s.sub}</div>
+                </div>
+              ))}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {subjects?.map((subject: { id: string | number; slug: string; name: string; description?: string; lessons: unknown[] | null }) => {
-                const Icon = iconMap[subject.slug] || FlaskConical
-                const theme = colorMap[subject.slug] || { bg: 'bg-slate-50', border: 'border-slate-100', text: 'text-slate-600', color: '#64748b' }
-                
-                return (
-                  <div 
-                    key={subject.id} 
-                    className="bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-md transition-all flex flex-col justify-between"
-                  >
-                    <div>
-                      {/* Icon & Title Row */}
-                      <div className="flex items-start justify-between mb-4">
-                        <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${theme.bg}`}>
-                          <Icon className="w-4.5 h-4.5" style={{ color: theme.color }} />
-                        </div>
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                          {subject.lessons?.length || 0} Lessons
-                        </span>
-                      </div>
-                      <h3 className="font-bold text-slate-800 text-sm mb-1.5">{subject.name}</h3>
-                      <p className="text-slate-500 text-xs line-clamp-2 leading-relaxed mb-4">
-                        {subject.description}
-                      </p>
-                    </div>
-
-                    <Link
-                      href={`/subjects/${subject.slug}`}
-                      className="inline-flex items-center justify-between text-xs font-semibold text-[#0F4C81] hover:text-[#0A3560] border-t border-slate-50 pt-3 mt-2 group"
-                    >
-                      Browse Lessons
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                    </Link>
+            {/* AI Tutor query bar */}
+            {!isPremium && (
+              <div className="border-4 border-ink overflow-hidden shadow-hard">
+                <div className="border-b-4 border-ink px-4 py-3 bg-ink flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Brain className="w-4 h-4 text-yellow-bright" />
+                    <span className="font-mono text-[9px] font-black text-yellow-bright uppercase tracking-widest">AI Tutor — Daily Queries</span>
                   </div>
-                )
-              })}
+                  <span className="font-mono text-[10px] text-white/50">{aiQueriesUsed}/{aiQueriesMax} used today</span>
+                </div>
+                <div className="p-4 bg-canvas">
+                  <div className="border-4 border-ink h-4 overflow-hidden mb-3">
+                    <div
+                      className="h-full transition-all"
+                      style={{ width: `${(aiQueriesUsed / aiQueriesMax) * 100}%`, backgroundColor: aiQueriesUsed >= aiQueriesMax ? '#EA580C' : '#15803D' }}
+                    />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm text-ink/60">
+                      {aiQueriesLeft > 0
+                        ? `${aiQueriesLeft} queries remaining today. Resets at midnight.`
+                        : 'Daily limit reached. Upgrade for unlimited queries.'}
+                    </p>
+                    {aiQueriesLeft === 0 && (
+                      <Link href="/pricing" className="cn-btn-yellow text-xs flex-shrink-0 ml-3">
+                        Upgrade
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Recent lessons */}
+            {recentLessonObjects.length > 0 && (
+              <div className="border-4 border-ink overflow-hidden shadow-hard">
+                <div className="border-b-4 border-ink px-4 py-3 bg-ink">
+                  <div className="flex items-center gap-2">
+                    <Clock className="w-4 h-4 text-yellow-bright" />
+                    <span className="font-mono text-[9px] font-black text-yellow-bright uppercase tracking-widest">Continue Where You Left Off</span>
+                  </div>
+                </div>
+                <div className="divide-y-2 divide-ink/10">
+                  {recentLessonObjects.map((l) => {
+                    const sub = subjects.find((s) => s.id === l.subject_id)
+                    const dc = SUBJECT_COLORS[sub?.slug ?? ''] ?? { color: '#1D4ED8', bg: '#EFF6FF' }
+                    return (
+                      <Link
+                        key={l.id}
+                        href={`/lessons/${l.slug}`}
+                        className="flex items-center gap-3 px-4 py-3 hover:bg-ink/5 group transition-colors"
+                      >
+                        <div className="w-2 h-8 flex-shrink-0" style={{ backgroundColor: dc.color }} />
+                        <div className="flex-1 min-w-0">
+                          <div className="font-mono text-[9px] text-ink/40 uppercase tracking-wider">{sub?.name}</div>
+                          <div className="font-bold text-sm text-ink group-hover:underline truncate">{l.title}</div>
+                        </div>
+                        <ChevronRight className="w-4 h-4 text-ink/30 flex-shrink-0" />
+                      </Link>
+                    )
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* All subjects + lessons */}
+            <div className="border-4 border-ink overflow-hidden shadow-hard">
+              <div className="border-b-4 border-ink px-4 py-3 bg-yellow-bright flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <BookOpen className="w-4 h-4 text-ink" />
+                  <span className="font-mono text-[9px] font-black text-ink uppercase tracking-widest">All Subjects & Lessons</span>
+                </div>
+                <span className="font-mono text-[9px] text-ink/60">{lessons.length} total</span>
+              </div>
+              <div className="divide-y-4 divide-ink">
+                {lessonsBySubject.map(({ subject, lessons: subLessons }) => {
+                  const dc = SUBJECT_COLORS[subject.slug] ?? { color: '#1D4ED8', bg: '#EFF6FF' }
+                  return (
+                    <div key={subject.id}>
+                      <Link
+                        href={`/subjects/${subject.slug}`}
+                        className="flex items-center gap-3 px-4 py-3 hover:bg-ink hover:text-white group transition-colors border-b-2 border-ink/10"
+                        style={{ backgroundColor: dc.bg }}
+                      >
+                        <div className="w-3 h-3 border-2 border-ink flex-shrink-0" style={{ backgroundColor: dc.color }} />
+                        <span className="font-display text-base font-black text-ink group-hover:text-white">{subject.name}</span>
+                        <span className="font-mono text-[9px] text-ink/40 group-hover:text-white/60 ml-auto">{subLessons.length} lessons</span>
+                        <ChevronRight className="w-3.5 h-3.5 text-ink/30 group-hover:text-white/60" />
+                      </Link>
+                      <div className="divide-y divide-ink/5">
+                        {subLessons.map((lesson) => (
+                          <Link
+                            key={lesson.id}
+                            href={`/lessons/${lesson.slug}`}
+                            onClick={() => {
+                              const recent = JSON.parse(localStorage.getItem('ph_recent_lessons') ?? '[]')
+                              const updated = [lesson.slug, ...recent.filter((s: string) => s !== lesson.slug)].slice(0, 5)
+                              localStorage.setItem('ph_recent_lessons', JSON.stringify(updated))
+                            }}
+                            className="flex items-center gap-3 px-6 py-2.5 hover:bg-ink/5 group transition-colors"
+                          >
+                            <span className="font-mono text-[9px] text-ink/30 w-4 flex-shrink-0">{lesson.order_index}</span>
+                            <span className="text-sm text-ink group-hover:underline flex-1 truncate" style={{ textDecorationColor: dc.color }}>
+                              {lesson.title}
+                            </span>
+                            {lesson.is_premium && !isPremium && (
+                              <span className="font-mono text-[8px] border border-yellow text-yellow px-1.5 py-0.5 flex-shrink-0" style={{ borderColor: '#CA8A04', color: '#CA8A04' }}>
+                                PRO
+                              </span>
+                            )}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
             </div>
           </div>
 
-          {/* Right Sidebar: AI Tutor & Quick Links (1/3 width) */}
-          <div className="space-y-6">
-            
-            {/* AI Tutor Panel */}
-            <div className="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm space-y-4">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-orange-50 flex items-center justify-center">
-                  <Brain className="w-4 h-4 text-[#F97316]" />
+          {/* ── RIGHT SIDEBAR ─────────────────────────────────── */}
+          <div className="space-y-4">
+
+            {/* Quick links */}
+            <div className="border-4 border-ink overflow-hidden shadow-hard">
+              <div className="border-b-4 border-ink px-4 py-3 bg-ink">
+                <span className="font-mono text-[9px] font-black text-yellow-bright uppercase tracking-widest">Quick Access</span>
+              </div>
+              <div className="divide-y-2 divide-ink/10">
+                {QUICK_LINKS.map((link) => {
+                  const Icon = link.icon
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-ink hover:text-white group transition-colors"
+                    >
+                      <div className="w-8 h-8 border-2 border-ink flex items-center justify-center flex-shrink-0" style={{ backgroundColor: link.color }}>
+                        <Icon className="w-4 h-4 text-white" />
+                      </div>
+                      <span className="font-mono text-xs font-bold text-ink group-hover:text-white uppercase tracking-wider">{link.label}</span>
+                      <ChevronRight className="w-3.5 h-3.5 text-ink/30 group-hover:text-white/60 ml-auto" />
+                    </Link>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Premium upgrade card */}
+            {!isPremium && (
+              <div className="border-4 border-ink overflow-hidden" style={{ boxShadow: '4px 4px 0px 0px #CA8A04' }}>
+                <div className="border-b-4 border-ink px-4 py-3 bg-yellow-bright">
+                  <span className="font-mono text-[9px] font-black text-ink uppercase tracking-widest">⭐ Go Premium</span>
+                </div>
+                <div className="p-5 bg-canvas">
+                  <div className="font-display text-2xl font-black text-ink mb-1">₹149<span className="text-sm font-sans font-normal text-ink/50">/month</span></div>
+                  <div className="space-y-2 mb-4">
+                    {[
+                      'All 60 lessons unlocked',
+                      'Unlimited AI Tutor queries',
+                      'Premium practice questions',
+                      'Cancel anytime',
+                    ].map((item) => (
+                      <div key={item} className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-yellow border-2 border-ink flex-shrink-0" style={{ backgroundColor: '#CA8A04' }} />
+                        <span className="text-xs text-ink">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <Link href="/pricing" className="cn-btn-black w-full justify-center text-xs">
+                    Get Premium <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+            )}
+
+            {/* Account info */}
+            <div className="border-4 border-ink p-4 shadow-hard-sm">
+              <div className="font-mono text-[9px] font-bold text-ink/40 uppercase tracking-widest mb-3">Account</div>
+              <div className="space-y-2">
+                <div>
+                  <div className="font-mono text-[8px] text-ink/30 uppercase tracking-wider">Email</div>
+                  <div className="font-mono text-xs font-bold text-ink truncate">{profile.email}</div>
                 </div>
                 <div>
-                  <h3 className="font-bold text-slate-800 text-sm">AI Tutor Tracker</h3>
-                  <p className="text-[10px] text-slate-400">Contextual homework assistant</p>
-                </div>
-              </div>
-
-              {/* Progress bar for free queries */}
-              <div className="space-y-2 bg-slate-50 rounded-xl p-3 border border-slate-100">
-                <div className="flex justify-between text-xs font-medium text-slate-600">
-                  <span>Daily AI Queries Used</span>
-                  <span>
-                    {isPremium ? 'Unlimited' : `${queriesUsed} / ${maxQueries}`}
-                  </span>
-                </div>
-                
-                {!isPremium && (
-                  <>
-                    <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
-                      <div 
-                        className="bg-[#F97316] h-full rounded-full transition-all"
-                        style={{ width: `${Math.min((queriesUsed / maxQueries) * 100, 100)}%` }}
-                      />
-                    </div>
-                    <p className="text-[10px] text-slate-400 leading-normal">
-                      Free users get 5 AI tutor queries per day. Daily limits reset at midnight.
-                    </p>
-                  </>
-                )}
-                {isPremium && (
-                  <div className="flex items-center gap-1.5 text-xs text-emerald-600 font-semibold">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-                    Unlimited Premium access active
+                  <div className="font-mono text-[8px] text-ink/30 uppercase tracking-wider">Plan</div>
+                  <div className="font-mono text-xs font-bold" style={{ color: isPremium ? '#CA8A04' : '#6B7280' }}>
+                    {isPremium ? '⭐ Premium' : 'Free'}
                   </div>
-                )}
+                </div>
+                <div>
+                  <div className="font-mono text-[8px] text-ink/30 uppercase tracking-wider">Member Since</div>
+                  <div className="font-mono text-xs font-bold text-ink">{joinDate}</div>
+                </div>
               </div>
-
-              <Link
-                href="/ai-tutor"
-                className="w-full inline-flex items-center justify-center gap-2 bg-[#0F4C81] hover:bg-[#0A3560] text-white text-xs font-semibold py-2.5 rounded-xl transition-all shadow-sm"
+              <button
+                onClick={async () => { await supabase.auth.signOut(); window.location.href = '/' }}
+                className="w-full border-4 border-ink px-3 py-2 font-mono text-[9px] font-black uppercase tracking-wider hover:bg-ink hover:text-white transition-colors mt-4 text-center"
               >
-                <Brain className="w-3.5 h-3.5" />
-                Ask AI Tutor now
-              </Link>
+                Sign Out
+              </button>
             </div>
-
-            {/* Quick Links List */}
-            <div className="bg-white rounded-2xl border border-slate-100 p-5 shadow-sm space-y-3">
-              <h3 className="font-bold text-slate-800 text-xs uppercase tracking-wider mb-2">Study Tools</h3>
-              
-              <Link 
-                href="/materials" 
-                className="flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all group"
-              >
-                <div className="flex items-center gap-3">
-                  <Database className="w-4 h-4 text-slate-400 group-hover:text-[#0F4C81]" />
-                  <span className="text-xs font-semibold text-slate-600 group-hover:text-slate-800">Materials Database</span>
-                </div>
-                <ArrowRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-[#0F4C81] group-hover:translate-x-0.5 transition-all" />
-              </Link>
-
-              <Link 
-                href="/practice" 
-                className="flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all group"
-              >
-                <div className="flex items-center gap-3">
-                  <Zap className="w-4 h-4 text-slate-400 group-hover:text-yellow-600" />
-                  <span className="text-xs font-semibold text-slate-600 group-hover:text-slate-800">Practice Quizzes</span>
-                </div>
-                <ArrowRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-yellow-600 group-hover:translate-x-0.5 transition-all" />
-              </Link>
-
-              <Link 
-                href="/pricing" 
-                className="flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all group"
-              >
-                <div className="flex items-center gap-3">
-                  <Sparkles className="w-4 h-4 text-slate-400 group-hover:text-[#F97316]" />
-                  <span className="text-xs font-semibold text-slate-600 group-hover:text-slate-800">Billing & Upgrade</span>
-                </div>
-                <ArrowRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-[#F97316] group-hover:translate-x-0.5 transition-all" />
-              </Link>
-            </div>
-
-            {/* Quick Tips Box */}
-            <div className="bg-amber-50/50 border border-amber-100 rounded-2xl p-5 space-y-2.5">
-              <div className="flex items-center gap-2 text-amber-800">
-                <Clock className="w-4.5 h-4.5" />
-                <span className="text-xs font-bold">Exam Checklist</span>
-              </div>
-              <p className="text-[11px] text-amber-700/80 leading-relaxed">
-                CIPET and B.Tech PPE mid-term exams focus heavily on **Melt Flow Index (ASTM D1238)** and **Sulphur Vulcanization Curves**. Make sure you review subjects 4 and 5 in detail.
-              </p>
-            </div>
-            
           </div>
         </div>
-
-      </main>
+      </div>
     </div>
   )
 }
