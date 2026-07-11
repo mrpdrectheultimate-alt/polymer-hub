@@ -19,6 +19,7 @@ import {
   Leaf,
   Microscope,
   Rocket,
+  Zap,
   type LucideIcon
 } from 'lucide-react'
 
@@ -283,7 +284,7 @@ export default async function DashboardPage() {
 
             {/* Quick Links List */}
             <div className="bg-white rounded-2xl border border-slate-100 p-5 shadow-sm space-y-3">
-              <h3 className="font-bold text-slate-800 text-xs uppercase tracking-wider mb-2">Reference Database</h3>
+              <h3 className="font-bold text-slate-800 text-xs uppercase tracking-wider mb-2">Study Tools</h3>
               
               <Link 
                 href="/materials" 
@@ -294,6 +295,17 @@ export default async function DashboardPage() {
                   <span className="text-xs font-semibold text-slate-600 group-hover:text-slate-800">Materials Database</span>
                 </div>
                 <ArrowRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-[#0F4C81] group-hover:translate-x-0.5 transition-all" />
+              </Link>
+
+              <Link 
+                href="/practice" 
+                className="flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all group"
+              >
+                <div className="flex items-center gap-3">
+                  <Zap className="w-4 h-4 text-slate-400 group-hover:text-yellow-600" />
+                  <span className="text-xs font-semibold text-slate-600 group-hover:text-slate-800">Practice Quizzes</span>
+                </div>
+                <ArrowRight className="w-3.5 h-3.5 text-slate-300 group-hover:text-yellow-600 group-hover:translate-x-0.5 transition-all" />
               </Link>
 
               <Link 
