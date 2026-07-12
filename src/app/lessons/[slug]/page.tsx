@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { ArrowLeft, ArrowRight, Lock, Brain, ChevronRight } from 'lucide-react'
+import WhatsAppShare, { LessonShareBar } from '@/components/WhatsAppShare'
+import { BASE_URL } from '@/lib/seo'
 
 
 // ─── Domain color map ─────────────────────────────────────────────────────────
@@ -184,21 +186,30 @@ export default async function LessonPage({
             <div className="border-4 border-ink p-6 md:p-8 mb-6 relative overflow-hidden" style={{ boxShadow: `6px 6px 0px 0px ${domain.color}` }}>
               <div className="absolute top-0 right-0 w-32 h-32 opacity-10 rounded-full" style={{ backgroundColor: domain.color, filter: 'blur(20px)' }} />
 
-              <div className="flex items-center gap-3 mb-4">
-                <span
-                  className="font-mono text-[10px] font-black border-2 border-ink px-3 py-1 uppercase tracking-widest"
-                  style={{ backgroundColor: domain.color, color: 'white' }}
-                >
-                  {domain.tag}
-                </span>
-                <span className="font-mono text-[10px] text-ink/50 border-2 border-ink/20 px-3 py-1 uppercase tracking-wider">
-                  Lesson {lesson.order_index}
-                </span>
-                {lesson.is_premium && (
-                  <span className="font-mono text-[10px] font-black border-2 border-yellow bg-yellow-light text-yellow px-3 py-1 uppercase tracking-wider flex items-center gap-1">
-                    <Lock className="w-2.5 h-2.5" /> Premium
+              <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
+                <div className="flex items-center gap-3">
+                  <span
+                    className="font-mono text-[10px] font-black border-2 border-ink px-3 py-1 uppercase tracking-widest"
+                    style={{ backgroundColor: domain.color, color: 'white' }}
+                  >
+                    {domain.tag}
                   </span>
-                )}
+                  <span className="font-mono text-[10px] text-ink/50 border-2 border-ink/20 px-3 py-1 uppercase tracking-wider">
+                    Lesson {lesson.order_index}
+                  </span>
+                  {lesson.is_premium && (
+                    <span className="font-mono text-[10px] font-black border-2 border-yellow bg-yellow-light text-yellow px-3 py-1 uppercase tracking-wider flex items-center gap-1">
+                      <Lock className="w-2.5 h-2.5" /> Premium
+                    </span>
+                  )}
+                </div>
+                <WhatsAppShare
+                  type="lesson"
+                  title={lesson.title}
+                  url={`${BASE_URL}/lessons/${lesson.slug}`}
+                  subjectName={subjectsData?.name}
+                  description={lesson.summary}
+                />
               </div>
 
               <h1 className="font-display text-3xl md:text-4xl font-black text-ink leading-tight mb-4">
@@ -230,16 +241,26 @@ export default async function LessonPage({
                 </div>
               </div>
             ) : (
-              /* Lesson content */
-              <div
-                className="border-4 border-ink p-6 md:p-8 bg-canvas"
-                style={{ boxShadow: `4px 4px 0px 0px ${domain.color}` }}
-              >
+              <>
+                {/* Lesson content */}
                 <div
-                  className="prose prose-base max-w-none"
-                  dangerouslySetInnerHTML={{ __html: renderedContent }}
+                  className="border-4 border-ink p-6 md:p-8 bg-canvas"
+                  style={{ boxShadow: `4px 4px 0px 0px ${domain.color}` }}
+                >
+                  <div
+                    className="prose prose-base max-w-none"
+                    dangerouslySetInnerHTML={{ __html: renderedContent }}
+                  />
+                </div>
+                
+                {/* Share action */}
+                <LessonShareBar
+                  lessonTitle={lesson.title}
+                  lessonUrl={`${BASE_URL}/lessons/${lesson.slug}`}
+                  subjectName={subjectsData?.name}
+                  lessonSummary={lesson.summary}
                 />
-              </div>
+              </>
             )}
 
             {/* Prev / Next navigation */}
