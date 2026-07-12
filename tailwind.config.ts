@@ -134,7 +134,7 @@ const config: Config = {
 
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['Fraunces', 'Lora', 'Georgia', 'serif'], // bold editorial headlines
+        serif: ['var(--font-lora)', 'Lora', 'Georgia', 'serif'], // bold editorial headlines
         mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
       },
 
