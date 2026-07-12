@@ -151,7 +151,7 @@
   }
 
   .cn-quote-text {
-    font-family: var(--font-lora), 'Lora', Georgia, serif;
+    font-family: var(--font-fraunces), 'Fraunces', serif;
     @apply text-4xl md:text-5xl font-black italic leading-tight;
   }
 
@@ -184,7 +184,7 @@
 
   /* ─── Fraunces display headline helper ───────────────────── */
   .font-display {
-    font-family: var(--font-lora), 'Lora', Georgia, serif;
+    font-family: var(--font-fraunces), 'Fraunces', serif;
     font-weight: 900;
   }
 

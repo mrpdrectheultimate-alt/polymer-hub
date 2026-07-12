@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter, Lora } from 'next/font/google'
+import { Inter, Fraunces } from 'next/font/google'
 import './globals.css'
 import { Toaster } from '@/components/ui/toaster'
 import Navbar from '@/components/Navbar'
@@ -11,11 +11,12 @@ const inter = Inter({
   display: 'swap',
 })
 
-const lora = Lora({
+const fraunces = Fraunces({
   subsets: ['latin'],
-  variable: '--font-lora',
+  variable: '--font-fraunces',
   display: 'swap',
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '700', '900'],
+  style: ['normal', 'italic'],
 })
 
 export const metadata: Metadata = {
@@ -28,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${lora.variable}`}>
+    <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
       <head>
         {/* JSON-LD Structured Data — helps Google understand the site */}
         <script
