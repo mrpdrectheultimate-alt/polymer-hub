@@ -1,157 +1,146 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// src/app/api/chat/route.ts
-// PolymerHub AI Tutor — Gemini-powered RAG endpoint
-// Embeds the user query, retrieves relevant lesson chunks via pgvector,
-// then sends context + question to Gemini for a grounded answer.
-
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { GoogleGenerativeAI } from '@google/generative-ai'
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!)
-// Use 'gemini-embedding-001' as 'text-embedding-004' is deprecated/retired.
-const embeddingModel = genAI.getGenerativeModel({ model: 'gemini-embedding-001' })
-const chatModel = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' })
 
-const FREE_DAILY_QUERY_LIMIT = 15
+type LessonChunk = {
+  lesson_title: string
+  lesson_slug: string
+  content: string
+}
 
-const SYSTEM_PROMPT = `You are PolymerHub AI, an expert in plastic polymer engineering tailored for Indian B.Tech students. Answer only from the provided lesson context. If the answer isn't in the context, say so and suggest the most relevant lesson. Always include a real-world example from the Indian plastics industry (Reliance, Supreme Industries, Astral, CIPET, etc.) where possible. Keep answers clear, concise, and exam-friendly.`
-
-export async function POST(request: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
     const supabase = createClient()
-
-    // 1. Auth check
-    const {
-      data: { session },
-    } = await supabase.auth.getSession()
+    const { data: { session } } = await supabase.auth.getSession()
 
     if (!session) {
-      return NextResponse.json(
-        { error: 'Please sign in to use the AI tutor.' },
-        { status: 401 }
-      )
+      return NextResponse.json({ error: 'Sign in to use the AI Tutor.' }, { status: 401 })
     }
 
-    const { question } = await request.json()
-
-    if (!question || typeof question !== 'string' || !question.trim()) {
-      return NextResponse.json({ error: 'Question is required.' }, { status: 400 })
-    }
-
-    // 2. Fetch profile, check + enforce free tier query limit
-    const { data: profile, error: profileError } = await supabase
+    // ── Check + enforce query limit ──────────────────────────────────────────
+    const { data: profile } = await supabase
       .from('profiles')
-      .select('subscription_status, queries_used, queries_reset_at')
+      .select('ai_queries_today, ai_queries_reset_at, subscription_status')
       .eq('id', session.user.id)
       .single()
 
-    if (profileError || !profile) {
-      return NextResponse.json({ error: 'Profile not found.' }, { status: 404 })
+    const isPremium = profile?.subscription_status === 'premium'
+
+    if (!isPremium) {
+      const now = new Date()
+      const resetAt = profile?.ai_queries_reset_at ? new Date(profile.ai_queries_reset_at) : null
+      const needsReset = !resetAt || now.toDateString() !== resetAt.toDateString()
+
+      if (needsReset) {
+        await supabase.from('profiles').update({
+          ai_queries_today: 0,
+          ai_queries_reset_at: now.toISOString(),
+        }).eq('id', session.user.id)
+      } else if ((profile?.ai_queries_today ?? 0) >= 15) {
+        return NextResponse.json(
+          { error: 'Daily limit of 15 queries reached. Upgrade to Premium for unlimited queries.' },
+          { status: 429 }
+        )
+      }
     }
 
-    // Reset daily counter if more than 24h have passed
-    const resetAt = new Date(profile.queries_reset_at)
-    const hoursSinceReset = (Date.now() - resetAt.getTime()) / (1000 * 60 * 60)
-    let queriesUsed = profile.queries_used
+    // ── Parse request ────────────────────────────────────────────────────────
+    const { message, history = [] } = await req.json()
 
-    if (hoursSinceReset >= 24) {
-      queriesUsed = 0
-      await supabase
-        .from('profiles')
-        .update({ queries_used: 0, queries_reset_at: new Date().toISOString() })
+    if (!message?.trim()) {
+      return NextResponse.json({ error: 'Message is required.' }, { status: 400 })
+    }
+
+    // ── Generate query embedding ─────────────────────────────────────────────
+    const embeddingModel = genAI.getGenerativeModel({ model: 'gemini-embedding-001' })
+    const embeddingResult = await embeddingModel.embedContent(message)
+    const queryEmbedding = embeddingResult.embedding.values
+
+    // ── Vector similarity search ─────────────────────────────────────────────
+    const { data: chunks } = await supabase.rpc('match_lesson_chunks', {
+      query_embedding: queryEmbedding,
+      match_threshold: 0.65,
+      match_count: 5,
+    })
+
+    // ── Build context from retrieved chunks ───────────────────────────────────
+    const context = chunks && chunks.length > 0
+      ? (chunks as LessonChunk[]).map((c) => `[From lesson: "${c.lesson_title}"]\n${c.content}`).join('\n\n---\n\n')
+      : ''
+
+    const sources = chunks && chunks.length > 0
+      ? Array.from(new Map((chunks as LessonChunk[]).map((c) => [c.lesson_slug, { title: c.lesson_title, slug: c.lesson_slug }])).values()).slice(0, 3)
+      : []
+
+    // ── Build conversation history for Gemini ────────────────────────────────
+    // Convert our message history format to Gemini's format
+    const conversationHistory = history.map((msg: { role: string; content: string }) => ({
+      role: msg.role === 'user' ? 'user' : 'model',
+      parts: [{ text: msg.content }],
+    }))
+
+    // ── System instruction ────────────────────────────────────────────────────
+    const systemInstruction = `You are the PolymerHub AI Tutor — an expert polymer engineering educator for Indian B.Tech PPE (Plastic Polymer Engineering) students.
+
+Your knowledge is grounded in PolymerHub's curriculum covering: Polymer Chemistry, Polymer Processing, Mould Design, Polymer Testing, Rubber Technology, Recycling Technology, Sustainable Plastics & Bioplastics, Polymer Composites, Entrepreneurship in Plastics, and Medical Plastics & Biomaterials.
+
+CORE RULES:
+1. Always answer from the lesson context provided when relevant
+2. Connect theory to Indian industry examples (Reliance, Supreme Industries, MRF, CIPET, etc.)
+3. Use precise technical terms but explain them clearly
+4. When context is insufficient, say so honestly and answer from general polymer knowledge
+5. Keep answers focused and educational — you are a tutor, not a chatbot
+6. Remember the conversation history and build on previous questions naturally
+7. If a student asks a follow-up, connect it explicitly to what was discussed before
+
+ANSWER FORMAT:
+- Lead with the direct answer (1-2 sentences)
+- Expand with explanation (3-5 sentences)
+- Include a practical example or Indian industry connection where relevant
+- Keep total response under 250 words unless the question genuinely requires more depth
+
+${context ? `\nRELEVANT LESSON CONTENT:\n${context}` : '\nNote: No specific lesson content was retrieved for this query — answer from general polymer engineering knowledge.'}`
+
+    // ── Call Gemini with conversation history ────────────────────────────────
+    const model = genAI.getGenerativeModel({
+      model: 'gemini-2.5-flash',
+      systemInstruction,
+    })
+
+    // Start chat with history
+    const chat = model.startChat({
+      history: conversationHistory,
+      generationConfig: {
+        maxOutputTokens: 1024,
+        temperature: 0.3, // Low temperature for factual accuracy
+      },
+    })
+
+    // Send the current message
+    const result = await chat.sendMessage(message)
+    const answer = result.response.text()
+
+    // ── Update query count ────────────────────────────────────────────────────
+    if (!isPremium) {
+      await supabase.from('profiles')
+        .update({ ai_queries_today: (profile?.ai_queries_today ?? 0) + 1 })
         .eq('id', session.user.id)
     }
 
-    const isPremium = profile.subscription_status === 'premium'
+    return NextResponse.json({ answer, sources })
 
-    if (!isPremium && queriesUsed >= FREE_DAILY_QUERY_LIMIT) {
+  } catch (error) {
+    console.error('Chat API error:', error)
+
+    if (error && typeof error === 'object' && 'status' in error && (error as { status?: number }).status === 429) {
       return NextResponse.json(
-        {
-          error: 'daily_limit_reached',
-          message: `You've used all ${FREE_DAILY_QUERY_LIMIT} free queries today. Upgrade to Premium for unlimited AI tutor access.`,
-        },
+        { error: 'AI service temporarily busy. Please try again in a moment.' },
         { status: 429 }
       )
     }
 
-    // 3. Embed the user's question (Gemini gemini-embedding-001, 768-dim)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const embedResult = await embeddingModel.embedContent({
-      content: { role: 'user', parts: [{ text: question }] },
-      outputDimensionality: 768,
-    } as any)
-    const queryEmbedding = embedResult.embedding.values
-
-    // 4. Vector search via pgvector match function
-    const { data: matches, error: matchError } = await supabase.rpc(
-      'match_lesson_chunks',
-      {
-        query_embedding: queryEmbedding,
-        match_threshold: 0.65,
-        match_count: 4,
-      }
-    )
-
-    if (matchError) {
-      console.error('match_lesson_chunks error:', matchError)
-      return NextResponse.json(
-        { error: 'Search failed. Please try again.' },
-        { status: 500 }
-      )
-    }
-
-    // 5. Build context from retrieved chunks
-    const hasContext = matches && matches.length > 0
-    const typedMatches = (matches || []) as Array<{ id: string; lesson_id: string; chunk_text: string; similarity: number }>
-
-    const contextBlock = hasContext
-      ? typedMatches
-          .map((m, i: number) => `[Source ${i + 1}]\n${m.chunk_text}`)
-          .join('\n\n---\n\n')
-      : 'No directly relevant lesson content was found for this question.'
-
-    // 6. Call Gemini for the final grounded answer
-    const fullPrompt = `${SYSTEM_PROMPT}
-
-LESSON CONTEXT:
-${contextBlock}
-
-STUDENT QUESTION:
-${question}
-
-Answer the question using the lesson context above. If the context doesn't contain the answer, say so clearly and suggest the student check a related subject page.`
-
-    const chatResult = await chatModel.generateContent(fullPrompt)
-    const answer = chatResult.response.text()
-
-    // 7. Increment query usage (free users only)
-    if (!isPremium) {
-      await supabase
-        .from('profiles')
-        .update({ queries_used: queriesUsed + 1 })
-        .eq('id', session.user.id)
-    }
-
-    // 8. Get lesson titles/slugs for cited sources (for UI display)
-    let sourceLessons: { title: string; slug: string }[] = []
-    if (hasContext) {
-      const lessonIds = Array.from(new Set(typedMatches.map(m => m.lesson_id)))
-      const { data: lessonsData } = await supabase
-        .from('lessons')
-        .select('title, slug')
-        .in('id', lessonIds)
-      sourceLessons = lessonsData ?? []
-    }
-
-    return NextResponse.json({
-      answer,
-      sources: sourceLessons,
-      queriesUsed: isPremium ? null : queriesUsed + 1,
-      queriesLimit: isPremium ? null : FREE_DAILY_QUERY_LIMIT,
-    })
-  } catch (err: unknown) {
-    console.error('AI tutor error:', err)
     return NextResponse.json(
       { error: 'Something went wrong. Please try again.' },
       { status: 500 }
