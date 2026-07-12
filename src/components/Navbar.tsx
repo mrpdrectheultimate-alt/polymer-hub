@@ -239,6 +239,13 @@ function MobileDrawer({ open, onClose, pathname }: { open: boolean; onClose: () 
             Sign In
           </Link>
           <Link
+            href="/dashboard"
+            onClick={onClose}
+            className="cn-btn w-full bg-white text-ink border-ink justify-center text-sm"
+          >
+            Dashboard
+          </Link>
+          <Link
             href="/pricing"
             onClick={onClose}
             className="cn-btn-yellow w-full justify-center text-sm"
@@ -311,6 +318,12 @@ export default function Navbar() {
               className="font-mono text-xs font-bold uppercase tracking-widest text-ink/70 hover:text-ink transition-colors px-2"
             >
               Sign In
+            </Link>
+            <Link
+              href="/dashboard"
+              className="font-mono text-xs font-bold uppercase tracking-widest text-ink/70 hover:text-ink transition-colors px-2"
+            >
+              Dashboard
             </Link>
             <Link href="/pricing" className="cn-btn-yellow text-xs py-2 px-4">
               ₹149/mo
