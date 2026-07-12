@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { ArrowRight, ArrowLeft, Lock, Brain, BookOpen, ChevronRight } from 'lucide-react'
+import WhatsAppShare from '@/components/WhatsAppShare'
 
 // ─── Domain color map ─────────────────────────────────────────────────────────
 
@@ -173,7 +174,7 @@ export default async function SubjectDetailPage({
           </p>
 
           {/* Start and Practice buttons */}
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-4 items-center">
             {lessons && lessons.length > 0 && (
               <Link
                 href={`/lessons/${lessons[0].slug}`}
@@ -188,6 +189,12 @@ export default async function SubjectDetailPage({
             >
               Take Practice Quiz <BookOpen className="w-5 h-5" />
             </Link>
+            <WhatsAppShare
+              type="subject"
+              title={subject.name}
+              url={`https://polymer-hub-six.vercel.app/subjects/${params.slug}`}
+              compact={false}
+            />
           </div>
         </div>
       </section>
