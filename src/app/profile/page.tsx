@@ -62,18 +62,42 @@ export default function ProfilePage() {
         .eq('id', session.user.id)
         .single()
 
-      if (profile) {
+      let activeProfile = profile
+      if (!activeProfile) {
+        const defaultName = session.user.email ? session.user.email.split('@')[0] : 'Student'
+        const { data: newProf } = await supabase
+          .from('profiles')
+          .insert({
+            id: session.user.id,
+            full_name: defaultName,
+            subscription_status: 'free',
+            ai_queries_today: 0,
+            avatar_url: null,
+            bio: null,
+            goals: null,
+            college_name: null,
+            education_level: null,
+            branch: 'B.Tech Plastic Polymer Engineering',
+            graduation_year: null,
+            target_path: null,
+          })
+          .select()
+          .single()
+        activeProfile = newProf
+      }
+
+      if (activeProfile) {
         setForm({
-          full_name: profile.full_name ?? '',
-          bio: profile.bio ?? '',
-          goals: profile.goals ?? '',
-          college_name: profile.college_name ?? '',
-          education_level: profile.education_level ?? '',
-          branch: profile.branch ?? 'B.Tech Plastic Polymer Engineering',
-          graduation_year: profile.graduation_year?.toString() ?? '',
-          target_path: profile.target_path ?? '',
+          full_name: activeProfile.full_name ?? '',
+          bio: activeProfile.bio ?? '',
+          goals: activeProfile.goals ?? '',
+          college_name: activeProfile.college_name ?? '',
+          education_level: activeProfile.education_level ?? '',
+          branch: activeProfile.branch ?? 'B.Tech Plastic Polymer Engineering',
+          graduation_year: activeProfile.graduation_year?.toString() ?? '',
+          target_path: activeProfile.target_path ?? '',
         })
-        setAvatarUrl(profile.avatar_url ?? null)
+        setAvatarUrl(activeProfile.avatar_url ?? null)
       }
       setLoading(false)
     }

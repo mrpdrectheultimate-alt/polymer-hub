@@ -74,7 +74,36 @@ export default function DashboardPage() {
         supabase.from('lessons').select('id, title, slug, subject_id, order_index, is_premium').order('order_index'),
       ])
 
-      if (prof) setProfile({ ...prof, email: session.user.email ?? '' })
+      let activeProfile = prof
+      if (!activeProfile) {
+        const defaultName = session.user.email ? session.user.email.split('@')[0] : 'Student'
+        const { data: newProf } = await supabase
+          .from('profiles')
+          .insert({
+            id: session.user.id,
+            full_name: defaultName,
+            subscription_status: 'free',
+            ai_queries_today: 0,
+            avatar_url: null,
+            bio: null,
+            goals: null,
+            college_name: null,
+            education_level: null,
+            branch: 'B.Tech Plastic Polymer Engineering',
+            graduation_year: null,
+            target_path: null,
+          })
+          .select()
+          .single()
+
+        if (newProf) {
+          activeProfile = newProf
+        }
+      }
+
+      if (activeProfile) {
+        setProfile({ ...activeProfile, email: session.user.email ?? '' })
+      }
       if (subs) setSubjects(subs)
       if (less) setLessons(less)
 
