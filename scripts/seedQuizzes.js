@@ -179,8 +179,8 @@ async function seedAllQuizzes() {
     totalQuizzes++
     totalQuestions += questionsToInsert.length
 
-    // Rate limit: 1 second between Gemini calls to avoid 429
-    await new Promise(r => setTimeout(r, 1000))
+    // Rate limit: 4.5 seconds between Gemini calls to avoid 429
+    await new Promise(r => setTimeout(r, 4500))
   }
 
   // Summary
