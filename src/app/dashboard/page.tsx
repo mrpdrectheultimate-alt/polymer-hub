@@ -369,12 +369,20 @@ export default function DashboardPage() {
                   <div className="font-mono text-xs font-bold text-ink">{joinDate}</div>
                 </div>
               </div>
-              <button
-                onClick={async () => { await supabase.auth.signOut(); window.location.href = '/' }}
-                className="w-full border-4 border-ink px-3 py-2 font-mono text-[9px] font-black uppercase tracking-wider hover:bg-ink hover:text-white transition-colors mt-4 text-center"
-              >
-                Sign Out
-              </button>
+              <div className="flex flex-col gap-2 mt-4">
+                <Link
+                  href="/profile"
+                  className="w-full border-4 border-ink bg-yellow-bright text-ink px-3 py-2 font-mono text-[9px] font-black uppercase tracking-wider hover:bg-ink hover:text-white transition-colors text-center"
+                >
+                  Edit Profile
+                </Link>
+                <button
+                  onClick={async () => { await supabase.auth.signOut(); window.location.href = '/' }}
+                  className="w-full border-4 border-ink px-3 py-2 font-mono text-[9px] font-black uppercase tracking-wider hover:bg-ink hover:text-white transition-colors text-center"
+                >
+                  Sign Out
+                </button>
+              </div>
             </div>
           </div>
         </div>
