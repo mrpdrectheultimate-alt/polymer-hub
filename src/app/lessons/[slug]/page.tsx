@@ -117,7 +117,6 @@ export default async function LessonPage({ params }: { params: { slug: string } 
   // Subscription check
   let isPremium = false
   let userProgress: UserProgressRow | null = null
-  let canAccess = lesson.order_index === 1 // First lesson always accessible
 
   if (session) {
     const { data: profile } = await supabase
@@ -136,32 +135,19 @@ export default async function LessonPage({ params }: { params: { slug: string } 
       .single()
     userProgress = prog
 
-    // Check access via can_access_lesson function
-    if (lesson.order_index > 1) {
-      const { data: accessResult } = await supabase
-        .rpc('can_access_lesson', {
-          p_user_id: session.user.id,
-          p_lesson_id: lesson.id,
-        })
-      canAccess = accessResult ?? false
-    }
-
     // Mark as reading if not already started
-    if ((canAccess && !lesson.is_premium) || isPremium) {
-      if (!userProgress) {
-        await supabase.from('user_progress').upsert({
-          user_id: session.user.id,
-          lesson_id: lesson.id,
-          status: 'reading',
-          started_at: new Date().toISOString(),
-          last_active_at: new Date().toISOString(),
-        }, { onConflict: 'user_id,lesson_id' })
-      }
+    if (!userProgress) {
+      await supabase.from('user_progress').upsert({
+        user_id: session.user.id,
+        lesson_id: lesson.id,
+        status: 'reading',
+        started_at: new Date().toISOString(),
+        last_active_at: new Date().toISOString(),
+      }, { onConflict: 'user_id,lesson_id' })
     }
   }
 
   const isContentLocked = lesson.is_premium && !isPremium && !session
-  const isProgressLocked = session && !canAccess && lesson.order_index > 1
 
   // Adjacent lessons
   const { data: allLessons } = await supabase
@@ -182,7 +168,7 @@ export default async function LessonPage({ params }: { params: { slug: string } 
     .single()
 
   const quizPassed = userProgress?.quiz_passed === true
-  const renderedContent = (!isContentLocked && !isProgressLocked) ? renderContent(lesson.content, domain.color) : ''
+  const renderedContent = !isContentLocked ? renderContent(lesson.content, domain.color) : ''
 
   return (
     <div className="min-h-screen bg-canvas">
@@ -234,26 +220,8 @@ export default async function LessonPage({ params }: { params: { slug: string } 
               </p>
             </div>
 
-            {/* Progress locked */}
-            {isProgressLocked && (
-              <div className="border-4 border-ink p-8 md:p-12 text-center mb-6" style={{ boxShadow: '6px 6px 0px 0px #0A0A0A' }}>
-                <div className="w-16 h-16 border-4 border-ink mx-auto mb-6 flex items-center justify-center bg-ink">
-                  <Lock className="w-8 h-8 text-yellow-bright" />
-                </div>
-                <h2 className="font-display text-3xl font-black text-ink mb-3">Complete the Previous Lesson First</h2>
-                <p className="text-ink/70 mb-8 max-w-md mx-auto leading-relaxed">
-                  You need to pass the quiz for the previous lesson with at least 70% to unlock this one.
-                </p>
-                {prevLesson && (
-                  <Link href={`/quiz/${prevLesson.slug}`} className="cn-btn-yellow text-sm">
-                    Take Previous Quiz <ArrowRight className="w-4 h-4" />
-                  </Link>
-                )}
-              </div>
-            )}
-
             {/* Premium locked */}
-            {isContentLocked && !isProgressLocked && (
+            {isContentLocked && (
               <div className="border-4 border-ink p-8 md:p-12 text-center mb-6" style={{ boxShadow: `6px 6px 0px 0px ${domain.color}` }}>
                 <div className="w-16 h-16 border-4 border-ink mx-auto mb-6 flex items-center justify-center" style={{ backgroundColor: domain.color }}>
                   <Lock className="w-8 h-8 text-white" />
@@ -272,7 +240,7 @@ export default async function LessonPage({ params }: { params: { slug: string } 
             )}
 
             {/* Lesson content */}
-            {!isContentLocked && !isProgressLocked && (
+            {!isContentLocked && (
               <>
                 <div
                   className="border-4 border-ink p-6 md:p-8 bg-canvas mb-6"
@@ -307,7 +275,7 @@ export default async function LessonPage({ params }: { params: { slug: string } 
                           : <BookOpen className="w-5 h-5 text-white" />}
                         <div>
                           <div className="font-mono text-[9px] font-bold text-white/70 uppercase tracking-widest">
-                            {quizPassed ? 'Lesson Complete' : 'Mandatory Topic Quiz'}
+                            {quizPassed ? 'Lesson Completed' : 'Topic Self-Assessment'}
                           </div>
                           <div className="font-display text-base font-black text-white">{quiz.title}</div>
                         </div>
@@ -317,19 +285,19 @@ export default async function LessonPage({ params }: { params: { slug: string } 
                         className="border-4 border-white font-mono text-[10px] font-black uppercase tracking-wider px-4 py-2.5 text-white hover:bg-white transition-colors flex items-center gap-2"
                         style={{ ['--hover-color' as string]: quizPassed ? '#15803D' : domain.color }}
                       >
-                        {quizPassed ? 'Retake Quiz' : 'Take Quiz to Unlock Next Lesson'}
+                        {quizPassed ? 'Retake Quiz' : 'Take Topic Quiz'}
                         <ArrowRight className="w-4 h-4" />
                       </Link>
                     </div>
                     {!quizPassed && (
                       <div className="px-5 py-3 font-mono text-[10px] text-ink/60" style={{ backgroundColor: domain.bg }}>
-                        Score {quiz.passing_score}%+ to unlock the next lesson. You must complete this quiz before continuing.
+                        Test your understanding of this topic with a 5-question practice quiz (Optional).
                       </div>
                     )}
                     {quizPassed && userProgress?.quiz_score !== null && (
                       <div className="px-5 py-3 flex items-center gap-3 bg-green/5">
-                        <span className="font-mono text-[10px] text-green font-bold">✓ Your score: {userProgress?.quiz_score}%</span>
-                        <span className="font-mono text-[10px] text-ink/40">Next lesson is unlocked</span>
+                        <span className="font-mono text-[10px] text-green font-bold">✓ Your best score: {userProgress?.quiz_score}%</span>
+                        <span className="font-mono text-[10px] text-ink/40">Keep it up!</span>
                       </div>
                     )}
                   </div>
@@ -350,26 +318,16 @@ export default async function LessonPage({ params }: { params: { slug: string } 
                   ) : <div />}
 
                   {nextLesson ? (
-                    quizPassed ? (
-                      <Link href={`/lessons/${nextLesson.slug}`}
-                        className="border-4 border-ink p-4 flex items-center justify-end gap-3 text-right text-white group transition-colors"
-                        style={{ backgroundColor: domain.color, boxShadow: `4px 4px 0px 0px ${domain.color}` }}
-                      >
-                        <div className="min-w-0">
-                          <div className="font-mono text-[9px] text-white/70 uppercase tracking-wider mb-0.5">Next Lesson</div>
-                          <div className="font-black text-sm leading-tight truncate">{nextLesson.title}</div>
-                        </div>
-                        <ArrowRight className="w-5 h-5 flex-shrink-0" />
-                      </Link>
-                    ) : (
-                      <div className="border-4 border-ink/30 p-4 flex items-center justify-end gap-3 text-right opacity-50 cursor-not-allowed border-dashed">
-                        <div className="min-w-0">
-                          <div className="font-mono text-[9px] text-ink/40 uppercase tracking-wider mb-0.5">Locked</div>
-                          <div className="font-bold text-sm leading-tight truncate text-ink/50">{nextLesson.title}</div>
-                        </div>
-                        <Lock className="w-5 h-5 flex-shrink-0 text-ink/30" />
+                    <Link href={`/lessons/${nextLesson.slug}`}
+                      className="border-4 border-ink p-4 flex items-center justify-end gap-3 text-right text-white group transition-colors"
+                      style={{ backgroundColor: domain.color, boxShadow: `4px 4px 0px 0px ${domain.color}` }}
+                    >
+                      <div className="min-w-0">
+                        <div className="font-mono text-[9px] text-white/70 uppercase tracking-wider mb-0.5">Next Lesson</div>
+                        <div className="font-black text-sm leading-tight truncate">{nextLesson.title}</div>
                       </div>
-                    )
+                      <ArrowRight className="w-5 h-5 flex-shrink-0" />
+                    </Link>
                   ) : (
                     <Link href={`/subjects/${subjectSlug}`}
                       className="border-4 border-ink p-4 flex items-center justify-end gap-3 text-right hover:bg-ink hover:text-white transition-colors shadow-hard"

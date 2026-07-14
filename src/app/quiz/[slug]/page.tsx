@@ -3,42 +3,10 @@
 import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import Link from 'next/link'
-import { ArrowLeft, ArrowRight, CheckCircle, AlertCircle, HelpCircle, Check, X, RefreshCw, BookOpen } from 'lucide-react'
-
-// ─── Domain color map ─────────────────────────────────────────────────────────
-
-const DOMAIN: Record<string, { color: string; bg: string; label: string }> = {
-  'polymer-chemistry':         { color: '#1D4ED8', bg: '#EFF6FF', label: 'Chemistry & Science' },
-  'polymer-processing':        { color: '#EA580C', bg: '#FFF7ED', label: 'Processing & Manufacturing' },
-  'mould-design':              { color: '#EA580C', bg: '#FFF7ED', label: 'Processing & Manufacturing' },
-  'polymer-testing':           { color: '#7C3AED', bg: '#F5F3FF', label: 'Testing & QA/QC' },
-  'rubber-technology':         { color: '#EA580C', bg: '#FFF7ED', label: 'Processing & Manufacturing' },
-  'recycling-technology':      { color: '#15803D', bg: '#F0FDF4', label: 'Circular Economy' },
-  'sustainable-plastics':      { color: '#15803D', bg: '#F0FDF4', label: 'Circular Economy' },
-  'polymer-composites':        { color: '#1D4ED8', bg: '#EFF6FF', label: 'Advanced Materials' },
-  'entrepreneurship-plastics': { color: '#CA8A04', bg: '#FEFCE8', label: 'Business' },
-  'medical-plastics':          { color: '#7C3AED', bg: '#F5F3FF', label: 'Specialised' },
-}
+import { useRouter } from 'next/navigation'
+import { CheckCircle, XCircle, ArrowRight, RotateCcw, Lock, Trophy, Brain, ArrowLeft } from 'lucide-react'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
-
-type Lesson = {
-  id: string
-  title: string
-  slug: string
-  subject_id: string
-  order_index: number
-  subjects: {
-    name: string
-    slug: string
-  } | null
-}
-
-type Quiz = {
-  id: string
-  title: string
-  passing_score: number
-}
 
 type Question = {
   id: string
@@ -46,436 +14,499 @@ type Question = {
   options: string[]
   correct_index: number
   explanation: string
-  difficulty: string
+  difficulty: 'easy' | 'medium' | 'hard'
   order_index: number
 }
 
-type GradedResult = {
-  scorePercentage: number
-  passed: boolean
-  correctCount: number
-  totalQuestions: number
-  wrongQuestions: string[]
+type Quiz = {
+  id: string
+  lesson_id: string
+  title: string
+  passing_score: number
 }
 
-// ─── Page Component ───────────────────────────────────────────────────────────
+type Lesson = {
+  id: string
+  title: string
+  slug: string
+  order_index: number
+  subject_id: string
+  subjects: { name: string; slug: string }
+}
+
+type NextLesson = {
+  id: string
+  title: string
+  slug: string
+  order_index: number
+}
+
+const DIFFICULTY_COLORS = {
+  easy: { color: '#15803D', bg: '#F0FDF4' },
+  medium: { color: '#CA8A04', bg: '#FEFCE8' },
+  hard: { color: '#EA580C', bg: '#FFF7ED' },
+}
+
+// ─── Result Screen ─────────────────────────────────────────────────────────────
+
+function ResultScreen({
+  score, total, passed, passingScore, nextLesson, lessonSlug, onRetry
+}: {
+  score: number; total: number; passed: boolean
+  passingScore: number; nextLesson: NextLesson | null
+  lessonSlug: string; onRetry: () => void
+}) {
+  const pct = Math.round((score / total) * 100)
+  const color = passed ? '#15803D' : '#EA580C'
+
+  return (
+    <div className="border-4 border-ink overflow-hidden animate-fade-up" style={{ boxShadow: `6px 6px 0px 0px ${color}` }}>
+      {/* Header */}
+      <div className="border-b-4 border-ink px-6 py-4" style={{ backgroundColor: color }}>
+        <div className="flex items-center gap-3">
+          {passed ? <Trophy className="w-6 h-6 text-white" /> : <Lock className="w-6 h-6 text-white" />}
+          <span className="font-mono text-[10px] font-black text-white uppercase tracking-widest">
+            {passed ? 'Quiz Passed — Completion Recorded!' : 'Quiz Not Passed — Try Again'}
+          </span>
+        </div>
+      </div>
+
+      <div className="p-8 bg-canvas text-center">
+        {/* Score */}
+        <div className="font-display text-7xl font-black mb-2" style={{ color }}>
+          {pct}%
+        </div>
+        <div className="font-mono text-sm text-ink/50 mb-2">{score} correct out of {total} questions</div>
+        <div className="font-mono text-[10px] text-ink/40 uppercase tracking-wider mb-6">
+          Passing score: {passingScore}%
+        </div>
+
+        {/* Progress bar */}
+        <div className="border-4 border-ink h-4 mb-8 overflow-hidden">
+          <div className="h-full transition-all duration-1000" style={{ width: `${pct}%`, backgroundColor: color }} />
+        </div>
+
+        {passed ? (
+          <div className="space-y-3">
+            <div className="border-4 border-green bg-green/10 p-4 text-left">
+              <p className="font-bold text-green mb-1">🎉 Well done! You&apos;ve completed this topic.</p>
+              <p className="text-sm text-ink/70">Your score has been logged to your progress dashboard.</p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3">
+              {nextLesson ? (
+                <Link href={`/lessons/${nextLesson.slug}`} className="cn-btn-yellow flex-1 justify-center text-sm">
+                  Next Lesson: {nextLesson.title.slice(0, 40)}... <ArrowRight className="w-4 h-4" />
+                </Link>
+              ) : (
+                <div className="border-4 border-green bg-green text-white p-4 text-center flex-1">
+                  <p className="font-display font-black text-lg">🏆 Subject Complete!</p>
+                  <p className="font-mono text-xs text-white/70 mt-1">You&apos;ve finished all lessons in this subject</p>
+                </div>
+              )}
+              <Link href="/dashboard" className="cn-btn-black flex-1 justify-center text-sm">
+                Dashboard
+              </Link>
+            </div>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            <div className="border-4 border-orange bg-orange/10 p-4 text-left">
+              <p className="font-bold text-orange mb-1">You scored {pct}%. Try aiming for {passingScore}%+!</p>
+              <p className="text-sm text-ink/70">
+                Review the lesson content and the explanations below, then try again.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <button onClick={onRetry} className="cn-btn-black flex-1 justify-center text-sm">
+                <RotateCcw className="w-4 h-4" /> Retake Quiz
+              </button>
+              <Link href={`/lessons/${lessonSlug}`} className="cn-btn-yellow flex-1 justify-center text-sm">
+                Review Lesson
+              </Link>
+              <Link href="/ai-tutor" className="border-4 border-ink px-4 py-2.5 flex-1 justify-center text-sm font-mono font-black uppercase tracking-wider hover:bg-ink hover:text-white transition-colors flex items-center gap-2">
+                <Brain className="w-4 h-4" /> Ask AI Tutor
+              </Link>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function QuizPage({ params }: { params: { slug: string } }) {
   const supabase = createClient()
+  const router = useRouter()
+
+  const [quiz, setQuiz] = useState<Quiz | null>(null)
+  const [questions, setQuestions] = useState<Question[]>([])
+  const [lesson, setLesson] = useState<Lesson | null>(null)
+  const [nextLesson, setNextLesson] = useState<NextLesson | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  const [lesson, setLesson] = useState<Lesson | null>(null)
-  const [quiz, setQuiz] = useState<Quiz | null>(null)
-  const [questions, setQuestions] = useState<Question[]>([])
-  const [nextLesson, setNextLesson] = useState<{ slug: string; title: string } | null>(null)
-
-  // Interactive state
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
+  // Quiz state
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, number>>({})
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [gradedResult, setGradedResult] = useState<GradedResult | null>(null)
-  const [startTime] = useState<number>(Date.now())
+  const [submitted, setSubmitted] = useState(false)
+  const [score, setScore] = useState(0)
+  const [passed, setPassed] = useState(false)
+  const [startTime] = useState(Date.now())
 
   useEffect(() => {
-    const loadQuizData = async () => {
-      try {
-        const { data: { session } } = await supabase.auth.getSession()
-        if (!session) {
-          window.location.href = `/login?redirectTo=/quiz/${params.slug}`
-          return
-        }
+    const load = async () => {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session) { router.push('/login'); return }
 
-        // 1. Fetch lesson
-        const { data: lessonData, error: lessonError } = await supabase
-          .from('lessons')
-          .select('id, title, slug, subject_id, order_index, subjects(name, slug)')
-          .eq('slug', params.slug)
-          .single()
+      // Get lesson
+      const { data: lessonData } = await supabase
+        .from('lessons')
+        .select('id, title, slug, order_index, subject_id, subjects(name, slug)')
+        .eq('slug', params.slug)
+        .single()
 
-        if (lessonError || !lessonData) {
-          setError('Lesson not found')
-          setLoading(false)
-          return
-        }
-        setLesson(lessonData as unknown as Lesson)
+      if (!lessonData) { setError('Lesson not found'); setLoading(false); return }
+      setLesson(lessonData as unknown as Lesson)
 
-        // 2. Fetch quiz
-        const { data: quizData, error: quizError } = await supabase
-          .from('quizzes')
-          .select('id, title, passing_score')
-          .eq('lesson_id', lessonData.id)
-          .single()
+      // Get quiz
+      const { data: quizData } = await supabase
+        .from('quizzes')
+        .select('*')
+        .eq('lesson_id', lessonData.id)
+        .single()
 
-        if (quizError || !quizData) {
-          setError('Quiz not found for this lesson')
-          setLoading(false)
-          return
-        }
-        setQuiz(quizData)
+      if (!quizData) { setError('Quiz not available yet for this lesson. Check back soon.'); setLoading(false); return }
+      setQuiz(quizData)
 
-        // 3. Fetch questions
-        const { data: questionsData, error: questionsError } = await supabase
-          .from('quiz_questions')
-          .select('*')
-          .eq('quiz_id', quizData.id)
-          .order('order_index')
+      // Get questions
+      const { data: questionsData } = await supabase
+        .from('quiz_questions')
+        .select('*')
+        .eq('quiz_id', quizData.id)
+        .order('order_index')
 
-        if (questionsError || !questionsData || questionsData.length === 0) {
-          setError('Questions not found for this quiz')
-          setLoading(false)
-          return
-        }
-        setQuestions(questionsData as Question[])
+      setQuestions((questionsData as Question[]) ?? [])
 
-        // 4. Fetch next lesson
-        const { data: nextLessonData } = await supabase
-          .from('lessons')
-          .select('slug, title')
-          .eq('subject_id', lessonData.subject_id)
-          .eq('order_index', lessonData.order_index + 1)
-          .maybeSingle()
+      // Get next lesson
+      const { data: nextLessonData } = await supabase
+        .from('lessons')
+        .select('id, title, slug, order_index')
+        .eq('subject_id', lessonData.subject_id)
+        .eq('order_index', lessonData.order_index + 1)
+        .single()
 
-        if (nextLessonData) {
-          setNextLesson(nextLessonData)
-        }
-
-      } catch (err: unknown) {
-        const message = err instanceof Error ? err.message : 'An error occurred'
-        setError(message)
-      } finally {
-        setLoading(false)
-      }
+      setNextLesson((nextLessonData as NextLesson) ?? null)
+      setLoading(false)
     }
+    load()
+  }, [params.slug, router, supabase])
 
-    loadQuizData()
-  }, [params.slug, supabase])
-
-  const handleSelectOption = (questionId: string, optionIndex: number) => {
-    if (gradedResult) return // Read-only after submit
-    setSelectedAnswers(prev => ({
-      ...prev,
-      [questionId]: optionIndex
-    }))
+  const handleSelect = (questionId: string, optionIdx: number) => {
+    if (submitted) return
+    setSelectedAnswers(prev => ({ ...prev, [questionId]: optionIdx }))
   }
 
-  const handleSubmitQuiz = async () => {
+  const handleSubmit = async () => {
     if (!quiz || !lesson) return
+    const { data: { session } } = await supabase.auth.getSession()
+    if (!session) return
 
-    // Verify all questions answered
-    const unansweredCount = questions.length - Object.keys(selectedAnswers).length
-    if (unansweredCount > 0) {
-      alert(`Please answer all questions before submitting. (${unansweredCount} remaining)`)
-      return
-    }
-
-    setIsSubmitting(true)
-    try {
-      const timeTakenSecs = Math.round((Date.now() - startTime) / 1000)
-
-      const response = await fetch('/api/quiz/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          quizId: quiz.id,
-          lessonId: lesson.id,
-          answers: selectedAnswers,
-          timeTakenSecs
-        })
-      })
-
-      const data = await response.json()
-      if (response.ok) {
-        setGradedResult(data)
+    // Calculate score
+    let correct = 0
+    const wrongQuestions: string[] = []
+    questions.forEach(q => {
+      if (selectedAnswers[q.id] === q.correct_index) {
+        correct++
       } else {
-        alert(data.error || 'Failed to submit quiz')
+        wrongQuestions.push(q.id)
       }
-    } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : 'An error occurred during submission'
-      alert(message)
-    } finally {
-      setIsSubmitting(false)
+    })
+
+    const scorePct = Math.round((correct / questions.length) * 100)
+    const didPass = scorePct >= quiz.passing_score
+    const timeTaken = Math.round((Date.now() - startTime) / 1000)
+
+    setScore(correct)
+    setPassed(didPass)
+    setSubmitted(true)
+
+    // Save attempt to DB
+    await supabase.from('quiz_attempts').insert({
+      user_id: session.user.id,
+      quiz_id: quiz.id,
+      lesson_id: lesson.id,
+      score_percentage: scorePct,
+      passed: didPass,
+      answers_given: selectedAnswers,
+      wrong_questions: wrongQuestions,
+      time_taken_secs: timeTaken,
+    })
+
+    // Update user_progress
+    const { data: existing } = await supabase
+      .from('user_progress')
+      .select('id, quiz_attempts')
+      .eq('user_id', session.user.id)
+      .eq('lesson_id', lesson.id)
+      .single()
+
+    if (existing) {
+      await supabase.from('user_progress').update({
+        status: didPass ? 'completed' : 'reading',
+        quiz_score: scorePct,
+        quiz_attempts: (existing.quiz_attempts ?? 0) + 1,
+        quiz_passed: didPass,
+        completed_at: didPass ? new Date().toISOString() : null,
+        last_active_at: new Date().toISOString(),
+      }).eq('id', existing.id)
+    } else {
+      await supabase.from('user_progress').insert({
+        user_id: session.user.id,
+        lesson_id: lesson.id,
+        status: didPass ? 'completed' : 'reading',
+        quiz_score: scorePct,
+        quiz_attempts: 1,
+        quiz_passed: didPass,
+        completed_at: didPass ? new Date().toISOString() : null,
+        started_at: new Date().toISOString(),
+        last_active_at: new Date().toISOString(),
+      })
     }
   }
 
-  const handleReset = () => {
+  const handleRetry = () => {
     setSelectedAnswers({})
-    setGradedResult(null)
-    setCurrentQuestionIndex(0)
+    setSubmitted(false)
+    setScore(0)
+    setPassed(false)
   }
+
+  const answeredCount = Object.keys(selectedAnswers).length
+  const allAnswered = answeredCount === questions.length
 
   if (loading) {
     return (
       <div className="min-h-screen bg-canvas flex items-center justify-center">
-        <div className="border-4 border-ink p-8 shadow-hard font-display text-2xl font-black text-ink animate-pulse">
-          Preparing quiz questions...
+        <div className="border-4 border-ink p-8 shadow-hard font-display text-xl font-black text-ink animate-pulse">
+          Loading quiz...
         </div>
       </div>
     )
   }
 
-  if (error || !lesson || !quiz || questions.length === 0) {
+  if (error) {
     return (
-      <div className="min-h-screen bg-canvas flex items-center justify-center px-4">
-        <div className="border-4 border-ink bg-white p-6 md:p-8 max-w-md shadow-hard text-center">
-          <AlertCircle className="w-12 h-12 text-orange-600 mx-auto mb-4" />
-          <h2 className="font-display text-xl font-black text-ink mb-2">Quiz Load Failed</h2>
-          <p className="text-sm text-ink/75 mb-6">{error || 'Could not load quiz details.'}</p>
-          <Link href="/dashboard" className="cn-btn-black text-xs inline-flex">
-            Back to Dashboard
+      <div className="min-h-screen bg-canvas flex items-center justify-center px-6">
+        <div className="border-4 border-ink p-8 shadow-hard max-w-md w-full text-center">
+          <p className="font-display text-xl font-black text-ink mb-3">{error}</p>
+          <Link href={`/lessons/${params.slug}`} className="cn-btn-black text-sm">
+            <ArrowLeft className="w-4 h-4" /> Back to Lesson
           </Link>
         </div>
       </div>
     )
   }
-
-  const subjectSlug = lesson.subjects?.slug ?? ''
-  const subjectName = lesson.subjects?.name ?? ''
-  const domain = DOMAIN[subjectSlug] ?? { color: '#1D4ED8', bg: '#EFF6FF', label: 'Polymer Engineering' }
-
-  const currentQuestion = questions[currentQuestionIndex]
-  const isLastQuestion = currentQuestionIndex === questions.length - 1
-  const allAnswered = Object.keys(selectedAnswers).length === questions.length
 
   return (
-    <div className="min-h-screen bg-canvas pb-16">
-      <div className="h-2 w-full" style={{ backgroundColor: domain.color }} />
+    <div className="min-h-screen bg-canvas">
+      <div className="h-2 bg-orange" />
 
-      {/* Breadcrumb Header */}
-      <header className="border-b-4 border-ink py-4 px-6" style={{ backgroundColor: domain.bg }}>
-        <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
-          <div className="min-w-0">
-            <span className="font-mono text-[9px] font-bold text-ink/40 uppercase tracking-widest block mb-0.5">
-              {subjectName} · Lesson {lesson.order_index}
-            </span>
-            <h1 className="font-display text-lg md:text-xl font-black text-ink truncate">
-              {lesson.title}
-            </h1>
-          </div>
-          <Link href={`/lessons/${lesson.slug}`} className="font-mono text-[10px] font-black border-2 border-ink bg-white px-3 py-1.5 hover:bg-ink hover:text-white transition-colors flex items-center gap-1.5">
-            <ArrowLeft className="w-3.5 h-3.5" /> Return
+      {/* Header */}
+      <div className="border-b-4 border-ink bg-ink px-6 py-4 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <Link href={`/lessons/${params.slug}`} className="border-2 border-white/30 text-white p-1.5 hover:bg-white/10 transition-colors">
+            <ArrowLeft className="w-4 h-4" />
           </Link>
+          <div>
+            <div className="font-display text-base font-black text-white leading-tight">{lesson?.title}</div>
+            <div className="font-mono text-[9px] text-white/40 uppercase tracking-wider">
+              {lesson?.subjects?.name} · Topic Quiz · Recommended target score: {quiz?.passing_score}%
+            </div>
+          </div>
         </div>
-      </header>
+        {!submitted && (
+          <div className="font-mono text-[10px] text-white/50 border-2 border-white/20 px-3 py-1.5">
+            {answeredCount}/{questions.length} answered
+          </div>
+        )}
+      </div>
 
-      <main className="max-w-3xl mx-auto px-4 mt-8">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 space-y-5">
 
-        {/* ── GRADED RESULT HEADER ─────────────────────────────────────── */}
-        {gradedResult && (
-          <div
-            className="border-4 border-ink p-6 mb-8 text-center"
-            style={{
-              backgroundColor: gradedResult.passed ? '#F0FDF4' : '#FEF2F2',
-              boxShadow: `6px 6px 0px 0px ${gradedResult.passed ? '#15803D' : '#DC2626'}`
-            }}
-          >
-            {gradedResult.passed ? (
-              <>
-                <div className="w-16 h-16 bg-green border-4 border-ink mx-auto mb-4 flex items-center justify-center">
-                  <CheckCircle className="w-10 h-10 text-white" />
-                </div>
-                <h2 className="font-display text-3xl font-black text-ink mb-1">Lesson Completed!</h2>
-                <p className="font-mono text-xs text-ink/60 uppercase tracking-wider mb-4">
-                  Passed with {gradedResult.scorePercentage}% Score ({gradedResult.correctCount}/{gradedResult.totalQuestions})
-                </p>
-                <div className="flex gap-4 justify-center flex-wrap">
-                  {nextLesson ? (
-                    <Link href={`/lessons/${nextLesson.slug}`} className="cn-btn-black text-sm">
-                      Next Lesson: {nextLesson.title} <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  ) : (
-                    <Link href="/dashboard" className="cn-btn-black text-sm">
-                      Back to Dashboard <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  )}
-                  <button onClick={handleReset} className="font-mono text-[10px] font-black border-2 border-ink px-4 py-2 bg-white hover:bg-ink hover:text-white transition-colors uppercase tracking-wider">
-                    Retake Quiz
-                  </button>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="w-16 h-16 bg-red-600 border-4 border-ink mx-auto mb-4 flex items-center justify-center">
-                  <AlertCircle className="w-10 h-10 text-white" />
-                </div>
-                <h2 className="font-display text-3xl font-black text-ink mb-1">Try Again</h2>
-                <p className="font-mono text-xs text-ink/60 uppercase tracking-wider mb-2">
-                  Scored {gradedResult.scorePercentage}% · Required: {quiz.passing_score}%
-                </p>
-                <p className="text-sm text-ink/70 mb-6 max-w-sm mx-auto">
-                  Review the questions and explanations below to improve your score on the next attempt.
-                </p>
-                <div className="flex gap-4 justify-center">
-                  <button onClick={handleReset} className="cn-btn-yellow text-sm">
-                    <RefreshCw className="w-4 h-4" /> Try Again
-                  </button>
-                  <Link href={`/lessons/${lesson.slug}`} className="cn-btn-black text-sm">
-                    <BookOpen className="w-4 h-4" /> Review Lesson
-                  </Link>
-                </div>
-              </>
-            )}
+        {/* Quiz intro */}
+        {!submitted && (
+          <div className="border-4 border-ink overflow-hidden" style={{ boxShadow: '4px 4px 0px 0px #EA580C' }}>
+            <div className="border-b-4 border-ink px-5 py-3 bg-orange flex items-center justify-between">
+              <span className="font-mono text-[10px] font-black text-white uppercase tracking-widest">
+                Topic Self-Assessment
+              </span>
+              <span className="font-mono text-[9px] text-white/70 border border-white/30 px-2 py-0.5 uppercase">
+                {questions.length} Questions · Target: {quiz?.passing_score}%
+              </span>
+            </div>
+            <div className="px-5 py-3 bg-orange/10">
+              <p className="text-sm text-ink font-medium">
+                Test your understanding of this topic with a quick 5-question practice quiz (Optional).
+              </p>
+            </div>
           </div>
         )}
 
-        {/* ── QUESTION NAV / SELECTOR ─────────────────────────────────── */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-4 mb-6">
-          {questions.map((q, idx) => {
-            const isAnswered = selectedAnswers[q.id] !== undefined
-            const isCurrent = currentQuestionIndex === idx
-            const isWrong = gradedResult && gradedResult.wrongQuestions.includes(q.id)
-            const isRight = gradedResult && !isWrong
+        {/* Questions */}
+        {!submitted && questions.map((q, idx) => {
+          const diff = DIFFICULTY_COLORS[q.difficulty]
+          const isAnswered = selectedAnswers[q.id] !== undefined
 
-            let btnBg = 'white'
-            let btnText = 'text-ink/60'
-            let borderColor = 'border-ink/20'
-
-            if (isCurrent) {
-              btnBg = '#0B0B0B'
-              btnText = 'text-white'
-              borderColor = 'border-ink'
-            } else if (gradedResult) {
-              if (isRight) { btnBg = '#15803D'; btnText = 'text-white'; borderColor = 'border-ink' }
-              if (isWrong) { btnBg = '#DC2626'; btnText = 'text-white'; borderColor = 'border-ink' }
-            } else if (isAnswered) {
-              btnBg = domain.bg
-              btnText = 'text-ink font-bold'
-              borderColor = 'border-ink'
-            }
-
-            return (
-              <button
-                key={q.id}
-                onClick={() => setCurrentQuestionIndex(idx)}
-                className={`w-9 h-9 border-2 flex items-center justify-center font-mono text-xs uppercase tracking-wider transition-all flex-shrink-0 ${btnText} ${borderColor}`}
-                style={{ backgroundColor: btnBg }}
-              >
-                {idx + 1}
-              </button>
-            )
-          })}
-        </div>
-
-        {/* ── QUESTION BODY ───────────────────────────────────────────── */}
-        <div
-          className="border-4 border-ink bg-white p-6 md:p-8 mb-6"
-          style={{ boxShadow: `4px 4px 0px 0px ${domain.color}` }}
-        >
-          {/* Question Text */}
-          <div className="flex items-start gap-3.5 mb-6">
-            <HelpCircle className="w-6 h-6 text-ink/40 flex-shrink-0 mt-0.5" />
-            <div>
-              <span className="font-mono text-[9px] font-bold text-ink/40 uppercase tracking-widest block mb-1">
-                Question {currentQuestionIndex + 1} of {questions.length} · {currentQuestion.difficulty}
-              </span>
-              <h2 className="font-display text-lg md:text-xl font-black text-ink leading-snug">
-                {currentQuestion.question_text}
-              </h2>
-            </div>
-          </div>
-
-          {/* Options list */}
-          <div className="space-y-3">
-            {currentQuestion.options.map((option, idx) => {
-              const isSelected = selectedAnswers[currentQuestion.id] === idx
-              const isCorrectAnswer = currentQuestion.correct_index === idx
-              const showCorrectness = gradedResult !== null
-
-              let optBg = 'white'
-              let optBorder = 'border-ink'
-              let optText = 'text-ink'
-
-              if (showCorrectness) {
-                if (isCorrectAnswer) {
-                  optBg = '#F0FDF4'
-                  optBorder = 'border-green-600'
-                  optText = 'text-green-800 font-bold'
-                } else if (isSelected) {
-                  optBg = '#FEF2F2'
-                  optBorder = 'border-red-600'
-                  optText = 'text-red-800'
-                }
-              } else if (isSelected) {
-                optBg = domain.color
-                optText = 'text-white font-bold'
-              }
-
-              return (
-                <button
-                  key={idx}
-                  onClick={() => handleSelectOption(currentQuestion.id, idx)}
-                  disabled={gradedResult !== null}
-                  className={`w-full text-left border-2 p-4 transition-all flex items-center justify-between gap-4 ${optText} ${optBorder}`}
-                  style={{ backgroundColor: optBg }}
-                >
-                  <span className="text-sm leading-relaxed">{option}</span>
-                  {isSelected && !showCorrectness && (
-                    <span className="w-5 h-5 rounded-full border-2 border-white bg-white/20 flex items-center justify-center flex-shrink-0 text-xs font-black">✓</span>
-                  )}
-                  {showCorrectness && isCorrectAnswer && (
-                    <span className="w-5 h-5 rounded-full bg-green text-white flex items-center justify-center flex-shrink-0 text-[10px] font-black"><Check className="w-3.5 h-3.5" /></span>
-                  )}
-                  {showCorrectness && isSelected && !isCorrectAnswer && (
-                    <span className="w-5 h-5 rounded-full bg-red text-white flex items-center justify-center flex-shrink-0 text-[10px] font-black"><X className="w-3.5 h-3.5" /></span>
-                  )}
-                </button>
-              )
-            })}
-          </div>
-
-          {/* Explanation block */}
-          {gradedResult && (
-            <div className="mt-8 border-t-4 border-ink/10 pt-6">
-              <span className="font-mono text-[9px] font-black text-ink/40 uppercase tracking-widest block mb-2">Technical Explanation</span>
-              <p className="text-sm text-ink/80 leading-relaxed bg-zinc-50 p-4 border-l-4 border-ink italic">
-                {currentQuestion.explanation}
-              </p>
-            </div>
-          )}
-        </div>
-
-        {/* ── ACTIONS FOOTER ──────────────────────────────────────────── */}
-        <div className="flex items-center justify-between gap-4 flex-wrap">
-          <div className="flex gap-2">
-            <button
-              onClick={() => setCurrentQuestionIndex(prev => Math.max(0, prev - 1))}
-              disabled={currentQuestionIndex === 0}
-              className="font-mono text-[10px] font-bold border-2 border-ink px-4 py-2 bg-white hover:bg-zinc-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors uppercase tracking-wider"
+          return (
+            <div
+              key={q.id}
+              className="border-4 border-ink overflow-hidden"
+              style={{ boxShadow: isAnswered ? '4px 4px 0px 0px #15803D' : '4px 4px 0px 0px #0A0A0A' }}
             >
-              Prev
-            </button>
-            <button
-              onClick={() => setCurrentQuestionIndex(prev => Math.min(questions.length - 1, prev + 1))}
-              disabled={isLastQuestion}
-              className="font-mono text-[10px] font-bold border-2 border-ink px-4 py-2 bg-white hover:bg-zinc-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors uppercase tracking-wider"
-            >
-              Next
-            </button>
-          </div>
+              {/* Question header */}
+              <div className="border-b-4 border-ink px-5 py-3 bg-ink flex items-center justify-between">
+                <span className="font-mono text-xs font-black text-yellow-bright">
+                  Q{idx + 1} / {questions.length}
+                </span>
+                <div className="flex items-center gap-2">
+                  <span
+                    className="font-mono text-[9px] font-black border-2 px-2 py-0.5 uppercase tracking-wider"
+                    style={{ borderColor: diff.color, color: diff.color, backgroundColor: diff.bg }}
+                  >
+                    {q.difficulty}
+                  </span>
+                  {isAnswered && <CheckCircle className="w-4 h-4 text-green" />}
+                </div>
+              </div>
 
-          <div>
-            {!gradedResult ? (
-              <button
-                onClick={handleSubmitQuiz}
-                disabled={isSubmitting || !allAnswered}
-                className="cn-btn-black text-xs disabled:opacity-40 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? 'Grading...' : 'Submit Answers'} <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            ) : (
-              <button
-                onClick={handleReset}
-                className="font-mono text-[10px] font-black border-2 border-ink px-5 py-2.5 bg-yellow-bright hover:bg-ink hover:text-white transition-colors uppercase tracking-wider shadow-hard-sm"
-              >
-                Retake Attempt
-              </button>
-            )}
-          </div>
-        </div>
+              {/* Question body */}
+              <div className="p-5 bg-canvas">
+                <p className="font-display text-lg font-black text-ink leading-snug mb-5">{q.question_text}</p>
+                <div className="space-y-2">
+                  {q.options.map((option, optIdx) => {
+                    const isSelected = selectedAnswers[q.id] === optIdx
+                    return (
+                      <button
+                        key={optIdx}
+                        onClick={() => handleSelect(q.id, optIdx)}
+                        className="w-full text-left border-4 border-ink p-3 flex items-center gap-3 transition-all"
+                        style={{
+                          backgroundColor: isSelected ? '#0A0A0A' : 'white',
+                          color: isSelected ? 'white' : '#0A0A0A',
+                          boxShadow: isSelected ? '3px 3px 0px 0px #1D4ED8' : '2px 2px 0px 0px #0A0A0A',
+                          transform: isSelected ? 'translate(-1px, -1px)' : 'none',
+                        }}
+                      >
+                        <span
+                          className="font-mono text-xs font-black w-7 h-7 border-2 flex items-center justify-center flex-shrink-0"
+                          style={{
+                            borderColor: isSelected ? 'white' : '#0A0A0A',
+                            backgroundColor: isSelected ? 'white' : 'transparent',
+                            color: isSelected ? '#0A0A0A' : '#0A0A0A',
+                          }}
+                        >
+                          {['A', 'B', 'C', 'D'][optIdx]}
+                        </span>
+                        <span className="text-sm font-medium">{option}</span>
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+            </div>
+          )
+        })}
 
-      </main>
+        {/* Submit button */}
+        {!submitted && (
+          <button
+            onClick={handleSubmit}
+            disabled={!allAnswered}
+            className="cn-btn-black w-full justify-center text-sm disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            {allAnswered
+              ? `Submit Quiz (${answeredCount}/${questions.length} answered)`
+              : `Answer all questions to submit (${answeredCount}/${questions.length} done)`}
+          </button>
+        )}
+
+        {/* Results */}
+        {submitted && (
+          <>
+            <ResultScreen
+              score={score}
+              total={questions.length}
+              passed={passed}
+              passingScore={quiz?.passing_score ?? 70}
+              nextLesson={nextLesson}
+              lessonSlug={params.slug}
+              onRetry={handleRetry}
+            />
+
+            {/* Answer review */}
+            <div className="space-y-3 mt-6">
+              <div className="font-mono text-[10px] font-bold text-ink/50 uppercase tracking-widest border-b-4 border-ink pb-3">
+                Answer Review — Every Question Explained
+              </div>
+              {questions.map((q, idx) => {
+                const userAnswer = selectedAnswers[q.id]
+                const isCorrect = userAnswer === q.correct_index
+                const borderColor = isCorrect ? '#15803D' : '#EA580C'
+
+                return (
+                  <div key={q.id} className="border-4 border-ink overflow-hidden" style={{ boxShadow: `3px 3px 0px 0px ${borderColor}` }}>
+                    <div className="border-b-4 border-ink px-4 py-2 flex items-center gap-3" style={{ backgroundColor: borderColor }}>
+                      {isCorrect
+                        ? <CheckCircle className="w-4 h-4 text-white" />
+                        : <XCircle className="w-4 h-4 text-white" />}
+                      <span className="font-mono text-[9px] font-black text-white uppercase tracking-wider">
+                        Q{idx + 1} — {isCorrect ? 'Correct' : `Incorrect — Correct: ${['A', 'B', 'C', 'D'][q.correct_index]}`}
+                      </span>
+                    </div>
+                    <div className="p-4 bg-canvas">
+                      <p className="font-bold text-sm text-ink mb-3">{q.question_text}</p>
+
+                      {/* Show options with correct/wrong highlighting */}
+                      <div className="space-y-1.5 mb-3">
+                        {q.options.map((opt, optIdx) => {
+                          const isCorrectOpt = optIdx === q.correct_index
+                          const isUserChoice = optIdx === userAnswer
+                          const isWrongChoice = isUserChoice && !isCorrectOpt
+
+                          return (
+                            <div
+                              key={optIdx}
+                              className="flex items-center gap-2 px-3 py-2 border-2"
+                              style={{
+                                borderColor: isCorrectOpt ? '#15803D' : isWrongChoice ? '#EA580C' : '#D1D5DB',
+                                backgroundColor: isCorrectOpt ? '#F0FDF4' : isWrongChoice ? '#FFF7ED' : 'white',
+                              }}
+                            >
+                              <span className="font-mono text-[10px] font-black w-5 flex-shrink-0" style={{ color: isCorrectOpt ? '#15803D' : isWrongChoice ? '#EA580C' : '#9CA3AF' }}>
+                                {['A', 'B', 'C', 'D'][optIdx]}
+                              </span>
+                              <span className="text-xs text-ink flex-1">{opt}</span>
+                              {isCorrectOpt && <CheckCircle className="w-3.5 h-3.5 text-green flex-shrink-0" />}
+                              {isWrongChoice && <XCircle className="w-3.5 h-3.5 text-orange flex-shrink-0" />}
+                            </div>
+                          )
+                        })}
+                      </div>
+
+                      {/* Explanation */}
+                      <div className="border-l-4 pl-3 py-1" style={{ borderColor, backgroundColor: isCorrect ? '#F0FDF4' : '#FFF7ED' }}>
+                        <p className="font-mono text-[9px] font-bold uppercase tracking-wider mb-1" style={{ color: borderColor }}>Explanation</p>
+                        <p className="text-sm text-ink leading-relaxed">{q.explanation}</p>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </>
+        )}
+      </div>
     </div>
   )
 }
