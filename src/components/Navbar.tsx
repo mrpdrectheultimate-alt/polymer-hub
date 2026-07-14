@@ -227,6 +227,37 @@ function MobileDrawer({ open, onClose, pathname }: { open: boolean; onClose: () 
               )}
             </div>
           ))}
+          <div className="border-b-4 border-ink">
+            <div className="font-mono text-[10px] font-bold uppercase tracking-widest px-5 py-2 bg-ink/5 text-ink/50 border-b-2 border-ink/10">
+              Account
+            </div>
+            <Link
+              href="/dashboard"
+              onClick={onClose}
+              className={`flex items-center gap-3 px-5 py-3 border-b-2 border-ink/10 transition-colors ${
+                pathname === '/dashboard' ? 'bg-ink text-white' : 'hover:bg-ink/5'
+              }`}
+            >
+              <div className="w-7 h-7 border-2 flex items-center justify-center flex-shrink-0"
+                style={{ backgroundColor: '#1D4ED820', borderColor: '#1D4ED8' }}>
+                <Layers className="w-3.5 h-3.5" style={{ color: '#1D4ED8' }} />
+              </div>
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-ink">My Dashboard</span>
+            </Link>
+            <Link
+              href="/profile"
+              onClick={onClose}
+              className={`flex items-center gap-3 px-5 py-3 transition-colors ${
+                pathname === '/profile' ? 'bg-ink text-white' : 'hover:bg-ink/5'
+              }`}
+            >
+              <div className="w-7 h-7 border-2 flex items-center justify-center flex-shrink-0"
+                style={{ backgroundColor: '#7C3AED20', borderColor: '#7C3AED' }}>
+                <Layers className="w-3.5 h-3.5" style={{ color: '#7C3AED' }} />
+              </div>
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-ink">My Profile</span>
+            </Link>
+          </div>
         </div>
 
         {/* Drawer footer CTAs */}
@@ -323,7 +354,7 @@ export default function Navbar() {
               href="/dashboard"
               className="font-mono text-xs font-bold uppercase tracking-widest text-ink/70 hover:text-ink transition-colors px-2"
             >
-              Dashboard
+              My Dashboard
             </Link>
             <Link href="/pricing" className="cn-btn-yellow text-xs py-2 px-4">
               ₹149/mo
