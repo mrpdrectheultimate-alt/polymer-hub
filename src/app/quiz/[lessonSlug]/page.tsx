@@ -136,7 +136,7 @@ function ResultScreen({
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default function QuizPage({ params }: { params: { slug: string } }) {
+export default function QuizPage({ params }: { params: { lessonSlug: string } }) {
   const supabase = createClient()
   const router = useRouter()
 
@@ -163,7 +163,7 @@ export default function QuizPage({ params }: { params: { slug: string } }) {
       const { data: lessonData } = await supabase
         .from('lessons')
         .select('id, title, slug, order_index, subject_id, subjects(name, slug)')
-        .eq('slug', params.slug)
+        .eq('slug', params.lessonSlug)
         .single()
 
       if (!lessonData) { setError('Lesson not found'); setLoading(false); return }
@@ -200,7 +200,7 @@ export default function QuizPage({ params }: { params: { slug: string } }) {
       setLoading(false)
     }
     load()
-  }, [params.slug, router, supabase])
+  }, [params.lessonSlug, router, supabase])
 
   const handleSelect = (questionId: string, optionIdx: number) => {
     if (submitted) return
@@ -300,7 +300,7 @@ export default function QuizPage({ params }: { params: { slug: string } }) {
       <div className="min-h-screen bg-canvas flex items-center justify-center px-6">
         <div className="border-4 border-ink p-8 shadow-hard max-w-md w-full text-center">
           <p className="font-display text-xl font-black text-ink mb-3">{error}</p>
-          <Link href={`/lessons/${params.slug}`} className="cn-btn-black text-sm">
+          <Link href={`/lessons/${params.lessonSlug}`} className="cn-btn-black text-sm">
             <ArrowLeft className="w-4 h-4" /> Back to Lesson
           </Link>
         </div>
@@ -315,7 +315,7 @@ export default function QuizPage({ params }: { params: { slug: string } }) {
       {/* Header */}
       <div className="border-b-4 border-ink bg-ink px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <Link href={`/lessons/${params.slug}`} className="border-2 border-white/30 text-white p-1.5 hover:bg-white/10 transition-colors">
+          <Link href={`/lessons/${params.lessonSlug}`} className="border-2 border-white/30 text-white p-1.5 hover:bg-white/10 transition-colors">
             <ArrowLeft className="w-4 h-4" />
           </Link>
           <div>
@@ -440,7 +440,7 @@ export default function QuizPage({ params }: { params: { slug: string } }) {
               passed={passed}
               passingScore={quiz?.passing_score ?? 70}
               nextLesson={nextLesson}
-              lessonSlug={params.slug}
+              lessonSlug={params.lessonSlug}
               onRetry={handleRetry}
             />
 
