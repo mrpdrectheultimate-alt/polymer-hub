@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { CheckCircle, XCircle, ArrowRight, RotateCcw, Lock, Trophy, Brain, ArrowLeft } from 'lucide-react'
+import { CheckCircle, XCircle, ArrowRight, RotateCcw, Trophy, Brain, ArrowLeft } from 'lucide-react'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -64,7 +64,7 @@ function ResultScreen({
       {/* Header */}
       <div className="border-b-4 border-ink px-6 py-4" style={{ backgroundColor: color }}>
         <div className="flex items-center gap-3">
-          {passed ? <Trophy className="w-6 h-6 text-white" /> : <Lock className="w-6 h-6 text-white" />}
+          {passed ? <Trophy className="w-6 h-6 text-white" /> : <XCircle className="w-6 h-6 text-white" />}
           <span className="font-mono text-[10px] font-black text-white uppercase tracking-widest">
             {passed ? 'Quiz Passed — Completion Recorded!' : 'Quiz Not Passed — Try Again'}
           </span>
