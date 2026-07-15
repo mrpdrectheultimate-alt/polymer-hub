@@ -399,9 +399,8 @@ function generateLessonHTML(lesson: LessonPDFData, subjectName: string, studentN
   <script>
     // Auto-trigger print dialog after fonts load
     window.addEventListener('load', function() {
-      // Small delay to ensure fonts are loaded
       setTimeout(function() {
-        // Don't auto-print, let user click the button
+        window.print();
       }, 500);
     });
   </script>
