@@ -258,15 +258,6 @@ export default async function LessonPage({ params }: { params: { slug: string } 
                   <div className="prose prose-base max-w-none" dangerouslySetInnerHTML={{ __html: renderedContent }} />
                 </div>
 
-                {/* Download Notes Card */}
-                <div className="mb-6">
-                  <DownloadNotes
-                    lessonSlug={lesson.slug}
-                    lessonTitle={lesson.title}
-                    isPremium={isPremium}
-                  />
-                </div>
-
                 {/* WhatsApp share */}
                 <div className="border-4 border-ink p-5 mb-6" style={{ backgroundColor: domain.bg }}>
                   <LessonShareBar
@@ -274,6 +265,15 @@ export default async function LessonPage({ params }: { params: { slug: string } 
                     lessonUrl={`https://polymer-hub-six.vercel.app/lessons/${lesson.slug}`}
                     subjectName={subjectName}
                     lessonSummary={lesson.summary}
+                  />
+                </div>
+
+                {/* Download Notes Card */}
+                <div className="mb-6">
+                  <DownloadNotes
+                    lessonSlug={lesson.slug}
+                    lessonTitle={lesson.title}
+                    isPremium={isPremium}
                   />
                 </div>
 
