@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { ArrowLeft, ArrowRight, Lock, Brain, ChevronRight, CheckCircle, BookOpen } from 'lucide-react'
 import { LessonShareBar } from '@/components/WhatsAppShare'
-import PDFDownloadButton from '@/components/PDFDownloadButton'
 
 type UserProgressRow = {
   quiz_passed?: boolean | null
@@ -244,14 +243,9 @@ export default async function LessonPage({ params }: { params: { slug: string } 
             {!isContentLocked && (
               <>
                 <div
-                  className="border-4 border-ink p-6 md:p-8 bg-canvas mb-6 print-area"
+                  className="border-4 border-ink p-6 md:p-8 bg-canvas mb-6"
                   style={{ boxShadow: `4px 4px 0px 0px ${domain.color}` }}
                 >
-                  {/* Print-specific header (hidden on screen, shown in print) */}
-                  <div className="hidden print:block border-b-2 border-slate-300 pb-3 mb-6">
-                    <h1 className="font-display text-2xl font-black text-ink">{lesson.title}</h1>
-                    <p className="font-mono text-[9px] text-ink/50 uppercase tracking-wider mt-1">Subject: {subjectName} · Study Notes from PolymerHub</p>
-                  </div>
                   <div className="prose prose-base max-w-none" dangerouslySetInnerHTML={{ __html: renderedContent }} />
                 </div>
 
@@ -391,17 +385,6 @@ export default async function LessonPage({ params }: { params: { slug: string } 
                 <Link href="/ai-tutor" className="cn-btn-yellow w-full justify-center text-xs">
                   <Brain className="w-3.5 h-3.5" /> Ask AI Tutor
                 </Link>
-              </div>
-            </div>
-
-            {/* Study Offline / PDF Notes */}
-            <div className="border-4 border-ink bg-canvas" style={{ boxShadow: '4px 4px 0px 0px #7C3AED' }}>
-              <div className="border-b-4 border-ink p-4 bg-slate-50">
-                <div className="font-mono text-[10px] font-bold text-ink/50 uppercase tracking-widest mb-1">Downloads</div>
-                <p className="text-ink/80 text-sm font-semibold">Study Offline or Print</p>
-              </div>
-              <div className="p-4">
-                <PDFDownloadButton isPremium={isPremium} />
               </div>
             </div>
 
