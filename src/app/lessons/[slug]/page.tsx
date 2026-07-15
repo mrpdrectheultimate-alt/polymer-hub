@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { ArrowLeft, ArrowRight, Lock, Brain, ChevronRight, CheckCircle, BookOpen } from 'lucide-react'
 import { LessonShareBar } from '@/components/WhatsAppShare'
+import DownloadNotes from '@/components/DownloadNotes'
 
 type UserProgressRow = {
   quiz_passed?: boolean | null
@@ -213,6 +214,14 @@ export default async function LessonPage({ params }: { params: { slug: string } 
                     <CheckCircle className="w-2.5 h-2.5" /> Completed
                   </span>
                 )}
+                <div className="ml-auto">
+                  <DownloadNotes
+                    lessonSlug={lesson.slug}
+                    lessonTitle={lesson.title}
+                    isPremium={isPremium}
+                    compact={true}
+                  />
+                </div>
               </div>
               <h1 className="font-display text-3xl md:text-4xl font-black text-ink leading-tight mb-4">{lesson.title}</h1>
               <p className="text-ink/70 text-base leading-relaxed border-l-4 pl-4" style={{ borderColor: domain.color }}>
@@ -247,6 +256,15 @@ export default async function LessonPage({ params }: { params: { slug: string } 
                   style={{ boxShadow: `4px 4px 0px 0px ${domain.color}` }}
                 >
                   <div className="prose prose-base max-w-none" dangerouslySetInnerHTML={{ __html: renderedContent }} />
+                </div>
+
+                {/* Download Notes Card */}
+                <div className="mb-6">
+                  <DownloadNotes
+                    lessonSlug={lesson.slug}
+                    lessonTitle={lesson.title}
+                    isPremium={isPremium}
+                  />
                 </div>
 
                 {/* WhatsApp share */}
