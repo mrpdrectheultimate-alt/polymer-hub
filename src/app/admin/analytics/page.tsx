@@ -62,7 +62,7 @@ export default function AdminAnalyticsPage() {
       const { data: { session } } = await supabase.auth.getSession()
       if (!session) { window.location.href = '/login'; return }
 
-      // Simple admin check
+      // Simple admin check — your email
       setAuthorized(true)
 
       // ── Overview stats ────────────────────────────────────────────────────
@@ -116,13 +116,14 @@ export default function AdminAnalyticsPage() {
           const completions = lessonProgress.filter(p => p.status === 'completed').length
           const scores = lessonProgress.filter(p => p.quiz_score !== null).map(p => p.quiz_score!)
           const avgScore = scores.length > 0 ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : null
-          const subj = lesson.subjects as unknown as { name: string; slug: string }
+
+          const subjects = lesson.subjects as unknown as { name: string; slug: string }
 
           return {
             lesson_id: lesson.id,
             lesson_title: lesson.title,
-            subject_name: subj?.name ?? '',
-            subject_slug: subj?.slug ?? '',
+            subject_name: subjects?.name ?? '',
+            subject_slug: subjects?.slug ?? '',
             reads,
             completions,
             avg_score: avgScore,
@@ -157,7 +158,7 @@ export default function AdminAnalyticsPage() {
         .order('created_at', { ascending: false })
         .limit(20)
 
-      setRecentUsers((users as RecentUser[]) ?? [])
+      setRecentUsers(users ?? [])
       setLoading(false)
     }
     load()
