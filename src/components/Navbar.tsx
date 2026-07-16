@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import {
   FlaskConical, Menu, X, ChevronDown, Brain, BookOpen,
   Newspaper, Globe, Clock, Briefcase, Layers, Wrench,
-  Scale, Zap
+  Scale, Zap, Trophy
 } from 'lucide-react'
 
 // ─── Nav structure ────────────────────────────────────────────────────────────
@@ -43,6 +43,7 @@ const NAV: NavItem[] = [
       { label: 'AI Tutor', href: '/ai-tutor', icon: Brain, color: '#15803D', desc: 'Grounded in your lessons via real RAG' },
       { label: 'Reference Library', href: '/resources', icon: BookOpen, color: '#7C3AED', desc: '17 books that define the plastics sector' },
       { label: 'Practice Questions', href: '/practice', icon: Zap, color: '#CA8A04', desc: 'MCQ quiz across all subjects — GATE mapped' },
+      { label: 'GATE Mock Test', href: '/gate-mock', icon: Trophy, color: '#7C3AED', desc: '30 questions · 60 min · negative marking' },
     ],
   },
   {
@@ -76,6 +77,7 @@ const PATH_COLORS: { prefix: string; color: string }[] = [
   { prefix: '/comparator', color: '#1D4ED8' },
   { prefix: '/resources', color: '#7C3AED' },
   { prefix: '/practice', color: '#CA8A04' },
+  { prefix: '/gate-mock', color: '#7C3AED' },
 ]
 
 function getDomainColor(pathname: string): string {
