@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
-import { ArrowRight, ArrowLeft, Lock, Brain, BookOpen, ChevronRight } from 'lucide-react'
+import { ArrowRight, ArrowLeft, Lock, Brain, BookOpen, ChevronRight, MessageSquare } from 'lucide-react'
 import WhatsAppShare from '@/components/WhatsAppShare'
 
 // ─── Domain color map ─────────────────────────────────────────────────────────
@@ -189,6 +189,12 @@ export default async function SubjectDetailPage({
             >
               Take Practice Quiz <BookOpen className="w-5 h-5" />
             </Link>
+            <Link
+              href={`/subjects/${params.slug}/forum`}
+              className="cn-btn bg-ink text-white border-white font-black"
+            >
+              Student Forum <MessageSquare className="w-5 h-5 text-yellow-bright" />
+            </Link>
             <WhatsAppShare
               type="subject"
               title={subject.name}
@@ -349,6 +355,9 @@ export default async function SubjectDetailPage({
           <div className="flex gap-3 flex-shrink-0">
             <Link href={`/subjects/${params.slug}/practice`} className="cn-btn-yellow text-sm font-black">
               Take Practice Quiz
+            </Link>
+            <Link href={`/subjects/${params.slug}/forum`} className="cn-btn-white text-sm font-black">
+              <MessageSquare className="w-4 h-4" /> Student Forum
             </Link>
             <Link href="/ai-tutor" className="cn-btn-white text-sm">
               <Brain className="w-4 h-4" /> Ask AI Tutor
