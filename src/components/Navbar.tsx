@@ -33,6 +33,7 @@ const NAV: NavItem[] = [
       { label: 'World of Plastic', href: '/world', icon: Globe, color: '#EA580C', desc: '7 industries that run on polymer engineering' },
       { label: 'History', href: '/history', icon: Clock, color: '#1D4ED8', desc: '162 years from Parkesine to PETase' },
       { label: 'Daily Pulse', href: '/today', icon: Newspaper, color: '#CA8A04', desc: 'What happened today in plastics' },
+      { label: 'Leaderboard & Badges', href: '/leaderboard', icon: Trophy, color: '#CA8A04', desc: 'XP points, streaks, badges, and top student ranks' },
     ],
   },
   {
@@ -82,7 +83,9 @@ const PATH_COLORS: { prefix: string; color: string }[] = [
   { prefix: '/gate-mock', color: '#7C3AED' },
   { prefix: '/forum', color: '#7C3AED' },
   { prefix: '/calculators', color: '#CA8A04' },
+  { prefix: '/leaderboard', color: '#CA8A04' },
 ]
+
 
 
 function getDomainColor(pathname: string): string {
