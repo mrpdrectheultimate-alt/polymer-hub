@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import {
   FlaskConical, Menu, X, ChevronDown, Brain, BookOpen,
   Newspaper, Globe, Clock, Briefcase, Layers, Wrench,
-  Scale, Zap, Trophy, MessageSquare
+  Scale, Zap, Trophy, MessageSquare, Calculator
 } from 'lucide-react'
 
 // ─── Nav structure ────────────────────────────────────────────────────────────
@@ -52,6 +52,7 @@ const NAV: NavItem[] = [
     children: [
       { label: 'Defect Troubleshooter', href: '/troubleshooter', icon: Wrench, color: '#EA580C', desc: 'Fix sink marks, warpage, flash and more' },
       { label: 'Property Comparator', href: '/comparator', icon: Scale, color: '#1D4ED8', desc: '20 polymers · 15 properties side by side' },
+      { label: 'Engineering Calculators', href: '/calculators', icon: Calculator, color: '#CA8A04', desc: '8 industrial-grade calculators for processing' },
     ],
   },
   { label: 'Careers', href: '/careers', color: '#7C3AED' },
@@ -80,7 +81,9 @@ const PATH_COLORS: { prefix: string; color: string }[] = [
   { prefix: '/practice', color: '#CA8A04' },
   { prefix: '/gate-mock', color: '#7C3AED' },
   { prefix: '/forum', color: '#7C3AED' },
+  { prefix: '/calculators', color: '#CA8A04' },
 ]
+
 
 function getDomainColor(pathname: string): string {
   const match = PATH_COLORS.find((p) => pathname.startsWith(p.prefix))
