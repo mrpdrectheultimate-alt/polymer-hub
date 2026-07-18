@@ -131,8 +131,8 @@ export default function RootLayout({
       <body className="bg-canvas text-ink antialiased font-sans">
         <Navbar />
         <main>{children}</main>
-        <Toaster />
         <FeedbackWidget />
+        <Toaster />
       </body>
     </html>
   )
