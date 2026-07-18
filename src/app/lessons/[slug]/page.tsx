@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import { headers } from 'next/headers'
 import { createClient } from '@/lib/supabase/server'
+
 import { ArrowLeft, ArrowRight, Lock, Brain, ChevronRight, CheckCircle, BookOpen } from 'lucide-react'
 import { LessonShareBar } from '@/components/WhatsAppShare'
 import DownloadNotes from '@/components/DownloadNotes'
@@ -145,7 +147,23 @@ export default async function LessonPage({ params }: { params: { slug: string } 
         started_at: new Date().toISOString(),
         last_active_at: new Date().toISOString(),
       }, { onConflict: 'user_id,lesson_id' })
+
+      try {
+        const host = headers().get('host') || 'localhost:3000'
+        const protocol = host.includes('localhost') ? 'http' : 'https'
+        await fetch(`${protocol}://${host}/api/xp/award`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'cookie': headers().get('cookie') || ''
+          },
+          body: JSON.stringify({ action: 'lesson_complete', reference: lesson.slug })
+        })
+      } catch (err) {
+        console.error('Failed to award lesson XP:', err)
+      }
     }
+
   }
 
   const isContentLocked = lesson.is_premium && !isPremium && !session

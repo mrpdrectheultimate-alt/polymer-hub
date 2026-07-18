@@ -243,6 +243,22 @@ export default function QuizPage({ params }: { params: { lessonSlug: string } })
       time_taken_secs: timeTaken,
     })
 
+    if (didPass) {
+      try {
+        await fetch('/api/xp/award', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: correct === questions.length ? 'quiz_perfect' : 'quiz_pass',
+            reference: params.lessonSlug,
+            quizScore: scorePct
+          })
+        })
+      } catch (err) {
+        console.error('Failed to award quiz XP:', err)
+      }
+    }
+
     // Update user_progress
     const { data: existing } = await supabase
       .from('user_progress')
