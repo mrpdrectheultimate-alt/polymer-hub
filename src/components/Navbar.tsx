@@ -6,8 +6,9 @@ import { usePathname } from 'next/navigation'
 import {
   FlaskConical, Menu, X, ChevronDown, Brain, BookOpen,
   Newspaper, Globe, Clock, Briefcase, Layers, Wrench,
-  Scale, Zap, Trophy, MessageSquare, Calculator
+  Scale, Zap, Trophy, MessageSquare, Calculator, Play
 } from 'lucide-react'
+
 
 // ─── Nav structure ────────────────────────────────────────────────────────────
 
@@ -43,10 +44,12 @@ const NAV: NavItem[] = [
       { label: 'Materials Database', href: '/materials', icon: Layers, color: '#EA580C', desc: 'Full engineering specs for 10+ polymers' },
       { label: 'AI Tutor', href: '/ai-tutor', icon: Brain, color: '#15803D', desc: 'Grounded in your lessons via real RAG' },
       { label: 'Reference Library', href: '/resources', icon: BookOpen, color: '#7C3AED', desc: '17 books that define the plastics sector' },
+      { label: 'Video Library', href: '/videos', icon: Play, color: '#1D4ED8', desc: 'Curated NPTEL & industry demos mapped to lessons' },
       { label: 'Practice Questions', href: '/practice', icon: Zap, color: '#CA8A04', desc: 'MCQ quiz across all subjects — GATE mapped' },
       { label: 'GATE Mock Test', href: '/gate-mock', icon: Trophy, color: '#7C3AED', desc: '30 questions · 60 min · negative marking' },
       { label: 'Student Forum', href: '/forum', icon: MessageSquare, color: '#7C3AED', desc: 'Ask questions & discuss topics with classmates' },
     ],
+
   },
   {
     label: 'Tools',
@@ -84,7 +87,9 @@ const PATH_COLORS: { prefix: string; color: string }[] = [
   { prefix: '/forum', color: '#7C3AED' },
   { prefix: '/calculators', color: '#CA8A04' },
   { prefix: '/leaderboard', color: '#CA8A04' },
+  { prefix: '/videos', color: '#1D4ED8' },
 ]
+
 
 
 
