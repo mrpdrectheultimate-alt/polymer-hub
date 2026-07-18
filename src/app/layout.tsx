@@ -3,7 +3,9 @@ import { Inter, Lora } from 'next/font/google'
 import './globals.css'
 import { Toaster } from '@/components/ui/toaster'
 import Navbar from '@/components/Navbar'
+import FeedbackWidget from '@/components/FeedbackWidget'
 import { DEFAULT_METADATA } from '@/lib/seo'
+
 
 const inter = Inter({
   subsets: ['latin'],
@@ -130,6 +132,7 @@ export default function RootLayout({
         <Navbar />
         <main>{children}</main>
         <Toaster />
+        <FeedbackWidget />
       </body>
     </html>
   )

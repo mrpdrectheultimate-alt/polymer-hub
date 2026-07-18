@@ -57,6 +57,7 @@ const NAV: NavSection[] = [
       { label: 'Engineering Calculators', href: '/calculators', icon: Calculator, color: '#CA8A04', desc: 'Tonnage, cooling, shrinkage & more' },
       { label: 'Defect Troubleshooter', href: '/troubleshooter', icon: Wrench, color: '#EA580C', desc: 'Fix sink marks, warpage, flash and more' },
       { label: 'Property Comparator', href: '/comparator', icon: Scale, color: '#1D4ED8', desc: '20 polymers · 15 properties side by side' },
+      { label: 'Send Feedback', href: '/feedback', icon: MessageSquareIcon, color: '#7C3AED', desc: 'Report a bug, suggest features or request content' },
     ],
   },
   { label: 'Careers', href: '/careers', color: '#7C3AED' },
@@ -93,6 +94,7 @@ const PATH_COLORS: { prefix: string; color: string }[] = [
   { prefix: '/calculators', color: '#CA8A04' },
   { prefix: '/achievements', color: '#CA8A04' },
   { prefix: '/leaderboard', color: '#CA8A04' },
+  { prefix: '/feedback', color: '#7C3AED' },
 ]
 
 function getDomainColor(pathname: string): string {
