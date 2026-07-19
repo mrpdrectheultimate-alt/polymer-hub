@@ -6,6 +6,7 @@ import { createClient } from '@/lib/supabase/server'
 import { ArrowLeft, ArrowRight, Lock, Brain, ChevronRight, CheckCircle, BookOpen } from 'lucide-react'
 import { LessonShareBar } from '@/components/WhatsAppShare'
 import DownloadNotes from '@/components/DownloadNotes'
+import TechnicalMarkdownRenderer from '@/components/TechnicalMarkdownRenderer'
 
 type UserProgressRow = {
   quiz_passed?: boolean | null
@@ -25,75 +26,6 @@ const DOMAIN: Record<string, { color: string; bg: string; label: string; tag: st
   'polymer-composites':        { color: '#1D4ED8', bg: '#EFF6FF', label: 'Advanced Materials', tag: 'Composites' },
   'entrepreneurship-plastics': { color: '#CA8A04', bg: '#FEFCE8', label: 'Business', tag: 'Entrepreneurship' },
   'medical-plastics':          { color: '#7C3AED', bg: '#F5F3FF', label: 'Specialised', tag: 'Medical' },
-}
-
-// ─── Content renderer ─────────────────────────────────────────────────────────
-
-function renderContent(markdown: string, domainColor: string): string {
-  let html = markdown
-
-  // Code blocks
-  html = html.replace(/```[\w]*\n?([\s\S]*?)```/g, (_, code) =>
-    `<pre class="border-4 border-ink bg-ink text-green-400 font-mono text-sm p-5 overflow-x-auto my-6 shadow-hard"><code>${code.trim().replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>`
-  )
-
-  // Tables
-  html = html.replace(/(\|.+\|\n)+/g, (table) => {
-    const rows = table.trim().split('\n')
-    const headers = rows[0].split('|').filter(Boolean).map(h => h.trim())
-    const bodyRows = rows.slice(2)
-    const bodyHtml = bodyRows.map(row => {
-      const cells = row.split('|').filter(Boolean).map(c => c.trim())
-      return `<tr class="border-b-2 border-ink">${cells.map(c => `<td class="px-4 py-2.5 text-sm text-ink">${c}</td>`).join('')}</tr>`
-    }).join('')
-    return `<div class="overflow-x-auto my-6"><table class="w-full border-4 border-ink shadow-hard">
-      <thead><tr class="border-b-4 border-ink" style="background:${domainColor}">
-        ${headers.map(h => `<th class="px-4 py-3 text-left font-mono text-xs font-bold text-white uppercase tracking-wider">${h}</th>`).join('')}
-      </tr></thead>
-      <tbody class="bg-canvas">${bodyHtml}</tbody>
-    </table></div>`
-  })
-
-  // H2
-  html = html.replace(/^## (.+)$/gm, (_, text) =>
-    `<h2 class="font-display text-2xl font-black text-ink mt-10 mb-4 pb-3 border-b-4 border-ink flex items-center gap-3">
-      <span class="w-2 h-8 flex-shrink-0" style="background:${domainColor}"></span>${text}
-    </h2>`
-  )
-
-  // H3
-  html = html.replace(/^### (.+)$/gm, (_, text) =>
-    `<h3 class="font-display text-xl font-black text-ink mt-8 mb-3">${text}</h3>`
-  )
-
-  // HR
-  html = html.replace(/^---$/gm, `<div class="border-t-4 border-ink my-8"></div>`)
-
-  // Bold
-  html = html.replace(/\*\*(.+?)\*\*/g, `<strong class="font-black text-ink">$1</strong>`)
-
-  // Inline code
-  html = html.replace(/`([^`]+)`/g,
-    `<code class="font-mono text-xs font-bold px-2 py-0.5 border-2 border-ink" style="background:${domainColor}20;color:${domainColor}">$1</code>`
-  )
-
-  // Lists
-  html = html.replace(/^- (.+)$/gm, (_, text) =>
-    `<li class="flex items-start gap-3 mb-2">
-      <span class="w-3 h-3 border-2 border-ink flex-shrink-0 mt-1" style="background:${domainColor}"></span>
-      <span class="text-ink/80 leading-relaxed">${text}</span>
-    </li>`
-  )
-  html = html.replace(/(<li.+<\/li>\n?)+/g, match => `<ul class="space-y-1 my-4">${match}</ul>`)
-
-  // Paragraphs
-  html = html.replace(/^(?!<[a-z]).+$/gm, line => {
-    if (!line.trim()) return ''
-    return `<p class="text-ink/80 leading-relaxed my-4">${line}</p>`
-  })
-
-  html = html.replace(/\n{3,}/g, '\n\n')
-  return html
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
@@ -187,7 +119,6 @@ export default async function LessonPage({ params }: { params: { slug: string } 
     .single()
 
   const quizPassed = userProgress?.quiz_passed === true
-  const renderedContent = !isContentLocked ? renderContent(lesson.content, domain.color) : ''
 
   return (
     <div className="min-h-screen bg-canvas">
@@ -273,7 +204,11 @@ export default async function LessonPage({ params }: { params: { slug: string } 
                   className="border-4 border-ink p-6 md:p-8 bg-canvas mb-6"
                   style={{ boxShadow: `4px 4px 0px 0px ${domain.color}` }}
                 >
-                  <div className="prose prose-base max-w-none" dangerouslySetInnerHTML={{ __html: renderedContent }} />
+                  <TechnicalMarkdownRenderer
+                    content={lesson.content}
+                    domainColor={domain.color}
+                    domainBg={domain.bg}
+                  />
                 </div>
 
                 {/* WhatsApp share */}
