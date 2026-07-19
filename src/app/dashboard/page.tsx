@@ -3,20 +3,10 @@
 import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import Link from 'next/link'
-import { ArrowRight, Brain, BookOpen, Zap, User, Trophy, Target, ChevronRight, CheckCircle, Clock, Flame, AlertTriangle } from 'lucide-react'
+import { ArrowRight, Brain, BookOpen, Zap, User, Trophy, Target, ChevronRight, CheckCircle, Clock } from 'lucide-react'
+import RecommendationsWidget from '@/components/RecommendationsWidget'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
-
-type Recommendation = {
-  type: string
-  title: string
-  description: string
-  lessonSlug?: string
-  lessonTitle?: string
-  subjectSlug?: string
-  subjectName?: string
-  score?: number
-}
 
 type Lesson = {
   id: string
@@ -100,7 +90,6 @@ export default function DashboardPage() {
   const [progress, setProgress] = useState<LessonProgress[]>([])
   const [subjectStats, setSubjectStats] = useState<SubjectStat[]>([])
   const [recentActivity, setRecentActivity] = useState<RecentActivityItem[]>([])
-  const [recommendations, setRecommendations] = useState<Recommendation[]>([])
   const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState<'overview' | 'subjects'>('overview')
 
@@ -188,17 +177,6 @@ export default function DashboardPage() {
         setRecentActivity(recent)
       }
 
-      // Fetch recommendations
-      try {
-        const res = await fetch('/api/recommendations')
-        const data = await res.json()
-        if (data.recommendations) {
-          setRecommendations(data.recommendations)
-        }
-      } catch (err) {
-        console.error('Failed to load recommendations:', err)
-      }
-
       setLoading(false)
     }
     load()
@@ -225,13 +203,7 @@ export default function DashboardPage() {
   const quizzesPassed = progress.filter(p => p.quiz_passed).length
   const aiQueriesLeft = Math.max(0, (isPremium ? 999 : 15) - (profile.ai_queries_today ?? 0))
 
-  // Find next lesson to study
-  const completedIds = new Set(progress.filter(p => p.quiz_passed).map(p => p.lesson_id))
-  const nextLesson = allLessons.find(l => !completedIds.has(l.id))
 
-  // Find the subject of next lesson
-  const nextSubject = nextLesson ? subjects.find(s => s.id === nextLesson.subject_id) : null
-  const nextDc = nextSubject ? SUBJECT_COLORS[nextSubject.slug] ?? { color: '#1D4ED8', bg: '#EFF6FF' } : null
 
   return (
     <div className="min-h-screen bg-canvas">
@@ -322,72 +294,8 @@ export default function DashboardPage() {
                 ))}
               </div>
 
-              {/* Recommended for You */}
-              {recommendations.length > 0 && (
-                <div className="border-4 border-ink overflow-hidden shadow-hard" style={{ boxShadow: '4px 4px 0px 0px #7C3AED' }}>
-                  <div className="border-b-4 border-ink px-5 py-3 bg-[#7C3AED] flex items-center justify-between">
-                    <span className="font-mono text-[9px] font-black text-white uppercase tracking-widest flex items-center gap-2">
-                      <Target className="w-3.5 h-3.5" /> Recommended for You
-                    </span>
-                  </div>
-                  <div className="bg-canvas divide-y-2 divide-ink/10">
-                    {recommendations.map((rec, idx) => {
-                      const linkHref = rec.lessonSlug 
-                        ? `/lessons/${rec.lessonSlug}`
-                        : rec.subjectSlug === 'practice'
-                          ? '/practice'
-                          : rec.subjectSlug === 'gate-mock'
-                            ? '/gate-mock'
-                            : '/subjects'
-
-                      return (
-                        <div key={idx} className="p-5 flex items-start gap-4 hover:bg-ink/5 transition-colors">
-                          <div className="w-10 h-10 border-2 border-ink flex items-center justify-center flex-shrink-0" style={{
-                            backgroundColor: rec.type === 'weak_subject' ? '#EA580C' : rec.type === 'gate' ? '#7C3AED' : '#1D4ED8'
-                          }}>
-                            {rec.type === 'weak_subject' && <AlertTriangle className="w-5 h-5 text-white" />}
-                            {rec.type === 'continue' && <BookOpen className="w-5 h-5 text-white" />}
-                            {rec.type === 'new_subject' && <Zap className="w-5 h-5 text-white" />}
-                            {rec.type === 'practice' && <Brain className="w-5 h-5 text-white" />}
-                            {rec.type === 'gate' && <Trophy className="w-5 h-5 text-white" />}
-                            {rec.type === 'streak' && <Flame className="w-5 h-5 text-white" />}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <h3 className="font-display text-sm font-black text-ink mb-1">{rec.title}</h3>
-                            <p className="text-xs text-ink/70 leading-relaxed mb-2">{rec.description}</p>
-                            {rec.lessonTitle && (
-                              <div className="font-mono text-[10px] text-ink/40 uppercase mb-2">
-                                Next: {rec.lessonTitle}
-                              </div>
-                            )}
-                          </div>
-                          <Link href={linkHref} className="cn-btn-black text-xs self-center flex-shrink-0">
-                            Go <ArrowRight className="w-3 h-3" />
-                          </Link>
-                        </div>
-                      )
-                    })}
-                  </div>
-                </div>
-              )}
-
-              {/* Continue learning */}
-              {nextLesson && nextDc && recommendations.length === 0 && (
-                <div className="border-4 border-ink overflow-hidden" style={{ boxShadow: `4px 4px 0px 0px ${nextDc.color}` }}>
-                  <div className="border-b-4 border-ink px-5 py-3" style={{ backgroundColor: nextDc.color }}>
-                    <span className="font-mono text-[9px] font-black text-white uppercase tracking-widest">▶ Continue Learning</span>
-                  </div>
-                  <div className="p-5 flex items-center justify-between gap-4 flex-wrap" style={{ backgroundColor: nextDc.bg }}>
-                    <div>
-                      <div className="font-mono text-[9px] text-ink/50 uppercase tracking-wider mb-1">{nextSubject?.name}</div>
-                      <div className="font-display text-lg font-black text-ink leading-tight">{nextLesson.title}</div>
-                    </div>
-                    <Link href={`/lessons/${nextLesson.slug}`} className="cn-btn-black text-sm flex-shrink-0">
-                      Start Lesson <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  </div>
-                </div>
-              )}
+              {/* Recommended for You Widget */}
+              <RecommendationsWidget />
 
               {totalCompleted === totalLessons && (
                 <div className="border-4 border-ink bg-green p-6 text-center shadow-hard">

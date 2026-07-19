@@ -15,11 +15,11 @@ const config: Config = {
         // White/Black base + 5 domain accent colors
 
         // Base
-        canvas: '#FFFFFF',          // primary page background
+        canvas: 'var(--canvas)',          // primary page background
         ink: {
-          DEFAULT: '#0A0A0A',       // headlines, body text
-          muted: '#404040',         // secondary text
-          soft: '#6B7280',          // captions, metadata
+          DEFAULT: 'var(--ink)',          // headlines, body text
+          muted: 'var(--ink-muted)',      // secondary text
+          soft: 'var(--ink-soft)',        // captions, metadata
         },
 
         // Domain: Chemistry / Trust / Navigation
@@ -155,10 +155,10 @@ const config: Config = {
 
       boxShadow: {
         // Neobrutalist hard shadows
-        'hard-sm': '2px 2px 0px 0px #0A0A0A',
-        'hard': '4px 4px 0px 0px #0A0A0A',
-        'hard-lg': '6px 6px 0px 0px #0A0A0A',
-        'hard-xl': '8px 8px 0px 0px #0A0A0A',
+        'hard-sm': '2px 2px 0px 0px var(--ink)',
+        'hard': '4px 4px 0px 0px var(--ink)',
+        'hard-lg': '6px 6px 0px 0px var(--ink)',
+        'hard-xl': '8px 8px 0px 0px var(--ink)',
         'hard-blue': '4px 4px 0px 0px #1D4ED8',
         'hard-orange': '4px 4px 0px 0px #EA580C',
         'hard-green': '4px 4px 0px 0px #15803D',

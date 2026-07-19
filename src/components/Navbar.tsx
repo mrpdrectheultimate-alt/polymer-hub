@@ -11,6 +11,7 @@ import {
   Newspaper, Globe, Clock, Briefcase, Layers, Wrench,
   Scale, Zap, Trophy, Calculator, Play, User, Star, Flame
 } from 'lucide-react'
+import DarkModeToggle from './DarkModeToggle'
 
 // ─── Nav structure ────────────────────────────────────────────────────────────
 
@@ -460,16 +461,20 @@ export default function Navbar() {
                 </Link>
               </>
             )}
+            <DarkModeToggle />
           </div>
 
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setMobileOpen(true)}
-            className="lg:hidden border-4 border-ink w-10 h-10 flex items-center justify-center hover:bg-ink hover:text-white transition-colors"
-            aria-label="Open menu"
-          >
-            <Menu className="w-5 h-5" />
-          </button>
+          {/* Mobile menu button and theme toggle */}
+          <div className="lg:hidden flex items-center gap-2 flex-shrink-0">
+            <DarkModeToggle />
+            <button
+              onClick={() => setMobileOpen(true)}
+              className="border-4 border-ink w-10 h-10 flex items-center justify-center hover:bg-ink hover:text-white transition-colors"
+              aria-label="Open menu"
+            >
+              <Menu className="w-5 h-5" />
+            </button>
+          </div>
         </div>
       </nav>
 
