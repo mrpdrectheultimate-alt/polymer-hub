@@ -9,6 +9,23 @@ const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
 const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' })
 
+async function generateWithRetry(prompt, retries = 5, delayMs = 45000) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const result = await model.generateContent(prompt)
+      return result
+    } catch (err) {
+      const is429 = err.status === 429 || String(err).includes('429') || String(err).includes('quota')
+      if (is429 && i < retries - 1) {
+        console.warn(`   ⚠️ Rate limit (429) hit. Retrying in ${delayMs / 1000}s... (Attempt ${i + 1}/${retries})`)
+        await new Promise(r => setTimeout(r, delayMs))
+        continue
+      }
+      throw err
+    }
+  }
+}
+
 const LCA_SUBJECT = {
   name: 'Life Cycle Assessment',
   slug: 'life-cycle-assessment',
@@ -85,7 +102,7 @@ async function seedSubject(subject, lessons, promptFn) {
     console.log(`[${lesson.order_index}/${lessons.length}] ${lesson.title}`)
     const { data: existing } = await supabase.from('lessons').select('id').eq('slug', lesson.slug).single()
     if (existing) { console.log('   ⏭️  Skipping\n'); continue }
-    const result = await model.generateContent(promptFn(lesson))
+    const result = await generateWithRetry(promptFn(lesson))
     const content = result.response.text()
     const { error: le } = await supabase.from('lessons').insert({
       subject_id: subj.id,

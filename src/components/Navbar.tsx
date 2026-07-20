@@ -11,7 +11,7 @@ import {
   Newspaper, Globe, Clock, Briefcase, Layers, Wrench,
   Scale, Zap, Trophy, Calculator, Play, User, Star, Flame
 } from 'lucide-react'
-import DarkModeToggle from './DarkModeToggle'
+import DarkModeToggle from '@/components/DarkModeToggle'
 
 // ─── Nav structure ────────────────────────────────────────────────────────────
 
@@ -414,6 +414,7 @@ export default function Navbar() {
 
           {/* Desktop CTAs / Auth status */}
           <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
+            <DarkModeToggle />
             {session ? (
               <>
                 {/* Streak badge */}
@@ -461,7 +462,6 @@ export default function Navbar() {
                 </Link>
               </>
             )}
-            <DarkModeToggle />
           </div>
 
           {/* Mobile menu button and theme toggle */}
