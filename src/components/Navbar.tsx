@@ -378,7 +378,7 @@ export default function Navbar() {
       {/* Domain color accent bar at very top */}
       <div className="h-1.5 w-full transition-colors duration-300" style={{ backgroundColor: domainColor }} />
 
-      <nav className={`bg-canvas border-b-4 border-ink sticky top-0 z-40 transition-shadow ${scrolled ? 'shadow-[0_4px_0px_0px_#0A0A0A]' : ''}`}>
+      <nav className={`bg-canvas border-b-4 border-ink sticky top-0 z-50 transition-shadow ${scrolled ? 'shadow-[0_4px_0px_0px_#0A0A0A]' : ''}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
 
           {/* Logo */}

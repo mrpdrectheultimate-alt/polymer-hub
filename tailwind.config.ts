@@ -15,7 +15,7 @@ const config: Config = {
         // White/Black base + 5 domain accent colors
 
         // Base
-        canvas: 'var(--canvas)',          // primary page background
+        canvas: '#FDFBF7',          // primary page background
         ink: {
           DEFAULT: 'var(--ink)',          // headlines, body text
           muted: 'var(--ink-muted)',      // secondary text

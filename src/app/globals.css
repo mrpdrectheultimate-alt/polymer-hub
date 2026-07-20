@@ -227,3 +227,29 @@
   .shadow-hard-green { box-shadow: 4px 4px 0px 0px #15803D; }
   .shadow-hard-violet { box-shadow: 4px 4px 0px 0px #7C3AED; }
 }
+
+/* ============================================================
+   POLYMERHUB — MINIMAL DESIGN REFINEMENTS
+   ============================================================ */
+
+/* Fraunces for all display headings */
+.font-display, h1, h2 {
+  font-family: 'Fraunces', Georgia, serif !important;
+  font-optical-sizing: auto;
+}
+
+/* Body text — Plus Jakarta Sans */
+body, p, li, input, textarea, select, button, label {
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+}
+
+/* Warm off-white canvas */
+:root {
+  --tw-canvas: #FDFBF7;
+}
+
+/* Lesson reading width */
+.lesson-content-wrapper {
+  max-width: 72ch;
+  width: 100%;
+}
