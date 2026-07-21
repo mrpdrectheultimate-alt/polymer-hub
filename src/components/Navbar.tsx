@@ -1,170 +1,47 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { createClient } from '@/lib/supabase/client'
-import { Session } from '@supabase/supabase-js'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import {
-  FlaskConical, Menu, X, ChevronDown, Brain, BookOpen,
-  Newspaper, Globe, Clock, Briefcase, Layers, Wrench,
-  Scale, Zap, Trophy, Calculator, Play, User, Star, Flame
+  Menu, X, ChevronDown, BookOpen, Brain, Zap, Trophy,
+  MessageCircle, Calculator, Play, FlaskConical, ArrowRight,
+  Scale, Wrench, User, Star, Flame
 } from 'lucide-react'
 
-// ─── Nav structure ────────────────────────────────────────────────────────────
-
-interface NavChild {
-  label: string
-  href: string
-  icon: React.ElementType
-  color: string
-  desc: string
-}
-
-interface NavSection {
-  label: string
-  children?: NavChild[]
-  href?: string
-  color?: string
-}
-
-const NAV: NavSection[] = [
+const NAV = [
   {
     label: 'Explore',
-    children: [
-      { label: 'World of Plastic', href: '/world', icon: Globe, color: '#EA580C', desc: '7 industries that run on polymer engineering' },
-      { label: 'History', href: '/history', icon: Clock, color: '#1D4ED8', desc: '162 years from Parkesine to PETase' },
-      { label: 'Daily Pulse', href: '/today', icon: Newspaper, color: '#CA8A04', desc: 'What happened today in plastics' },
-      { label: 'Video Library', href: '/videos', icon: Play, color: '#1D4ED8', desc: 'NPTEL + industry videos mapped to lessons' },
-    ],
+    items: [
+      { label: 'Today in Plastics', href: '/today', icon: Flame, desc: 'Daily industry news & updates', color: '#EA580C' },
+      { label: 'History of Plastics', href: '/history', icon: BookOpen, desc: '162 years that remade civilization', color: '#1D4ED8' },
+      { label: 'World of Plastic', href: '/world', icon: FlaskConical, desc: '7 industries that run on polymers', color: '#15803D' },
+      { label: 'Video Library', href: '/videos', icon: Play, desc: 'NPTEL + industry videos mapped to lessons', color: '#1D4ED8' },
+    ]
   },
   {
     label: 'Learn',
-    children: [
-      { label: 'All Subjects', href: '/subjects', icon: BookOpen, color: '#1D4ED8', desc: '15 subjects · 60 world-class lessons' },
-      { label: 'Materials Database', href: '/materials', icon: Layers, color: '#EA580C', desc: 'Full engineering specs for 10+ polymers' },
-      { label: 'AI Tutor', href: '/ai-tutor', icon: Brain, color: '#15803D', desc: 'Grounded in your lessons via real RAG' },
-      { label: 'Reference Library', href: '/resources', icon: BookOpen, color: '#7C3AED', desc: '17 books that define the plastics sector' },
-      { label: 'Practice Questions', href: '/practice', icon: Zap, color: '#CA8A04', desc: 'MCQ quiz across all subjects — GATE mapped' },
-      { label: 'GATE Mock Test', href: '/gate-mock', icon: Trophy, color: '#7C3AED', desc: '30 questions · 60 min · negative marking' },
-      { label: 'Student Forum', href: '/forum', icon: MessageSquareIcon, color: '#7C3AED', desc: 'Ask questions & discuss topics with classmates' },
-    ],
+    items: [
+      { label: 'All Subjects', href: '/subjects', icon: BookOpen, desc: '15 subjects · 102 lessons', color: '#1D4ED8' },
+      { label: 'AI Tutor', href: '/ai-tutor', icon: Brain, desc: 'Ask anything — grounded in your lessons', color: '#15803D' },
+      { label: 'Practice Questions', href: '/practice', icon: Zap, desc: '50+ MCQs across all subjects', color: '#CA8A04' },
+      { label: 'GATE Mock Test', href: '/gate-mock', icon: Trophy, desc: '30 questions · 60 min · negative marking', color: '#7C3AED' },
+      { label: 'Student Forum', href: '/forum', icon: MessageCircle, desc: 'Ask classmates, get answers', color: '#7C3AED' },
+      { label: 'Reference Library', href: '/resources', icon: BookOpen, desc: '17 books mapped to your subjects', color: '#1D4ED8' },
+    ]
   },
   {
     label: 'Tools',
-    children: [
-      { label: 'Engineering Calculators', href: '/calculators', icon: Calculator, color: '#CA8A04', desc: 'Tonnage, cooling, shrinkage & more' },
-      { label: 'Defect Troubleshooter', href: '/troubleshooter', icon: Wrench, color: '#EA580C', desc: 'Fix sink marks, warpage, flash and more' },
-      { label: 'Property Comparator', href: '/comparator', icon: Scale, color: '#1D4ED8', desc: '20 polymers · 15 properties side by side' },
-      { label: 'Send Feedback', href: '/feedback', icon: MessageSquareIcon, color: '#7C3AED', desc: 'Report a bug, suggest features or request content' },
-    ],
+    items: [
+      { label: 'Engineering Calculators', href: '/calculators', icon: Calculator, desc: 'Tonnage, cooling, shrinkage & more', color: '#CA8A04' },
+      { label: 'Defect Troubleshooter', href: '/troubleshooter', icon: Wrench, desc: 'Fix injection & extrusion defects', color: '#EA580C' },
+      { label: 'Property Comparator', href: '/comparator', icon: Scale, desc: 'Compare 12 polymers · 15 properties', color: '#1D4ED8' },
+      { label: 'Careers', href: '/careers', icon: Trophy, desc: '6 career tracks · ₹4–40 LPA', color: '#15803D' },
+      { label: 'Materials Database', href: '/materials', icon: FlaskConical, desc: 'Polymer properties & Indian industry', color: '#7C3AED' },
+    ]
   },
-  { label: 'Careers', href: '/careers', color: '#7C3AED' },
 ]
-
-function MessageSquareIcon(props: React.ComponentProps<typeof MessageSquare>) {
-  return <MessageSquare className="w-4 h-4" {...props} />
-}
-
-
-import { MessageSquare } from 'lucide-react'
-
-// Domain color per path prefix
-const PATH_COLORS: { prefix: string; color: string }[] = [
-  { prefix: '/subjects/polymer-chemistry', color: '#1D4ED8' },
-  { prefix: '/subjects/polymer-processing', color: '#EA580C' },
-  { prefix: '/subjects/mould-design', color: '#EA580C' },
-  { prefix: '/subjects/polymer-testing', color: '#7C3AED' },
-  { prefix: '/subjects/rubber-technology', color: '#EA580C' },
-  { prefix: '/subjects/recycling-technology', color: '#15803D' },
-  { prefix: '/subjects/sustainable-plastics', color: '#15803D' },
-  { prefix: '/subjects/polymer-composites', color: '#1D4ED8' },
-  { prefix: '/subjects/entrepreneurship-plastics', color: '#CA8A04' },
-  { prefix: '/subjects/medical-plastics', color: '#7C3AED' },
-  { prefix: '/subjects/polymer-rheology', color: '#EA580C' },
-  { prefix: '/subjects/additives-compounding', color: '#1D4ED8' },
-  { prefix: '/subjects/plastic-packaging-engineering', color: '#15803D' },
-  { prefix: '/subjects/life-cycle-assessment', color: '#15803D' },
-  { prefix: '/subjects/color-science-masterbatches', color: '#CA8A04' },
-  { prefix: '/world', color: '#EA580C' },
-  { prefix: '/history', color: '#1D4ED8' },
-  { prefix: '/today', color: '#CA8A04' },
-  { prefix: '/careers', color: '#7C3AED' },
-  { prefix: '/recycling', color: '#15803D' },
-  { prefix: '/troubleshooter', color: '#EA580C' },
-  { prefix: '/comparator', color: '#1D4ED8' },
-  { prefix: '/resources', color: '#7C3AED' },
-  { prefix: '/videos', color: '#1D4ED8' },
-  { prefix: '/calculators', color: '#CA8A04' },
-  { prefix: '/achievements', color: '#CA8A04' },
-  { prefix: '/leaderboard', color: '#CA8A04' },
-  { prefix: '/feedback', color: '#7C3AED' },
-]
-
-function getDomainColor(pathname: string): string {
-  const match = PATH_COLORS.find((p) => pathname.startsWith(p.prefix))
-  return match?.color ?? '#0A0A0A'
-}
-
-// ─── Desktop Dropdown ─────────────────────────────────────────────────────────
-
-function DropdownMenu({ item, pathname }: { item: NavSection; pathname: string }) {
-  const [open, setOpen] = useState(false)
-  const hasActive = item.children?.some((c) => pathname.startsWith(c.href))
-
-  return (
-    <div
-      className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
-      <button
-        className={`flex items-center gap-1 font-mono text-xs font-bold uppercase tracking-widest px-3 py-2 border-b-4 transition-colors ${
-          hasActive
-            ? 'border-yellow-bright text-ink'
-            : 'border-transparent text-ink/70 hover:text-ink hover:border-ink/30'
-        }`}
-      >
-        {item.label}
-        <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
-      </button>
-
-      {open && (
-        <div className="absolute top-full left-0 pt-0 z-50 min-w-72">
-          <div className="border-4 border-ink bg-canvas shadow-hard-lg mt-1">
-            {item.children?.map((child) => {
-              const Icon = child.icon
-              const isActive = pathname.startsWith(child.href)
-              return (
-                <Link
-                  key={child.href}
-                  href={child.href}
-                  className={`flex items-start gap-3 px-4 py-3 border-b-2 border-ink last:border-0 transition-colors ${
-                    isActive ? 'bg-ink text-white' : 'hover:bg-ink hover:text-white group'
-                  }`}
-                >
-                  <div
-                    className="w-8 h-8 border-2 border-current flex items-center justify-center flex-shrink-0 mt-0.5"
-                    style={{ backgroundColor: isActive ? child.color : 'transparent', borderColor: isActive ? child.color : 'currentColor' }}
-                  >
-                    <Icon className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="font-mono text-xs font-bold uppercase tracking-wider">{child.label}</div>
-                    <div className={`text-xs mt-0.5 ${isActive ? 'text-white/70' : 'text-ink/50 group-hover:text-white/70'}`}>{child.desc}</div>
-                  </div>
-                </Link>
-              )
-            })}
-          </div>
-        </div>
-      )}
-    </div>
-  )
-}
-
-// ─── Mobile Drawer ────────────────────────────────────────────────────────────
 
 type Profile = {
   full_name: string | null
@@ -174,173 +51,13 @@ type Profile = {
   current_streak: number
 }
 
-function MobileDrawer({
-  open,
-  onClose,
-  pathname,
-  session,
-  profile,
-  isPremium,
-  signOut
-}: {
-  open: boolean
-  onClose: () => void
-  pathname: string
-  session: Session | null
-  profile: Profile | null
-  isPremium: boolean
-  signOut: () => Promise<void>
-}) {
-  useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [open])
-
-  if (!open) return null
-
-  const domainColor = getDomainColor(pathname)
-
-  return (
-    <>
-      <div className="fixed inset-0 bg-ink/60 z-40" onClick={onClose} />
-      <div className="fixed top-0 right-0 h-full w-80 bg-canvas z-50 flex flex-col border-l-4 border-ink">
-
-        {/* Drawer header */}
-        <div className="flex items-center justify-between px-5 h-16 border-b-4 border-ink bg-ink">
-          <Link href="/" onClick={onClose} className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-yellow-bright border-2 border-yellow-bright flex items-center justify-center">
-              <FlaskConical className="w-4 h-4 text-ink" />
-            </div>
-            <span className="font-display text-lg font-black text-white">PolymerHub</span>
-          </Link>
-          <button onClick={onClose} className="text-white hover:text-yellow-bright transition-colors border-2 border-white/30 p-1">
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-
-        {/* Domain color strip */}
-        <div className="h-2" style={{ backgroundColor: domainColor }} />
-
-        {/* Auth section */}
-        {session ? (
-          <div className="border-b-4 border-ink px-5 py-3 flex items-center gap-3 bg-ink">
-            {profile?.avatar_url ? (
-              <img src={profile.avatar_url} alt="avatar" className="w-9 h-9 object-cover border-2 border-yellow-bright flex-shrink-0" />
-            ) : (
-              <div className="w-9 h-9 bg-violet border-2 border-yellow-bright flex items-center justify-center flex-shrink-0">
-                <User className="w-4 h-4 text-white" />
-              </div>
-            )}
-            <div className="flex-1 min-w-0">
-              <div className="font-bold text-sm text-white truncate">{profile?.full_name ?? 'Student'}</div>
-              <div className="flex items-center gap-2 mt-0.5">
-                {isPremium && <span className="font-mono text-[8px] text-yellow-bright uppercase">⭐ Premium</span>}
-                {profile && <span className="font-mono text-[8px] text-white/40">{profile.xp_points} XP</span>}
-                {profile && profile.current_streak > 0 && <span className="font-mono text-[8px] text-orange">🔥 {profile.current_streak}</span>}
-              </div>
-            </div>
-            <Link href="/dashboard" onClick={onClose} className="font-mono text-[9px] font-bold border-2 border-yellow-bright text-yellow-bright px-2.5 py-1 uppercase">
-              Dashboard
-            </Link>
-          </div>
-        ) : (
-          <div className="border-b-4 border-ink px-4 py-3 flex gap-3">
-            <Link href="/login" onClick={onClose} className="flex-1 font-mono text-[10px] font-bold border-4 border-ink px-3 py-2 text-center uppercase hover:bg-ink hover:text-white transition-colors">Sign In</Link>
-            <Link href="/pricing" onClick={onClose} className="flex-1 cn-btn-yellow text-xs justify-center">Get Premium</Link>
-          </div>
-        )}
-
-        {/* Nav items */}
-        <div className="flex-1 overflow-y-auto">
-          {NAV.map((item) => (
-            <div key={item.label} className="border-b-4 border-ink">
-              <div className="font-mono text-[10px] font-bold uppercase tracking-widest px-5 py-2 bg-ink/5 text-ink/50 border-b-2 border-ink/10">
-                {item.label}
-              </div>
-              {'children' in item && item.children ? (
-                item.children.map((child) => {
-                  const Icon = child.icon
-                  const isActive = pathname.startsWith(child.href)
-                  return (
-                    <Link
-                      key={child.href}
-                      href={child.href}
-                      onClick={onClose}
-                      className={`flex items-center gap-3 px-5 py-3 border-b-2 border-ink/10 last:border-0 transition-colors ${
-                        isActive ? 'bg-ink text-white' : 'hover:bg-ink/5'
-                      }`}
-                    >
-                      <div
-                        className="w-7 h-7 border-2 flex items-center justify-center flex-shrink-0"
-                        style={{
-                          backgroundColor: isActive ? child.color : child.color + '20',
-                          borderColor: child.color,
-                        }}
-                      >
-                        <Icon className="w-3.5 h-3.5" style={{ color: isActive ? 'white' : child.color }} />
-                      </div>
-                      <span className={`font-mono text-xs font-bold uppercase tracking-wider ${isActive ? 'text-white' : 'text-ink'}`}>
-                        {child.label}
-                      </span>
-                    </Link>
-                  )
-                })
-              ) : (
-                'href' in item && (
-                  <Link
-                    href={item.href!}
-                    onClick={onClose}
-                    className={`flex items-center gap-3 px-5 py-3 transition-colors ${
-                      pathname.startsWith(item.href!) ? 'bg-ink text-white' : 'hover:bg-ink/5'
-                    }`}
-                  >
-                    <div className="w-7 h-7 border-2 flex items-center justify-center flex-shrink-0"
-                      style={{ backgroundColor: (item.color ?? '#7C3AED') + '20', borderColor: item.color ?? '#7C3AED' }}>
-                      <Briefcase className="w-3.5 h-3.5" style={{ color: item.color ?? '#7C3AED' }} />
-                    </div>
-                    <span className="font-mono text-xs font-bold uppercase tracking-wider text-ink">{item.label}</span>
-                  </Link>
-                )
-              )}
-            </div>
-          ))}
-        </div>
-
-        {/* Drawer footer Sign Out */}
-        {session && (
-          <div className="p-4 bg-canvas border-t-4 border-ink">
-            <button
-              onClick={async () => {
-                await signOut()
-                onClose()
-              }}
-              className="w-full font-mono text-[10px] font-bold text-ink/40 uppercase tracking-wider border-2 border-ink/20 py-2 hover:bg-ink hover:text-white hover:border-ink transition-colors"
-            >
-              Sign Out
-            </button>
-          </div>
-        )}
-      </div>
-    </>
-  )
-}
-
-// ─── Main Navbar ──────────────────────────────────────────────────────────────
-
 export default function Navbar() {
   const pathname = usePathname()
-  const supabase = createClient()
+  const supabase = createClientComponentClient()
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [profile, setProfile] = useState<Profile | null>(null)
-  const [session, setSession] = useState<Session | null>(null)
-  const domainColor = getDomainColor(pathname)
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 4)
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  const [session, setSession] = useState<any>(null)
 
   useEffect(() => {
     const init = async () => {
@@ -357,93 +74,143 @@ export default function Navbar() {
     }
     init()
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
       setSession(session)
       if (session) {
-        const { data } = await supabase.from('profiles').select('full_name, avatar_url, subscription_status, xp_points, current_streak').eq('id', session.user.id).single()
+        const { data } = await supabase.from('profiles')
+          .select('full_name, avatar_url, subscription_status, xp_points, current_streak')
+          .eq('id', session.user.id).single()
         if (data) setProfile(data)
-      } else {
-        setProfile(null)
-      }
+      } else setProfile(null)
     })
-
     return () => subscription.unsubscribe()
-  }, [supabase])
+  }, [])
 
-  const handleSignOut = async () => {
-    await supabase.auth.signOut()
-    window.location.href = '/'
-  }
+  useEffect(() => {
+    setMobileOpen(false)
+    setActiveDropdown(null)
+  }, [pathname])
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      if (!target.closest('[data-navbar]')) setActiveDropdown(null)
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [])
+
+  // Prevent body scroll when mobile menu open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => { document.body.style.overflow = '' }
+  }, [mobileOpen])
 
   const isPremium = profile?.subscription_status === 'premium'
 
   return (
     <>
-      {/* Domain color accent bar at very top */}
-      <div className="h-1.5 w-full transition-colors duration-300" style={{ backgroundColor: domainColor }} />
-
-      <nav className={`bg-canvas border-b-4 border-ink sticky top-0 z-40 transition-shadow ${scrolled ? 'shadow-[0_4px_0px_0px_#0A0A0A]' : ''}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+      {/* ── NAVBAR ─────────────────────────────────────────────────────────────
+          position: sticky, top: 0, z-index: 50
+          Height is fixed at 56px desktop / 52px mobile
+          Page content starts BELOW this — never underneath it
+      ──────────────────────────────────────────────────────────────────────── */}
+      <nav
+        data-navbar
+        className="sticky top-0 left-0 right-0 z-50 bg-white border-b-4 border-black"
+        style={{ height: '56px' }}
+      >
+        <div className="h-full max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
 
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 flex-shrink-0 group">
-            <div className="w-9 h-9 bg-ink border-4 border-ink flex items-center justify-center group-hover:bg-yellow-bright transition-colors">
-              <FlaskConical className="w-4 h-4 text-white group-hover:text-ink transition-colors" />
+          <Link href="/" className="flex items-center gap-2 flex-shrink-0">
+            <div className="w-8 h-8 bg-black flex items-center justify-center border-2 border-black flex-shrink-0">
+              <span className="font-black text-yellow-400 text-sm leading-none">P</span>
             </div>
-            <span className="font-display text-lg font-black text-ink tracking-tight">PolymerHub</span>
+            <span className="font-black text-black text-base leading-tight hidden sm:block tracking-tight">
+              Polymer<span className="text-blue-600">Hub</span>
+            </span>
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden lg:flex items-center gap-0 flex-1 justify-center">
-            {NAV.map((item) => {
-              if ('children' in item && item.children) {
-                return <DropdownMenu key={item.label} item={item} pathname={pathname} />
-              }
-              const isActive = 'href' in item && pathname.startsWith(item.href!)
-              return (
-                <Link
-                  key={item.label}
-                  href={'href' in item ? item.href! : '/'}
-                  className={`font-mono text-xs font-bold uppercase tracking-widest px-3 py-2 border-b-4 transition-colors ${
-                    isActive
-                      ? 'border-yellow-bright text-ink'
-                      : 'border-transparent text-ink/70 hover:text-ink hover:border-ink/30'
-                  }`}
+          <div className="hidden md:flex items-center gap-0.5 flex-1 justify-center" data-navbar>
+            {NAV.map(section => (
+              <div key={section.label} className="relative">
+                <button
+                  onClick={() => setActiveDropdown(activeDropdown === section.label ? null : section.label)}
+                  className="flex items-center gap-1 px-3 h-8 font-mono text-[10px] font-black uppercase tracking-wider hover:bg-black hover:text-white transition-colors"
+                  style={{
+                    backgroundColor: activeDropdown === section.label ? '#0A0A0A' : undefined,
+                    color: activeDropdown === section.label ? 'white' : undefined,
+                  }}
                 >
-                  {item.label}
-                </Link>
-              )
-            })}
+                  {section.label}
+                  <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${activeDropdown === section.label ? 'rotate-180' : ''}`} />
+                </button>
+
+                {activeDropdown === section.label && (
+                  <div className="absolute top-full left-0 mt-0 w-72 border-4 border-black bg-white z-50"
+                    style={{ boxShadow: '4px 4px 0px 0px #0A0A0A' }}>
+                    {section.items.map(item => {
+                      const Icon = item.icon
+                      const isActive = pathname === item.href
+                      return (
+                        <Link key={item.href} href={item.href}
+                          className="flex items-center gap-3 px-4 py-3 border-b-2 border-black/10 last:border-0 hover:bg-black hover:text-white group transition-colors"
+                          style={{ backgroundColor: isActive ? '#0A0A0A' : undefined, color: isActive ? 'white' : undefined }}>
+                          <div className="w-8 h-8 border-2 border-black flex items-center justify-center flex-shrink-0 group-hover:border-white transition-colors"
+                            style={{ backgroundColor: item.color }}>
+                            <Icon className="w-4 h-4 text-white" />
+                          </div>
+                          <div>
+                            <div className="font-mono text-[10px] font-bold uppercase tracking-wider">{item.label}</div>
+                            <div className="font-mono text-[8px] text-black/50 group-hover:text-white/60 mt-0.5">{item.desc}</div>
+                          </div>
+                        </Link>
+                      )
+                    })}
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
 
-          {/* Desktop CTAs / Auth status */}
-          <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
+          {/* Desktop right */}
+          <div className="hidden md:flex items-center gap-2 flex-shrink-0">
             {session ? (
               <>
-                {/* Streak badge */}
                 {profile && profile.current_streak > 0 && (
-                  <Link href="/achievements" className="flex items-center gap-1 border-2 border-ink px-2 py-1 hover:bg-ink hover:text-white transition-colors" title="Your streak">
-                    <Flame className="w-3.5 h-3.5 text-orange" />
-                    <span className="font-mono text-[9px] font-black text-ink">{profile.current_streak}</span>
+                  <Link href="/achievements"
+                    className="flex items-center gap-1 border-2 border-black px-2 py-1 hover:bg-black hover:text-white transition-colors"
+                    title="Your streak">
+                    <Flame className="w-3.5 h-3.5 text-orange-500" />
+                    <span className="font-mono text-[9px] font-black">{profile.current_streak}</span>
                   </Link>
                 )}
-                {/* XP */}
                 {profile && (
-                  <Link href="/achievements" className="flex items-center gap-1 border-2 border-ink px-2 py-1 hover:bg-yellow-bright transition-colors" title="Your XP">
-                    <Star className="w-3.5 h-3.5" style={{ color: '#CA8A04' }} />
-                    <span className="font-mono text-[9px] font-black text-ink">{(profile.xp_points ?? 0).toLocaleString()}</span>
+                  <Link href="/achievements"
+                    className="flex items-center gap-1 border-2 border-black px-2 py-1 hover:bg-yellow-400 transition-colors"
+                    title="Your XP">
+                    <Star className="w-3.5 h-3.5 text-yellow-600" />
+                    <span className="font-mono text-[9px] font-black">{(profile.xp_points ?? 0).toLocaleString()}</span>
                   </Link>
                 )}
-                {/* Premium badge */}
                 {isPremium && (
-                  <span className="font-mono text-[8px] font-black border-2 border-yellow text-yellow px-2 py-0.5 uppercase" style={{ borderColor: '#CA8A04', color: '#CA8A04' }}>
+                  <span className="font-mono text-[8px] font-black border-2 px-2 py-0.5 uppercase"
+                    style={{ borderColor: '#CA8A04', color: '#CA8A04' }}>
                     ⭐ Premium
                   </span>
                 )}
-                {/* Dashboard link */}
-                <Link href="/dashboard" className="flex items-center gap-2 border-4 border-ink px-3 py-1.5 hover:bg-ink hover:text-white group transition-colors">
+                <Link href="/dashboard"
+                  className="flex items-center gap-2 border-4 border-black px-3 py-1 hover:bg-black hover:text-white group transition-colors"
+                  style={{ boxShadow: '2px 2px 0px 0px #0A0A0A' }}>
                   {profile?.avatar_url ? (
-                    <img src={profile.avatar_url} alt="avatar" className="w-5 h-5 object-cover border border-ink animate-fade" />
+                    <img src={profile.avatar_url} alt="avatar" className="w-5 h-5 object-cover border border-black" />
                   ) : (
                     <User className="w-4 h-4" />
                   )}
@@ -454,41 +221,140 @@ export default function Navbar() {
               </>
             ) : (
               <>
-                <Link
-                  href="/login"
-                  className="font-mono text-xs font-bold uppercase tracking-widest text-ink/70 hover:text-ink transition-colors px-2"
-                >
+                <Link href="/login"
+                  className="font-mono text-[10px] font-bold px-3 py-1.5 border-2 border-black hover:bg-black hover:text-white transition-colors uppercase tracking-wider">
                   Sign In
                 </Link>
-                <Link href="/pricing" className="cn-btn-yellow text-xs py-2 px-4">
-                  ₹149/mo
+                <Link href="/pricing"
+                  className="font-mono text-[10px] font-bold px-4 py-1.5 border-4 border-black bg-yellow-400 hover:bg-yellow-300 transition-colors uppercase tracking-wider flex items-center gap-1.5"
+                  style={{ boxShadow: '2px 2px 0px 0px #0A0A0A' }}>
+                  ₹149/MO <ArrowRight className="w-3 h-3" />
                 </Link>
               </>
             )}
           </div>
 
-          {/* Mobile menu button */}
-          <div className="lg:hidden flex items-center gap-2 flex-shrink-0">
-            <button
-              onClick={() => setMobileOpen(true)}
-              className="border-4 border-ink w-10 h-10 flex items-center justify-center hover:bg-ink hover:text-white transition-colors"
-              aria-label="Open menu"
-            >
-              <Menu className="w-5 h-5" />
-            </button>
-          </div>
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="md:hidden border-4 border-black w-10 h-10 flex items-center justify-center hover:bg-black hover:text-white transition-colors flex-shrink-0"
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
       </nav>
 
-      <MobileDrawer
-        open={mobileOpen}
-        onClose={() => setMobileOpen(false)}
-        pathname={pathname}
-        session={session}
-        profile={profile}
-        isPremium={isPremium}
-        signOut={handleSignOut}
-      />
+      {/* ── MOBILE DRAWER ───────────────────────────────────────────────────────
+          Fixed overlay — sits on top of everything
+          Does NOT push page content down
+      ──────────────────────────────────────────────────────────────────────── */}
+      {mobileOpen && (
+        <div className="fixed inset-0 z-40 md:hidden" style={{ top: '56px' }}>
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-black/50" onClick={() => setMobileOpen(false)} />
+
+          {/* Drawer */}
+          <div className="absolute top-0 left-0 right-0 bg-white border-b-4 border-black max-h-[calc(100vh-56px)] overflow-y-auto">
+
+            {/* Auth section */}
+            {session ? (
+              <div className="border-b-4 border-black px-4 py-3 flex items-center gap-3 bg-black">
+                {profile?.avatar_url ? (
+                  <img src={profile.avatar_url} alt="avatar"
+                    className="w-9 h-9 object-cover border-2 border-yellow-400 flex-shrink-0" />
+                ) : (
+                  <div className="w-9 h-9 bg-violet-700 border-2 border-yellow-400 flex items-center justify-center flex-shrink-0">
+                    <User className="w-4 h-4 text-white" />
+                  </div>
+                )}
+                <div className="flex-1 min-w-0">
+                  <div className="font-bold text-sm text-white truncate">{profile?.full_name ?? 'Student'}</div>
+                  <div className="flex items-center gap-2">
+                    {isPremium && <span className="font-mono text-[8px] text-yellow-400 uppercase">⭐ Premium</span>}
+                    {profile && <span className="font-mono text-[8px] text-white/40">{profile.xp_points} XP</span>}
+                    {profile && profile.current_streak > 0 && (
+                      <span className="font-mono text-[8px] text-orange-400">🔥 {profile.current_streak}</span>
+                    )}
+                  </div>
+                </div>
+                <Link href="/dashboard"
+                  className="font-mono text-[9px] font-bold border-2 border-yellow-400 text-yellow-400 px-2 py-1 uppercase">
+                  Dashboard
+                </Link>
+              </div>
+            ) : (
+              <div className="border-b-4 border-black px-4 py-3 flex gap-3">
+                <Link href="/login"
+                  className="flex-1 font-mono text-[10px] font-bold border-4 border-black px-3 py-2 text-center uppercase hover:bg-black hover:text-white transition-colors">
+                  Sign In
+                </Link>
+                <Link href="/pricing"
+                  className="flex-1 font-mono text-[10px] font-bold border-4 border-black bg-yellow-400 px-3 py-2 text-center uppercase"
+                  style={{ boxShadow: '2px 2px 0px 0px #0A0A0A' }}>
+                  ₹149/MO
+                </Link>
+              </div>
+            )}
+
+            {/* Nav sections */}
+            {NAV.map(section => (
+              <div key={section.label} className="border-b-4 border-black">
+                <div className="px-4 py-2 bg-black">
+                  <span className="font-mono text-[9px] font-black text-yellow-400 uppercase tracking-widest">
+                    {section.label}
+                  </span>
+                </div>
+                {section.items.map(item => {
+                  const Icon = item.icon
+                  const isActive = pathname === item.href
+                  return (
+                    <Link key={item.href} href={item.href}
+                      className="flex items-center gap-3 px-4 py-3 border-b-2 border-black/10 last:border-0 transition-colors"
+                      style={{ backgroundColor: isActive ? '#0A0A0A' : undefined, color: isActive ? 'white' : undefined }}>
+                      <div className="w-7 h-7 border-2 border-black flex items-center justify-center flex-shrink-0"
+                        style={{ backgroundColor: item.color }}>
+                        <Icon className="w-3.5 h-3.5 text-white" />
+                      </div>
+                      <div>
+                        <div className="font-mono text-[10px] font-bold uppercase tracking-wider">{item.label}</div>
+                        <div className="font-mono text-[8px] text-black/40">{item.desc}</div>
+                      </div>
+                    </Link>
+                  )
+                })}
+              </div>
+            ))}
+
+            {/* Bottom links */}
+            <div className="border-b-4 border-black">
+              {[
+                { label: 'Achievements & Badges', href: '/achievements', icon: Trophy },
+                { label: 'Profile Settings', href: '/profile', icon: User },
+              ].map(item => {
+                const Icon = item.icon
+                return (
+                  <Link key={item.href} href={item.href}
+                    className="flex items-center gap-3 px-4 py-3 border-b-2 border-black/10 last:border-0 hover:bg-black/5 transition-colors">
+                    <Icon className="w-4 h-4 text-black/50" />
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-wider">{item.label}</span>
+                  </Link>
+                )
+              })}
+            </div>
+
+            {session && (
+              <div className="px-4 py-3">
+                <button
+                  onClick={async () => { await supabase.auth.signOut(); window.location.href = '/' }}
+                  className="w-full font-mono text-[9px] font-bold text-black/40 uppercase tracking-wider border-2 border-black/20 py-2 hover:bg-black hover:text-white hover:border-black transition-colors">
+                  Sign Out
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </>
   )
 }
