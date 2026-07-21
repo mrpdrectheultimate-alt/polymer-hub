@@ -57,7 +57,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [profile, setProfile] = useState<Profile | null>(null)
-  const [session, setSession] = useState<any>(null)
+  const [session, setSession] = useState<import('@supabase/supabase-js').Session | null>(null)
 
   useEffect(() => {
     const init = async () => {
