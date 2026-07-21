@@ -11,7 +11,6 @@ import {
   Newspaper, Globe, Clock, Briefcase, Layers, Wrench,
   Scale, Zap, Trophy, Calculator, Play, User, Star, Flame
 } from 'lucide-react'
-import DarkModeToggle from '@/components/DarkModeToggle'
 
 // ─── Nav structure ────────────────────────────────────────────────────────────
 
@@ -378,7 +377,7 @@ export default function Navbar() {
       {/* Domain color accent bar at very top */}
       <div className="h-1.5 w-full transition-colors duration-300" style={{ backgroundColor: domainColor }} />
 
-      <nav className={`bg-canvas border-b-4 border-ink sticky top-0 z-50 transition-shadow ${scrolled ? 'shadow-[0_4px_0px_0px_#0A0A0A]' : ''}`}>
+      <nav className={`bg-canvas border-b-4 border-ink sticky top-0 z-40 transition-shadow ${scrolled ? 'shadow-[0_4px_0px_0px_#0A0A0A]' : ''}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
 
           {/* Logo */}
@@ -414,7 +413,6 @@ export default function Navbar() {
 
           {/* Desktop CTAs / Auth status */}
           <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
-            <DarkModeToggle />
             {session ? (
               <>
                 {/* Streak badge */}
@@ -464,9 +462,8 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Mobile menu button and theme toggle */}
+          {/* Mobile menu button */}
           <div className="lg:hidden flex items-center gap-2 flex-shrink-0">
-            <DarkModeToggle />
             <button
               onClick={() => setMobileOpen(true)}
               className="border-4 border-ink w-10 h-10 flex items-center justify-center hover:bg-ink hover:text-white transition-colors"

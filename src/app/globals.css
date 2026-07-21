@@ -43,30 +43,7 @@
     --ink-soft: #6B7280;
   }
 
-  [data-theme='dark'] {
-    --background: 0 0% 8%;
-    --foreground: 0 0% 95%;
 
-    --card: 0 0% 12%;
-    --card-foreground: 0 0% 95%;
-
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 95%;
-
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 95%;
-
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 70%;
-
-    --border: 0 0% 25%;
-    --input: 0 0% 25%;
-
-    --canvas: #121212;
-    --ink: #F3F4F6;
-    --ink-muted: #9CA3AF;
-    --ink-soft: #6B7280;
-  }
 
   * {
     @apply border-border;
@@ -226,30 +203,4 @@
   .shadow-hard-orange { box-shadow: 4px 4px 0px 0px #EA580C; }
   .shadow-hard-green { box-shadow: 4px 4px 0px 0px #15803D; }
   .shadow-hard-violet { box-shadow: 4px 4px 0px 0px #7C3AED; }
-}
-
-/* ============================================================
-   POLYMERHUB — MINIMAL DESIGN REFINEMENTS
-   ============================================================ */
-
-/* Fraunces for all display headings */
-.font-display, h1, h2 {
-  font-family: 'Fraunces', Georgia, serif !important;
-  font-optical-sizing: auto;
-}
-
-/* Body text — Plus Jakarta Sans */
-body, p, li, input, textarea, select, button, label {
-  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
-}
-
-/* Warm off-white canvas */
-:root {
-  --tw-canvas: #FDFBF7;
-}
-
-/* Lesson reading width */
-.lesson-content-wrapper {
-  max-width: 72ch;
-  width: 100%;
 }

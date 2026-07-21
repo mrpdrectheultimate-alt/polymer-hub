@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
-  darkMode: ['class'],
+
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -15,7 +15,7 @@ const config: Config = {
         // White/Black base + 5 domain accent colors
 
         // Base
-        canvas: '#FDFBF7',          // primary page background
+        canvas: 'var(--canvas)',          // primary page background
         ink: {
           DEFAULT: 'var(--ink)',          // headlines, body text
           muted: 'var(--ink-muted)',      // secondary text
