@@ -49,6 +49,11 @@ const SUBJECT_COLORS: Record<string, { color: string; bg: string }> = {
   'polymer-composites':       { color: '#1D4ED8', bg: '#EFF6FF' },
   'entrepreneurship-plastics':{ color: '#CA8A04', bg: '#FEFCE8' },
   'medical-plastics':         { color: '#7C3AED', bg: '#F5F3FF' },
+  'polymer-rheology':         { color: '#EA580C', bg: '#FFF7ED' },
+  'additives-compounding':    { color: '#1D4ED8', bg: '#EFF6FF' },
+  'plastic-packaging-engineering': { color: '#15803D', bg: '#F0FDF4' },
+  'life-cycle-assessment':    { color: '#15803D', bg: '#F0FDF4' },
+  'color-science-masterbatches': { color: '#CA8A04', bg: '#FEFCE8' },
 }
 
 // ─── Score Card ───────────────────────────────────────────────────────────────

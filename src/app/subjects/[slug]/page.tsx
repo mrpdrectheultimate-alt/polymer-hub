@@ -70,6 +70,36 @@ const DOMAIN: Record<string, {
     quote: 'A failure in automotive plastic is a warranty claim. A failure in a medical polymer device can cost a life.',
     quoteAuthor: 'Medical Plastics · PolymerHub',
   },
+  'polymer-rheology': {
+    color: '#EA580C', bg: '#FFF7ED', light: '#FED7AA', label: 'Processing & Manufacturing', tag: 'Advanced',
+    image: 'https://images.unsplash.com/photo-1544257121-654dbcc18e5e?w=1200&q=80',
+    quote: 'Rheology is the language of molten polymers under shear and stress.',
+    quoteAuthor: 'Polymer Rheology · PolymerHub',
+  },
+  'additives-compounding': {
+    color: '#1D4ED8', bg: '#EFF6FF', light: '#BFDBFE', label: 'Chemistry & Science', tag: 'Formulation',
+    image: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?w=1200&q=80',
+    quote: 'Without additives, even the pure polymer resin is virtually unusable in real engineering environments.',
+    quoteAuthor: 'Additives & Compounding · PolymerHub',
+  },
+  'plastic-packaging-engineering': {
+    color: '#15803D', bg: '#F0FDF4', light: '#BBF7D0', label: 'Applications', tag: 'Packaging',
+    image: 'https://images.unsplash.com/photo-1605600659908-0ef719419d41?w=1200&q=80',
+    quote: 'Packaging is the largest global consumer of plastics — barrier properties define shelf life.',
+    quoteAuthor: 'Plastic Packaging Engineering · PolymerHub',
+  },
+  'life-cycle-assessment': {
+    color: '#15803D', bg: '#F0FDF4', light: '#BBF7D0', label: 'Circular Economy', tag: 'Sustainability',
+    image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1200&q=80',
+    quote: 'LCA provides the rigorous scientific data needed to evaluate carbon footprints and EPR compliance.',
+    quoteAuthor: 'Life Cycle Assessment · PolymerHub',
+  },
+  'color-science-masterbatches': {
+    color: '#CA8A04', bg: '#FEFCE8', light: '#FEF08A', label: 'Specialised Applications', tag: 'Design',
+    image: 'https://images.unsplash.com/photo-1502691876148-a84978e59af8?w=1200&q=80',
+    quote: 'Color matching in plastics relies on optics, dispersion, and exact pigment dispersion chemistry.',
+    quoteAuthor: 'Color Science & Masterbatches · PolymerHub',
+  },
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────

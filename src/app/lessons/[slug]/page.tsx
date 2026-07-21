@@ -26,6 +26,11 @@ const DOMAIN: Record<string, { color: string; bg: string; label: string; tag: st
   'polymer-composites':        { color: '#1D4ED8', bg: '#EFF6FF', label: 'Advanced Materials', tag: 'Composites' },
   'entrepreneurship-plastics': { color: '#CA8A04', bg: '#FEFCE8', label: 'Business', tag: 'Entrepreneurship' },
   'medical-plastics':          { color: '#7C3AED', bg: '#F5F3FF', label: 'Specialised', tag: 'Medical' },
+  'polymer-rheology':          { color: '#EA580C', bg: '#FFF7ED', label: 'Processing & Manufacturing', tag: 'Advanced' },
+  'additives-compounding':     { color: '#1D4ED8', bg: '#EFF6FF', label: 'Chemistry & Science', tag: 'Formulation' },
+  'plastic-packaging-engineering': { color: '#15803D', bg: '#F0FDF4', label: 'Applications', tag: 'Packaging' },
+  'life-cycle-assessment':     { color: '#15803D', bg: '#F0FDF4', label: 'Circular Economy', tag: 'Sustainability' },
+  'color-science-masterbatches': { color: '#CA8A04', bg: '#FEFCE8', label: 'Specialised', tag: 'Design' },
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
