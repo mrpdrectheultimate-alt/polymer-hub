@@ -355,7 +355,7 @@ export default function SubjectsPage() {
               <BookOpen className="w-5 h-5 text-ink" />
             </div>
             <span className="font-mono text-xs font-bold text-yellow-bright uppercase tracking-widest border-2 border-yellow-bright px-3 py-1">
-              10 Subjects · 60 Lessons
+              15 Subjects · 102 Lessons
             </span>
           </div>
 
@@ -446,7 +446,7 @@ export default function SubjectsPage() {
               Not sure where to start?<br />Ask the AI Tutor.
             </h2>
             <p className="text-white/60 max-w-lg leading-relaxed">
-              Tell it your interests or your target career — it will point you to the right subject and lesson. Grounded in all 60 lessons via real vector similarity search.
+              Tell it your interests or your target career — it will point you to the right subject and lesson. Grounded in all 102 lessons via real vector similarity search.
             </p>
           </div>
           <div className="flex flex-col gap-3 flex-shrink-0">

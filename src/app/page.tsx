@@ -142,7 +142,7 @@ const SUBJECTS = [
 ]
 
 const STATS = [
-  { value: '60', unit: 'Lessons', label: 'Across 10 subjects', color: '#1D4ED8', bg: '#EFF6FF' },
+  { value: '102', unit: 'Lessons', label: 'Across 15 subjects', color: '#1D4ED8', bg: '#EFF6FF' },
   { value: '17', unit: 'Reference Books', label: 'Mapped to your career', color: '#7C3AED', bg: '#F5F3FF' },
   { value: '20+', unit: 'Polymers', label: 'With full property data', color: '#EA580C', bg: '#FFF7ED' },
   { value: '₹0', unit: 'To Start', label: '15 AI queries/day free', color: '#15803D', bg: '#F0FDF4' },
@@ -328,7 +328,7 @@ export default function HomePage() {
             </div>
             <div>
               <h2 className="font-display text-2xl font-black text-white uppercase tracking-tight">
-                10 Subjects · 60 Lessons
+                15 Subjects · 102 Lessons
               </h2>
               <p className="font-mono text-xs text-white/60 uppercase tracking-wider">The complete PPE curriculum</p>
             </div>
@@ -513,7 +513,7 @@ export default function HomePage() {
               Ask Anything.<br />Get Answers Grounded<br />in Your Lessons.
             </h2>
             <p className="text-white/80 text-base leading-relaxed mb-6">
-              Not a generic chatbot. The PolymerHub AI Tutor uses real pgvector similarity search across all 60 lessons — so every answer cites actual lesson content.
+              Not a generic chatbot. The PolymerHub AI Tutor uses real pgvector similarity search across all 102 lessons — so every answer cites actual lesson content.
             </p>
             <div className="flex flex-wrap gap-2 mb-6">
               {['What is the difference between Izod and Charpy testing?', 'How does vulcanization work?', 'Which career suits me?'].map((q) => (

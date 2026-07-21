@@ -445,7 +445,7 @@ export default function ResourcesPage() {
           <div>
             <div className="font-mono text-[9px] text-white/50 uppercase tracking-widest mb-1">AI Tutor</div>
             <h3 className="font-display text-2xl font-black text-white">Ask about any concept from these books</h3>
-            <p className="text-white/60 text-sm mt-1">The AI Tutor covers the core content of all 17 references across 60 lessons.</p>
+            <p className="text-white/60 text-sm mt-1">The AI Tutor covers the core content of all 17 references across 102 lessons.</p>
           </div>
           <div className="flex gap-3 flex-shrink-0">
             <Link href="/ai-tutor" className="cn-btn bg-white text-violet border-white">

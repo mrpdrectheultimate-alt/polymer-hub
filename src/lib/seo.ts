@@ -10,7 +10,7 @@ export const DEFAULT_METADATA = {
     default: 'PolymerHub — India\'s Plastic Polymer Engineering Knowledge Platform',
     template: '%s | PolymerHub',
   },
-  description: 'World-class learning platform for Plastic Polymer Engineering (PPE) B.Tech students in India. 60 lessons, AI Tutor, practice questions, career guidance, and daily industry news.',
+  description: 'World-class learning platform for Plastic Polymer Engineering (PPE) B.Tech students in India. 102 lessons, AI Tutor, practice questions, career guidance, and daily industry news.',
   keywords: [
     'plastic polymer engineering',
     'PPE B.Tech India',
@@ -119,11 +119,11 @@ export const PAGE_METADATA = {
   },
   subjects: {
     title: 'All Subjects — Polymer Engineering Curriculum',
-    description: 'Complete B.Tech PPE curriculum: Polymer Chemistry, Processing, Mould Design, Testing, Rubber Technology, Recycling, Sustainable Plastics, Composites, Medical Plastics, and Entrepreneurship. 60 lessons total.',
+    description: 'Complete B.Tech PPE curriculum: Polymer Chemistry, Processing, Mould Design, Testing, Rubber Technology, Recycling, Sustainable Plastics, Composites, Medical Plastics, and Entrepreneurship. 102 lessons total.',
   },
   aiTutor: {
     title: 'AI Tutor — Ask Anything About Polymer Engineering',
-    description: 'Gemini-powered AI Tutor grounded in all 60 PolymerHub lessons. Ask about Tg, Tm, MFI, injection moulding, vulcanization, EPR — get answers tied directly to your syllabus.',
+    description: 'Gemini-powered AI Tutor grounded in all 102 PolymerHub lessons. Ask about Tg, Tm, MFI, injection moulding, vulcanization, EPR — get answers tied directly to your syllabus.',
   },
   today: {
     title: 'Daily Pulse — Today in the Plastics Industry',
@@ -159,6 +159,6 @@ export const PAGE_METADATA = {
   },
   pricing: {
     title: 'Pricing — PolymerHub Premium',
-    description: 'Unlock all 60 lessons, unlimited AI Tutor queries, and premium practice questions. ₹149/month — less than the cost of a single textbook chapter.',
+    description: 'Unlock all 102 lessons, unlimited AI Tutor queries, and premium practice questions. ₹149/month — less than the cost of a single textbook chapter.',
   },
 }

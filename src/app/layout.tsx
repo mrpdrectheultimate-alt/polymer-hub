@@ -73,7 +73,7 @@ export default function RootLayout({
                   '@type': 'Course',
                   '@id': 'https://polymer-hub-six.vercel.app/#course',
                   name: 'Complete B.Tech Plastic Polymer Engineering Curriculum',
-                  description: '60 world-class lessons across 10 subjects: Polymer Chemistry, Processing, Mould Design, Testing, Rubber Technology, Recycling, Sustainable Plastics, Composites, Medical Plastics, and Entrepreneurship',
+                  description: '60 world-class lessons across 15 subjects: Polymer Chemistry, Processing, Mould Design, Testing, Rubber Technology, Recycling, Sustainable Plastics, Composites, Medical Plastics, and Entrepreneurship',
                   provider: {
                     '@type': 'Organization',
                     name: 'PolymerHub',

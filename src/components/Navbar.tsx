@@ -42,7 +42,7 @@ const NAV: NavSection[] = [
   {
     label: 'Learn',
     children: [
-      { label: 'All Subjects', href: '/subjects', icon: BookOpen, color: '#1D4ED8', desc: '10 subjects · 60 world-class lessons' },
+      { label: 'All Subjects', href: '/subjects', icon: BookOpen, color: '#1D4ED8', desc: '15 subjects · 60 world-class lessons' },
       { label: 'Materials Database', href: '/materials', icon: Layers, color: '#EA580C', desc: 'Full engineering specs for 10+ polymers' },
       { label: 'AI Tutor', href: '/ai-tutor', icon: Brain, color: '#15803D', desc: 'Grounded in your lessons via real RAG' },
       { label: 'Reference Library', href: '/resources', icon: BookOpen, color: '#7C3AED', desc: '17 books that define the plastics sector' },

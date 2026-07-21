@@ -241,7 +241,7 @@ export default function AITutorPage() {
             </div>
             <div>
               <div className="font-display text-base font-black text-white leading-tight">AI Tutor</div>
-              <div className="font-mono text-[8px] text-white/40 uppercase tracking-wider">Grounded in your 60 lessons · Gemini 2.5 Flash</div>
+              <div className="font-mono text-[8px] text-white/40 uppercase tracking-wider">Grounded in your 102 lessons · Gemini 2.5 Flash</div>
             </div>
           </div>
 
@@ -289,12 +289,12 @@ export default function AITutorPage() {
                 <div className="p-5 bg-canvas">
                   <p className="font-display text-xl font-black text-ink mb-2">Ask me anything about polymer engineering.</p>
                   <p className="text-sm text-ink/60 leading-relaxed mb-4">
-                    I&apos;m trained on all 60 lessons across your 10 subjects — using real pgvector similarity search to ground every answer in your actual curriculum. I remember our conversation context, so you can ask follow-up questions naturally.
+                    I&apos;m trained on all 102 lessons across your 15 subjects — using real pgvector similarity search to ground every answer in your actual curriculum. I remember our conversation context, so you can ask follow-up questions naturally.
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {[
-                      { label: '60 Lessons', color: '#1D4ED8' },
-                      { label: '10 Subjects', color: '#EA580C' },
+                      { label: '102 Lessons', color: '#1D4ED8' },
+                      { label: '15 Subjects', color: '#EA580C' },
                       { label: 'Context Memory', color: '#15803D' },
                       { label: 'Source Citations', color: '#7C3AED' },
                     ].map((f) => (
@@ -451,7 +451,7 @@ export default function AITutorPage() {
             </button>
           </div>
           <p className="font-mono text-[8px] text-ink/30 mt-2 text-center uppercase tracking-wider">
-            Answers grounded in your 60 lessons via Gemini 2.5 Flash + pgvector RAG
+            Answers grounded in your 102 lessons via Gemini 2.5 Flash + pgvector RAG
           </p>
         </div>
       </div>

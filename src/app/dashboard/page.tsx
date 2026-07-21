@@ -446,7 +446,7 @@ export default function DashboardPage() {
                   </div>
                   <div className="p-4 bg-canvas">
                     <div className="font-display text-2xl font-black text-ink mb-1">₹149<span className="text-sm font-sans text-ink/50">/month</span></div>
-                    <p className="text-xs text-ink/60 mb-3">All 60 lessons · Unlimited AI · Cancel anytime</p>
+                    <p className="text-xs text-ink/60 mb-3">All 102 lessons · Unlimited AI · Cancel anytime</p>
                     <div className="cn-btn-black w-full justify-center text-xs">Upgrade Now <ArrowRight className="w-3.5 h-3.5" /></div>
                   </div>
                 </Link>

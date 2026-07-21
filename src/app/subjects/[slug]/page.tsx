@@ -323,7 +323,7 @@ export default async function SubjectDetailPage({
                 Unlock all {totalLessons} lessons in this subject
               </h2>
               <p className="text-ink/60 text-sm leading-relaxed">
-                Unlimited AI Tutor queries · All 10 subjects · Cancel anytime
+                Unlimited AI Tutor queries · All 15 subjects · Cancel anytime
               </p>
             </div>
             <div className="flex flex-col gap-3 flex-shrink-0">
