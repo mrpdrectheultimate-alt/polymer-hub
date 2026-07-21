@@ -137,11 +137,6 @@ const config: Config = {
         },
       },
 
-      fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['var(--font-lora)', 'Lora', 'Georgia', 'serif'], // bold editorial headlines
-        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
-      },
 
       fontSize: {
         // Larger scale for bold editorial feel
