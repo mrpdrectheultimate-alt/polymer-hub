@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { createClient } from '@/lib/supabase/client'
 import {
   Menu, X, ChevronDown, BookOpen, Brain, Zap, Trophy,
   MessageCircle, Calculator, Play, FlaskConical, ArrowRight,
@@ -53,7 +53,7 @@ type Profile = {
 
 export default function Navbar() {
   const pathname = usePathname()
-  const supabase = createClientComponentClient()
+  const supabase = createClient()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [profile, setProfile] = useState<Profile | null>(null)
