@@ -9,6 +9,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        display: ['Space Grotesk', 'sans-serif'],
+        sans:    ['Inter', 'system-ui', 'sans-serif'],
+        mono:    ['JetBrains Mono', 'Courier New', 'monospace'],
+      },
       colors: {
         // ─── PolymerHub v3 — Bold CN-Industrial Palette ──────────────────
         // High-contrast, domain-coded color system

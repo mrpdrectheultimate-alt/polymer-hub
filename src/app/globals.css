@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 @layer base {
   :root {
@@ -57,8 +57,31 @@
     background-color: #FFFFFF;
     color: #0A0A0A;
     font-family: 'Inter', system-ui, sans-serif;
-    font-feature-settings: 'rlig' 1, 'calt' 1;
+    font-size: 16px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+  }
+
+  h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
   }
 
   /* Selection highlight — blue */
@@ -191,8 +214,53 @@
 
   /* ─── Fraunces display headline helper ───────────────────── */
   .font-display {
-    font-family: var(--font-lora), 'Lora', Georgia, serif;
+    font-family: 'Space Grotesk', sans-serif !important;
+  }
+
+  .font-mono,
+  code, pre,
+  [class*="font-mono"] {
+    font-family: 'JetBrains Mono', 'Courier New', monospace !important;
+  }
+
+  .text-hero {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
     font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+  }
+
+  .text-display {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.75rem, 3.5vw, 3rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .text-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .lesson-body {
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    line-height: 1.75;
+    color: rgba(10, 10, 10, 0.85);
+    max-width: 72ch;
+  }
+
+  .label-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
   }
 
   /* ─── Hard shadow utilities ──────────────────────────────── */
