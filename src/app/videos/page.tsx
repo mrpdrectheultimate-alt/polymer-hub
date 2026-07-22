@@ -281,7 +281,7 @@ export default function VideoLibraryPage() {
             <span className="text-yellow-bright italic">UNDERSTAND IT.</span>
           </h1>
           <p className="text-white/70 max-w-xl leading-relaxed">
-            Curated engineering videos from NPTEL, IIT lectures, MIT OCW, and verified manufacturers — zero broken embeds, zero unverified placeholders.
+            Release 0A-R1 — 100% Audited Video Library. Only verified, working engineering videos are published. Zero placeholders.
           </p>
         </div>
       </section>
