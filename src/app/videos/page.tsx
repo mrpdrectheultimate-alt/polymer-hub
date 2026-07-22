@@ -196,7 +196,6 @@ function VideoModal({ video, onClose }: { video: VideoRecord; onClose: () => voi
 export default function VideoLibraryPage() {
   const [videosList, setVideosList] = useState<VideoRecord[]>(AUDITED_VERIFIED_VIDEOS)
   const [loading, setLoading] = useState(false)
-  const [errorMsg, setErrorMsg] = useState<string | null>(null)
   const [selectedVideo, setSelectedVideo] = useState<VideoRecord | null>(null)
   const [selectedSubject, setSelectedSubject] = useState('all')
   const [selectedSource, setSelectedSource] = useState('all')
@@ -243,7 +242,7 @@ export default function VideoLibraryPage() {
             setVideosList(AUDITED_VERIFIED_VIDEOS)
           }
         }
-      } catch (err: unknown) {
+      } catch {
         setVideosList(AUDITED_VERIFIED_VIDEOS)
       } finally {
         setLoading(false)
@@ -336,12 +335,6 @@ export default function VideoLibraryPage() {
           <div className="border-4 border-ink p-12 text-center flex flex-col items-center justify-center">
             <Loader2 className="w-8 h-8 text-blue animate-spin mb-3" />
             <p className="font-mono text-sm text-ink/60">Verifying video publication status...</p>
-          </div>
-        ) : errorMsg ? (
-          <div className="border-4 border-ink p-8 bg-red-50 text-center">
-            <AlertCircle className="w-8 h-8 text-red-600 mx-auto mb-2" />
-            <h3 className="font-display text-lg font-black text-red-900 mb-1">Database Sync Error</h3>
-            <p className="font-mono text-xs text-red-700">{errorMsg}</p>
           </div>
         ) : filtered.length === 0 ? (
           <div className="border-4 border-ink border-dashed p-12 text-center bg-canvas">
