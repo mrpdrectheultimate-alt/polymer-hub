@@ -1,7 +1,7 @@
 {
   "crons": [
     {
-      "path": "/api/cron/video-health?secret=polymerhub_cron_secret_2026",
+      "path": "/api/cron/video-health",
       "schedule": "0 3 * * *"
     }
   ]
