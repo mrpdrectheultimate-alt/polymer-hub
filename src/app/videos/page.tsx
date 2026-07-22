@@ -1,5 +1,7 @@
 'use client'
 
+// Forced Vercel Deployment Trigger - 2026-07-22 Sprint 0A-R Clean Video Library
+
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Play, BookOpen, ExternalLink, Search, Loader2, ShieldCheck, AlertCircle } from 'lucide-react'
@@ -238,8 +240,8 @@ export default function VideoLibraryPage() {
                 source: (['NPTEL', 'Industry', 'IIT', 'MIT'].includes(String(item.source)) ? item.source : 'Industry') as VideoRecord['source'],
                 level: (['Foundation', 'Intermediate', 'Advanced'].includes(String(item.level)) ? item.level : 'Foundation') as VideoRecord['level'],
                 lessonSlug: item.lesson_slug ? String(item.lesson_slug) : undefined,
-                status: 'published' as const,
-                embedStatus: (item.embed_status === 'blocked' ? 'blocked' : 'working') as const
+                status: 'published',
+                embedStatus: item.embed_status === 'blocked' ? 'blocked' : 'working'
               }
             })
             .filter((v): v is VideoRecord => v !== null)
