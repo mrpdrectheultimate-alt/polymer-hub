@@ -30,6 +30,10 @@ export type VideoRecord = {
   embedStatus: 'working' | 'blocked' | 'removed' | 'invalid'
   manualPlaybackVerified?: boolean
   verifiedBy?: string
+  academicReviewStatus?: 'approved' | 'approved_with_caveat' | 'pending' | 'remap_required'
+  mappingLevel?: 'subject' | 'module' | 'lesson'
+  mappingConfidence?: 'high' | 'medium' | 'low' | 'unreviewed'
+  academicReviewNotes?: string
 }
 
 const SOURCE_COLORS: Record<string, { color: string; bg: string }> = {
