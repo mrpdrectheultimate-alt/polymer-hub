@@ -330,18 +330,18 @@ export default function VideoLibraryPage() {
         const supabase = createClient()
         const { data, error } = await supabase.from('videos').select('*')
         if (!error && data && data.length > 0) {
-          const mapped: Video[] = data.map((item: any) => ({
-            id: item.id,
-            title: item.title,
-            channel: item.channel || 'Industry Channel',
-            duration: item.duration || '20:00',
-            subject: item.subject_name || 'Polymer Engineering',
-            subjectSlug: item.subject_slug || 'polymer-chemistry',
-            youtubeId: item.youtube_id || (item.youtube_url ? item.youtube_url.split('v=')[1] : 'rHxxLoPgOVM'),
-            description: item.description || item.title,
-            source: (item.source as any) || 'Industry',
-            level: (item.level as any) || 'Foundation',
-            lessonSlug: item.lesson_slug
+          const mapped: Video[] = data.map((item: Record<string, unknown>) => ({
+            id: String(item.id),
+            title: String(item.title || ''),
+            channel: String(item.channel || 'Industry Channel'),
+            duration: String(item.duration || '20:00'),
+            subject: String(item.subject_name || 'Polymer Engineering'),
+            subjectSlug: String(item.subject_slug || 'polymer-chemistry'),
+            youtubeId: String(item.youtube_id || (typeof item.youtube_url === 'string' ? item.youtube_url.split('v=')[1] : 'rHxxLoPgOVM')),
+            description: String(item.description || item.title || ''),
+            source: (['NPTEL', 'Industry', 'IIT', 'MIT'].includes(String(item.source)) ? item.source : 'Industry') as Video['source'],
+            level: (['Foundation', 'Intermediate', 'Advanced'].includes(String(item.level)) ? item.level : 'Foundation') as Video['level'],
+            lessonSlug: item.lesson_slug ? String(item.lesson_slug) : undefined
           }))
           setVideosList(mapped)
         }
