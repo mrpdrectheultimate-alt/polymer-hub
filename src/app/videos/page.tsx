@@ -5,7 +5,7 @@ export const revalidate = 0
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Play, BookOpen, ExternalLink, Search, Loader2, ShieldCheck, AlertCircle } from 'lucide-react'
+import { Play, BookOpen, ExternalLink, Search, Loader2, ShieldCheck } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { extractYouTubeVideoId, getYouTubeCanonicalUrl, getYouTubeThumbnailUrl } from '@/lib/youtube'
 
