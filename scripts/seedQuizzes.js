@@ -19,7 +19,7 @@ const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' })
 
 // ─── Generate 5 MCQs for a lesson ────────────────────────────────────────────
 
-async function generateQuestions(lesson, subjectName) {
+async function generateQuestions(lesson, subjectName, retries = 5, delay = 15000) {
   const prompt = `You are an expert polymer engineering educator for Indian B.Tech PPE students.
 
 Generate exactly 5 MCQ questions for this lesson. Mix difficulty: 2 easy, 2 medium, 1 hard.
@@ -47,30 +47,36 @@ Rules:
 - difficulty: 2 "easy", 2 "medium", 1 "hard"
 - DO NOT include the correct answer letter in the question text`
 
-  try {
-    const result = await model.generateContent(prompt)
-    let text = result.response.text().trim()
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const result = await model.generateContent(prompt)
+      let text = result.response.text().trim()
 
-    // Clean up any markdown formatting
-    text = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim()
+      text = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim()
 
-    // Extract JSON array
-    const start = text.indexOf('[')
-    const end = text.lastIndexOf(']') + 1
-    if (start === -1 || end === 0) throw new Error('No JSON array found in response')
+      const start = text.indexOf('[')
+      const end = text.lastIndexOf(']') + 1
+      if (start === -1 || end === 0) throw new Error('No JSON array found in response')
 
-    const questions = JSON.parse(text.slice(start, end))
+      const questions = JSON.parse(text.slice(start, end))
 
-    // Validate
-    if (!Array.isArray(questions) || questions.length === 0) {
-      throw new Error('Invalid questions array')
+      if (!Array.isArray(questions) || questions.length === 0) {
+        throw new Error('Invalid questions array')
+      }
+
+      return questions.slice(0, 5)
+    } catch (err) {
+      if (err.message.includes('429') || err.message.includes('Quota exceeded') || err.message.includes('503')) {
+        console.log(`   ⏳ Rate limit hit. Waiting ${delay / 1000}s before retry ${attempt}/${retries}...`)
+        await new Promise(r => setTimeout(r, delay))
+        delay *= 1.5
+      } else {
+        console.error(`  ⚠️  Generation failed: ${err.message}`)
+        return null
+      }
     }
-
-    return questions.slice(0, 5) // Max 5
-  } catch (err) {
-    console.error(`  ⚠️  Generation failed: ${err.message}`)
-    return null
   }
+  return null
 }
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
@@ -179,6 +185,8 @@ async function seedAllQuizzes() {
     totalQuizzes++
     totalQuestions += questionsToInsert.length
 
+    // Sleep to prevent Gemini API rate limits
+    await new Promise(r => setTimeout(r, 1500))
     // Rate limit: 4.5 seconds between Gemini calls to avoid 429
     await new Promise(r => setTimeout(r, 4500))
   }
