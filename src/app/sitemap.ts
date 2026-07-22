@@ -1,18 +1,13 @@
-// src/app/sitemap.ts
-// Auto-generates sitemap.xml for Google indexing
-// Covers: all lessons, all subjects, and all static pages
-
 import { createClient } from '@supabase/supabase-js'
 import type { MetadataRoute } from 'next'
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
 
 const BASE_URL = 'https://polymer-hub-six.vercel.app'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co'
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || 'placeholder'
+  const supabase = createClient(supabaseUrl, supabaseKey)
+
   // ── Static pages ───────────────────────────────────────────────────────────
   const staticPages: MetadataRoute.Sitemap = [
     { url: BASE_URL, lastModified: new Date(), changeFrequency: 'daily', priority: 1.0 },
