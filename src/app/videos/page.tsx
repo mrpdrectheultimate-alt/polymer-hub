@@ -219,8 +219,8 @@ export default function VideoLibraryPage() {
           setErrorMsg(error.message)
           setVideosList(process.env.NODE_ENV === 'development' ? AUDITED_VERIFIED_VIDEOS : [])
         } else if (data && data.length > 0) {
-          const mapped: VideoRecord[] = data
-            .map((item: Record<string, unknown>) => {
+          const mapped = data
+            .map((item: Record<string, unknown>): VideoRecord | null => {
               const rawId = String(item.youtube_id || item.external_video_id || '')
               const cleanId = extractYouTubeVideoId(rawId)
               if (!cleanId) return null
