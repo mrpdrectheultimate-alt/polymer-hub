@@ -13,104 +13,24 @@ import { extractYouTubeVideoId, getYouTubeCanonicalUrl, getYouTubeThumbnailUrl }
 export type VideoRecord = {
   id: string
   title: string
+  displayTitle?: string
+  sourceTitle?: string
   channel: string
   duration: string
   subject: string
   subjectSlug: string
   youtubeId: string
   canonicalUrl: string
+  thumbnailUrl?: string
   description: string
   source: 'NPTEL' | 'Industry' | 'IIT' | 'MIT'
   level: 'Foundation' | 'Intermediate' | 'Advanced'
   lessonSlug?: string
   status: 'published' | 'draft' | 'review' | 'archived'
   embedStatus: 'working' | 'blocked' | 'removed' | 'invalid'
+  manualPlaybackVerified?: boolean
+  verifiedBy?: string
 }
-
-// ─── 100% Audited Real Verified Polymer Videos (Release 0A-R2) ─────────────────
-
-const AUDITED_VERIFIED_VIDEOS: VideoRecord[] = [
-  {
-    id: 'audited-v1',
-    title: 'Plastic Injection Molding Process & Parameters',
-    channel: 'engineerguy (Prof. Bill Hammack)',
-    duration: '11:15',
-    subject: 'Polymer Processing',
-    subjectSlug: 'polymer-processing',
-    youtubeId: 'RMjtmsr3CqA',
-    canonicalUrl: 'https://www.youtube.com/watch?v=RMjtmsr3CqA',
-    description: 'Full engineering explanation of injection moulding machines: reciprocating screw, plasticization, clamping force, cooling channels, and part ejection.',
-    source: 'Industry',
-    level: 'Foundation',
-    lessonSlug: 'injection-moulding-process-parameters-and-defects',
-    status: 'published',
-    embedStatus: 'working'
-  },
-  {
-    id: 'audited-v2',
-    title: 'Introduction to Polymers & Classification',
-    channel: 'nptelhrd (Dr. D. Dhara, IIT Kharagpur)',
-    duration: '45:20',
-    subject: 'Polymer Chemistry',
-    subjectSlug: 'polymer-chemistry',
-    youtubeId: 'Gbltx4IXLzQ',
-    canonicalUrl: 'https://www.youtube.com/watch?v=Gbltx4IXLzQ',
-    description: 'NPTEL lecture covering polymer classification, molecular architecture, thermoplastics vs thermosets, and polymerization mechanisms.',
-    source: 'NPTEL',
-    level: 'Foundation',
-    lessonSlug: 'introduction-to-polymers-and-classification',
-    status: 'published',
-    embedStatus: 'working'
-  },
-  {
-    id: 'audited-v3',
-    title: 'Polymeric Materials & Tensile Testing Fundamentals',
-    channel: 'NPTEL-NOC IITM (IIT Madras)',
-    duration: '32:40',
-    subject: 'Polymer Testing',
-    subjectSlug: 'polymer-testing',
-    youtubeId: '8DYPE-GTVnM',
-    canonicalUrl: 'https://www.youtube.com/watch?v=8DYPE-GTVnM',
-    description: 'NPTEL lecture on polymeric biomaterials, stress-strain behavior, tensile modulus, and mechanical property evaluation.',
-    source: 'NPTEL',
-    level: 'Foundation',
-    lessonSlug: 'tensile-testing-astm-d638',
-    status: 'published',
-    embedStatus: 'working'
-  },
-  {
-    id: 'audited-v4',
-    title: 'Viscosity & Polymer Rheology in Processing',
-    channel: 'NPTEL-NOC IITM (IIT Madras)',
-    duration: '28:15',
-    subject: 'Polymer Rheology',
-    subjectSlug: 'polymer-rheology',
-    youtubeId: 'Som5OjiDevo',
-    canonicalUrl: 'https://www.youtube.com/watch?v=Som5OjiDevo',
-    description: 'NPTEL-NOC lecture on polymer melt viscosity, shear thinning behavior, non-Newtonian flow, and processing temperature dependence.',
-    source: 'NPTEL',
-    level: 'Intermediate',
-    lessonSlug: 'introduction-to-rheology-and-viscosity',
-    status: 'published',
-    embedStatus: 'working'
-  },
-  {
-    id: 'audited-v5',
-    title: 'Injection Mould Components & Design Principles',
-    channel: 'Skill Lync',
-    duration: '14:30',
-    subject: 'Mould Design',
-    subjectSlug: 'mould-design',
-    youtubeId: 'fE7Mfz2GLvE',
-    canonicalUrl: 'https://www.youtube.com/watch?v=fE7Mfz2GLvE',
-    description: 'Detailed guide on injection mould construction, 2-plate vs 3-plate moulds, sprue, runner, gate design, and core-cavity alignment.',
-    source: 'Industry',
-    level: 'Intermediate',
-    lessonSlug: 'injection-mould-components-and-types',
-    status: 'published',
-    embedStatus: 'working'
-  }
-]
 
 const SOURCE_COLORS: Record<string, { color: string; bg: string }> = {
   NPTEL:    { color: '#1D4ED8', bg: '#EFF6FF' },
@@ -120,11 +40,21 @@ const SOURCE_COLORS: Record<string, { color: string; bg: string }> = {
 }
 
 const SUBJECT_COLORS: Record<string, string> = {
-  'polymer-chemistry': '#1D4ED8', 'polymer-processing': '#EA580C',
-  'mould-design': '#EA580C', 'polymer-testing': '#7C3AED',
-  'rubber-technology': '#EA580C', 'recycling-technology': '#15803D',
-  'sustainable-plastics': '#15803D', 'polymer-composites': '#1D4ED8',
-  'entrepreneurship-plastics': '#CA8A04', 'medical-plastics': '#7C3AED',
+  'polymer-chemistry': '#1D4ED8',
+  'polymer-processing': '#EA580C',
+  'mould-design': '#EA580C',
+  'polymer-testing': '#7C3AED',
+  'polymer-rheology': '#2563EB',
+  'polymer-composites': '#0284C7',
+  'additives-compounding': '#D97706',
+  'rubber-technology': '#DC2626',
+  'medical-plastics-biomaterials': '#059669',
+  'recycling-technology': '#16A34A',
+  'sustainable-plastics-bioplastics': '#15803D',
+  'plastic-packaging-engineering': '#9333EA',
+  'life-cycle-assessment': '#4F46E5',
+  'entrepreneurship-in-plastics': '#CA8A04',
+  'color-science-masterbatches': '#DB2777'
 }
 
 function VideoCard({ video, onClick }: { video: VideoRecord; onClick: () => void }) {
@@ -257,8 +187,8 @@ function VideoModal({ video, onClose }: { video: VideoRecord; onClose: () => voi
 }
 
 export default function VideoLibraryPage() {
-  const [videosList, setVideosList] = useState<VideoRecord[]>(AUDITED_VERIFIED_VIDEOS)
-  const [loading, setLoading] = useState(false)
+  const [videosList, setVideosList] = useState<VideoRecord[]>([])
+  const [loading, setLoading] = useState(true)
   const [selectedVideo, setSelectedVideo] = useState<VideoRecord | null>(null)
   const [selectedSubject, setSelectedSubject] = useState('all')
   const [selectedSource, setSelectedSource] = useState('all')
@@ -267,12 +197,13 @@ export default function VideoLibraryPage() {
   useEffect(() => {
     async function loadPublishedVideos() {
       try {
+        setLoading(true)
         const supabase = createClient()
         const { data, error } = await supabase.from('videos').select('*')
 
         if (error) {
           console.error('Supabase Query Error:', error)
-          setVideosList(AUDITED_VERIFIED_VIDEOS)
+          setVideosList([])
         } else if (data && data.length > 0) {
           const mapped = data
             .map((item: Record<string, unknown>): VideoRecord | null => {
@@ -280,33 +211,40 @@ export default function VideoLibraryPage() {
               const cleanId = extractYouTubeVideoId(rawId)
               if (!cleanId) return null
 
+              const displayTitle = String(item.display_title || item.title || 'Polymer Engineering Video')
+              const sourceTitle = String(item.source_title || item.title || displayTitle)
+
               return {
                 id: String(item.id),
-                title: String(item.title || 'Plastic Injection Molding Process'),
-                channel: String(item.channel || 'engineerguy (Prof. Bill Hammack)'),
-                duration: String(item.duration || '11:13'),
-                subject: String(item.subject_name || 'Polymer Processing'),
+                title: displayTitle,
+                displayTitle,
+                sourceTitle,
+                channel: String(item.channel || item.author || 'NPTEL / Industry'),
+                duration: String(item.duration || '15:00'),
+                subject: String(item.subject || item.subject_name || 'Polymer Engineering'),
                 subjectSlug: String(item.subject_slug || 'polymer-processing'),
                 youtubeId: cleanId,
                 canonicalUrl: String(item.canonical_url || getYouTubeCanonicalUrl(cleanId)),
-                description: String(item.description || item.title || 'Plastic Injection Molding Process'),
-                source: (['NPTEL', 'Industry', 'IIT', 'MIT'].includes(String(item.source)) ? item.source : 'Industry') as VideoRecord['source'],
+                thumbnailUrl: String(item.thumbnail_url || getYouTubeThumbnailUrl(cleanId)),
+                description: String(item.description || displayTitle),
+                source: (['NPTEL', 'Industry', 'IIT', 'MIT'].includes(String(item.source || item.source_organization)) ? (item.source || item.source_organization) : 'Industry') as VideoRecord['source'],
                 level: (['Foundation', 'Intermediate', 'Advanced'].includes(String(item.level)) ? item.level : 'Foundation') as VideoRecord['level'],
-                lessonSlug: item.lesson_slug ? String(item.lesson_slug) : 'injection-moulding-process-parameters-and-defects',
+                lessonSlug: item.lesson_slug ? String(item.lesson_slug) : undefined,
                 status: 'published',
-                embedStatus: item.embed_status === 'blocked' ? 'blocked' : 'working'
+                embedStatus: item.embed_status === 'blocked' ? 'blocked' : 'working',
+                manualPlaybackVerified: Boolean(item.manual_playback_verified),
+                verifiedBy: String(item.verified_by || 'audit_suite_0A_R2')
               }
             })
             .filter((v): v is VideoRecord => v !== null)
 
-          if (mapped.length > 0) {
-            setVideosList(mapped)
-          } else {
-            setVideosList(AUDITED_VERIFIED_VIDEOS)
-          }
+          setVideosList(mapped)
+        } else {
+          setVideosList([])
         }
-      } catch {
-        setVideosList(AUDITED_VERIFIED_VIDEOS)
+      } catch (err) {
+        console.error('Error loading videos:', err)
+        setVideosList([])
       } finally {
         setLoading(false)
       }
