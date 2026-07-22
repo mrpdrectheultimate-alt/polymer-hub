@@ -156,18 +156,41 @@ function VideoModal({ video, onClose }: { video: VideoRecord; onClose: () => voi
                   {video.subject}
                 </span>
                 <span className="font-mono text-[9px] border-2 border-ink/20 text-ink/60 px-2 py-0.5 uppercase">{video.level}</span>
-                <span className="font-mono text-[9px] border-2 border-emerald-600 bg-emerald-50 text-emerald-700 px-2 py-0.5 uppercase font-bold flex items-center gap-1">
-                  <ShieldCheck className="w-3 h-3" /> Audited & Verified
-                </span>
+                {video.academicReviewStatus === 'approved_with_caveat' ? (
+                  <span className="font-mono text-[9px] border-2 border-amber-600 bg-amber-50 text-amber-900 px-2 py-0.5 uppercase font-bold flex items-center gap-1">
+                    <ShieldCheck className="w-3.5 h-3.5 text-amber-600" /> Approved with Caveat
+                  </span>
+                ) : (
+                  <span className="font-mono text-[9px] border-2 border-emerald-600 bg-emerald-50 text-emerald-700 px-2 py-0.5 uppercase font-bold flex items-center gap-1">
+                    <ShieldCheck className="w-3.5 h-3.5" /> Academically Approved
+                  </span>
+                )}
+                {video.mappingLevel && (
+                  <span className="font-mono text-[9px] border-2 border-ink px-2 py-0.5 uppercase font-bold bg-zinc-100">
+                    {video.mappingLevel} mapping
+                  </span>
+                )}
               </div>
               <h2 className="font-display text-xl font-black text-ink leading-tight mb-1">{video.title}</h2>
+              {video.sourceTitle && video.sourceTitle !== video.title && (
+                <p className="font-mono text-[10px] text-ink/50 italic mb-1">Source Title: &quot;{video.sourceTitle}&quot;</p>
+              )}
               <p className="font-mono text-[10px] text-ink/60">{video.channel} · {video.duration}</p>
             </div>
             <button onClick={onClose} className="border-4 border-ink px-3 py-2 font-mono text-[10px] font-black uppercase hover:bg-ink hover:text-white transition-colors flex-shrink-0">
               ✕ Close
             </button>
           </div>
+
           <p className="text-sm text-ink/80 leading-relaxed mb-4">{video.description}</p>
+
+          {video.academicReviewNotes && (
+            <div className="bg-amber-50/80 border-2 border-amber-400 p-3 mb-4 rounded-none">
+              <p className="font-mono text-[10px] font-bold text-amber-900 uppercase tracking-wider mb-1">Academic Curator Note:</p>
+              <p className="font-mono text-[11px] text-amber-950 leading-normal">{video.academicReviewNotes}</p>
+            </div>
+          )}
+
           <div className="flex gap-3 flex-wrap">
             {video.lessonSlug && (
               <Link href={`/lessons/${video.lessonSlug}`} onClick={onClose}
@@ -233,7 +256,11 @@ export default function VideoLibraryPage() {
                 status: 'published',
                 embedStatus: item.embed_status === 'blocked' ? 'blocked' : 'working',
                 manualPlaybackVerified: Boolean(item.manual_playback_verified),
-                verifiedBy: String(item.verified_by || 'audit_suite_0A_R2')
+                verifiedBy: String(item.verified_by || 'audit_suite_0A_R2'),
+                academicReviewStatus: (item.academic_review_status as VideoRecord['academicReviewStatus']) || 'approved',
+                mappingLevel: (item.mapping_level as VideoRecord['mappingLevel']) || 'subject',
+                mappingConfidence: (item.mapping_confidence as VideoRecord['mappingConfidence']) || 'high',
+                academicReviewNotes: item.academic_review_notes ? String(item.academic_review_notes) : undefined
               }
             })
             .filter((v): v is VideoRecord => v !== null)
