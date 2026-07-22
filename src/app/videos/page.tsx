@@ -25,6 +25,7 @@ export type VideoRecord = {
   description: string
   source: 'NPTEL' | 'Industry' | 'IIT' | 'MIT'
   level: 'Foundation' | 'Intermediate' | 'Advanced'
+  learningRole?: 'foundation' | 'applied' | 'case_study' | 'future_research'
   lessonSlug?: string
   status: 'published' | 'draft' | 'review' | 'archived'
   embedStatus: 'working' | 'blocked' | 'removed' | 'invalid'
@@ -100,7 +101,7 @@ function VideoCard({ video, onClick }: { video: VideoRecord; onClick: () => void
   }
 
   return (
-    <button onClick={onClick} className="w-full text-left border-4 border-ink overflow-hidden group transition-all bg-canvas"
+    <button onClick={onClick} className="w-full text-left border-4 border-ink overflow-hidden group transition-all bg-canvas flex flex-col justify-between"
       style={{ boxShadow: `3px 3px 0px 0px ${subColor}` }}
       onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.transform = 'translate(-2px,-2px)'; el.style.boxShadow = `5px 5px 0px 0px ${subColor}` }}
       onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.transform = 'translate(0,0)'; el.style.boxShadow = `3px 3px 0px 0px ${subColor}` }}>
@@ -111,23 +112,43 @@ function VideoCard({ video, onClick }: { video: VideoRecord; onClick: () => void
           <Play className="w-6 h-6 text-white fill-white ml-0.5" />
         </div>
         <div className="absolute bottom-2 right-2 bg-ink/90 font-mono text-[9px] text-white px-2 py-0.5 font-bold border border-white/20">{video.duration}</div>
-        <div className="absolute top-2 left-2 font-mono text-[8px] font-black px-2 py-0.5 border-2 uppercase"
-          style={{ backgroundColor: src.bg, borderColor: src.color, color: src.color }}>
-          {video.source}
+        <div className="absolute top-2 left-2 flex gap-1 flex-wrap">
+          <span className="font-mono text-[8px] font-black px-2 py-0.5 border-2 uppercase"
+            style={{ backgroundColor: src.bg, borderColor: src.color, color: src.color }}>
+            {video.source === 'Industry' ? 'Industry Demo' : video.source}
+          </span>
+          {video.learningRole && (
+            <span className={`font-mono text-[8px] font-black px-2 py-0.5 border-2 uppercase ${video.learningRole === 'foundation' ? 'bg-blue-600 text-white border-blue-800' : 'bg-emerald-600 text-white border-emerald-800'}`}>
+              {video.learningRole}
+            </span>
+          )}
         </div>
       </div>
       {/* Info */}
-      <div className="p-4 bg-canvas border-t-2 border-ink">
-        <div className="flex items-center gap-2 mb-2 flex-wrap">
-          <span className="font-mono text-[8px] border-2 px-1.5 py-0.5 uppercase font-bold" style={{ borderColor: subColor, color: subColor }}>
-            {video.subject.replace('Polymer ', '')}
-          </span>
-          <span className="font-mono text-[8px] border-2 border-ink/20 text-ink/60 px-1.5 py-0.5 uppercase">{video.level}</span>
+      <div className="p-4 bg-canvas border-t-2 border-ink flex-1 flex flex-col justify-between">
+        <div>
+          <div className="flex items-center gap-1.5 mb-2 flex-wrap">
+            <span className="font-mono text-[8px] border-2 px-1.5 py-0.5 uppercase font-bold" style={{ borderColor: subColor, color: subColor }}>
+              {video.subject.replace('Polymer ', '')}
+            </span>
+            <span className="font-mono text-[8px] border-2 border-ink/20 text-ink/60 px-1.5 py-0.5 uppercase">{video.level}</span>
+            {video.mappingLevel && (
+              <span className="font-mono text-[8px] border border-ink/30 bg-zinc-100 text-ink px-1.5 py-0.5 uppercase font-bold">
+                {video.mappingLevel} mapping
+              </span>
+            )}
+          </div>
+          <h3 className="font-display text-sm font-black text-ink leading-tight mb-1 group-hover:underline" style={{ textDecorationColor: subColor }}>
+            {video.title}
+          </h3>
+          <p className="font-mono text-[9px] text-ink/60 mb-2">{video.channel}</p>
         </div>
-        <h3 className="font-display text-sm font-black text-ink leading-tight mb-1 group-hover:underline" style={{ textDecorationColor: subColor }}>
-          {video.title}
-        </h3>
-        <p className="font-mono text-[9px] text-ink/60">{video.channel}</p>
+
+        {video.academicReviewStatus === 'approved_with_caveat' && (
+          <div className="bg-amber-50 border border-amber-400 p-2 mt-2 font-mono text-[9px] text-amber-900 leading-tight">
+            <span className="font-bold uppercase">Note:</span> General overview — a more specialized video will be added.
+          </div>
+        )}
       </div>
     </button>
   )
@@ -155,10 +176,17 @@ function VideoModal({ video, onClose }: { video: VideoRecord; onClose: () => voi
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2 flex-wrap">
                 <span className="font-mono text-[9px] font-black px-2 py-0.5 border-2 uppercase"
-                  style={{ backgroundColor: src.bg, borderColor: src.color, color: src.color }}>{video.source}</span>
+                  style={{ backgroundColor: src.bg, borderColor: src.color, color: src.color }}>
+                  {video.source === 'Industry' ? 'Industry Demonstration' : video.source}
+                </span>
                 <span className="font-mono text-[9px] border-2 px-2 py-0.5 uppercase font-bold" style={{ borderColor: subColor, color: subColor }}>
                   {video.subject}
                 </span>
+                {video.learningRole && (
+                  <span className={`font-mono text-[9px] border-2 px-2 py-0.5 uppercase font-bold text-white ${video.learningRole === 'foundation' ? 'bg-blue-600 border-blue-800' : 'bg-emerald-600 border-emerald-800'}`}>
+                    {video.learningRole} role
+                  </span>
+                )}
                 <span className="font-mono text-[9px] border-2 border-ink/20 text-ink/60 px-2 py-0.5 uppercase">{video.level}</span>
                 {video.academicReviewStatus === 'approved_with_caveat' ? (
                   <span className="font-mono text-[9px] border-2 border-amber-600 bg-amber-50 text-amber-900 px-2 py-0.5 uppercase font-bold flex items-center gap-1">
@@ -167,11 +195,6 @@ function VideoModal({ video, onClose }: { video: VideoRecord; onClose: () => voi
                 ) : (
                   <span className="font-mono text-[9px] border-2 border-emerald-600 bg-emerald-50 text-emerald-700 px-2 py-0.5 uppercase font-bold flex items-center gap-1">
                     <ShieldCheck className="w-3.5 h-3.5" /> Academically Approved
-                  </span>
-                )}
-                {video.mappingLevel && (
-                  <span className="font-mono text-[9px] border-2 border-ink px-2 py-0.5 uppercase font-bold bg-zinc-100">
-                    {video.mappingLevel} mapping
                   </span>
                 )}
               </div>
@@ -196,10 +219,15 @@ function VideoModal({ video, onClose }: { video: VideoRecord; onClose: () => voi
           )}
 
           <div className="flex gap-3 flex-wrap">
-            {video.lessonSlug && (
+            {video.mappingLevel === 'lesson' && video.lessonSlug ? (
               <Link href={`/lessons/${video.lessonSlug}`} onClick={onClose}
                 className="cn-btn-black text-xs flex items-center gap-1.5">
                 <BookOpen className="w-3.5 h-3.5" /> Related Lesson
+              </Link>
+            ) : (
+              <Link href={`/subjects/${video.subjectSlug}`} onClick={onClose}
+                className="border-4 border-ink px-4 py-2 font-mono text-[10px] font-black uppercase hover:bg-ink hover:text-white transition-colors flex items-center gap-1.5">
+                <BookOpen className="w-3.5 h-3.5" /> Related Subject
               </Link>
             )}
             <a href={video.canonicalUrl} target="_blank" rel="noopener noreferrer"
@@ -256,11 +284,12 @@ export default function VideoLibraryPage() {
                 description: String(item.description || displayTitle),
                 source: (['NPTEL', 'Industry', 'IIT', 'MIT'].includes(String(item.source || item.source_organization)) ? (item.source || item.source_organization) : 'Industry') as VideoRecord['source'],
                 level: (['Foundation', 'Intermediate', 'Advanced'].includes(String(item.level)) ? item.level : 'Foundation') as VideoRecord['level'],
+                learningRole: (item.learning_role as VideoRecord['learningRole']) || 'foundation',
                 lessonSlug: item.lesson_slug ? String(item.lesson_slug) : undefined,
                 status: 'published',
                 embedStatus: item.embed_status === 'blocked' ? 'blocked' : 'working',
                 manualPlaybackVerified: Boolean(item.manual_playback_verified),
-                verifiedBy: String(item.verified_by || 'audit_suite_0A_R2'),
+                verifiedBy: String(item.verified_by || 'audit_suite_0A_R3_Batch1'),
                 academicReviewStatus: (item.academic_review_status as VideoRecord['academicReviewStatus']) || 'approved',
                 mappingLevel: (item.mapping_level as VideoRecord['mappingLevel']) || 'subject',
                 mappingConfidence: (item.mapping_confidence as VideoRecord['mappingConfidence']) || 'high',
