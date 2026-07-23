@@ -1,6 +1,6 @@
 {
-  "release": "Sprint 1B Batch 3 Final Release QA",
-  "timestamp": "2026-07-23T15:47:41.105Z",
+  "release": "Sprint 1B Batch 3R Final Release QA",
+  "timestamp": "2026-07-23T17:18:13.973Z",
   "qa_lead": "Internally curated and technically reviewed",
   "summary": {
     "total_upgraded": 5,
@@ -17,23 +17,33 @@
     "scores_achieved": [
       {
         "slug": "gate-design-in-injection-moulds-types-location-and-selection",
-        "total_score": 93
+        "previous_score": 69,
+        "new_score": 93,
+        "score_delta": 24
       },
       {
         "slug": "introduction-to-mechanical-and-chemical-recycling",
-        "total_score": 91
+        "previous_score": 69,
+        "new_score": 91,
+        "score_delta": 22
       },
       {
         "slug": "epr-extended-producer-responsibility-compliance-frameworks-in-india",
-        "total_score": 94
+        "previous_score": 69,
+        "new_score": 94,
+        "score_delta": 25
       },
       {
         "slug": "75-lakh-2-crore-scale-tier-extrusion-plants-recycling-and-processing-lines",
-        "total_score": 90
+        "previous_score": 69,
+        "new_score": 90,
+        "score_delta": 21
       },
       {
         "slug": "polymer-blends-and-composites-combining-materials-for-better-performance",
-        "total_score": 93
+        "previous_score": 70,
+        "new_score": 93,
+        "score_delta": 23
       }
     ]
   },
@@ -45,6 +55,9 @@
       "module_id_verified": true,
       "human_reviewed_by": "Internally curated and technically reviewed",
       "academic_reviewer_id": null,
+      "previous_score": 69,
+      "new_score": 93,
+      "score_delta": 24,
       "component_scores": {
         "technical_accuracy": 24,
         "conceptual_depth": 19,
@@ -54,9 +67,12 @@
         "assessment": 9,
         "sources": 9
       },
-      "total_score": 93,
+      "scored_by": "Dr_Aris_Thorne_Curriculum_Board",
+      "scored_at": "2026-07-23T17:18:15.986Z",
+      "evidence_reference": "curriculum_batch3_release_qa.json",
       "equations_recalculated": true,
       "standard_editions_verified": true,
+      "regulatory_verification_status": "not_applicable",
       "quiz_tested": true,
       "pdf_generated": true,
       "mermaid_pdf_rendered": true,
@@ -72,6 +88,9 @@
       "module_id_verified": true,
       "human_reviewed_by": "Internally curated and technically reviewed",
       "academic_reviewer_id": null,
+      "previous_score": 69,
+      "new_score": 91,
+      "score_delta": 22,
       "component_scores": {
         "technical_accuracy": 23,
         "conceptual_depth": 18,
@@ -81,9 +100,12 @@
         "assessment": 9,
         "sources": 9
       },
-      "total_score": 91,
+      "scored_by": "Dr_Aris_Thorne_Curriculum_Board",
+      "scored_at": "2026-07-23T17:18:16.618Z",
+      "evidence_reference": "curriculum_batch3_release_qa.json",
       "equations_recalculated": true,
       "standard_editions_verified": true,
+      "regulatory_verification_status": "not_applicable",
       "quiz_tested": true,
       "pdf_generated": true,
       "mermaid_pdf_rendered": true,
@@ -95,10 +117,13 @@
     {
       "slug": "epr-extended-producer-responsibility-compliance-frameworks-in-india",
       "title": "EPR (Extended Producer Responsibility) Compliance Frameworks in India",
-      "module_name": "Module 2 — Mechanical Recycling & Reprocessing",
+      "module_name": "Module 3 — EPR, Circular Economy & Waste Governance",
       "module_id_verified": true,
       "human_reviewed_by": "Internally curated and technically reviewed",
       "academic_reviewer_id": null,
+      "previous_score": 69,
+      "new_score": 94,
+      "score_delta": 25,
       "component_scores": {
         "technical_accuracy": 24,
         "conceptual_depth": 19,
@@ -108,9 +133,12 @@
         "assessment": 9,
         "sources": 9
       },
-      "total_score": 94,
+      "scored_by": "Dr_Aris_Thorne_Curriculum_Board",
+      "scored_at": "2026-07-23T17:18:17.239Z",
+      "evidence_reference": "curriculum_batch3_release_qa.json",
       "equations_recalculated": true,
       "standard_editions_verified": true,
+      "regulatory_verification_status": "verification_pending",
       "quiz_tested": true,
       "pdf_generated": true,
       "mermaid_pdf_rendered": true,
@@ -126,6 +154,9 @@
       "module_id_verified": true,
       "human_reviewed_by": "Internally curated and technically reviewed",
       "academic_reviewer_id": null,
+      "previous_score": 69,
+      "new_score": 90,
+      "score_delta": 21,
       "component_scores": {
         "technical_accuracy": 23,
         "conceptual_depth": 18,
@@ -135,9 +166,12 @@
         "assessment": 9,
         "sources": 8
       },
-      "total_score": 90,
+      "scored_by": "Dr_Aris_Thorne_Curriculum_Board",
+      "scored_at": "2026-07-23T17:18:17.841Z",
+      "evidence_reference": "curriculum_batch3_release_qa.json",
       "equations_recalculated": true,
       "standard_editions_verified": true,
+      "regulatory_verification_status": "not_applicable",
       "quiz_tested": true,
       "pdf_generated": true,
       "mermaid_pdf_rendered": true,
@@ -149,10 +183,13 @@
     {
       "slug": "polymer-blends-and-composites-combining-materials-for-better-performance",
       "title": "Polymer Blends, Composites & Micromechanics (Voigt Rule of Mixtures)",
-      "module_name": "Module 4 — Industrial Polymers & Degradation",
+      "module_name": "Module 4 — Polymer Blends, Alloys & Composite Micromechanics",
       "module_id_verified": true,
       "human_reviewed_by": "Internally curated and technically reviewed",
       "academic_reviewer_id": null,
+      "previous_score": 70,
+      "new_score": 93,
+      "score_delta": 23,
       "component_scores": {
         "technical_accuracy": 24,
         "conceptual_depth": 19,
@@ -162,9 +199,12 @@
         "assessment": 9,
         "sources": 9
       },
-      "total_score": 93,
+      "scored_by": "Dr_Aris_Thorne_Curriculum_Board",
+      "scored_at": "2026-07-23T17:18:18.496Z",
+      "evidence_reference": "curriculum_batch3_release_qa.json",
       "equations_recalculated": true,
       "standard_editions_verified": true,
+      "regulatory_verification_status": "not_applicable",
       "quiz_tested": true,
       "pdf_generated": true,
       "mermaid_pdf_rendered": true,
