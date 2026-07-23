@@ -1,8 +1,8 @@
 {
   "total_lessons_reconciled": 102,
-  "grade_distribution_post_batch4": {
-    "grade_A": 23,
-    "grade_B": 79,
+  "grade_distribution_post_batch5": {
+    "grade_A": 28,
+    "grade_B": 74,
     "grade_C": 0,
     "total": 102
   },
@@ -10,8 +10,9 @@
     "batch1_upgraded": 5,
     "batch2_upgraded": 5,
     "batch3r1_upgraded": 5,
-    "batch4_upgraded": 5,
-    "total_upgraded_so_far": 20
+    "batch4r_upgraded": 5,
+    "batch5_upgraded": 5,
+    "total_upgraded_so_far": 25
   },
   "ledger": [
     {
@@ -119,7 +120,7 @@
       "title": "₹25–75 Lakh Growth Tier: Higher-Margin Technical Products",
       "original_score": 73,
       "original_grade": "B",
-      "batch_upgraded": "Batch 4",
+      "batch_upgraded": "Batch 4R",
       "new_score": 94,
       "new_grade": "A",
       "new_review_status": "internally_reviewed"
@@ -139,7 +140,7 @@
       "title": "Thermoplastics vs Thermosets: Structure and Behavior",
       "original_score": 74,
       "original_grade": "B",
-      "batch_upgraded": "Batch 4",
+      "batch_upgraded": "Batch 4R",
       "new_score": 95,
       "new_grade": "A",
       "new_review_status": "internally_reviewed"
@@ -149,7 +150,7 @@
       "title": "Polymer Degradation and Stabilization",
       "original_score": 74,
       "original_grade": "B",
-      "batch_upgraded": "Batch 4",
+      "batch_upgraded": "Batch 4R",
       "new_score": 93,
       "new_grade": "A",
       "new_review_status": "internally_reviewed"
@@ -159,7 +160,7 @@
       "title": "Introduction to Polymer Structure and Molecular Weight",
       "original_score": 74,
       "original_grade": "B",
-      "batch_upgraded": "Batch 4",
+      "batch_upgraded": "Batch 4R",
       "new_score": 94,
       "new_grade": "A",
       "new_review_status": "internally_reviewed"
@@ -179,7 +180,7 @@
       "title": "Vulcanization of Rubber: Chemistry, Systems, and Industrial Practice",
       "original_score": 74,
       "original_grade": "B",
-      "batch_upgraded": "Batch 4",
+      "batch_upgraded": "Batch 4R",
       "new_score": 92,
       "new_grade": "A",
       "new_review_status": "internally_reviewed"
@@ -189,50 +190,50 @@
       "title": "Extrusion: Process, Screw Design, and Die Types",
       "original_score": 74,
       "original_grade": "B",
-      "batch_upgraded": "Unupgraded",
-      "new_score": 74,
-      "new_grade": "B",
-      "new_review_status": "needs_light_revision"
+      "batch_upgraded": "Batch 5",
+      "new_score": 94,
+      "new_grade": "A",
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "blow-moulding-extrusion-and-injection-blow-processes",
       "title": "Blow Moulding: Extrusion and Injection Blow Processes",
       "original_score": 74,
       "original_grade": "B",
-      "batch_upgraded": "Unupgraded",
-      "new_score": 74,
-      "new_grade": "B",
-      "new_review_status": "needs_light_revision"
+      "batch_upgraded": "Batch 5",
+      "new_score": 95,
+      "new_grade": "A",
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "thermoforming-vacuum-pressure-and-twin-sheet-processes",
       "title": "Thermoforming: Vacuum, Pressure, and Twin-Sheet Processes",
       "original_score": 74,
       "original_grade": "B",
-      "batch_upgraded": "Unupgraded",
-      "new_score": 74,
-      "new_grade": "B",
-      "new_review_status": "needs_light_revision"
+      "batch_upgraded": "Batch 5",
+      "new_score": 93,
+      "new_grade": "A",
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "cooling-system-design-channels-layout-and-heat-transfer",
       "title": "Cooling System Design: Channels, Layout, and Heat Transfer",
       "original_score": 74,
       "original_grade": "B",
-      "batch_upgraded": "Unupgraded",
-      "new_score": 74,
-      "new_grade": "B",
-      "new_review_status": "needs_light_revision"
+      "batch_upgraded": "Batch 5",
+      "new_score": 95,
+      "new_grade": "A",
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "ejection-systems-pins-sleeves-strippers-and-air-ejection",
       "title": "Ejection Systems: Pins, Sleeves, Strippers, and Air Ejection",
       "original_score": 74,
       "original_grade": "B",
-      "batch_upgraded": "Unupgraded",
-      "new_score": 74,
-      "new_grade": "B",
-      "new_review_status": "needs_light_revision"
+      "batch_upgraded": "Batch 5",
+      "new_score": 92,
+      "new_grade": "A",
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "runner-and-sprue-design-balancing-flow-to-multiple-cavities",
