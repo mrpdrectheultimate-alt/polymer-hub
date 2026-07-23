@@ -1,12 +1,17 @@
 {
   "total_lessons_reconciled": 102,
-  "grade_c_lessons_before": 8,
-  "grade_c_lessons_after": 0,
+  "grade_distribution_post_batch4": {
+    "grade_A": 23,
+    "grade_B": 79,
+    "grade_C": 0,
+    "total": 102
+  },
   "summary": {
     "batch1_upgraded": 5,
     "batch2_upgraded": 5,
-    "batch3r_upgraded": 5,
-    "total_upgraded_so_far": 15
+    "batch3r1_upgraded": 5,
+    "batch4_upgraded": 5,
+    "total_upgraded_so_far": 20
   },
   "ledger": [
     {
@@ -17,8 +22,7 @@
       "batch_upgraded": "Batch 2",
       "new_score": 94,
       "new_grade": "A",
-      "previous_review_status": "needs_deep_revision",
-      "new_review_status": "approved"
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "injection-moulding-process-parameters-and-defects",
@@ -28,18 +32,16 @@
       "batch_upgraded": "Batch 1",
       "new_score": 95,
       "new_grade": "A",
-      "previous_review_status": "needs_deep_revision",
-      "new_review_status": "approved"
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "gate-design-in-injection-moulds-types-location-and-selection",
       "title": "Gate Design in Injection Moulds: Types, Location, and Selection",
       "original_score": 69,
       "original_grade": "C",
-      "batch_upgraded": "Batch 3R",
+      "batch_upgraded": "Batch 3R.1",
       "new_score": 93,
       "new_grade": "A",
-      "previous_review_status": "needs_deep_revision",
       "new_review_status": "internally_reviewed"
     },
     {
@@ -50,8 +52,7 @@
       "batch_upgraded": "Batch 2",
       "new_score": 91,
       "new_grade": "A",
-      "previous_review_status": "needs_deep_revision",
-      "new_review_status": "approved"
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "extrusion-die-design-fundamentals",
@@ -61,18 +62,16 @@
       "batch_upgraded": "Batch 2",
       "new_score": 93,
       "new_grade": "A",
-      "previous_review_status": "needs_deep_revision",
-      "new_review_status": "approved"
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "introduction-to-mechanical-and-chemical-recycling",
       "title": "Introduction to Mechanical and Chemical Recycling",
       "original_score": 69,
       "original_grade": "C",
-      "batch_upgraded": "Batch 3R",
+      "batch_upgraded": "Batch 3R.1",
       "new_score": 91,
       "new_grade": "A",
-      "previous_review_status": "needs_deep_revision",
       "new_review_status": "internally_reviewed"
     },
     {
@@ -80,10 +79,9 @@
       "title": "EPR (Extended Producer Responsibility) Compliance Frameworks in India",
       "original_score": 69,
       "original_grade": "C",
-      "batch_upgraded": "Batch 3R",
+      "batch_upgraded": "Batch 3R.1",
       "new_score": 94,
       "new_grade": "A",
-      "previous_review_status": "needs_deep_revision",
       "new_review_status": "internally_reviewed"
     },
     {
@@ -91,10 +89,9 @@
       "title": "₹75 Lakh–2 Crore Scale Tier: Extrusion Plants, Recycling, and Processing Lines",
       "original_score": 69,
       "original_grade": "C",
-      "batch_upgraded": "Batch 3R",
+      "batch_upgraded": "Batch 3R.1",
       "new_score": 90,
       "new_grade": "A",
-      "previous_review_status": "needs_deep_revision",
       "new_review_status": "internally_reviewed"
     },
     {
@@ -105,18 +102,16 @@
       "batch_upgraded": "Batch 2",
       "new_score": 90,
       "new_grade": "A",
-      "previous_review_status": "needs_light_revision",
-      "new_review_status": "approved"
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "polymer-blends-and-composites-combining-materials-for-better-performance",
       "title": "Polymer Blends and Composites: Combining Materials for Better Performance",
       "original_score": 70,
       "original_grade": "B",
-      "batch_upgraded": "Batch 3R",
+      "batch_upgraded": "Batch 3R.1",
       "new_score": 93,
       "new_grade": "A",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "internally_reviewed"
     },
     {
@@ -124,11 +119,10 @@
       "title": "₹25–75 Lakh Growth Tier: Higher-Margin Technical Products",
       "original_score": 73,
       "original_grade": "B",
-      "batch_upgraded": "Unupgraded",
-      "new_score": 73,
-      "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
-      "new_review_status": "needs_light_revision"
+      "batch_upgraded": "Batch 4",
+      "new_score": 94,
+      "new_grade": "A",
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "polymerization-mechanisms-addition-vs-condensation",
@@ -138,41 +132,37 @@
       "batch_upgraded": "Batch 1",
       "new_score": 95,
       "new_grade": "A",
-      "previous_review_status": "needs_light_revision",
-      "new_review_status": "approved"
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "thermoplastics-vs-thermosets-structure-and-behavior",
       "title": "Thermoplastics vs Thermosets: Structure and Behavior",
       "original_score": 74,
       "original_grade": "B",
-      "batch_upgraded": "Unupgraded",
-      "new_score": 74,
-      "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
-      "new_review_status": "needs_light_revision"
+      "batch_upgraded": "Batch 4",
+      "new_score": 95,
+      "new_grade": "A",
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "polymer-degradation-and-stabilization",
       "title": "Polymer Degradation and Stabilization",
       "original_score": 74,
       "original_grade": "B",
-      "batch_upgraded": "Unupgraded",
-      "new_score": 74,
-      "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
-      "new_review_status": "needs_light_revision"
+      "batch_upgraded": "Batch 4",
+      "new_score": 93,
+      "new_grade": "A",
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "introduction-to-polymer-structure-and-molecular-weight",
       "title": "Introduction to Polymer Structure and Molecular Weight",
       "original_score": 74,
       "original_grade": "B",
-      "batch_upgraded": "Unupgraded",
-      "new_score": 74,
-      "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
-      "new_review_status": "needs_light_revision"
+      "batch_upgraded": "Batch 4",
+      "new_score": 94,
+      "new_grade": "A",
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "melt-flow-index-mfi-measurement-significance-and-indian-standards",
@@ -182,19 +172,17 @@
       "batch_upgraded": "Batch 2",
       "new_score": 92,
       "new_grade": "A",
-      "previous_review_status": "needs_light_revision",
-      "new_review_status": "approved"
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "vulcanization-of-rubber-chemistry-systems-and-industrial-practice",
       "title": "Vulcanization of Rubber: Chemistry, Systems, and Industrial Practice",
       "original_score": 74,
       "original_grade": "B",
-      "batch_upgraded": "Unupgraded",
-      "new_score": 74,
-      "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
-      "new_review_status": "needs_light_revision"
+      "batch_upgraded": "Batch 4",
+      "new_score": 92,
+      "new_grade": "A",
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "extrusion-process-screw-design-and-die-types",
@@ -204,7 +192,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -215,7 +202,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -226,7 +212,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -237,7 +222,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -248,7 +232,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -259,8 +242,7 @@
       "batch_upgraded": "Batch 1",
       "new_score": 95,
       "new_grade": "A",
-      "previous_review_status": "needs_light_revision",
-      "new_review_status": "approved"
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "draft-angles-and-shrinkage-allowance-in-mould-design",
@@ -270,7 +252,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -281,7 +262,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -292,8 +272,7 @@
       "batch_upgraded": "Batch 1",
       "new_score": 95,
       "new_grade": "A",
-      "previous_review_status": "needs_light_revision",
-      "new_review_status": "approved"
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "impact-testing-izod-and-charpy-methods",
@@ -303,7 +282,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -314,7 +292,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -325,7 +302,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -336,7 +312,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -347,7 +322,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -358,7 +332,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -369,7 +342,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -380,7 +352,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -391,7 +362,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -402,7 +372,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -413,7 +382,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -424,7 +392,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -435,7 +402,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -446,7 +412,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -457,7 +422,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -468,7 +432,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -479,7 +442,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -490,7 +452,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -501,7 +462,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -512,7 +472,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -523,7 +482,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -534,7 +492,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -545,7 +502,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -556,7 +512,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -567,7 +522,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -578,7 +532,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -589,7 +542,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -600,7 +552,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -611,7 +562,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -622,7 +572,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -633,7 +582,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -644,7 +592,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -655,7 +602,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -666,7 +612,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -677,7 +622,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -688,7 +632,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -699,7 +642,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 74,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -710,7 +652,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 78,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -721,7 +662,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 78,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -732,7 +672,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 78,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -743,7 +682,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 79,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -754,7 +692,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 79,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -765,7 +702,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 79,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -776,7 +712,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 79,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -787,7 +722,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 79,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -798,7 +732,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 79,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -809,7 +742,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 79,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -820,7 +752,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 79,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -831,7 +762,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 79,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -842,7 +772,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 79,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -853,7 +782,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 79,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -864,7 +792,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 83,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -875,7 +802,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 83,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -886,7 +812,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 83,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -897,7 +822,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 83,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -908,8 +832,7 @@
       "batch_upgraded": "Batch 1",
       "new_score": 95,
       "new_grade": "A",
-      "previous_review_status": "needs_light_revision",
-      "new_review_status": "approved"
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "shear-thinning-power-law-model",
@@ -919,7 +842,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 83,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -930,7 +852,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 83,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -941,7 +862,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 83,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -952,7 +872,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 83,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -963,7 +882,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 83,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -974,7 +892,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 83,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -985,7 +902,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 83,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -996,7 +912,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 83,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -1007,7 +922,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 83,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -1018,7 +932,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 83,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -1029,7 +942,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 83,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -1040,7 +952,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 83,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -1051,7 +962,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 83,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -1062,7 +972,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 83,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -1073,7 +982,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 83,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -1084,7 +992,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 83,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -1095,7 +1002,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 83,
       "new_grade": "B",
-      "previous_review_status": "needs_light_revision",
       "new_review_status": "needs_light_revision"
     },
     {
@@ -1106,7 +1012,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 85,
       "new_grade": "A",
-      "previous_review_status": "approved",
       "new_review_status": "approved"
     },
     {
@@ -1117,7 +1022,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 89,
       "new_grade": "A",
-      "previous_review_status": "approved",
       "new_review_status": "approved"
     },
     {
@@ -1128,7 +1032,6 @@
       "batch_upgraded": "Unupgraded",
       "new_score": 89,
       "new_grade": "A",
-      "previous_review_status": "approved",
       "new_review_status": "approved"
     }
   ]

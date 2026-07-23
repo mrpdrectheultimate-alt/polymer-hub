@@ -307,7 +307,7 @@ Establishing a mid-scale polymer processing plant in India (indicative CAPEX ₹
 
 ## 2. Learning Objectives
 By completing this lesson, you will be able to:
-- **Structure** CAPEX, Working Capital, and OPEX for a ₹1.65 Crore Total Investment plant.
+- **Structure** CAPEX, Working Capital, and Fixed/Variable OPEX for a ₹1.65 Crore Total Investment plant.
 - **Calculate** payback period, EBITDA margin, and net cash flow across 3 operating scenarios.
 - **Size** electrical connected load and industrial chiller capacities.
 - **Diagnose** working capital bottlenecks and scrap rate cost penalties.
@@ -325,32 +325,43 @@ graph TD
 
 ## 4. Transparent 3-Scenario Financial Operating Model
 
-### Total Initial Investment Breakdown
-$$\\text{Total Investment} = \\text{Equipment CAPEX (₹125 Lakhs)} + \\text{Installation \& Utilities (₹15 Lakhs)} + \\text{Working Capital (₹25 Lakhs)} = \\text{₹}165.00\\text{ Lakhs}$$
+### Total Initial Investment Breakdown (₹165.00 Lakhs)
+- **Equipment CAPEX**: ₹125.00 Lakhs ($500\text{ kg/h}$ twin-degassing extruder line)
+- **Installation, Civil & Utilities**: ₹15.00 Lakhs
+- **Initial Working Capital** (30-day raw flake inventory + receivables): ₹25.00 Lakhs
+- **Total Initial Investment**: **₹165.00 Lakhs** ($\text{₹}1.65\text{ Crore}$)
 
-### Payback Period & Financial Cash Flow Equations
-$$\\text{Gross Contribution/kg} = \\text{Selling Price/kg} - \\text{Raw Flake Cost/kg}$$
-$$\\text{Annual Gross Contribution} = \\text{Annual Volume (kg)} \\times \\text{Gross Contribution/kg}$$
-$$\\text{Pre-Tax Operating Profit} = \\text{Annual Gross Contribution} - \\text{Total Fixed OPEX (₹36.75 Lakhs/yr)}$$
+### Plant Scheduled Capacity & Yield Basis
+- **Scheduled Schedule**: $300\\text{ operating days/year} \\times 20\\text{ scheduled hours/day} = 6,000\\text{ scheduled operating hours/year}$.
+- **Flake Input Feed Rate**: $500\\text{ kg/hour}$.
+- **Saleable Pellet Output Rate (92% Process Yield)**: $500 \\times 0.92 = 460\\text{ kg/hour of saleable pellets}$.
+- **Yield-Adjusted Flake Cost**: $\\frac{\\text{Raw Flake Cost ₹55.00}}{0.92} = \\text{₹}59.78\\text{ per saleable kg}$.
+
+### Fixed & Variable OPEX Items
+- **Fixed Annual OPEX (₹36.87 Lakhs/yr)**:
+  - Factory Lease/Rent: ₹12.00 Lakhs/yr (₹1.00 Lakh/mo)
+  - Personnel Salaries (8 technicians @ ₹22k/mo): $8 \\times 22,000 \\times 12 = \\text{₹}21.12\\text{ Lakhs/yr}$
+  - Plant Maintenance & Insurance (3% CAPEX): ₹3.75 Lakhs/yr
+- **Variable Operating Costs**: Electricity, water/ETP, screen changes, packaging, and freight = ₹5.00/kg.
+- **Selling Price**: ₹78.00/kg $\\implies$ **Net Variable Contribution per Saleable kg** $= 78.00 - 59.78 - 5.00 = \\text{₹}13.22/\\text{kg}$.
+
+### Simplified Post-Tax Operating Cash-Flow Model
+$$\\text{Annual Gross Contribution} = \\text{Annual Saleable Volume (kg)} \\times \\text{₹}13.22/\\text{kg}$$
+$$\\text{Pre-Tax Operating Profit} = \\text{Annual Gross Contribution} - \\text{Fixed OPEX (₹36.87 Lakhs)}$$
 $$\\text{Annual Post-Tax Cash Flow} = \\text{Pre-Tax Operating Profit} \\times (1 - 0.25)$$
 $$\\text{Payback Period (Years)} = \\frac{\\text{Total Initial Investment (₹165.00 Lakhs)}}{\\text{Annual Post-Tax Cash Flow}}$$
 
-> **Fixed Annual OPEX Line Items (₹36.75 Lakhs/year):**
-> - Factory Lease/Rent: ₹12.00 Lakhs/yr (₹1.00 Lakh/mo)
-> - Personnel Salaries (8 technicians): ₹21.00 Lakhs/yr
-> - Plant Maintenance & Insurance (3% of CAPEX): ₹3.75 Lakhs/yr
-
-| Operating Scenario | Capacity Utilization | Annual Volume (kg/yr) | Gross Contribution (₹/kg) | Annual Gross Contribution | Less Fixed OPEX (₹36.75L) | Pre-Tax Profit | Post-Tax Cash Flow (25% tax) | Total Payback Period | Financial Interpretation |
-|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|---|
-| **Conservative (Downside)** | $60\\%$ | $1,800,000$ | ₹7.00/kg | ₹126.00 Lakhs | ₹89.25 Lakhs | ₹89.25 Lakhs | ₹66.94 Lakhs/yr | **2.465 Years (29.6 Months)** | Low utilization, raw flake price spike |
-| **Base (Planning Case)** | $80\\%$ | $2,400,000$ | ₹8.00/kg | ₹192.00 Lakhs | ₹155.25 Lakhs | ₹155.25 Lakhs | ₹116.44 Lakhs/yr | **1.417 Years (17.0 Months)** | Standard production efficiency |
-| **Optimistic (Upside)** | $90\\%$ | $2,700,000$ | ₹10.00/kg | ₹270.00 Lakhs | ₹233.25 Lakhs | ₹233.25 Lakhs | ₹174.94 Lakhs/yr | **0.943 Years (11.3 Months)** | High compounding margin, 3-shift |
+| Operating Scenario | Capacity Utilization (of 6,000 hrs) | Annual Saleable Volume (kg/yr) | Gross Contribution (₹13.22/kg) | Less Fixed OPEX (₹36.87L) | Pre-Tax Profit | Post-Tax Cash Flow (25% tax) | Total Payback Period | Financial Interpretation |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|---|
+| **Conservative (Downside)** | $60\\%$ | $1,656,000$ | ₹218.92 Lakhs | ₹36.87 Lakhs | ₹182.05 Lakhs | ₹136.54 Lakhs/yr | **1.208 Years (14.5 Months)** | Low utilization, raw flake price spike |
+| **Base (Planning Case)** | $80\\%$ | $2,208,000$ | ₹291.90 Lakhs | ₹36.87 Lakhs | ₹255.03 Lakhs | ₹191.27 Lakhs/yr | **0.863 Years (10.4 Months)** | Standard production efficiency |
+| **Optimistic (Upside)** | $90\\%$ | $2,484,000$ | ₹328.38 Lakhs | ₹36.87 Lakhs | ₹291.51 Lakhs | ₹218.63 Lakhs/yr | **0.755 Years (9.1 Months)** | Peak demand, 3-shift operation |
 
 #### Worked Base Scenario Calculation:
-1. Gross Contribution $= 2,400,000\\text{ kg} \\times \\text{₹}8.00/\\text{kg} = \\text{₹}192.00\\text{ Lakhs}$.
-2. Less Fixed OPEX $= \\text{₹}192.00 - \\text{₹}36.75 = \\text{₹}155.25\\text{ Lakhs Pre-Tax Profit}$.
-3. Annual Post-Tax Cash Flow $(25\\% \\text{ tax}) = 155.25 \\times 0.75 = \\text{₹}116.44\\text{ Lakhs/yr}$.
-$$\\text{Base Payback Period} = \\frac{\\text{₹}165.00\\text{ Lakhs}}{\\text{₹}116.44\\text{ Lakhs/yr}} = 1.417\\text{ Years} \\quad (17.0\\text{ Months})$$
+1. Annual Contribution $= 2,208,000\\text{ kg} \\times \\text{₹}13.22/\\text{kg} = \\text{₹}291.90\\text{ Lakhs}$.
+2. Pre-Tax Operating Profit $= 291.90 - 36.87 = \\text{₹}255.03\\text{ Lakhs}$.
+3. Annual Post-Tax Cash Flow $(25\\% \\text{ tax}) = 255.03 \\times 0.75 = \\text{₹}191.27\\text{ Lakhs/yr}$.
+$$\\text{Base Payback Period} = \\frac{\\text{₹}165.00\\text{ Lakhs}}{\\text{₹}191.27\\text{ Lakhs/yr}} = 0.863\\text{ Years} \\quad (10.4\\text{ Months})$$
 
 ## 5. Industrial Applications
 - **Plastic Recycling Unit**: 500 kg/h degassing twin-screw extruder setup. *(Illustrative Indian industry scenario based on plant setups in Daman).*
