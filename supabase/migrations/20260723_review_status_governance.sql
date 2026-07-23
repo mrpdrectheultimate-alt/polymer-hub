@@ -1,6 +1,6 @@
 -- Migration: Review Status Governance & Governance Status Column
 
--- 1. Modify review_status check constraint to include internally_reviewed & internally_approved
+-- 1. Drop existing constraint if present and recreate safely
 ALTER TABLE public.lessons
 DROP CONSTRAINT IF EXISTS lessons_review_status_check;
 

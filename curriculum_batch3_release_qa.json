@@ -1,6 +1,6 @@
 {
-  "release": "Sprint 1B Batch 3R Final Release QA",
-  "timestamp": "2026-07-23T17:18:13.973Z",
+  "release": "Sprint 1B Batch 3R.1 Final Release QA Patch",
+  "timestamp": "2026-07-23T17:25:53.677Z",
   "qa_lead": "Internally curated and technically reviewed",
   "summary": {
     "total_upgraded": 5,
@@ -68,7 +68,7 @@
         "sources": 9
       },
       "scored_by": "Dr_Aris_Thorne_Curriculum_Board",
-      "scored_at": "2026-07-23T17:18:15.986Z",
+      "scored_at": "2026-07-23T17:25:54.600Z",
       "evidence_reference": "curriculum_batch3_release_qa.json",
       "equations_recalculated": true,
       "standard_editions_verified": true,
@@ -101,7 +101,7 @@
         "sources": 9
       },
       "scored_by": "Dr_Aris_Thorne_Curriculum_Board",
-      "scored_at": "2026-07-23T17:18:16.618Z",
+      "scored_at": "2026-07-23T17:25:55.211Z",
       "evidence_reference": "curriculum_batch3_release_qa.json",
       "equations_recalculated": true,
       "standard_editions_verified": true,
@@ -134,7 +134,7 @@
         "sources": 9
       },
       "scored_by": "Dr_Aris_Thorne_Curriculum_Board",
-      "scored_at": "2026-07-23T17:18:17.239Z",
+      "scored_at": "2026-07-23T17:25:55.823Z",
       "evidence_reference": "curriculum_batch3_release_qa.json",
       "equations_recalculated": true,
       "standard_editions_verified": true,
@@ -167,7 +167,7 @@
         "sources": 8
       },
       "scored_by": "Dr_Aris_Thorne_Curriculum_Board",
-      "scored_at": "2026-07-23T17:18:17.841Z",
+      "scored_at": "2026-07-23T17:25:56.503Z",
       "evidence_reference": "curriculum_batch3_release_qa.json",
       "equations_recalculated": true,
       "standard_editions_verified": true,
@@ -200,7 +200,7 @@
         "sources": 9
       },
       "scored_by": "Dr_Aris_Thorne_Curriculum_Board",
-      "scored_at": "2026-07-23T17:18:18.496Z",
+      "scored_at": "2026-07-23T17:25:57.111Z",
       "evidence_reference": "curriculum_batch3_release_qa.json",
       "equations_recalculated": true,
       "standard_editions_verified": true,
