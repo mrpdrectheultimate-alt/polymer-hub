@@ -1,8 +1,8 @@
 {
   "total_lessons_reconciled": 102,
-  "grade_distribution_post_batch5": {
-    "grade_A": 28,
-    "grade_B": 74,
+  "grade_distribution_post_batch6": {
+    "grade_A": 33,
+    "grade_B": 69,
     "grade_C": 0,
     "total": 102
   },
@@ -12,7 +12,8 @@
     "batch3r1_upgraded": 5,
     "batch4r_upgraded": 5,
     "batch5_upgraded": 5,
-    "total_upgraded_so_far": 25
+    "batch6_upgraded": 5,
+    "total_upgraded_so_far": 30
   },
   "ledger": [
     {
@@ -190,8 +191,8 @@
       "title": "Extrusion: Process, Screw Design, and Die Types",
       "original_score": 74,
       "original_grade": "B",
-      "batch_upgraded": "Batch 5",
-      "new_score": 94,
+      "batch_upgraded": "Batch 5 Refined",
+      "new_score": 96,
       "new_grade": "A",
       "new_review_status": "internally_reviewed"
     },
@@ -200,7 +201,7 @@
       "title": "Blow Moulding: Extrusion and Injection Blow Processes",
       "original_score": 74,
       "original_grade": "B",
-      "batch_upgraded": "Batch 5",
+      "batch_upgraded": "Batch 5 Refined",
       "new_score": 95,
       "new_grade": "A",
       "new_review_status": "internally_reviewed"
@@ -210,7 +211,7 @@
       "title": "Thermoforming: Vacuum, Pressure, and Twin-Sheet Processes",
       "original_score": 74,
       "original_grade": "B",
-      "batch_upgraded": "Batch 5",
+      "batch_upgraded": "Batch 5 Refined",
       "new_score": 93,
       "new_grade": "A",
       "new_review_status": "internally_reviewed"
@@ -220,7 +221,7 @@
       "title": "Cooling System Design: Channels, Layout, and Heat Transfer",
       "original_score": 74,
       "original_grade": "B",
-      "batch_upgraded": "Batch 5",
+      "batch_upgraded": "Batch 5 Refined",
       "new_score": 95,
       "new_grade": "A",
       "new_review_status": "internally_reviewed"
@@ -230,7 +231,7 @@
       "title": "Ejection Systems: Pins, Sleeves, Strippers, and Air Ejection",
       "original_score": 74,
       "original_grade": "B",
-      "batch_upgraded": "Batch 5",
+      "batch_upgraded": "Batch 5 Refined",
       "new_score": 92,
       "new_grade": "A",
       "new_review_status": "internally_reviewed"
@@ -250,20 +251,20 @@
       "title": "Draft Angles and Shrinkage Allowance in Mould Design",
       "original_score": 74,
       "original_grade": "B",
-      "batch_upgraded": "Unupgraded",
-      "new_score": 74,
-      "new_grade": "B",
-      "new_review_status": "needs_light_revision"
+      "batch_upgraded": "Batch 6",
+      "new_score": 94,
+      "new_grade": "A",
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "mould-materials-and-surface-finish",
       "title": "Mould Materials and Surface Finish",
       "original_score": 74,
       "original_grade": "B",
-      "batch_upgraded": "Unupgraded",
-      "new_score": 74,
-      "new_grade": "B",
-      "new_review_status": "needs_light_revision"
+      "batch_upgraded": "Batch 6",
+      "new_score": 95,
+      "new_grade": "A",
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "tensile-and-flexural-testing-measuring-mechanical-strength",
@@ -280,30 +281,30 @@
       "title": "Impact Testing: Izod and Charpy Methods",
       "original_score": 74,
       "original_grade": "B",
-      "batch_upgraded": "Unupgraded",
-      "new_score": 74,
-      "new_grade": "B",
-      "new_review_status": "needs_light_revision"
+      "batch_upgraded": "Batch 6",
+      "new_score": 93,
+      "new_grade": "A",
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "hardness-testing-shore-a-and-shore-d-durometers",
       "title": "Hardness Testing: Shore A and Shore D Durometers",
       "original_score": 74,
       "original_grade": "B",
-      "batch_upgraded": "Unupgraded",
-      "new_score": 74,
-      "new_grade": "B",
-      "new_review_status": "needs_light_revision"
+      "batch_upgraded": "Batch 6",
+      "new_score": 94,
+      "new_grade": "A",
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "rheological-testing-understanding-melt-flow-behavior",
       "title": "Rheological Testing: Understanding Melt Flow Behavior",
       "original_score": 74,
       "original_grade": "B",
-      "batch_upgraded": "Unupgraded",
-      "new_score": 74,
-      "new_grade": "B",
-      "new_review_status": "needs_light_revision"
+      "batch_upgraded": "Batch 6",
+      "new_score": 95,
+      "new_grade": "A",
+      "new_review_status": "internally_reviewed"
     },
     {
       "lesson_slug": "rubber-compounding-fillers-carbon-black-and-additives",

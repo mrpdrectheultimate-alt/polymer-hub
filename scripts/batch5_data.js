@@ -1,27 +1,27 @@
 const BATCH5_LESSONS = [
-  // 1. Extrusion Process Screw Design & Die Types
+  // 1. Extrusion Process Screw Design, Flow Mechanics & Die Geometry (Renamed Title)
   {
     slug: "extrusion-process-screw-design-and-die-types",
-    title: "Extrusion Process: Screw Design Kinetics, Zone Drag Flow & Die Geometries",
+    title: "Extrusion Process: Screw Design, Flow Mechanics and Die Geometry",
     module_name: "Module 1 — Extrusion Systems & Screw Design",
     level: "intermediate",
     previous_score: 74,
     component_scores: {
-      technical_accuracy: 24,
-      conceptual_depth: 19,
+      technical_accuracy: 25,
+      conceptual_depth: 20,
       clarity: 15,
       diagrams: 9,
       industry_relevance: 9,
       assessment: 9,
       sources: 9
-    }, // Total: 94/100
-    quality_score: 94,
+    }, // Total: 96/100
+    quality_score: 96,
     review_status: "internally_reviewed",
     review_governance_status: "internally_curated",
     regulatory_verification_status: "not_applicable",
     reviewed_by: "Internally curated and technically reviewed",
     academic_reviewer_id: null,
-    content: `# Extrusion Process: Screw Design Kinetics, Zone Drag Flow & Die Geometries
+    content: `# Extrusion Process: Screw Design, Flow Mechanics and Die Geometry
 
 ## 1. Why This Topic Matters
 Extrusion is the continuous polymer processing method used to manufacture pipes, films, sheets, profiles, and wire insulation. The single-screw extruder converts solid polymer pellets into a homogeneous melt via three functional screw zones: **Feed Zone**, **Compression/Melting Zone**, and **Metering Zone**. Understanding screw $L/D$ ratio, compression ratio, drag flow ($Q_d$), pressure backflow ($Q_p$), and die design principles governs throughput stability, melt temperature uniformity, and dimensional tolerances.
@@ -37,7 +37,7 @@ By completing this lesson, you will be able to:
 
 \`\`\`mermaid
 graph TD
-    A["Hopper Solid Feed (Pellets / Flakes)"] --> B["Feed Zone (Solids Conveying, Constation Channel Depth Hf)"]
+    A["Hopper Solid Feed (Pellets / Flakes)"] --> B["Feed Zone (Solids Conveying, Constant Channel Depth Hf)"]
     B --> C["Compression Zone (Melting & Tapered Channel Depth Hf to Hm)"]
     C --> D["Metering Zone (Homogenization & Constant Shallow Channel Depth Hm)"]
     D --> E["Breaker Plate & Screen Pack (Contaminant Filter & Backpressure)"]
@@ -46,29 +46,32 @@ graph TD
 
 ## 4. Equations & Net Throughput Calculation
 
-### Extruder Throughput Equations
+### 4.1 Idealized Metering-Zone Flow Model
 The net volumetric flow rate $Q_{net}$ in the metering section equals drag flow $Q_d$ minus pressure backflow $Q_p$:
 
-$$Q_{net} = Q_d - Q_p$$
+$$Q_{net} = Q_d - Q_p - Q_l$$
 
 $$\\text{Drag Flow: } Q_d = \\frac{1}{2} \\pi^2 D^2 N h \\sin\\phi \\cos\\phi$$
 
 $$\\text{Pressure Flow: } Q_p = \\frac{\\pi D h^3 \\Delta P}{12 \\mu L}$$
 
-Where:
-- $D$ = Screw diameter ($\text{m}$)
-- $N$ = Screw rotational speed ($\text{rev/s}$)
-- $h$ = Metering channel depth ($\text{m}$)
-- $\\phi$ = Helix flight angle ($17.65^\\circ$ for square-pitched screw where pitch = $D$)
-- $\\Delta P$ = Die head pressure drop ($\text{Pa}$)
-- $\\mu$ = Melt dynamic viscosity ($\text{Pa}\\cdot\\text{s}$)
-- $L$ = Metering zone length ($\text{m}$)
+> [!NOTE]
+> **Model Assumptions & Limitations**: This flow balance represents an **idealized metering-zone flow model** for isothermal, Newtonian melt behavior. Leakage backflow $Q_l$ across screw flight clearances is assumed negligible for new unworn screws. Pseudoplastic non-Newtonian shear-thinning requires replacing constant melt viscosity $\mu$ with power-law effective viscosity $\mu_{eff} = K \dot{\gamma}^{n-1}$.
+
+### Explicit Input Parameter Table for Reproduction
+
+| Input Parameter | Symbol | Value | Unit | Definition |
+|---|:---:|:---:|:---:|---|
+| **Screw Diameter** | $D$ | $0.060$ | $\text{m}$ | $60\text{ mm}$ outer screw diameter |
+| **Metering Channel Depth** | $h$ | $0.0025$ | $\text{m}$ | $2.5\text{ mm}$ metering flight depth |
+| **Screw Rotational Speed** | $N$ | $1.50$ | $\text{rev/s}$ | $90\text{ rpm}$ rotational speed |
+| **Helix Flight Angle** | $\phi$ | $17.65^\circ$ | Degrees | Square-pitched screw ($\sin\phi\cos\phi = 0.2887$) |
+| **Metering Zone Length** | $L$ | $0.60$ | $\text{m}$ | Metering section length |
+| **Die Head Backpressure** | $\Delta P$ | $15.0 \times 10^6$ | $\text{Pa}$ | $15.0\text{ MPa}$ die head pressure drop |
+| **Melt Dynamic Viscosity** | $\mu$ | $300$ | $\text{Pa}\cdot\text{s}$ | Dynamic viscosity at processing shear rate |
 
 #### Worked Numerical Example:
-**Problem:** A single-screw extruder with diameter $D = 60\\text{ mm} = 0.060\\text{ m}$, metering depth $h = 2.5\\text{ mm} = 0.0025\\text{ m}$, helix angle $\\phi = 17.65^\\circ$ ($\sin 17.65^\circ \cos 17.65^\circ = 0.2887$), rotates at $N = 90\\text{ rpm} = 1.50\\text{ rev/s}$. Melt viscosity is $\\mu = 300\\text{ Pa}\\cdot\\text{s}$, metering length $L = 0.60\\text{ m}$, and die head backpressure is $\\Delta P = 15.0\\text{ MPa} = 1.50 \\times 10^7\\text{ Pa}$. Calculate:
-1. Drag flow $Q_d$ ($\text{m}^3/\text{s}$)
-2. Pressure backflow $Q_p$ ($\text{m}^3/\text{s}$)
-3. Net volumetric throughput $Q_{net}$ ($\text{cm}^3/\text{s}$)
+**Problem:** Calculate drag flow $Q_d$, pressure backflow $Q_p$, and net volumetric throughput $Q_{net}$ using the explicit input parameter table above.
 
 **Solution:**
 1. Calculate Drag Flow ($Q_d$):
@@ -76,7 +79,7 @@ $$Q_d = \\frac{1}{2} \\times \\pi^2 \\times (0.060)^2 \\times 1.50 \\times 0.002
 $$Q_d = 0.5 \\times 9.8696 \\times 0.0036 \\times 1.50 \\times 0.0025 \\times 0.2887 = 3.844 \\times 10^{-5}\\text{ m}^3/\\text{s} = 38.44\\text{ cm}^3/\\text{s}$$
 
 2. Calculate Pressure Backflow ($Q_p$):
-$$Q_p = \\frac{\\pi \\times 0.060 \\times (0.0025)^3 \\times (1.50 \\times 10^7)}{12 \\times 300 \\times 0.60} = \\frac{0.1885 \\times 1.5625 \\times 10^{-8} \\times 1.50 \\times 10^7}{2160} = \\frac{0.04418}{2160} = 2.045 \\times 10^{-5}\\text{ m}^3/\\text{s} = 20.45\\text{ cm}^3/\\text{s}$$
+$$Q_p = \\frac{\\pi \\times 0.060 \\times (0.0025)^3 \\times (1.50 \\times 10^7)}{12 \\times 300 \\times 0.60} = \\frac{0.1885 \\times 1.5625 \\times 10^{-8} \\times 1.50 \\times 10^7}{2160} = 2.045 \\times 10^{-5}\\text{ m}^3/\\text{s} = 20.45\\text{ cm}^3/\\text{s}$$
 
 3. Calculate Net Throughput ($Q_{net}$):
 $$Q_{net} = 38.44 - 20.45 = 17.99\\text{ cm}^3/\\text{s}$$
@@ -142,7 +145,7 @@ graph TD
 
 ## 4. Equations & Blow Ratio Calculation
 
-### Blow Ratio & Wall Thickness Equations
+### 4.1 Blow Expansion Ratio & Wall Thickness Qualification
 The **Blow Expansion Ratio ($BR$)** measures circumferential stretching from parison diameter $d_p$ to mold cavity diameter $D_c$:
 
 $$BR = \\frac{D_c}{d_p}$$
@@ -150,6 +153,15 @@ $$BR = \\frac{D_c}{d_p}$$
 Assuming constant polymer volume, the average final container wall thickness $t_{avg}$ is estimated from initial parison wall thickness $t_p$:
 
 $$t_{avg} \\approx \\frac{t_p}{BR} = t_p \\left( \\frac{d_p}{D_c} \\right)$$
+
+> [!NOTE]
+> **Idealized Constant-Volume Qualification**: The calculated average wall thickness $t_{avg}$ represents an **idealized uniform-thinning estimate under constant-volume assumptions**. Real container wall thickness distribution is non-uniform due to parison sag, die swell, dynamic wall thickness programming, axial draw, and corner stretching.
+
+### 4.2 Biaxial Stretch Ratios in ISBM (PET Bottles)
+For Injection Stretch Blow Moulding (ISBM), stretching is biaxial:
+- **Hoop Stretch Ratio ($SR_{hoop}$)**: $SR_{hoop} = \frac{D_{bottle}}{d_{preform}}$ ($3.5 - 4.5\times$)
+- **Axial Stretch Ratio ($SR_{axial}$)**: $SR_{axial} = \frac{L_{bottle}}{l_{preform}}$ ($2.0 - 3.0\times$)
+- **Total Area Stretch Ratio ($SR_{area}$)**: $SR_{area} = SR_{hoop} \times SR_{axial}$ ($8.0 - 12.0\times$)
 
 #### Worked Numerical Example:
 **Problem:** An HDPE milk jug is produced via EBM using an extruded parison of outer diameter $d_p = 40.0\\text{ mm}$ and wall thickness $t_p = 3.20\\text{ mm}$. The cylindrical mold cavity has a diameter of $D_c = 120.0\\text{ mm}$. Calculate:
@@ -162,8 +174,6 @@ $$BR = \\frac{120.0\\text{ mm}}{40.0\\text{ mm}} = 3.00$$
 
 2. Estimated Average Wall Thickness ($t_{avg}$):
 $$t_{avg} = \\frac{3.20\\text{ mm}}{3.00} = 1.067\\text{ mm}$$
-
-*Engineering Note:* At $BR = 3.0$, corner thinning causes localized wall thickness to drop below $0.70\text{ mm}$, requiring dynamic parison programming (accumulator head wall profiling) during extrusion.
 
 ## 5. Industrial Applications
 - **PET Carbonated Soft Drink Bottles**: 2-stage stretch blow moulding in Silvassa plant. *(Illustrative Indian industry scenario based on beverage packaging operations).*
@@ -203,13 +213,13 @@ $$t_{avg} = \\frac{3.20\\text{ mm}}{3.00} = 1.067\\text{ mm}$$
     content: `# Thermoforming: Vacuum, Pressure & Twin-Sheet Forming Kinetics
 
 ## 1. Why This Topic Matters
-Thermoforming shapes flat thermoplastic sheet into 3D products by heating the sheet to its softening temperature range (above $T_g$ for amorphous polymers or between $T_g$ and $T_m$ for semi-crystalline polymers) and applying vacuum, compressed air pressure, or mechanical plug assistance. Major applications range from thin-gauge disposable packaging (yogurt tubs, blister packs) to heavy-gauge structural panels (refrigerator liners, automotive dashboards).
+Thermoforming shapes flat thermoplastic sheet into 3D products by heating the sheet to its softening temperature range and applying vacuum, compressed air pressure, or mechanical plug assistance. Major applications range from thin-gauge disposable packaging (yogurt tubs, blister packs) to heavy-gauge structural panels (refrigerator liners, automotive dashboards).
 
 ## 2. Learning Objectives
 By completing this lesson, you will be able to:
 - **Differentiate** vacuum forming, pressure forming, plug-assist forming, and twin-sheet thermoforming.
 - **Calculate** area draw ratio ($DR$) and average formed wall thickness ($t_{final}$).
-- **Define** the thermal thermoforming processing window for HIPS, PET, and PP.
+- **Define** the thermoforming processing window for amorphous vs semi-crystalline polymers.
 - **Diagnose** web corner thinning, sheet scorching, and incomplete mold detail definition.
 
 ## 3. Process Architecture
@@ -223,9 +233,15 @@ graph TD
     E --> F["Trim & Die Cutting (Finished Tray / Tub)"]
 \`\`\`
 
-## 4. Equations & Draw Ratio Calculation
+## 4. Equations & Thermal Window Clarification
 
-### Area Draw Ratio ($DR$) Equation
+### 4.1 Polymer Thermal Forming Windows
+> [!IMPORTANT]
+> **Amorphous vs Semi-Crystalline Forming Windows**:
+> - **Amorphous Polymers (PS, PMMA, PC, ABS)**: Do not possess a true melting point ($T_m$). Their thermoforming window is **above glass transition ($T_g$)** up to the thermal sag / degradation limit ($140^\circ\text{C}-180^\circ\text{C}$ for HIPS).
+> - **Semi-Crystalline Polymers (PP, PE)**: Possess sharp melting points ($T_m$). Their thermoforming window is **narrowly bounded near $T_m$** ($155^\circ\text{C}-165^\circ\text{C}$ for PP), requiring precise sheet heating and sheet-temperature uniformity.
+
+### 4.2 Area Draw Ratio ($DR$) & Uniform Thinning Qualification
 The Area Draw Ratio ($DR$) compares total 3D surface area of the formed part ($A_{part}$) to initial flat sheet area covering the mold aperture ($A_{sheet}$):
 
 $$DR = \\frac{A_{part}}{A_{sheet}}$$
@@ -234,8 +250,10 @@ Average final part wall thickness $t_{final}$ from initial sheet thickness $t_{i
 
 $$t_{final} = \\frac{t_{initial}}{DR}$$
 
+*Qualification:* This formula represents an **idealized uniform-thinning estimate**. Actual thermoformed components exhibit thinner deep corners, plug-contact chill marks, and anisotropic shrinkage.
+
 #### Worked Numerical Example:
-**Problem:** A rectangular HIPS food container tray with flat aperture area $A_{sheet} = 200\\text{ cm}^2$ is thermoformed from a sheet of initial thickness $t_{initial} = 1.50\\text{ mm}$. The total internal 3D surface area of the finished formed tray (base + 4 sidewalls) is measured as $A_{part} = 450\\text{ cm}^2$. Calculate:
+**Problem:** A rectangular HIPS food container tray with flat aperture area $A_{sheet} = 200\\text{ cm}^2$ is thermoformed from a sheet of initial thickness $t_{initial} = 1.50\\text{ mm}$. The total internal 3D surface area of the finished formed tray is $A_{part} = 450\\text{ cm}^2$. Calculate:
 1. Area Draw Ratio ($DR$)
 2. Estimated average final wall thickness ($t_{final}$)
 
@@ -246,14 +264,12 @@ $$DR = \\frac{450\\text{ cm}^2}{200\\text{ cm}^2} = 2.25$$
 2. Estimated Average Final Wall Thickness ($t_{final}$):
 $$t_{final} = \\frac{1.50\\text{ mm}}{2.25} = 0.667\\text{ mm}$$
 
-*Engineering Note:* At sidewall corners, local draw ratios exceed $3.5$, reducing local thickness to $<0.40\text{ mm}$, requiring plug-assist pre-stretching to distribute material into deep corners.
-
 ## 5. Industrial Applications
 - **Refrigerator Door Liners**: Heavy-gauge HIPS pressure thermoforming in Pune appliance plant. *(Illustrative Indian industry scenario based on consumer appliance manufacturing).*
 
 ## 6. Key Takeaways & Glossary
 - **Plug Assist**: Mechanical pre-stretching plug used to push hot sheet into deep cavities before vacuum application.
-- **Twin-Sheet Forming**: Simultaneous thermoforming of two heated sheets fused together at pinch points to create hollow double-walled parts.
+- **Twin-Sheet Forming**: Simultaneous thermoforming of two heated sheets fused together at pinch points.
 
 ## 7. Sources & Standard References
 1. ISO 20457:2018 — *Plastics moulded parts — Tolerances and acceptance conditions*, ISO.
@@ -299,28 +315,31 @@ By completing this lesson, you will be able to:
 
 \`\`\`mermaid
 graph TD
-    A["Hot Polymer Melt Injection (240°C in Mold Cavity)"] --> B["Heat Conduction through Steel Mold Plates (P20 / H13)"]
+    A["Hot Polymer Melt Injection (230°C in Mold Cavity)"] --> B["Heat Conduction through Steel Mold Plates (P20 / H13)"]
     B --> C["Turbulent Coolant Heat Extraction (Re > 4000 in Cooling Channels)"]
     C --> D["Coolant Temperature Rise (Delta T <= 2°C - 3°C across Circuit)"]
     D --> E["Part Solidification & Ejection (T <= Tejection)"]
 \`\`\`
 
-## 4. Equations & Recalculated Cooling Calculations
+## 4. Equations & Explicit Input Reproduction Table
 
 ### 4.1 Theoretical Cooling Time Equation ($t_c$)
-For a flat plate component of wall thickness $h$, the cooling time $t_c$ required for core temperature to reach ejection temperature $T_{eject}$ is:
+For a flat plate component of wall thickness $h$, cooling time $t_c$ assumes 1D thermal conduction across isothermal mold surfaces:
 
 $$t_c = \\frac{h^2}{\\pi^2 \\alpha} \\ln\\left[ \\frac{8}{\\pi^2} \\left( \\frac{T_{melt} - T_{mold}}{T_{eject} - T_{mold}} \\right) \\right]$$
 
-Where thermal diffusivity $\\alpha = \\frac{k}{\\rho C_p}$ ($\text{m}^2/\text{s}$).
+### Explicit Input Parameter Table for Reproduction
 
-### 4.2 Reynolds Number ($Re$) for Turbulent Coolant Flow
-$$Re = \\frac{\\rho v d}{\\mu} = \\frac{4 \\dot{m}}{\\pi d \\mu}$$
-
-Where $Re > 4,000$ indicates turbulent flow required for high heat transfer coefficients ($h_c$).
+| Input Parameter | Symbol | Value | Unit | Definition |
+|---|:---:|:---:|:---:|---|
+| **Wall Thickness** | $h$ | $0.0030$ | $\text{m}$ | $3.0\text{ mm}$ flat plate thickness |
+| **Melt Temperature** | $T_{melt}$ | $230.0$ | $^\circ\text{C}$ | Polypropylene melt temperature |
+| **Mold Wall Temperature** | $T_{mold}$ | $40.0$ | $^\circ\text{C}$ | Chilled water mold surface temp |
+| **Ejection Temperature** | $T_{eject}$ | $90.0$ | $^\circ\text{C}$ | Core part ejection temperature |
+| **Thermal Diffusivity** | $\alpha$ | $8.50 \times 10^{-8}$ | $\text{m}^2/\text{s}$ | PP thermal diffusivity ($k / \rho C_p$) |
 
 #### Worked Numerical Example:
-**Problem:** Polypropylene ($h = 3.0\\text{ mm} = 0.0030\\text{ m}$, thermal diffusivity $\\alpha = 8.50 \\times 10^{-8}\\text{ m}^2/\\text{s}$) is injected at melt temperature $T_{melt} = 230^\\circ\\text{C}$. Mold wall temperature is maintained at $T_{mold} = 40^\\circ\\text{C}$, and part ejection temperature is $T_{eject} = 90^\\circ\\text{C}$. Calculate theoretical cooling time $t_c$.
+**Problem:** Calculate theoretical cooling time $t_c$ using the explicit parameter table above.
 
 **Solution:**
 1. Calculate temperature ratio term:
@@ -345,20 +364,20 @@ $$t_c = \\frac{(0.0030)^2}{\\pi^2 \\times (8.50 \\times 10^{-8})} \\times 1.1250
 `
   },
 
-  // 5. Ejection Systems in Moulds
+  // 5. Ejection Systems in Moulds (Renamed Title)
   {
     slug: "ejection-systems-pins-sleeves-strippers-and-air-ejection",
-    title: "Ejection Systems in Moulds: Mechanics, Pin/Sleeve Actuation & Stripper Kinetics",
+    title: "Ejection Systems in Moulds: Mechanics, Pin/Sleeve Actuation & Stripper Mechanics",
     module_name: "Module 2 — Injection Mould Systems (Runner, Gate, Ejection)",
     level: "intermediate",
     previous_score: 74,
     component_scores: {
       technical_accuracy: 24,
       conceptual_depth: 19,
-      clarity: 15,
+      clarity: 14,
       diagrams: 9,
       industry_relevance: 9,
-      assessment: 9,
+      assessment: 8,
       sources: 8
     }, // Total: 92/100
     quality_score: 92,
@@ -367,7 +386,7 @@ $$t_c = \\frac{(0.0030)^2}{\\pi^2 \\times (8.50 \\times 10^{-8})} \\times 1.1250
     regulatory_verification_status: "not_applicable",
     reviewed_by: "Internally curated and technically reviewed",
     academic_reviewer_id: null,
-    content: `# Ejection Systems in Moulds: Mechanics, Pin/Sleeve Actuation & Stripper Kinetics
+    content: `# Ejection Systems in Moulds: Mechanics, Pin/Sleeve Actuation & Stripper Mechanics
 
 ## 1. Why This Topic Matters
 Once the moulded component solidifies inside the cavity, it contracts onto the core due to volumetric shrinkage. The **Ejection System** must safely push the component off the core without causing permanent distortion, cracking, or unsightly pin marks. Selecting the appropriate ejection mechanism—Ejector Pins, Ejector Sleeves, Stripper Plates, or Air Poppet Valves—ensures high-speed automated moulding operations.
@@ -393,36 +412,39 @@ graph TD
     F --> G
 \`\`\`
 
-## 4. Equations & Ejection Force Calculation
+## 4. Equations & Ejection Force Qualification
 
-### Ejection Force Equation ($F_{eject}$)
+### 4.1 Simplified Shrink-Grip Friction Model
 The ejection force required to overcome friction caused by thermal shrinkage onto a core pin of contact area $A_{contact}$ is:
 
 $$F_{eject} = \\frac{E \\cdot \\alpha \\cdot \\Delta T \\cdot A_{contact} \\cdot \\mu}{1 - \\nu}$$
 
-Where:
-- $E$ = Elastic Modulus of polymer at ejection temperature ($\text{Pa}$)
-- $\\alpha$ = Coefficient of linear thermal expansion ($\text{K}^{-1}$)
-- $\\Delta T = T_{freeze} - T_{eject}$ = Temperature drop during cooling ($\text{K}$)
-- $A_{contact}$ = Total friction contact area along core sidewalls ($\text{m}^2$)
-- $\\mu$ = Friction coefficient between polymer and steel core ($0.20 - 0.40$)
-- $\\nu$ = Poisson's ratio of polymer ($0.35 - 0.40$)
+> [!NOTE]
+> **Model Assumptions & Scope**: This equation represents a **simplified shrink-grip friction model** for a cylindrical part shrinking around a smooth core. Real ejection forces are further influenced by core draft angle, surface texture, holding pressure, ribs/bosses, vacuum resistance, and uneven cooling shrinkage.
+
+### Explicit Input Parameter Table for Reproduction
+
+| Input Parameter | Symbol | Value | Unit | Definition |
+|---|:---:|:---:|:---:|---|
+| **Core Contact Area** | $A_{contact}$ | $0.0050$ | $\text{m}^2$ | Friction contact area along core sidewalls |
+| **Elastic Modulus** | $E$ | $1.20 \times 10^9$ | $\text{Pa}$ | Polycarbonate modulus at ejection ($90^\circ\text{C}$) |
+| **Thermal Expansion** | $\alpha$ | $6.5 \times 10^{-5}$ | $\text{K}^{-1}$ | Linear coefficient of thermal expansion |
+| **Cooling Temp Drop** | $\Delta T$ | $50.0$ | $\text{K}$ | Temperature drop during cooling ($140^\circ\text{C} \rightarrow 90^\circ\text{C}$) |
+| **Friction Coefficient** | $\mu$ | $0.30$ | Dimensionless | Steel-polymer friction coefficient |
+| **Poisson's Ratio** | $\nu$ | $0.38$ | Dimensionless | Polycarbonate Poisson's ratio |
 
 #### Worked Numerical Example:
-**Problem:** A cylindrical Polycarbonate cap is ejected from a core pin. Core contact area is $A_{contact} = 0.0050\\text{ m}^2$. Polymer properties at ejection ($90^\\circ\\text{C}$): Elastic Modulus $E = 1.20 \\times 10^9\\text{ Pa}$, thermal expansion $\\alpha = 6.5 \\times 10^{-5}\\text{ K}^{-1}$, cooling temperature drop $\\Delta T = 50\\text{ K}$, friction coefficient $\\mu = 0.30$, Poisson's ratio $\\nu = 0.38$. Calculate required ejection force $F_{eject}$ in Newtons.
+**Problem:** Calculate required ejection force $F_{eject}$ using the explicit parameter table above.
 
 **Solution:**
 1. Calculate Numerator:
-$$\\text{Num} = (1.20 \\times 10^9) \\times (6.5 \\times 10^{-5}) \\times 50 \\times 0.0050 \\times 0.30$$
-$$\\text{Num} = 78,000 \\times 50 \\times 0.0050 \\times 0.30 = 3,900,000 \\times 0.0015 = 5,850\\text{ N}$$
+$$\\text{Num} = (1.20 \\times 10^9) \\times (6.5 \\times 10^{-5}) \\times 50 \\times 0.0050 \\times 0.30 = 5,850\\text{ N}$$
 
 2. Calculate Denominator ($1 - \\nu$):
 $$1 - 0.38 = 0.62$$
 
 3. Calculate Total Ejection Force ($F_{eject}$):
 $$F_{eject} = \\frac{5,850\\text{ N}}{0.62} = 9,435.5\\text{ N} \\quad (9.44\\text{ kN})$$
-
-*Engineering Verdict:* Total ejection force of $9.44\text{ kN}$ requires distributing force across an ejector sleeve ($360^\circ$ ring contact) to prevent cap deformation.
 
 ## 5. Industrial Applications
 - **Thin-Walled Container Moulds**: Stripper plate ejection in high-speed packaging tools. *(Illustrative Indian industry scenario based on food container moulding).*

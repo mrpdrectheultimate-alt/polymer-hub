@@ -51,6 +51,9 @@ graph TD
 
 ## 4. 3-Scenario Financial Operating Model
 
+> [!NOTE]
+> **Model Classification**: Simplified pre-finance project model — not a bankable project report, supplier quotation or investment recommendation.
+
 ### Separation of Equipment CAPEX vs Total Project Cost
 - **Equipment CAPEX**: ₹35.00 Lakhs (150-Tonne Servo Injection Machine + MTC + Dryer)
 - **Tooling & Mould CAPEX**: ₹12.00 Lakhs (2-Cavity Automotive Bobbin Mould)
@@ -78,7 +81,7 @@ $$\\text{Payback Period} = \\frac{\\text{Total Project Cost (₹65.00 Lakhs)}}{\
 |---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|---|
 | **Conservative** | $60\\%$ | $38,880\\text{ kg}$ | ₹49.12 Lakhs | ₹18.50 Lakhs | ₹30.62 Lakhs | ₹22.97 Lakhs/yr | **2.83 Years (34.0 Mos)** | Low OEM orders |
 | **Base** | $80\\%$ | $51,840\\text{ kg}$ | ₹65.49 Lakhs | ₹18.50 Lakhs | ₹46.99 Lakhs | ₹35.24 Lakhs/yr | **1.84 Years (22.1 Mos)** | Standard OEM supply |
-| **Optimistic** | $95\\%$ | $61,560\\text{ kg}$ | ₹77.77 Lakhs | ₹18.50 Lakhs | ₹59.27 Lakhs | ₹44.45 Lakhs/yr | **1.46 Years (17.5 Mos)** | Dual-shift peak supply |
+| **Optimistic** | $95\\%$ | $61,560\\text{ kg}$ | ₹77.77 Lakhs | ₹18.50 Lakhs | ₹59.27 Lakhs | ₹44.45 Lakhs/yr | **1.46 Years (17.5 Mos)** | High utilization (two-shift) |
 
 ## 5. Industrial Applications
 - **Automotive Sensor Housings**: PBT-GF30 moulding in Pune cluster. *(Illustrative Indian industry scenario based on tier-2 supplier plant practices).*
@@ -223,8 +226,11 @@ The degradation rate constant $k$ follows Arrhenius kinetics:
 
 $$k = A \\exp\\left(-\\frac{E_a}{R T}\\right)$$
 
-The acceleration factor $AF$ between accelerated testing temperature $T_{test}$ and service temperature $T_{use}$ (in Kelvin) is:
+The acceleration factor $AF$ between accelerated testing temperature $T_{test} = 120^\circ\text{C} = 393.15\text{ K}$ and reference service temperature $T_{use} = 25^\circ\text{C} = 298.15\text{ K}$ is:
 $$AF = \\frac{k_{test}}{k_{use}} = \\exp\\left[ \\frac{E_a}{R} \\left( \\frac{1}{T_{use}} - \\frac{1}{T_{test}} \\right) \\right]$$
+
+> [!NOTE]
+> **Reference Condition & Kinetic Assumption**: $T_{use} = 25^\circ\text{C}$ ($298.15\text{ K}$) is established as the explicit reference service condition. This is a **theoretical extrapolation under one assumed single degradation mechanism**—not empirical proof that a short $120^\circ\text{C}$ oven exposure reliably predicts multi-decade service life.
 
 #### Worked Numerical Example:
 **Problem:** Polypropylene auto parts with activation energy $E_a = 100.0\\text{ kJ/mol} = 100,000\\text{ J/mol}$ undergo accelerated oven aging at $T_{test} = 120^\\circ\\text{C} = 393.15\\text{ K}$. Calculate the acceleration factor compared to normal service at $T_{use} = 25^\\circ\\text{C} = 298.15\\text{ K}$. ($R = 8.314\\text{ J/mol}\\cdot\\text{K}$).
@@ -260,7 +266,7 @@ $$AF = e^{9.7486} = 17,130$$
 `
   },
 
-  // 4. Polymer Structure & Molecular Weight (Renamed Title)
+  // 4. Polymer Structure & Molecular Weight
   {
     slug: "introduction-to-polymer-structure-and-molecular-weight",
     title: "Polymer Structure, Molecular Weight Averages, Dispersity and SEC Characterization",
@@ -285,11 +291,11 @@ $$AF = e^{9.7486} = 17,130$$
     content: `# Polymer Structure, Molecular Weight Averages, Dispersity and SEC Characterization
 
 ## 1. Why This Topic Matters
-Unlike small synthetic molecules with uniform molecular weights (e.g. Water $18\\text{ g/mol}$), synthetic polymers consist of a distribution of chain lengths. Properties such as tensile strength, melt viscosity, impact resistance, and processability depend strongly on molecular weight averages—Number-Average ($M_n$), Weight-Average ($M_w$), and Dispersity ($D = M_w/M_n$). Gel Permeation Chromatography / Size Exclusion Chromatography (GPC/SEC) measures these averages to verify resin grade specifications.
+Unlike small synthetic molecules with uniform molecular weights (e.g. Water $18\\text{ g/mol}$), synthetic polymers consist of a distribution of chain lengths. Properties such as tensile strength, melt viscosity, impact resistance, and processability depend strongly on molecular weight averages—Number-Average ($M_n$), Weight-Average ($M_w$), and Dispersity ($\\text{Đ} = M_w/M_n$). Gel Permeation Chromatography / Size Exclusion Chromatography (GPC/SEC) measures these averages to verify resin grade specifications.
 
 ## 2. Learning Objectives
 By completing this lesson, you will be able to:
-- **Calculate** $M_n$, $M_w$, and dispersity ($D$) from molecular weight distribution data.
+- **Calculate** $M_n$, $M_w$, and dispersity ($\\text{Đ}$) from molecular weight distribution data.
 - **Determine** Degree of Polymerization ($DP_n$) from repeat unit mass.
 - **Interpret** GPC/SEC chromatograms and hydrodynamic volume elution curves.
 - **Correlate** molecular weight distribution width with melt processing stability.
@@ -311,7 +317,7 @@ $$\\text{Number-Average Molecular Weight: } M_n = \\frac{\\sum N_i M_i}{\\sum N_
 
 $$\\text{Weight-Average Molecular Weight: } M_w = \\frac{\\sum N_i M_i^2}{\\sum N_i M_i}$$
 
-$$\\text{Dispersity (PDI): } D = \\frac{M_w}{M_n} \\ge 1.0$$
+$$\\text{Dispersity (IUPAC Standard Symbol): } \\text{Đ} = \\frac{M_w}{M_n} \\ge 1.0$$
 
 $$\\text{Number-Average Degree of Polymerization: } DP_n = \\frac{M_n}{M_0}$$
 
@@ -324,7 +330,7 @@ $$\\text{Number-Average Degree of Polymerization: } DP_n = \\frac{M_n}{M_0}$$
 Given styrene monomer repeat unit molar mass $M_0 = 104.15\\text{ g/mol}$ ($\text{C}_8\text{H}_8$), calculate:
 1. Number-average molecular weight ($M_n$)
 2. Weight-average molecular weight ($M_w$)
-3. Dispersity ($D$)
+3. Dispersity ($\\text{Đ}$)
 4. Degree of Polymerization ($DP_n$)
 
 **Solution:**
@@ -339,8 +345,8 @@ $$\\sum N_i M_i^2 = (100 \\times 10^8) + (200 \\times 2.5 \\times 10^9) + (100 \
 
 $$M_w = \\frac{1.51 \\times 10^{12}}{21,000,000} = 71,905\\text{ g/mol}$$
 
-3. Calculate Dispersity ($D$):
-$$D = \\frac{M_w}{M_n} = \\frac{71,905}{52,500} = 1.370$$
+3. Calculate Dispersity ($\\text{Đ}$):
+$$\\text{Đ} = \\frac{M_w}{M_n} = \\frac{71,905}{52,500} = 1.370$$
 
 4. Calculate Degree of Polymerization ($DP_n$):
 $$DP_n = \\frac{52,500\\text{ g/mol}}{104.15\\text{ g/mol}} = 504.1 \\text{ repeat units}$$
@@ -349,7 +355,7 @@ $$DP_n = \\frac{52,500\\text{ g/mol}}{104.15\\text{ g/mol}} = 504.1 \\text{ repe
 > **SEC Calibration Standard Note**: Conventional GPC/SEC retention times yield **relative molecular weight values** based on narrow Polystyrene calibration standards, unless absolute detection techniques (Multi-Angle Laser Light Scattering / Viscometry) are connected.
 
 ## 5. Industrial Applications
-- **GPC Quality Control for Pipe Grade HDPE**: Broad bimodal MWD ($D > 8.0$) for high environmental stress crack resistance (ESCR). *(Illustrative Indian industry scenario based on polyolefin pipe manufacturing).*
+- **GPC Quality Control for Pipe Grade HDPE**: Broad bimodal MWD ($\\text{Đ} > 8.0$) for high environmental stress crack resistance (ESCR). *(Illustrative Indian industry scenario based on polyolefin pipe manufacturing).*
 
 ## 6. Key Takeaways & Glossary
 - **$M_w$**: Governed by high molecular weight chains; determines melt viscosity ($\eta_0 \propto M_w^{3.4}$).
@@ -361,7 +367,7 @@ $$DP_n = \\frac{52,500\\text{ g/mol}}{104.15\\text{ g/mol}} = 504.1 \\text{ repe
 `
   },
 
-  // 5. Vulcanization of Rubber (Remapped Module)
+  // 5. Vulcanization of Rubber
   {
     slug: "vulcanization-of-rubber-chemistry-systems-and-industrial-practice",
     title: "Vulcanization Chemistry, Accelerator Kinetics & Rheometer Cure Curves",
@@ -374,7 +380,7 @@ $$DP_n = \\frac{52,500\\text{ g/mol}}{104.15\\text{ g/mol}} = 504.1 \\text{ repe
       clarity: 14,
       diagrams: 9,
       industry_relevance: 9,
-      assessment: 9,
+      assessment: 8,
       sources: 8
     }, // Total: 92/100
     quality_score: 92,
@@ -406,30 +412,23 @@ graph TD
 \`\`\`
 
 ### 3.1 MDR Rheometer Parameters & $M_{90}$ Formula
-- **$M_L$ (Minimum Torque)**: Measure of unvulcanized compound viscosity at test temperature ($160^\circ\text{C}$).
-- **$M_H$ (Maximum Torque)**: Measure of fully cured vulcanizate stiffness and crosslink density.
-- **$t_{s2}$ (Scorch Time)**: Time for torque to rise 2 units above $M_L$; represents safe processing window.
+- **Minimum Torque ($M_L = 1.20\text{ dN}\cdot\text{m}$)**: Measure of unvulcanized compound viscosity at test temperature ($160^\circ\text{C}$).
+- **Maximum Torque ($M_H = 18.50\text{ dN}\cdot\text{m}$)**: Measure of fully cured vulcanizate stiffness and crosslink density.
+- **Scorch Time ($t_{s2} = 2.5\text{ minutes}$)**: Time for torque to rise 2 units above $M_L$; represents safe processing window.
 - **$M_{90}$ (Target Torque for 90% Cure)**: Target torque corresponding to optimum cure time $t_{90}$:
 
 $$M_{90} = M_L + 0.90(M_H - M_L)$$
 
+#### Explicit Numerical Inputs & Reproduction:
+- Given input $M_L = 1.20\text{ dN}\cdot\text{m}$
+- Given input $M_H = 18.50\text{ dN}\cdot\text{m}$
+- Torque Difference $\Delta M = M_H - M_L = 18.50 - 1.20 = 17.30\text{ dN}\cdot\text{m}$
+- Target Torque $M_{90} = 1.20 + (0.90 \times 17.30) = 1.20 + 15.57 = \mathbf{16.77\text{ dN}\cdot\text{m}}$
+
 > [!NOTE]
 > **Distinction Between $M_{90}$ and $t_{90}$**:
-> - **$M_{90}$** is the **target torque value** ($\text{dN}\cdot\text{m}$) calculated from $M_L$ and $M_H$.
+> - **$M_{90}$** is the **target torque value** ($16.77\text{ dN}\cdot\text{m}$) calculated from explicit inputs $M_L = 1.20$ and $M_H = 18.50\text{ dN}\cdot\text{m}$.
 > - **$t_{90}$** is the **time (minutes)** required on the MDR curve to reach torque $M_{90}$.
-> - *Note:* MDR torque is a relative cure/crosslinking indicator, not an absolute crosslink-density measurement.
-
-#### Worked Numerical Example:
-**Problem:** An MDR test at $160^\\circ\\text{C}$ on a Natural Rubber tread compound yields $M_L = 1.20\\text{ dN}\\cdot\\text{m}$ and $M_H = 18.50\\text{ dN}\\cdot\\text{m}$. Scorch time is $t_{s2} = 2.5\\text{ minutes}$. Calculate the target torque value $M_{90}$ corresponding to optimum cure time $t_{90}$.
-
-**Solution:**
-1. Calculate Torque Difference ($M_H - M_L$):
-$$\\Delta M = 18.50 - 1.20 = 17.30\\text{ dN}\\cdot\\text{m}$$
-
-2. Calculate Target $M_{90}$ Torque:
-$$M_{90} = 1.20 + (0.90 \\times 17.30) = 1.20 + 15.57 = 16.77\\text{ dN}\\cdot\\text{m}$$
-
-*Interpretation:* Press curing is stopped when rheometer torque reaches $16.77\text{ dN}\cdot\text{m}$ ($t_{90} \approx 6.8\text{ minutes}$ at $160^\circ\text{C}$), ensuring optimal tensile strength without reversion thermal breakdown.
 
 ## 5. Industrial Applications
 - **Automotive Tire Tread Compounding**: Semi-efficient vulcanization (Semi-EV) sulfur system for heat build-up resistance. *(Illustrative Indian industry scenario based on tire manufacturing plants in Chennai).*
