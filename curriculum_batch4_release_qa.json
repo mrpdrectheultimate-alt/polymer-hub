@@ -1,6 +1,6 @@
 {
   "release": "Sprint 1B Batch 4 Final Release QA",
-  "timestamp": "2026-07-23T17:33:57.056Z",
+  "timestamp": "2026-07-23T17:45:02.345Z",
   "qa_lead": "Internally curated and technically reviewed",
   "summary": {
     "total_upgraded": 5,
@@ -68,7 +68,7 @@
         "sources": 8
       },
       "scored_by": "Dr_Aris_Thorne_Curriculum_Board",
-      "scored_at": "2026-07-23T17:33:57.925Z",
+      "scored_at": "2026-07-23T17:45:03.577Z",
       "evidence_reference": "curriculum_batch4_release_qa.json",
       "equations_recalculated": true,
       "standard_editions_verified": true,
@@ -101,7 +101,7 @@
         "sources": 8
       },
       "scored_by": "Dr_Aris_Thorne_Curriculum_Board",
-      "scored_at": "2026-07-23T17:33:58.560Z",
+      "scored_at": "2026-07-23T17:45:04.263Z",
       "evidence_reference": "curriculum_batch4_release_qa.json",
       "equations_recalculated": true,
       "standard_editions_verified": true,
@@ -134,7 +134,7 @@
         "sources": 9
       },
       "scored_by": "Dr_Aris_Thorne_Curriculum_Board",
-      "scored_at": "2026-07-23T17:33:59.182Z",
+      "scored_at": "2026-07-23T17:45:04.988Z",
       "evidence_reference": "curriculum_batch4_release_qa.json",
       "equations_recalculated": true,
       "standard_editions_verified": true,
@@ -149,7 +149,7 @@
     },
     {
       "slug": "introduction-to-polymer-structure-and-molecular-weight",
-      "title": "Polymer Structure, Molecular Weight Averages & Dispersity Kinetics",
+      "title": "Polymer Structure, Molecular Weight Averages, Dispersity and SEC Characterization",
       "module_name": "Module 1 — Polymeric Materials & Classification",
       "module_id_verified": true,
       "human_reviewed_by": "Internally curated and technically reviewed",
@@ -167,7 +167,7 @@
         "sources": 9
       },
       "scored_by": "Dr_Aris_Thorne_Curriculum_Board",
-      "scored_at": "2026-07-23T17:33:59.779Z",
+      "scored_at": "2026-07-23T17:45:05.691Z",
       "evidence_reference": "curriculum_batch4_release_qa.json",
       "equations_recalculated": true,
       "standard_editions_verified": true,
@@ -183,7 +183,7 @@
     {
       "slug": "vulcanization-of-rubber-chemistry-systems-and-industrial-practice",
       "title": "Vulcanization Chemistry, Accelerator Kinetics & Rheometer Cure Curves",
-      "module_name": "Module 1 — Rubber Materials & Chemistry",
+      "module_name": "Module 2 — Vulcanization Chemistry and Cure Behaviour",
       "module_id_verified": true,
       "human_reviewed_by": "Internally curated and technically reviewed",
       "academic_reviewer_id": null,
@@ -200,7 +200,7 @@
         "sources": 8
       },
       "scored_by": "Dr_Aris_Thorne_Curriculum_Board",
-      "scored_at": "2026-07-23T17:34:00.509Z",
+      "scored_at": "2026-07-23T17:45:06.349Z",
       "evidence_reference": "curriculum_batch4_release_qa.json",
       "equations_recalculated": true,
       "standard_editions_verified": true,

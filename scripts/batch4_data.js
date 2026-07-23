@@ -19,11 +19,14 @@ const BATCH4_LESSONS = [
     review_status: "internally_reviewed",
     review_governance_status: "internally_curated",
     regulatory_verification_status: "not_applicable",
+    market_data_verification_status: "verification_pending",
+    pricing_reference_date: "July 2026",
     reviewed_by: "Internally curated and technically reviewed",
     academic_reviewer_id: null,
     content: `# ₹25–75 Lakh Growth Tier: Higher-Margin Technical Plastics Manufacturing
 
-> **Indicative Planning Range Caution**: Total investment ranges (₹25–75 Lakhs) represent **indicative planning estimates** as of July 2026 based on standard Indian industrial machinery quotations. Equipment prices vary based on servo-hydraulic efficiency, screw metallurgy, and auxiliary options.
+> [!WARNING]
+> **Indicative Planning Range Caution**: Total investment ranges (₹25–75 Lakhs) represent **indicative planning estimates as of July 2026** based on standard Indian industrial machinery quotations. Market data verification is pending dated supplier quotes. Equipment prices vary based on servo-hydraulic efficiency, screw metallurgy, and auxiliary options.
 
 ## 1. Why This Topic Matters
 For technical entrepreneurs entering polymer processing in India, the ₹25 to ₹75 Lakh investment tier bridges small job-work shops and large automated plants. This tier supports specialized single-cavity technical moulding (e.g. 80–180 Tonne servo-hydraulic injection moulding machines) or specialized single-layer pipe/profile extrusion lines. Focusing on high-margin engineering components (POM gears, PA66 bobbins, PBT connectors) yields higher gross margins (30–45%) than commodity packaging (8–12%).
@@ -52,8 +55,8 @@ graph TD
 - **Equipment CAPEX**: ₹35.00 Lakhs (150-Tonne Servo Injection Machine + MTC + Dryer)
 - **Tooling & Mould CAPEX**: ₹12.00 Lakhs (2-Cavity Automotive Bobbin Mould)
 - **Utilities & Installation**: ₹5.00 Lakhs
-- **Initial Working Capital** (45 days resin + receivables): ₹13.00 Lakhs
-- **Total Initial Project Investment**: **₹65.00 Lakhs** ($\text{₹}0.65\text{ Crore}$)
+- **Working Capital** (Resin inventory + receivables less credit): ₹13.00 Lakhs
+- **Total Initial Project Cost**: **₹65.00 Lakhs** ($\text{₹}0.65\text{ Crore}$)
 
 ### Operating Schedule & Capacity Basis
 - **Scheduled Capacity**: $300\\text{ days/year} \\times 20\\text{ hours/day} = 6,000\\text{ scheduled hours/year}$.
@@ -63,8 +66,8 @@ graph TD
 ### Fixed & Variable Economics
 - **Selling Price**: ₹450.00/kg (Precision PA66-GF30 Automotive Bobbins)
 - **Raw Resin Cost**: ₹280.00/kg (Resin Yield Loss 3% $\\implies \\text{₹}288.66/\\text{kg}$)
-- **Variable Operating Costs** (Power @ ₹8/kWh, MTC, Inserts): ₹35.00/kg
-- **Net Variable Contribution**: $450.00 - 288.66 - 35.00 = \\text{₹}126.34/\\text{kg}$.
+- **Variable Operating Costs** (Power @ ₹9/kWh, MTC, Inserts): ₹35.00/kg
+- **Contribution Margin After Stated Variable Costs**: $450.00 - 288.66 - 35.00 = \\text{₹}126.34/\\text{kg}$.
 - **Fixed Annual OPEX (₹18.50 Lakhs/yr)**: Factory Rent (₹6.00L), Salaries (4 staff @ ₹22k/mo = ₹10.56L), Maintenance & Insurance (₹1.94L).
 
 $$\\text{Pre-Tax Operating Profit} = (\\text{Annual Volume kg} \\times \\text{₹}126.34) - \\text{Fixed OPEX (₹18.50 Lakhs)}$$
@@ -147,10 +150,10 @@ graph TD
 | **Solubility** | Soluble in organic solvents | Swells but remains insoluble |
 | **Creep Resistance** | Moderate to low at elevated temperature | Excellent creep resistance up to $T_d$ |
 
-## 4. Recyclability Nuances: Mechanical vs Chemical Depolymerisation
+## 4. Recyclability Nuances: Mechanical vs Tertiary Solvolysis Recovery
 
 > [!IMPORTANT]
-> **Recyclability Clarification**: While thermosets **cannot be re-melted mechanically** like thermoplastics, they are not completely unrecyclable. Modern tertiary chemical recycling processes (such as acid catalyzed solvolysis or pyrolysis) can break covalent network bonds to recover chemical feedstocks or composite fibers.
+> **Recyclability Clarification**: While conventional permanently crosslinked thermosets **cannot be re-melted mechanically** like thermoplastics, they are not completely unrecyclable. Modern tertiary recovery pathways (such as acid-catalyzed solvolysis, pyrolysis, or mechanical grinding into filler) can recover composite fibers or chemical feedstocks. Advanced covalent adaptable networks (vitrimers) also introduce reversible crosslinking.
 
 ## 5. Industrial Applications
 - **Automotive Brake Pads & Switchgear**: Phenolic resins (thermosets) for heat resistance. *(Illustrative Indian industry scenario based on electrical switchgear manufacturing in Mumbai).*
@@ -197,7 +200,7 @@ By completing this lesson, you will be able to:
 - **Identify** thermal oxidation, photo-oxidation (UV), and hydrolysis mechanisms.
 - **Differentiate** chain scission vs crosslinking degradation kinetics.
 - **Select** appropriate primary (alkyl radical scavenging) and secondary (hydroperoxide decomposing) stabilizers.
-- **Apply** Arrhenius accelerated thermal aging equations cautiously while recognizing Arrhenius limit boundaries.
+- **Apply** Arrhenius accelerated thermal aging equations cautiously while recognizing physical Arrhenius limit boundaries.
 
 ## 3. Degradation Mechanisms & Auto-Oxidation Scheme
 
@@ -210,34 +213,39 @@ graph TD
 \`\`\`
 
 ### 3.1 Primary vs Secondary Antioxidants
-1. **Primary Antioxidants (Hindered Phenols e.g. Irganox 1010)**: Scavenge peroxy radicals ($ROO^\bullet$) by donating steric hydrogen atoms.
-2. **Secondary Antioxidants (Phosphites e.g. Irgafos 168)**: Decompose hydroperoxides ($ROOH$) into non-radical alcohol species during melt processing.
+1. **Primary Antioxidants (Hindered Phenols e.g. Irganox 1010 / Pentaerythritol tetrakis(3-(3,5-di-tert-butyl-4-hydroxyphenyl)propionate))**: Scavenge peroxy radicals ($ROO^\bullet$) by donating steric hydrogen atoms.
+2. **Secondary Antioxidants (Phosphites e.g. Irgafos 168 / Tris(2,4-di-tert-butylphenyl) phosphite)**: Decompose hydroperoxides ($ROOH$) into non-radical alcohol species during melt processing.
 
-## 4. Equations & Arrhenius Accelerated Aging Kinetics
+## 4. Full Arrhenius Acceleration-Factor Calculation
 
 ### Arrhenius Thermal Reaction Rate Equation
 The degradation rate constant $k$ follows Arrhenius kinetics:
 
 $$k = A \\exp\\left(-\\frac{E_a}{R T}\\right)$$
 
-The acceleration factor $AF$ between testing temperature $T_{test}$ and service temperature $T_{use}$ (in Kelvin) is:
+The acceleration factor $AF$ between accelerated testing temperature $T_{test}$ and service temperature $T_{use}$ (in Kelvin) is:
 $$AF = \\frac{k_{test}}{k_{use}} = \\exp\\left[ \\frac{E_a}{R} \\left( \\frac{1}{T_{use}} - \\frac{1}{T_{test}} \\right) \\right]$$
 
 #### Worked Numerical Example:
 **Problem:** Polypropylene auto parts with activation energy $E_a = 100.0\\text{ kJ/mol} = 100,000\\text{ J/mol}$ undergo accelerated oven aging at $T_{test} = 120^\\circ\\text{C} = 393.15\\text{ K}$. Calculate the acceleration factor compared to normal service at $T_{use} = 25^\\circ\\text{C} = 298.15\\text{ K}$. ($R = 8.314\\text{ J/mol}\\cdot\\text{K}$).
 
 **Solution:**
-1. Calculate temperature difference term:
+1. Calculate temperature reciprocal difference:
 $$\\left( \\frac{1}{298.15} - \\frac{1}{393.15} \\right) = 0.0033540 - 0.0025435 = 0.0008105\\text{ K}^{-1}$$
 
 2. Calculate Exponent:
 $$\\frac{E_a}{R} \\times 0.0008105 = \\frac{100,000}{8.314} \\times 0.0008105 = 12,027.9 \\times 0.0008105 = 9.7486$$
 
 3. Calculate Acceleration Factor ($AF$):
-$$AF = e^{9.7486} \\approx 17,130$$
+$$AF = e^{9.7486} = 17,130$$
 
 > [!CAUTION]
-> **Arrhenius Limit Warning**: Accelerated thermal aging at $120^\circ\text{C}$ assumes the degradation mechanism remains identical across temperatures. If $T_{test}$ approaches or exceeds polymer melting point ($T_m$) or additive volatilization temperatures, Arrhenius extrapolation fails.
+> **Physical Boundaries where Arrhenius Extrapolation Fails**:
+> Accelerated thermal aging at $120^\circ\text{C}$ assumes an identical degradation mechanism across temperatures. Arrhenius extrapolation fails when:
+> 1. Testing temperature crosses polymer melting point ($T_m$) or glass transition ($T_g$), altering oxygen diffusion rates.
+> 2. Primary antioxidant additives undergo thermal volatilization above $100^\circ\text{C}$.
+> 3. Degradation becomes oxygen diffusion-limited in thick cross-sections.
+> 4. Combined photo-oxidation (UV) or hydrolysis mechanisms contribute in service.
 
 ## 5. Industrial Applications
 - **PP Agricultural Film**: HALS UV stabilizer formulation for 3-year outdoor lifetime in Gujarat. *(Illustrative Indian industry scenario based on agricultural greenhouse film production).*
@@ -252,10 +260,10 @@ $$AF = e^{9.7486} \\approx 17,130$$
 `
   },
 
-  // 4. Polymer Structure & Molecular Weight
+  // 4. Polymer Structure & Molecular Weight (Renamed Title)
   {
     slug: "introduction-to-polymer-structure-and-molecular-weight",
-    title: "Polymer Structure, Molecular Weight Averages & Dispersity Kinetics",
+    title: "Polymer Structure, Molecular Weight Averages, Dispersity and SEC Characterization",
     module_name: "Module 1 — Polymeric Materials & Classification",
     level: "foundation",
     previous_score: 74,
@@ -274,10 +282,10 @@ $$AF = e^{9.7486} \\approx 17,130$$
     regulatory_verification_status: "not_applicable",
     reviewed_by: "Internally curated and technically reviewed",
     academic_reviewer_id: null,
-    content: `# Polymer Structure, Molecular Weight Averages & Dispersity Kinetics
+    content: `# Polymer Structure, Molecular Weight Averages, Dispersity and SEC Characterization
 
 ## 1. Why This Topic Matters
-Unlike small synthetic molecules with uniform molecular weights (e.g. Water $18\\text{ g/mol}$), synthetic polymers consist of a distribution of chain lengths. Properties such as tensile strength, melt viscosity, impact resistance, and processability depend strongly on molecular weight averages—Number-Average ($M_n$), Weight-Average ($M_w$), and Dispersity ($D = M_w/M_n$). Gel Permeation Chromatography (GPC/SEC) measures these averages to verify resin grade specifications.
+Unlike small synthetic molecules with uniform molecular weights (e.g. Water $18\\text{ g/mol}$), synthetic polymers consist of a distribution of chain lengths. Properties such as tensile strength, melt viscosity, impact resistance, and processability depend strongly on molecular weight averages—Number-Average ($M_n$), Weight-Average ($M_w$), and Dispersity ($D = M_w/M_n$). Gel Permeation Chromatography / Size Exclusion Chromatography (GPC/SEC) measures these averages to verify resin grade specifications.
 
 ## 2. Learning Objectives
 By completing this lesson, you will be able to:
@@ -313,7 +321,7 @@ $$\\text{Number-Average Degree of Polymerization: } DP_n = \\frac{M_n}{M_0}$$
 - Fraction 2: $N_2 = 200\\text{ moles}$, $M_2 = 50,000\\text{ g/mol}$
 - Fraction 3: $N_3 = 100\\text{ moles}$, $M_3 = 100,000\\text{ g/mol}$
 
-Given styrene monomer repeat unit mass $M_0 = 104.15\\text{ g/mol}$, calculate:
+Given styrene monomer repeat unit molar mass $M_0 = 104.15\\text{ g/mol}$ ($\text{C}_8\text{H}_8$), calculate:
 1. Number-average molecular weight ($M_n$)
 2. Weight-average molecular weight ($M_w$)
 3. Dispersity ($D$)
@@ -322,13 +330,12 @@ Given styrene monomer repeat unit mass $M_0 = 104.15\\text{ g/mol}$, calculate:
 **Solution:**
 1. Calculate $\\sum N_i$ and $\\sum N_i M_i$:
 $$\\sum N_i = 100 + 200 + 100 = 400\\text{ moles}$$
-$$\\sum N_i M_i = (100 \\times 10,000) + (200 \\times 50,000) + (100 \\times 100,000) = 1,000,000 + 10,000,000 + 10,000,000 = 21,000,000\\text{ g}$$
+$$\\sum N_i M_i = (100 \\times 10,000) + (200 \\times 50,000) + (100 \\times 100,000) = 21,000,000\\text{ g}$$
 
 $$M_n = \\frac{21,000,000}{400} = 52,500\\text{ g/mol}$$
 
 2. Calculate $\\sum N_i M_i^2$:
-$$\\sum N_i M_i^2 = (100 \\times 10,000^2) + (200 \\times 50,000^2) + (100 \\times 100,000^2)$$
-$$= (100 \\times 10^8) + (200 \\times 2.5 \\times 10^9) + (100 \\times 10^{10}) = 10^{10} + 5.0 \\times 10^{11} + 10^{12} = 1.51 \\times 10^{12}$$
+$$\\sum N_i M_i^2 = (100 \\times 10^8) + (200 \\times 2.5 \\times 10^9) + (100 \\times 10^{10}) = 1.51 \\times 10^{12}$$
 
 $$M_w = \\frac{1.51 \\times 10^{12}}{21,000,000} = 71,905\\text{ g/mol}$$
 
@@ -336,7 +343,10 @@ $$M_w = \\frac{1.51 \\times 10^{12}}{21,000,000} = 71,905\\text{ g/mol}$$
 $$D = \\frac{M_w}{M_n} = \\frac{71,905}{52,500} = 1.370$$
 
 4. Calculate Degree of Polymerization ($DP_n$):
-$$DP_n = \\frac{52,500}{104.15} = 504.1 \\text{ repeat units}$$
+$$DP_n = \\frac{52,500\\text{ g/mol}}{104.15\\text{ g/mol}} = 504.1 \\text{ repeat units}$$
+
+> [!NOTE]
+> **SEC Calibration Standard Note**: Conventional GPC/SEC retention times yield **relative molecular weight values** based on narrow Polystyrene calibration standards, unless absolute detection techniques (Multi-Angle Laser Light Scattering / Viscometry) are connected.
 
 ## 5. Industrial Applications
 - **GPC Quality Control for Pipe Grade HDPE**: Broad bimodal MWD ($D > 8.0$) for high environmental stress crack resistance (ESCR). *(Illustrative Indian industry scenario based on polyolefin pipe manufacturing).*
@@ -351,11 +361,11 @@ $$DP_n = \\frac{52,500}{104.15} = 504.1 \\text{ repeat units}$$
 `
   },
 
-  // 5. Vulcanization of Rubber
+  // 5. Vulcanization of Rubber (Remapped Module)
   {
     slug: "vulcanization-of-rubber-chemistry-systems-and-industrial-practice",
     title: "Vulcanization Chemistry, Accelerator Kinetics & Rheometer Cure Curves",
-    module_name: "Module 1 — Rubber Materials & Chemistry",
+    module_name: "Module 2 — Vulcanization Chemistry and Cure Behaviour",
     level: "intermediate",
     previous_score: 74,
     component_scores: {
@@ -382,7 +392,7 @@ Raw natural or synthetic rubber consists of linear polyisoprene chains that exhi
 By completing this lesson, you will be able to:
 - **Explain** sulfur crosslinking chemistry and mono-, di-, and poly-sulfidic bond structures.
 - **Identify** roles of activators (ZnO + Stearic acid) and accelerators (Sulfenamides/Thiurams).
-- **Analyze** MDR cure curves to determine minimum torque ($M_L$), maximum torque ($M_H$), scorch time ($t_{s2}$), and optimum cure time ($t_{90}$).
+- **Analyze** MDR cure curves to determine minimum torque ($M_L$), maximum torque ($M_H$), scorch time ($t_{s2}$), and target optimum cure torque ($M_{90}$).
 - **Diagnose** overcure reversion and scorch premature vulcanization defects.
 
 ## 3. Core Theory & Cure Rheometer Curve
@@ -395,13 +405,19 @@ graph TD
     D --> E["Optimum Cure Point (t90) -> Vulcanized Elastomer Seals / Tires"]
 \`\`\`
 
-### 3.1 MDR Rheometer Parameters
-- **$M_L$ (Minimum Torque)**: Measure of unvulcanized compound viscosity at test temperature.
+### 3.1 MDR Rheometer Parameters & $M_{90}$ Formula
+- **$M_L$ (Minimum Torque)**: Measure of unvulcanized compound viscosity at test temperature ($160^\circ\text{C}$).
 - **$M_H$ (Maximum Torque)**: Measure of fully cured vulcanizate stiffness and crosslink density.
 - **$t_{s2}$ (Scorch Time)**: Time for torque to rise 2 units above $M_L$; represents safe processing window.
-- **$t_{90}$ (Optimum Cure Time)**: Time to reach 90% of maximum torque development:
+- **$M_{90}$ (Target Torque for 90% Cure)**: Target torque corresponding to optimum cure time $t_{90}$:
 
 $$M_{90} = M_L + 0.90(M_H - M_L)$$
+
+> [!NOTE]
+> **Distinction Between $M_{90}$ and $t_{90}$**:
+> - **$M_{90}$** is the **target torque value** ($\text{dN}\cdot\text{m}$) calculated from $M_L$ and $M_H$.
+> - **$t_{90}$** is the **time (minutes)** required on the MDR curve to reach torque $M_{90}$.
+> - *Note:* MDR torque is a relative cure/crosslinking indicator, not an absolute crosslink-density measurement.
 
 #### Worked Numerical Example:
 **Problem:** An MDR test at $160^\\circ\\text{C}$ on a Natural Rubber tread compound yields $M_L = 1.20\\text{ dN}\\cdot\\text{m}$ and $M_H = 18.50\\text{ dN}\\cdot\\text{m}$. Scorch time is $t_{s2} = 2.5\\text{ minutes}$. Calculate the target torque value $M_{90}$ corresponding to optimum cure time $t_{90}$.
@@ -413,7 +429,7 @@ $$\\Delta M = 18.50 - 1.20 = 17.30\\text{ dN}\\cdot\\text{m}$$
 2. Calculate Target $M_{90}$ Torque:
 $$M_{90} = 1.20 + (0.90 \\times 17.30) = 1.20 + 15.57 = 16.77\\text{ dN}\\cdot\\text{m}$$
 
-*Interpretation:* The press curing cycle is stopped when rheometer torque reaches $16.77\text{ dN}\cdot\text{m}$ ($t_{90} \approx 6.8\text{ minutes}$), ensuring optimal tensile strength without reversion thermal breakdown.
+*Interpretation:* Press curing is stopped when rheometer torque reaches $16.77\text{ dN}\cdot\text{m}$ ($t_{90} \approx 6.8\text{ minutes}$ at $160^\circ\text{C}$), ensuring optimal tensile strength without reversion thermal breakdown.
 
 ## 5. Industrial Applications
 - **Automotive Tire Tread Compounding**: Semi-efficient vulcanization (Semi-EV) sulfur system for heat build-up resistance. *(Illustrative Indian industry scenario based on tire manufacturing plants in Chennai).*
