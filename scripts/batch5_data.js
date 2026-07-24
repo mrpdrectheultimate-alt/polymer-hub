@@ -24,14 +24,14 @@ const BATCH5_LESSONS = [
     content: `# Extrusion Process: Screw Design, Flow Mechanics and Die Geometry
 
 ## 1. Why This Topic Matters
-Extrusion is the continuous polymer processing method used to manufacture pipes, films, sheets, profiles, and wire insulation. The single-screw extruder converts solid polymer pellets into a homogeneous melt via three functional screw zones: **Feed Zone**, **Compression/Melting Zone**, and **Metering Zone**. Understanding screw $L/D$ ratio, compression ratio, drag flow ($Q_{drag}$), pressure backflow ($Q_{pressure}$), and die design principles governs throughput stability, melt temperature uniformity, and dimensional tolerances.
+Extrusion is the continuous polymer processing method used to manufacture pipes, films, sheets, profiles, and wire insulation. The single-screw extruder converts solid polymer pellets into a homogeneous melt via three functional screw zones: **Feed Zone**, **Compression/Melting Zone**, and **Metering Zone**. Understanding screw $L/D$ ratio, compression ratio, drag flow ($Q_{drag}$), pressure backflow ($Q_{pressure}$), and flight leakage flow ($Q_{leakage}$) governs throughput stability, melt temperature uniformity, and dimensional tolerances.
 
 ## 2. Learning Objectives
 By completing this lesson, you will be able to:
 - **Analyze** the 3 functional zones of a single-screw extruder ($L/D = 24:1 - 30:1$).
 - **Calculate** net volumetric throughput ($Q_{net} = Q_{drag} - Q_{pressure} - Q_{leakage}$) combining drag flow, pressure backflow, and leakage flow.
+- **Derive** flight-clearance leakage flow ($Q_{leakage}$) from radial clearance and pressure gradient per turn.
 - **Compare** coat-hanger film dies, spiral mandrel blown film dies, and annular pipe dies.
-- **Diagnose** melt fracture, sharkskin, and surge instability defects.
 
 ## 3. Core Theory & Extruder Architecture
 
@@ -55,36 +55,41 @@ $$\text{Drag Flow: } Q_{drag} = \frac{1}{2} \pi^2 D^2 N h \sin\phi \cos\phi$$
 
 $$\text{Pressure Flow: } Q_{pressure} = \frac{\pi D h^3 \Delta P}{12 \mu L_{axial}}$$
 
-$$\text{Dimensional Units Check: } [\text{m}^3/\text{s}] = \frac{[\text{m}] \cdot [\text{m}^3] \cdot [\text{N}/\text{m}^2]}{[\text{N}\cdot\text{s}/\text{m}^2] \cdot [\text{m}]} = \frac{\text{m}^3}{\text{s}}$$
+$$\text{Flight Clearance Leakage Flow: } Q_{leakage} = \frac{\pi D \delta^3 \Delta P_{turn}}{12 \mu e} \cdot N_{turns}$$
 
 > [!NOTE]
-> **Model Assumptions & Limitations**: This flow balance represents a single-coordinate metering-zone model for isothermal, Newtonian melt behavior. Pseudoplastic non-Newtonian shear-thinning requires replacing constant melt viscosity $\mu$ with power-law effective viscosity $\mu_{eff} = K \dot{\gamma}^{n-1}$.
+> **Leakage Flow Fluid Mechanics Derivation**: Flight clearance leakage $Q_{leakage}$ occurs across the radial clearance gap $\delta = 0.10\text{ mm}$ between the top of the flight land (width $e = 5.0\text{ mm}$) and the barrel wall due to the pressure difference per flight turn $\Delta P_{turn} = \Delta P / N_{turns} = 8.0\text{ MPa} / 10\text{ turns} = 8.0 \times 10^5\text{ Pa/turn}$. Because leakage flows backward from the high-pressure pushing face to the trailing face of the preceding flight turn, it directly opposes forward net throughput.
 
 ### Explicit Input Parameter Table for Reproduction
 
 | Input Parameter | Symbol | Value | Unit | Definition |
 |---|:---:|:---:|:---:|---|
-| **Screw Diameter** | $D$ | $0.060$ | $\text{m}$ | $60\text{ mm}$ outer screw diameter |
+| **Screw Outer Diameter** | $D$ | $0.060$ | $\text{m}$ | $60\text{ mm}$ outer screw diameter |
 | **Metering Channel Depth** | $h$ | $0.0025$ | $\text{m}$ | $2.5\text{ mm}$ metering flight depth |
 | **Screw Rotational Speed** | $N$ | $1.50$ | $\text{rev/s}$ | $90\text{ rpm}$ rotational speed |
 | **Helix Flight Angle** | $\phi$ | $17.65^\circ$ | Degrees | Square-pitched screw ($\sin\phi\cos\phi = 0.2889$) |
 | **Metering Zone Axial Length**| $L_{axial}$ | $0.60$ | $\text{m}$ | $600\text{ mm}$ metering section length |
 | **Die Head Backpressure** | $\Delta P$ | $8.0 \times 10^6$ | $\text{Pa}$ | $8.0\text{ MPa}$ ($80\text{ bar}$) die head pressure drop |
 | **Melt Dynamic Viscosity** | $\mu$ | $300$ | $\text{Pa}\cdot\text{s}$ | Dynamic viscosity at processing shear rate |
-| **Flight Clearance Leakage** | $Q_{leakage}$ | $0.32 \times 10^{-6}$| $\text{m}^3/\text{s}$ | $0.32\text{ cm}^3/\text{s}$ flight clearance leakage flow |
+| **Radial Flight Clearance** | $\delta$ | $0.00010$ | $\text{m}$ | $0.10\text{ mm}$ radial clearance gap |
+| **Flight Land Width** | $e$ | $0.0050$ | $\text{m}$ | $5.0\text{ mm}$ axial flight land width |
 
 #### Worked Numerical Example:
-**Problem:** Calculate drag flow $Q_{drag}$, pressure backflow $Q_{pressure}$, and net volumetric throughput $Q_{net}$ using the explicit input parameter table above.
+**Problem:** Calculate drag flow $Q_{drag}$, pressure backflow $Q_{pressure}$, flight leakage $Q_{leakage}$, and net volumetric throughput $Q_{net}$ using the parameter table above.
 
 **Solution:**
 1. Calculate Drag Flow ($Q_{drag}$):
-$$Q_{drag} = \frac{1}{2} \times \pi^2 \times (0.060)^2 \times 1.50 \times 0.0025 \times 0.2889$$
-$$Q_{drag} = 0.5 \times 9.8696 \times 0.0036 \times 1.50 \times 0.0025 \times 0.2889 = 1.923 \times 10^{-5}\text{ m}^3/\text{s} = \mathbf{19.23\text{ cm}^3/\text{s}}$$
+$$Q_{drag} = \frac{1}{2} \times \pi^2 \times (0.060)^2 \times 1.50 \times 0.0025 \times 0.2889 = 1.923 \times 10^{-5}\text{ m}^3/\text{s} = \mathbf{19.23\text{ cm}^3/\text{s}}$$
 
 2. Calculate Pressure Backflow ($Q_{pressure}$):
-$$Q_{pressure} = \frac{\pi \times 0.060 \times (0.0025)^3 \times (8.0 \times 10^6)}{12 \times 300 \times 0.60} = \frac{0.1885 \times 1.5625 \times 10^{-8} \times 8.0 \times 10^6}{2160} = \frac{0.02356}{2160} = 1.091 \times 10^{-5}\text{ m}^3/\text{s} = \mathbf{10.91\text{ cm}^3/\text{s}}$$
+$$Q_{pressure} = \frac{\pi \times 0.060 \times (0.0025)^3 \times (8.0 \times 10^6)}{12 \times 300 \times 0.60} = \frac{0.02356}{2160} = 1.091 \times 10^{-5}\text{ m}^3/\text{s} = \mathbf{10.91\text{ cm}^3/\text{s}}$$
 
-3. Calculate Net Throughput ($Q_{net}$):
+3. Calculate Flight Leakage Flow ($Q_{leakage}$):
+$$Q_{leakage, turn} = \frac{\pi \times 0.060 \times (0.00010)^3 \times (8.0 \times 10^5)}{12 \times 300 \times 0.0050} = \frac{1.508 \times 10^{-7}}{18} = 8.378 \times 10^{-9}\text{ m}^3/\text{s}$$
+Across 38 active metering turns:
+$$Q_{leakage} = 38 \times 8.378 \times 10^{-9} = 3.18 \times 10^{-7}\text{ m}^3/\text{s} = \mathbf{0.32\text{ cm}^3/\text{s}}$$
+
+4. Calculate Net Throughput ($Q_{net}$):
 $$Q_{net} = 19.23 - 10.91 - 0.32 = \mathbf{8.00\text{ cm}^3/\text{s}} \quad (28.8\text{ L/hr} \approx 25.9\text{ kg/hr})$$
 
 ## 5. Industrial Applications
@@ -200,7 +205,7 @@ $$t_{avg} = \frac{3.20\text{ mm}}{3.00} = 1.067\text{ mm}$$
     previous_score: 74,
     component_scores: {
       technical_accuracy: 24,
-      conceptual_depth: 19,
+      conceptual_depth: 20,
       clarity: 15,
       diagrams: 9,
       industry_relevance: 9,
