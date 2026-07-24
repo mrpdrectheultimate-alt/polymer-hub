@@ -1,0 +1,1892 @@
+[
+  {
+    "sequence_number": 1,
+    "proposed_slug": "ring-opening-polymerization-nylon-6-and-polycaprolactone",
+    "title": "Ring-Opening Polymerization Mechanics: Industrial Nylon 6 & Polycaprolactone",
+    "canonical_subject_id": "25503bc3-fb0e-4991-a226-1d7b464e2946",
+    "canonical_module_id": "25503bc3-fb0e-4991-a226-1d7b46400001",
+    "target_subject": "Polymer Chemistry",
+    "target_module": "Module 1 — Polymer Synthesis Kinetics",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Focuses on thermodynamic ring-strain driven polymerization kinetics and caprolactam monomer conversion, distinct from addition and condensation kinetics.",
+    "gap_solved": "Missing foundation on ring-strain driven ring-opening polymerization kinetics and equilibrium monomer conversion",
+    "prerequisites": [
+      "introduction-to-polymer-structure-and-molecular-weight"
+    ],
+    "learning_outcomes": [
+      "Analyze thermodynamic enthalpy and entropy factors driving ring-opening polymerization",
+      "Calculate equilibrium monomer concentration [M]eq and ceiling/floor temperatures",
+      "Explain industrial caprolactam anionic ring-opening polymerization for Nylon 6",
+      "Evaluate hydrolytic vs anionic ROP reaction mechanisms and viscosity building"
+    ],
+    "diagram_requirements": [
+      "Mermaid flowchart of caprolactam ROP reaction mechanism and ring-strain energy profile"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Equilibrium Monomer Concentration Calculation",
+      "formula": "[M]eq = exp(delta H_p / R T - delta S_p / R)",
+      "inputs": "delta H_p = -15.5 kJ/mol, delta S_p = -25.0 J/(mol*K), T = 500 K"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ISO 307:2019 — Plastics — Polyamides — Determination of viscosity number",
+      "Odian, G. Principles of Polymerization, 4th Ed."
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 94
+  },
+  {
+    "sequence_number": 2,
+    "proposed_slug": "living-and-controlled-ionic-polymerization",
+    "title": "Living and Controlled Ionic Polymerization",
+    "canonical_subject_id": "25503bc3-fb0e-4991-a226-1d7b464e2946",
+    "canonical_module_id": "25503bc3-fb0e-4991-a226-1d7b46400002",
+    "target_subject": "Polymer Chemistry",
+    "target_module": "Module 2 — Chain Architecture & Solution Properties",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Covers termination-free living anionic and cationic polymerization mechanics required for producing narrow polydispersity SBS/SEBS block copolymers.",
+    "gap_solved": "Lack of coverage for termination-free living ionic polymerization kinetics and block copolymer architecture synthesis",
+    "prerequisites": [
+      "introduction-to-polymer-structure-and-molecular-weight"
+    ],
+    "learning_outcomes": [
+      "Derive Poisson molecular weight distribution equations for living polymerization",
+      "Calculate theoretical number-average degree of polymerization Xn = [M]0 / [I]0",
+      "Explain solvent polarity and counter-ion effects on propagation rate constants",
+      "Design sequential monomer addition routes for SBS tri-block TPE synthesis"
+    ],
+    "diagram_requirements": [
+      "Mermaid schematic of living anionic carbanion propagation and block copolymer sequential addition"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Living Polymerization Molecular Weight & PDI Calculation",
+      "formula": "Mn = ([M]0 / [I]0) * MW_monomer * conversion; PDI = 1 + 1 / Xn",
+      "inputs": "[M]0 = 2.0 M, [I]0 = 0.002 M, MW = 104 g/mol, conversion = 100%"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ASTM D5296 — Molecular Weight Averages of Polystyrene by SEC",
+      "Hsieh, H. Anionic Polymerization: Principles and Practical Applications"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 92
+  },
+  {
+    "sequence_number": 3,
+    "proposed_slug": "polymer-solution-thermodynamics-flory-huggins-theory",
+    "title": "Polymer Solution Thermodynamics: Flory-Huggins Theory & Phase Diagrams",
+    "canonical_subject_id": "25503bc3-fb0e-4991-a226-1d7b464e2946",
+    "canonical_module_id": "25503bc3-fb0e-4991-a226-1d7b46400003",
+    "target_subject": "Polymer Chemistry",
+    "target_module": "Module 3 — Polymer Thermodynamics",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Provides mathematical rigor for lattice theory, Flory-Huggins interaction parameter chi, and UCST/LCST phase separation curves.",
+    "gap_solved": "Missing mathematical treatment of polymer solution lattice statistics, chi interaction parameter, and binodal/spinodal phase envelopes",
+    "prerequisites": [
+      "thermoplastics-vs-thermosets-structure-and-behavior"
+    ],
+    "learning_outcomes": [
+      "Derive the Flory-Huggins free energy of mixing equation delta G_mix",
+      "Calculate critical interaction parameter chi_c and critical volume fraction phi_c",
+      "Distinguish binodal phase separation from spinodal decomposition mechanisms",
+      "Evaluate Theta temperature conditions where chi = 0.5 and second virial coefficient A2 = 0"
+    ],
+    "diagram_requirements": [
+      "Mermaid binodal vs spinodal phase diagram with UCST/LCST boundaries"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Critical Flory-Huggins Interaction Parameter Calculation",
+      "formula": "chi_c = 0.5 * (1 + 1 / sqrt(N))^2",
+      "inputs": "Degree of polymerization N = 1000"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ISO 1628-1:2021 — Determination of viscosity of polymers in dilute solution",
+      "Flory, P. J. Principles of Polymer Chemistry"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 90
+  },
+  {
+    "sequence_number": 4,
+    "proposed_slug": "extrusion-die-swell-drawdown-and-dimensional-control",
+    "title": "Extrusion Die Swell, Drawdown and Dimensional Control",
+    "canonical_subject_id": "09931597-70cc-4cab-905c-336a4d6dde09",
+    "canonical_module_id": "09931597-70cc-4cab-905c-336a4d600001",
+    "target_subject": "Polymer Processing",
+    "target_module": "Module 1 — Extrusion Systems & Flow Defects",
+    "target_level": "intermediate",
+    "why_this_requires_a_separate_lesson": "Applied processing engineering lesson focused on die geometry, swell measurement, drawdown ratio, haul-off speed, cooling water calibration, and dimensional tolerances.",
+    "gap_solved": "Missing practical process engineering control of extrudate dimensions, drawdown ratio, and die land length optimization",
+    "prerequisites": [
+      "extrusion-process-screw-design-and-die-types"
+    ],
+    "learning_outcomes": [
+      "Calculate extrudate die swell ratio B and drawdown ratio DDR",
+      "Optimize die land length to diameter ratio (L/D_die) to mitigate swell",
+      "Adjust haul-off speed and vacuum sizing tank pressure to control outer diameter",
+      "Diagnose dimensional wall thickness variations in pipe and tubing extrusion"
+    ],
+    "diagram_requirements": [
+      "Mermaid diagram of extrusion line showing die land, swell region, vacuum calibrator, and haul-off puller"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Extrusion Drawdown Ratio (DDR) Calculation",
+      "formula": "DDR = (D_die^2 - d_die^2) / (D_pipe^2 - d_pipe^2)",
+      "inputs": "D_die = 32 mm, d_die = 28 mm, D_pipe = 25 mm, d_pipe = 21 mm"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ISO 11443:2021 — Capillary rheometry and extrudate swell",
+      "Rauwendaal, C. Polymer Extrusion, 5th Ed."
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 95
+  },
+  {
+    "sequence_number": 5,
+    "proposed_slug": "smc-and-bmc-process-engineering-charge-pattern-cure-control",
+    "title": "SMC and BMC Process Engineering: Charge-Pattern Design, Cure Control and Defect Analysis",
+    "canonical_subject_id": "09931597-70cc-4cab-905c-336a4d6dde09",
+    "canonical_module_id": "09931597-70cc-4cab-905c-336a4d600003",
+    "target_subject": "Polymer Processing",
+    "target_module": "Module 3 — Thermoset & Compression Moulding",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Replaces duplicate compression moulding lesson with targeted Sheet Moulding Compound (SMC) and Bulk Moulding Compound (BMC) charge placement, fiber-flow orientation, cure kinetics, and warpage control.",
+    "gap_solved": "Lack of advanced industrial process engineering for SMC/BMC compression moulding, charge coverage optimization, and fiber wash defects",
+    "prerequisites": [
+      "thermoplastics-vs-thermosets-structure-and-behavior",
+      "compression-and-transfer-moulding-for-thermosets"
+    ],
+    "learning_outcomes": [
+      "Design optimal SMC mold charge coverage patterns (40% to 70% cavity area)",
+      "Calculate mold press tonnage based on SMC projected area and flow resistance",
+      "Control exothermic cure temperature profiles to eliminate core porosity and blisters",
+      "Diagnose fiber wash, knit-line weakness, and thermal warpage in SMC structural panels"
+    ],
+    "diagram_requirements": [
+      "Mermaid schematic of SMC charge placement, flow fronts, and hot press tooling cycle"
+    ],
+    "worked_example_plan": {
+      "problem_type": "SMC Compression Mould Tonnage Calculation",
+      "formula": "F_press = P_mould * A_projected * Safety_factor",
+      "inputs": "A_projected = 0.85 m^2, P_mould = 10 MPa (100 bar), Safety = 1.15"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ASTM D952 — Cohesive Strength of Sheet Plastics",
+      "Johanning. SMC/BMC Processing Guide, Hanser"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 91
+  },
+  {
+    "sequence_number": 6,
+    "proposed_slug": "rotational-moulding-process-physics-powder-fusion-and-heating",
+    "title": "Rotational Moulding Process Physics: Powder Fusion, Heating Kinetics & Wall Uniformity",
+    "canonical_subject_id": "09931597-70cc-4cab-905c-336a4d6dde09",
+    "canonical_module_id": "09931597-70cc-4cab-905c-336a4d600004",
+    "target_subject": "Polymer Processing",
+    "target_module": "Module 4 — Rotational Moulding",
+    "target_level": "intermediate",
+    "why_this_requires_a_separate_lesson": "Fills complete curriculum gap for hollow container rotational moulding process physics (LLDPE powder sintering, internal air temperature curves).",
+    "gap_solved": "Complete absence of hollow container rotational moulding process physics, powder flow, and internal air temperature diagnostic curves",
+    "prerequisites": [
+      "extrusion-process-screw-design-and-die-types"
+    ],
+    "learning_outcomes": [
+      "Analyze internal air temperature (IAT) traces across heating, pinhole removal, and cooling phases",
+      "Calculate required shot weight for hollow rotationally moulded vessels of target wall thickness",
+      "Evaluate powder particle size distribution (mesh 35) on sintering rate and bubble removal",
+      "Prevent warpage, sink marks, and thermal degradation during long oven residence times"
+    ],
+    "diagram_requirements": [
+      "Mermaid IAT thermal curve diagram showing powder melting, bubble removal, peak IAT, and crystallization"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Rotational Moulding Shot Weight Calculation",
+      "formula": "Mass = Surface_Area * Thickness * Density",
+      "inputs": "Cylindrical Tank: Area = 8.5 m^2, Thickness = 6.0 mm (0.006 m), LLDPE Density = 935 kg/m^3"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ASTM D1998 — Standard Specification for Polyethylene Storage Tanks",
+      "Crawford, R. J. Practical Guide to Rotational Moulding"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 89
+  },
+  {
+    "sequence_number": 7,
+    "proposed_slug": "multi-cavity-runner-balancing-kinetics-and-pressure-drop",
+    "title": "Multi-Cavity Runner Balancing Kinetics & Pressure Drop Optimization",
+    "canonical_subject_id": "868f5116-d18d-4f4c-a0cc-109c87d09f3e",
+    "canonical_module_id": "868f5116-d18d-4f4c-a0cc-109c87d00001",
+    "target_subject": "Mould Design",
+    "target_module": "Module 1 — Runner & Gate Design Mechanics",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Focuses on fluid mechanical runner diameter sizing and shear-induced thermal runner imbalances in multi-cavity injection moulds.",
+    "gap_solved": "Missing quantitative runner sizing formulas and melt-flipper solutions for shear-induced imbalance in multi-cavity tools",
+    "prerequisites": [
+      "runner-and-sprue-design-balancing-flow-to-multiple-cavities"
+    ],
+    "learning_outcomes": [
+      "Calculate hydraulic pressure drop across branched runner layouts using Hagen-Poiseuille relations",
+      "Size runner diameters progressively from sprue to sub-runners (d_primary > d_secondary)",
+      "Identify shear-induced melt temperature imbalances in geometrically balanced runner layouts",
+      "Implement MeltFlipper shear-rotation technology to equalize cavity filling"
+    ],
+    "diagram_requirements": [
+      "Mermaid layout comparing geometrically balanced vs thermally unbalanced 16-cavity runner networks"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Runner Branch Pressure Drop Calculation",
+      "formula": "Delta P = (128 * mu * L * Q) / (pi * d^4)",
+      "inputs": "mu = 250 Pa*s, L = 0.12 m, Q = 1.5e-5 m^3/s, d = 0.006 m"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ISO 20457:2018 — Plastics moulded parts — Tolerances",
+      "Beaumont, J. Runner and Gating Design Handbook"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 93
+  },
+  {
+    "sequence_number": 8,
+    "proposed_slug": "hot-runner-valve-gating-mechanics-and-sequential-injection",
+    "title": "Hot Runner Valve Gating Mechanics, Sequential Injection & Thermal Control",
+    "canonical_subject_id": "868f5116-d18d-4f4c-a0cc-109c87d09f3e",
+    "canonical_module_id": "868f5116-d18d-4f4c-a0cc-109c87d00002",
+    "target_subject": "Mould Design",
+    "target_module": "Module 2 — Advanced Hot Runner Systems",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Advanced tool design lesson covering pneumatic/hydraulic valve pin actuation, thermal manifold expansion, and weld-line elimination via sequential valve gating.",
+    "gap_solved": "Lack of advanced hot runner manifold physics, valve pin actuation kinetics, and sequential injection timing for large automotive parts",
+    "prerequisites": [
+      "runner-and-sprue-design-balancing-flow-to-multiple-cavities"
+    ],
+    "learning_outcomes": [
+      "Design hot runner manifold heating zones and calculate thermal expansion growth allowances",
+      "Configure sequential valve pin open/close timing to eliminate cosmetic weld lines",
+      "Compare pneumatic vs hydraulic vs servo-electric valve pin actuation precision",
+      "Prevent nozzle drool, stringing, and gate freeze-off via PID thermal controller tuning"
+    ],
+    "diagram_requirements": [
+      "Mermaid timing diagram for sequential valve gating across 4-drop automotive bumper mould"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Hot Runner Manifold Thermal Expansion Calculation",
+      "formula": "delta L = L_0 * alpha * (T_operating - T_ambient)",
+      "inputs": "L_0 = 450 mm, alpha = 12e-6 K^-1, T_operating = 240 deg C, T_ambient = 25 deg C"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "SPI Mold Classification Standards — Class 101 Tooling",
+      "Mold-Masters Hot Runner Engineering Guide"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 91
+  },
+  {
+    "sequence_number": 9,
+    "proposed_slug": "undercut-release-mechanics-side-cores-slides-and-lifters",
+    "title": "Undercut Release Mechanics: Side Cores, Angular Cam Pins, Slides & Lifters",
+    "canonical_subject_id": "868f5116-d18d-4f4c-a0cc-109c87d09f3e",
+    "canonical_module_id": "868f5116-d18d-4f4c-a0cc-109c87d00003",
+    "target_subject": "Mould Design",
+    "target_module": "Module 3 — Undercut Release Mechanisms",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Covers mechanical tool kinematics for external and internal undercuts (angle pins, side slides, heel blocks, internal lifters).",
+    "gap_solved": "Missing mechanical design formulas for angle pin stroke length, side slide actuation travel, and internal collapsible cores",
+    "prerequisites": [
+      "ejection-systems-pins-sleeves-strippers-and-air-ejection"
+    ],
+    "learning_outcomes": [
+      "Calculate angle cam pin angle (theta = 15 deg - 25 deg) and required stroke length L_stroke",
+      "Design heel locking blocks to withstand cavity injection pressure force without slide push-back",
+      "Calculate internal lifter angle and clearance travel for internal snap-fit undercuts",
+      "Prevent slide galling and flash via hardened wear plate selection and oil groove layout"
+    ],
+    "diagram_requirements": [
+      "Mermaid kinematic mechanical diagram of angle pin, slide block, wear plate, and heel lock interaction"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Cam Pin Stroke and Length Calculation",
+      "formula": "L_stroke = Undercut_Depth + 3mm; Pin_Length = L_stroke / sin(theta)",
+      "inputs": "Undercut = 8 mm, theta = 20 degrees (sin 20 = 0.342)"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "DME / HASCO Standard Component Specification Guidelines",
+      "Pye, R. G. W. Injection Mold Design"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 92
+  },
+  {
+    "sequence_number": 10,
+    "proposed_slug": "dsc-thermal-analysis-tg-tm-hf-and-crystallinity",
+    "title": "Differential Scanning Calorimetry (DSC): Tg, Tm, Hf & Crystallinity Kinetics",
+    "canonical_subject_id": "256350b6-84d6-4ebe-b0ff-e951f00956db",
+    "canonical_module_id": "256350b6-84d6-4ebe-b0ff-e951f0000001",
+    "target_subject": "Polymer Testing",
+    "target_module": "Module 1 — Thermal Characterization",
+    "target_level": "intermediate",
+    "why_this_requires_a_separate_lesson": "Core analytical technique for measuring glass transition Tg, melting peak Tm, crystallization enthalpy delta Hf, and % crystallinity.",
+    "gap_solved": "Missing foundational thermal analysis laboratory methodology for DSC thermogram integration and percent crystallinity calculation",
+    "prerequisites": [
+      "thermal-analysis-dsc-tga-and-hdt-testing"
+    ],
+    "learning_outcomes": [
+      "Interpret DSC heat flow vs temperature thermograms across heating and cooling cycles",
+      "Calculate percent crystallinity Xc = (delta H_m / delta H_m100%) * 100",
+      "Determine glass transition temperature Tg via midpoint inflection method",
+      "Evaluate thermal history effects and cold crystallization behavior in PET and Nylon"
+    ],
+    "diagram_requirements": [
+      "Mermaid DSC thermogram showing Tg step change, Tc exothermic peak, and Tm endothermic peak"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Percent Crystallinity Calculation from DSC",
+      "formula": "Xc = (delta H_m / delta H_100%) * 100",
+      "inputs": "Measured delta H_m = 42.5 J/g (PET), 100% crystalline delta H_100% = 140.1 J/g"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ISO 11357-3:2018 — Plastics — DSC — Determination of melting and crystallization temp",
+      "Wunderlich, B. Thermal Analysis of Polymeric Materials"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 96
+  },
+  {
+    "sequence_number": 11,
+    "proposed_slug": "dma-dynamic-mechanical-analysis-modulus-and-tan-delta",
+    "title": "Dynamic Mechanical Analysis (DMA): Storage Modulus E', Loss Modulus E'' & Tan Delta",
+    "canonical_subject_id": "256350b6-84d6-4ebe-b0ff-e951f00956db",
+    "canonical_module_id": "256350b6-84d6-4ebe-b0ff-e951f0000002",
+    "target_subject": "Polymer Testing",
+    "target_module": "Module 2 — Dynamic Mechanical Analysis",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Measures temperature/frequency dependent viscoelastic spectra (storage modulus E', loss modulus E'', loss tangent tan delta).",
+    "gap_solved": "Lack of advanced viscoelastic characterization across sub-ambient to high temperature sweeps and tan delta dampening peaks",
+    "prerequisites": [
+      "rheological-testing-understanding-melt-flow-behavior"
+    ],
+    "learning_outcomes": [
+      "Measure storage modulus E', loss modulus E'', and loss tangent tan delta = E'' / E'",
+      "Assign glass transition Tg, secondary relaxations (alpha, beta, gamma), and rubbery plateau",
+      "Calculate activation energy Ea of glass transition via Arrhenius frequency shifts",
+      "Evaluate impact performance and acoustic dampening capacity from tan delta peak area"
+    ],
+    "diagram_requirements": [
+      "Mermaid DMA spectrum plot showing E', E'', and tan delta vs temperature across glass, transition, and rubbery zones"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Loss Tangent (Tan Delta) & Modulus Calculation",
+      "formula": "tan(delta) = E'' / E'; Complex E* = sqrt((E')^2 + (E'')^2)",
+      "inputs": "E' = 2200 MPa, E'' = 180 MPa"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ASTM E1640 — Standard Test Method for Assignment of Tg by DMA",
+      "Menard, K. Dynamic Mechanical Analysis: A Practical Introduction"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 93
+  },
+  {
+    "sequence_number": 12,
+    "proposed_slug": "gc-ms-screening-of-polymer-extractables-and-leachables",
+    "title": "GC-MS Screening of Polymer Extractables and Leachables",
+    "canonical_subject_id": "256350b6-84d6-4ebe-b0ff-e951f00956db",
+    "canonical_module_id": "256350b6-84d6-4ebe-b0ff-e951f0000003",
+    "target_subject": "Polymer Testing",
+    "target_module": "Module 3 — Analytical Spectroscopy & Extractables",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Analytical chemistry lesson distinguishing extractables from leachables, overall vs specific migration testing, sample prep, GC-MS chromatogram integration, and toxicological interpretation.",
+    "gap_solved": "Missing analytical chemistry methodology for identifying volatile/semi-volatile organic extractables and leachables in medical/packaging polymers",
+    "prerequisites": [
+      "hardness-testing-shore-a-and-shore-d-durometers"
+    ],
+    "learning_outcomes": [
+      "Differentiate controlled laboratory extractables profiling from real-world leachables studies",
+      "Select appropriate solvent simulants (water, ethanol, hexane) for extraction protocols",
+      "Identify unknown plasticizers, residual monomers, and antioxidants via NIST mass spectral library matching",
+      "Calculate specific migration limits (SML in mg/kg) and evaluate toxicological safety thresholds (AET)"
+    ],
+    "diagram_requirements": [
+      "Mermaid analytical workflow diagram: Sample Extraction -> Solvent Concentration -> GC-MS Injection -> Mass Spec Library Match -> SML Quantification"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Analytical Evaluation Threshold (AET) Calculation",
+      "formula": "AET = (SCT * Dose_per_day) / (Number_of_devices * Extract_volume)",
+      "inputs": "Safety Threshold SCT = 1.5 ug/day, Dose = 1 device/day, Volume = 50 mL"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "EN 1186 / IS 9845 — Overall migration of constituents of plastics in contact with foodstuffs",
+      "USP <1663> & <1664> Extractables and Leachables Standards"
+    ],
+    "source_risk": "medium",
+    "regulatory_risk": "high",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 91
+  },
+  {
+    "sequence_number": 13,
+    "proposed_slug": "rubber-mixing-and-internal-mixer-process-control",
+    "title": "Rubber Mixing and Internal-Mixer Process Control",
+    "canonical_subject_id": "b9399968-d0df-4953-9bec-1f07d61de8ab",
+    "canonical_module_id": "b9399968-d0df-4953-9bec-1f07d6100001",
+    "target_subject": "Rubber Technology",
+    "target_module": "Module 1 — Rheometry & Vulcanization Kinetics",
+    "target_level": "intermediate",
+    "why_this_requires_a_separate_lesson": "Replaces duplicate MDR cure lesson with practical rubber compounding process engineering (internal Banbury mixer fill factor, mastication, upside-down mixing, carbon black dispersion, and unit energy control).",
+    "gap_solved": "Missing industrial process engineering coverage for Banbury internal rubber mixing, fill factor optimization, carbon black incorporation, and unit energy control",
+    "prerequisites": [
+      "vulcanization-of-rubber-chemistry-systems-and-industrial-practice",
+      "rubber-processing-mixing-calendering-and-extrusion"
+    ],
+    "learning_outcomes": [
+      "Calculate internal mixer chamber fill factor (FF = 0.65 - 0.75) for optimal shear mastication",
+      "Formulate multi-stage mixing sequences (masterbatch pass vs final curatives pass)",
+      "Control mixing discharge via unit energy (kWh/kg) and temperature limits to prevent premature scorch",
+      "Evaluate carbon black dispersion rating via micro-cleavage optical inspection"
+    ],
+    "diagram_requirements": [
+      "Mermaid power-curve chart during Banbury mixing cycle showing polymer loading, black incorporation, power peak, and dump"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Internal Mixer Batch Weight & Fill Factor Calculation",
+      "formula": "Batch_Weight = Chamber_Volume * Fill_Factor * Compound_Specific_Gravity",
+      "inputs": "Volume = 160 Liters, Fill_Factor = 0.70, Compound SG = 1.18 g/cm^3"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ASTM D3182 — Standard Practice for Rubber — Materials, Equipment, and Procedures for Mixing",
+      "Rodgers, B. Rubber Compounding: Chemistry and Applications"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 94
+  },
+  {
+    "sequence_number": 14,
+    "proposed_slug": "thermoplastic-elastomers-tpe-tpu-tpv-structure-and-processing",
+    "title": "Thermoplastic Elastomers (TPE, TPU, TPV): Microphase Separation & Processing",
+    "canonical_subject_id": "b9399968-d0df-4953-9bec-1f07d61de8ab",
+    "canonical_module_id": "b9399968-d0df-4953-9bec-1f07d6100002",
+    "target_subject": "Rubber Technology",
+    "target_module": "Module 2 — Thermoplastic Elastomers",
+    "target_level": "intermediate",
+    "why_this_requires_a_separate_lesson": "Covers recyclable thermoplastic rubbers (SBC, TPU, TPV dynamically vulcanized EPDM/PP) without thermoset vulcanization requirements.",
+    "gap_solved": "Lack of coverage for recyclable non-vulcanized elastomeric TPEs vs conventional thermoset rubbers",
+    "prerequisites": [
+      "vulcanization-of-rubber-chemistry-systems-and-industrial-practice"
+    ],
+    "learning_outcomes": [
+      "Explain physical crosslinking kinetics driven by hard block glass transition / crystallization",
+      "Compare block TPEs (TPS, TPU, COPE) vs dynamically vulcanized TPVs (EPDM/PP blends)",
+      "Optimize 2K overmoulding adhesion of soft TPE grips onto rigid PC/ABS substrates",
+      "Evaluate compression set recovery at elevated temperatures for TPE vs thermoset rubber"
+    ],
+    "diagram_requirements": [
+      "Mermaid morphology diagram of hard domain / soft matrix microphase separation in TPEs"
+    ],
+    "worked_example_plan": {
+      "problem_type": "TPE Hard/Soft Segment Ratio & Modulus Calculation",
+      "formula": "E_tpe = E_soft * (1 + 2.5 * phi_hard + 14.1 * (phi_hard)^2)",
+      "inputs": "E_soft = 5.0 MPa, Volume fraction hard block phi_hard = 0.25"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ISO 18064:2014 — Thermoplastic elastomers — Nomenclature and abbreviated terms",
+      "Holden, G. Thermoplastic Elastomers, 3rd Ed."
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 90
+  },
+  {
+    "sequence_number": 15,
+    "proposed_slug": "tyre-compound-design-silica-silane-reinforcement-and-rolling-resistance",
+    "title": "Tyre Compound Design: Silica-Silane Reinforcement, Rolling Resistance & Wet Grip",
+    "canonical_subject_id": "b9399968-d0df-4953-9bec-1f07d61de8ab",
+    "canonical_module_id": "b9399968-d0df-4953-9bec-1f07d6100003",
+    "target_subject": "Rubber Technology",
+    "target_module": "Module 3 — Tyre Compound Engineering",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Advanced industrial formulation lesson covering green tyre tread compounding (precipitated silica + bifunctional organosilane coupling agents).",
+    "gap_solved": "Missing industrial application of green tyre tread compounding, Payne effect strain sweeps, and rolling resistance optimization",
+    "prerequisites": [
+      "vulcanization-of-rubber-chemistry-systems-and-industrial-practice",
+      "tyre-construction-from-components-to-finished-product"
+    ],
+    "learning_outcomes": [
+      "Formulate low rolling resistance green tyre tread compounds using silica and TESPT silane",
+      "Calculate silane coupling agent stoichiometry relative to silica surface area (m^2/g)",
+      "Optimize tan delta indicators: low tan delta at 60 deg C (rolling resistance) vs high tan delta at 0 deg C (wet grip)",
+      "Mitigate the Payne effect (filler-network breakdown) via silanization reaction control during mixing"
+    ],
+    "diagram_requirements": [
+      "Mermaid viscoelastic Tan Delta curve vs temperature showing wet grip peak at 0C vs rolling resistance trough at 60C"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Silane Coupling Stoichiometry Calculation",
+      "formula": "Silane_phr = Silica_phr * Specific_Surface_Area * 0.0005",
+      "inputs": "Silica = 75 phr, BET Surface Area = 175 m^2/g"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "AIS 142 / ISO 28580 — Passenger Car Tyre Rolling Resistance Measurement",
+      "Tyre Compounding Principles, Rubber Division ACS"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 92
+  },
+  {
+    "sequence_number": 16,
+    "proposed_slug": "food-contact-rpet-super-cleaning-challenge-testing-and-regulatory-evaluation",
+    "title": "Food-Contact rPET Super-Cleaning, Challenge Testing and Regulatory Evaluation",
+    "canonical_subject_id": "12f8a381-2a68-47ea-bcc9-74cd4fe7ab8b",
+    "canonical_module_id": "12f8a381-2a68-47ea-bcc9-74cd4fe00001",
+    "target_subject": "Recycling Technology",
+    "target_module": "Module 1 — Super-Cleaning & Decontamination",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Focuses on EFSA and FSSAI bottle-to-bottle decontamination challenge tests, surrogate contaminant migration limits, and high-vacuum SSP solid-state polycondensation reactors.",
+    "gap_solved": "Missing industrial regulatory standard for EFSA/US-FDA/FSSAI decontamination challenge tests in rPET bottle-to-bottle plants",
+    "prerequisites": [
+      "75-lakh-2-crore-scale-tier-extrusion-plants-recycling-and-processing-lines",
+      "mechanical-recycling-collection-sorting-and-reprocessing"
+    ],
+    "learning_outcomes": [
+      "Design surrogate contamination challenge tests (toluene, chlorobenzene, phenylcyclohexane)",
+      "Calculate decontamination efficiency % DE = (C_initial - C_final) / C_initial * 100",
+      "Compare EFSA opinion guidelines vs FSSAI recycled plastics regulations 2022 framework",
+      "Operate Solid State Polycondensation (SSP) reactors under vacuum to rebuild rPET intrinsic viscosity (IV)"
+    ],
+    "diagram_requirements": [
+      "Mermaid process flow of rPET bottle flaking -> Hot Wash -> Decontamination Vacuum Reactor -> IV Rebuild -> Pelletizing"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Decontamination Efficiency & Residue Concentration",
+      "formula": "C_residual = C_spike * (1 - DE/100)",
+      "inputs": "Surrogate Spike C_spike = 500 ppm, Decontamination Efficiency DE = 99.85%"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "EFSA Scientific Opinion on PET Decontamination Processes",
+      "FSSAI Guidelines on Recycled Plastics for Food Contact 2022"
+    ],
+    "source_risk": "medium",
+    "regulatory_risk": "high",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 95
+  },
+  {
+    "sequence_number": 17,
+    "proposed_slug": "advanced-chemical-recycling-pyrolysis-and-solvolysis-pathways",
+    "title": "Advanced Chemical Recycling: Pyrolysis and Solvolysis Pathways",
+    "canonical_subject_id": "12f8a381-2a68-47ea-bcc9-74cd4fe7ab8b",
+    "canonical_module_id": "12f8a381-2a68-47ea-bcc9-74cd4fe00002",
+    "target_subject": "Recycling Technology",
+    "target_module": "Module 2 — Chemical Recycling",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Chemical depolymerization fundamentals converting plastic waste back to monomers / naphtha feedstocks.",
+    "gap_solved": "Missing chemical depolymerization fundamentals converting mixed plastic waste back to monomers / petrochemical feedstocks",
+    "prerequisites": [
+      "chemical-recycling-pyrolysis-depolymerization-and-solvolysis"
+    ],
+    "learning_outcomes": [
+      "Compare thermal pyrolysis (plastic-to-oil) vs catalytic cracking for polyolefin waste",
+      "Evaluate solvolysis routes: PET glycolysis to BHET monomer vs methanolysis and hydrolysis",
+      "Perform mass and energy balances across 10,000 tonnes/year chemical recycling plant",
+      "Assess mass-balance chain-of-custody accounting for ISCC+ certified circular polymers"
+    ],
+    "diagram_requirements": [
+      "Mermaid mass-balance diagram for PET glycolysis depolymerization into BHET monomer and catalyst recovery"
+    ],
+    "worked_example_plan": {
+      "problem_type": "PET Glycolysis Monomer Yield Calculation",
+      "formula": "Theoretical_BHET_Yield = Mass_PET * (MW_BHET / MW_PET_repeat)",
+      "inputs": "PET Mass = 1000 kg, MW_BHET = 254.24 g/mol, MW_PET_unit = 192.17 g/mol"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ISO 15270:2008 — Plastics — Guidelines for recovery and recycling of plastics waste",
+      "Scheirs, J. Polymer Recycling"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 91
+  },
+  {
+    "sequence_number": 18,
+    "proposed_slug": "e-waste-plastics-recycling-density-separation-and-flame-retardants",
+    "title": "E-Waste Plastics Recycling: Density Separation & Flame Retardant Removal",
+    "canonical_subject_id": "12f8a381-2a68-47ea-bcc9-74cd4fe7ab8b",
+    "canonical_module_id": "12f8a381-2a68-47ea-bcc9-74cd4fe00003",
+    "target_subject": "Recycling Technology",
+    "target_module": "Module 3 — E-Waste Plastics Recycling",
+    "target_level": "intermediate",
+    "why_this_requires_a_separate_lesson": "Engineering process for recycling ABS/HIPS/PC from electronic waste containing RoHS restricted brominated flame retardants.",
+    "gap_solved": "Missing engineering process for recycling e-waste polymers (ABS/HIPS) and removing RoHS restricted heavy additives",
+    "prerequisites": [
+      "mechanical-recycling-collection-sorting-and-reprocessing"
+    ],
+    "learning_outcomes": [
+      "Design sink-float heavy media fluid density separation for ABS (1.05 g/cm^3) vs HIPS (1.04 g/cm^3)",
+      "Apply electrostatic and triboelectric separation to segregate mixed shredded casing plastics",
+      "Detect RoHS restricted Octa-BDE and Deca-BDE brominated flame retardants via XRF spectroscopy",
+      "Comply with Indian CPCB E-Waste Management Rules 2022 for recycling authorization"
+    ],
+    "diagram_requirements": [
+      "Mermaid flow diagram of E-Waste Shredding -> Magnetic Separation -> Heavy Media Float-Sink -> Triboelectric Separation -> Extrusion"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Heavy Media Salt Solution Density Calculation",
+      "formula": "Salt_Mass = Target_Volume * (Rho_target - Rho_water)",
+      "inputs": "Volume = 5000 L, Target Density = 1.055 kg/L (for ABS/HIPS split)"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "CPCB E-Waste Management Rules 2022 Guidelines",
+      "Goodship, V. Management, Recycling and Reuse of Waste Electrical and Electronic Equipment"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "low",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 89
+  },
+  {
+    "sequence_number": 19,
+    "proposed_slug": "controlled-composting-biodegradation-by-co2-respirometry",
+    "title": "Controlled-Composting Biodegradation by CO₂ Respirometry",
+    "canonical_subject_id": "251160d3-705f-4563-9468-483a86bba730",
+    "canonical_module_id": "251160d3-705f-4563-9468-483a86b00001",
+    "target_subject": "Sustainable Plastics & Bioplastics",
+    "target_module": "Module 1 — Biodegradation Standards & Testing",
+    "target_level": "intermediate",
+    "why_this_requires_a_separate_lesson": "Standard respirometric testing protocols (ISO 14855 / ASTM D6400) for measuring organic carbon conversion to CO2 under controlled industrial composting.",
+    "gap_solved": "Missing experimental standard protocols for verifying industrial compostability via respirometric CO2 evolution",
+    "prerequisites": [
+      "bioplastics-synthesis-compostability-and-standards"
+    ],
+    "learning_outcomes": [
+      "Measure cumulative CO2 evolution in respirometric compost vessels at 58 deg C",
+      "Calculate percentage biodegradation D_t relative to positive cellulose control (>90% threshold)",
+      "Distinguish respirometric biodegradation from physical disintegration and ecotoxicity testing",
+      "Comply with IS 17088 / CPCB mandatory certification criteria for compostable plastics in India"
+    ],
+    "diagram_requirements": [
+      "Mermaid diagram of respirometric composting reactor with CO2 scrubber, air supply, and GC/titration trap"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Percentage Biodegradation Calculation",
+      "formula": "D_t = (ThCO2_test - CO2_blank) / ThCO2_theoretical * 100",
+      "inputs": "Sample Mass = 50 g PLA (50% Carbon), Measured CO2 = 160 g, ThCO2 = 183.3 g"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ISO 14855-1 / ASTM D6400 / IS 17088 — Compostable Plastics Specifications",
+      "Bastioli, C. Handbook of Biodegradable Polymers"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "medium",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 94
+  },
+  {
+    "sequence_number": 20,
+    "proposed_slug": "polyhydroxyalkanoates-pha-biosynthesis-fermentation-and-processing",
+    "title": "Polyhydroxyalkanoates (PHA) Biosynthesis, Fermentation & Thermal Processing",
+    "canonical_subject_id": "251160d3-705f-4563-9468-483a86bba730",
+    "canonical_module_id": "251160d3-705f-4563-9468-483a86b00002",
+    "target_subject": "Sustainable Plastics & Bioplastics",
+    "target_module": "Module 2 — Bacterial Polyhydroxyalkanoates",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Deep-dive on bacterial intracellular PHA/PHB/PHBV biosynthesis, carbon source fermentation, and narrow thermal processing windows.",
+    "gap_solved": "Missing deep-dive on marine-degradable bacterial PHA biopolymers, fermentation kinetics, and thermal stabilization",
+    "prerequisites": [
+      "polyhydroxyalkanoates-pha-nature-s-true-bioplastic"
+    ],
+    "learning_outcomes": [
+      "Explain intracellular bacterial accumulation of PHB under nitrogen-limiting growth conditions",
+      "Calculate cell dry weight yield Y_x/s and PHA accumulation percentage (% CDW)",
+      "Formulate copolymers (PHBV) to lower melting point and improve impact flexibility",
+      "Mitigate thermal degradation during extrusion processing of narrow-window PHA resins"
+    ],
+    "diagram_requirements": [
+      "Mermaid metabolic pathway diagram showing acetyl-CoA conversion to PHB inside bacterial cell walls"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Bacterial Cell Dry Weight & PHA Yield Calculation",
+      "formula": "PHA_Yield = (Mass_PHA / Total_Cell_Dry_Weight) * 100",
+      "inputs": "Total CDW = 45 g/L, Recovered PHB Mass = 29.25 g/L"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ASTM D7081 — Marine Degradable Plastics Standard",
+      "Steinbüchel, A. Biopolymers: Polyesters"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 91
+  },
+  {
+    "sequence_number": 21,
+    "proposed_slug": "biobased-carbon-content-by-radiocarbon-analysis",
+    "title": "Biobased Carbon Content by Radiocarbon Analysis",
+    "canonical_subject_id": "251160d3-705f-4563-9468-483a86bba730",
+    "canonical_module_id": "251160d3-705f-4563-9468-483a86b00003",
+    "target_subject": "Sustainable Plastics & Bioplastics",
+    "target_module": "Module 3 — Bio-Based Drop-In Polymers",
+    "target_level": "intermediate",
+    "why_this_requires_a_separate_lesson": "Focuses on radiocarbon C14 isotope ratio analysis (ASTM D6866) to measure modern bio-based carbon content in non-biodegradable drop-in polymers (Bio-PET, Bio-PE).",
+    "gap_solved": "Lack of clarity distinguishing non-biodegradable bio-based drop-in polymers from biodegradable plastics using C14 analytical standards",
+    "prerequisites": [
+      "bio-pe-bio-pet-and-drop-in-bio-based-polymers"
+    ],
+    "learning_outcomes": [
+      "Explain radiocarbon C14 decay kinetics used to distinguish modern biological carbon from fossil carbon",
+      "Calculate percent modern carbon (pMC) and bio-based carbon content according to ASTM D6866",
+      "Differentiate non-biodegradable bio-based drop-in plastics (Bio-PET, Bio-PE) from biodegradable resins",
+      "Evaluate biomass feedstock conversion pathways (sugarcane ethanol to bio-ethylene)"
+    ],
+    "diagram_requirements": [
+      "Mermaid diagram of sugarcane -> bio-ethanol -> bio-ethylene -> Bio-PE synthesis vs C14 radiocarbon measurement"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Bio-Based Carbon Percentage Calculation",
+      "formula": "Bio_Carbon_% = (pMC_sample / pMC_reference) * 100 * (Total_C / Organ_C)",
+      "inputs": "Measured pMC = 84.0 pmc, Reference modern carbon = 100.0 pmc"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ASTM D6866 — Determining Biobased Content Using Radiocarbon Analysis",
+      "EN 16640 — Bio-based products — Bio-based carbon content"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 90
+  },
+  {
+    "sequence_number": 22,
+    "proposed_slug": "fiber-matrix-interfacial-shear-strength-and-fragmentation-testing",
+    "title": "Fiber-Matrix Interfacial Shear Strength & Single-Fiber Fragmentation Testing",
+    "canonical_subject_id": "4b71f8bf-c3c9-4a27-8a18-7af831b9ec25",
+    "canonical_module_id": "4b71f8bf-c3c9-4a27-8a18-7af831b00001",
+    "target_subject": "Polymer Composites",
+    "target_module": "Module 1 — Interface & Micromechanics",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Micromechanical treatment of fiber sizing chemistry, organosilane coupling, and interfacial shear strength (IFSS) measurement via single-fiber fragmentation.",
+    "gap_solved": "Missing micromechanical treatment of fiber sizing chemistry and interfacial stress transfer (IFSS)",
+    "prerequisites": [
+      "short-fibre-reinforced-thermoplastics-injection-moulded-composites"
+    ],
+    "learning_outcomes": [
+      "Derive Kelly-Tyson critical fiber length formula lc = (sigma_f * d) / (2 * tau_i)",
+      "Measure interfacial shear strength IFSS (tau_i) using Single-Fiber Fragmentation Testing (SFFT)",
+      "Explain organosilane sizing chemistry promoting covalent bonding between glass and epoxy",
+      "Evaluate interfacial debonding and fiber pull-out fracture toughness mechanisms"
+    ],
+    "diagram_requirements": [
+      "Mermaid micromechanical stress profile along fiber length showing shear stress tau vs tensile stress sigma"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Kelly-Tyson Critical Fiber Length Calculation",
+      "formula": "l_c = (sigma_f * d) / (2 * tau_i)",
+      "inputs": "Fiber tensile strength sigma_f = 2800 MPa, Diameter d = 15 um, IFSS tau_i = 35 MPa"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ASTM D7522 — Interfacial Shear Strength of Fiber-Reinforced Polymer Matrix",
+      "Hull, D. An Introduction to Composite Materials"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 93
+  },
+  {
+    "sequence_number": 23,
+    "proposed_slug": "resin-transfer-moulding-rtm-and-vacuum-infusion-vari-hydraulics",
+    "title": "Resin Transfer Moulding (RTM) & Vacuum Assisted Infusion (VARI) Hydraulics",
+    "canonical_subject_id": "4b71f8bf-c3c9-4a27-8a18-7af831b9ec25",
+    "canonical_module_id": "4b71f8bf-c3c9-4a27-8a18-7af831b00002",
+    "target_subject": "Polymer Composites",
+    "target_module": "Module 2 — Liquid Composite Moulding",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Fluid flow modeling through anisotropic porous fiber preforms applying Darcy's law for liquid composite moulding (RTM, VARTM).",
+    "gap_solved": "Lack of fluid flow modeling through anisotropic porous fiber preforms using Darcy's Law",
+    "prerequisites": [
+      "short-fibre-reinforced-thermoplastics-injection-moulded-composites"
+    ],
+    "learning_outcomes": [
+      "Apply 1D and 2D Darcy's Law v = -(K / mu) * (dP / dx) to model resin impregnation fronts",
+      "Calculate anisotropic preform permeability tensor K_xx, K_yy from radial flow experiments",
+      "Optimize vacuum infusion runner placement to prevent dry spots and race-tracking defects",
+      "Evaluate resin viscosity temperature dependence and gel time windows during RTM injection"
+    ],
+    "diagram_requirements": [
+      "Mermaid vacuum infusion schematic showing resin inlet, spiral tube, fabric preform, vacuum bag, and catch pot"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Darcy Flow Infusion Time Calculation",
+      "formula": "t_fill = (mu * phi * L^2) / (2 * K * Delta_P)",
+      "inputs": "mu = 0.2 Pa*s, porosity phi = 0.45, L = 1.2 m, K = 2.5e-10 m^2, Delta_P = 1 bar (1e5 Pa)"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ISO 1268-7:2014 — Fibre-reinforced plastics — RTM methods",
+      "Advani, S. G. Process Modeling in Composites Manufacturing"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 91
+  },
+  {
+    "sequence_number": 24,
+    "proposed_slug": "carbon-fiber-reinforced-polymers-autoclave-cure-kinetics",
+    "title": "Carbon Fiber Reinforced Polymers (CFRP): Autoclave Cure Kinetics & Void Control",
+    "canonical_subject_id": "4b71f8bf-c3c9-4a27-8a18-7af831b9ec25",
+    "canonical_module_id": "4b71f8bf-c3c9-4a27-8a18-7af831b00003",
+    "target_subject": "Polymer Composites",
+    "target_module": "Module 3 — Carbon Fiber Autoclave Processing",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Aerospace-grade composite processing kinetics (vacuum bag autoclave consolidation, void volume fraction minimization).",
+    "gap_solved": "Missing aerospace-grade composite processing kinetics and vacuum bag autoclave void control",
+    "prerequisites": [
+      "carbon-fibre-reinforced-polymers-cfrp-aerospace-to-automotive"
+    ],
+    "learning_outcomes": [
+      "Formulate multi-step autoclave temperature/pressure cycles for epoxy prepreg consolidation",
+      "Calculate void volume fraction Vv from experimental laminate density measurements",
+      "Evaluate resin flow and compaction kinetics during debulking and pressure dwell steps",
+      "Perform non-destructive ultrasonic C-scan inspection to detect internal delaminations"
+    ],
+    "diagram_requirements": [
+      "Mermaid autoclave cycle chart plotting pressure, vacuum bag level, and temperature vs time"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Laminate Void Content Volume Fraction Calculation",
+      "formula": "V_v = 100 * (1 - Rho_actual / Rho_theoretical)",
+      "inputs": "Rho_actual = 1.54 g/cm^3, Rho_theoretical = 1.58 g/cm^3"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ASTM D2734 — Standard Test Methods for Void Content of Reinforced Plastics",
+      "Campbell, F. C. Manufacturing Processes for Advanced Composites"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 92
+  },
+  {
+    "sequence_number": 25,
+    "proposed_slug": "bankable-detailed-project-report-dpr-preparation-and-dscr",
+    "title": "Bankable Detailed Project Report (DPR) Preparation & Debt Service Coverage Ratio (DSCR)",
+    "canonical_subject_id": "eb5250fe-360a-4fc4-bd74-b5f65bebcea5",
+    "canonical_module_id": "eb5250fe-360a-4fc4-bd74-b5f65be00001",
+    "target_subject": "Entrepreneurship in Plastics",
+    "target_module": "Module 1 — Project Finance & DPR Preparation",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Practical financial modeling for bank loan sanction (DSCR, Breakeven Analysis, IRR).",
+    "gap_solved": "Missing practical financial modeling for bank loan sanction, DSCR debt coverage calculation, and breakeven point analysis",
+    "prerequisites": [
+      "25-75-lakh-growth-tier-higher-margin-technical-products"
+    ],
+    "learning_outcomes": [
+      "Structure a bankable Detailed Project Report (DPR) for MSME term loans",
+      "Calculate Debt Service Coverage Ratio (DSCR) across a 5-year repayment schedule",
+      "Determine breakeven sales volume (BEP) and Financial Internal Rate of Return (FIRR)",
+      "Perform sensitivity analysis against 15% raw material price escalation scenarios"
+    ],
+    "diagram_requirements": [
+      "Mermaid financial breakeven chart plotting fixed costs, variable costs, total costs, and revenue vs plant capacity"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Debt Service Coverage Ratio (DSCR) Calculation",
+      "formula": "DSCR = (PAT + Depreciation + Interest_on_Term_Loan) / (Principal_Repayment + Interest_on_Term_Loan)",
+      "inputs": "PAT = 35 Lakhs, Dep = 18 Lakhs, Interest = 12 Lakhs, Principal = 20 Lakhs"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "RBI MSME Project Appraisal Guidelines",
+      "SIDBI Project Financing Handbook"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "low",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 95
+  },
+  {
+    "sequence_number": 26,
+    "proposed_slug": "working-capital-financing-cash-credit-bill-discounting-and-lcs",
+    "title": "Working Capital Financing Operations: Cash Credit, Bill Discounting & LC Mechanics",
+    "canonical_subject_id": "eb5250fe-360a-4fc4-bd74-b5f65bebcea5",
+    "canonical_module_id": "eb5250fe-360a-4fc4-bd74-b5f65be00002",
+    "target_subject": "Entrepreneurship in Plastics",
+    "target_module": "Module 2 — Working Capital Financing",
+    "target_level": "intermediate",
+    "why_this_requires_a_separate_lesson": "Operational banking knowledge for plastics SMEs managing raw material procurement liquidity (Cash Credit limits, LC usance).",
+    "gap_solved": "Missing operational banking knowledge for plastics SMEs managing raw material procurement liquidity and Letter of Credit terms",
+    "prerequisites": [
+      "25-75-lakh-growth-tier-higher-margin-technical-products"
+    ],
+    "learning_outcomes": [
+      "Calculate Bank Drawing Power (DP) under Tandon Committee norms",
+      "Operate 90-day Usance Letters of Credit (LC) for raw polymer resin purchases",
+      "Discount trade bills under Inland Bill Discounting (IBD) facilities",
+      "Manage working capital cycle days (Inventory Days + Receivables Days - Payables Days)"
+    ],
+    "diagram_requirements": [
+      "Mermaid transaction flow diagram between Polymer Buyer, Supplier, Opening Bank, and Advising Bank under LC terms"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Bank Drawing Power (DP) Calculation",
+      "formula": "DP = (Eligible_Stock * 0.75) + (Eligible_Debtors * 0.60) - Creditors",
+      "inputs": "Stock = 50 Lakhs, Debtors = 80 Lakhs, Creditors = 40 Lakhs"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "FEDAI / ICC Uniform Customs for Documentary Credits (UCP 600)",
+      "RBI Working Capital Management Circulars"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "low",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 91
+  },
+  {
+    "sequence_number": 27,
+    "proposed_slug": "plastics-factory-layout-utilities-and-spcb-pcc-consent-management",
+    "title": "Plastics Factory Layout, Utilities and SPCB/PCC Consent Management",
+    "canonical_subject_id": "eb5250fe-360a-4fc4-bd74-b5f65bebcea5",
+    "canonical_module_id": "eb5250fe-360a-4fc4-bd74-b5f65be00003",
+    "target_subject": "Entrepreneurship in Plastics",
+    "target_module": "Module 3 — Regulatory Compliance & Factory Setup",
+    "target_level": "intermediate",
+    "why_this_requires_a_separate_lesson": "Statutory regulatory compliance roadmap for establishing plastic manufacturing units in India (Consent to Establish CTE, Consent to Operate CTO, factory floor loading).",
+    "gap_solved": "Missing statutory regulatory compliance roadmap for establishing plastic manufacturing units and managing State Pollution Control Board consents",
+    "prerequisites": [
+      "25-75-lakh-growth-tier-higher-margin-technical-products"
+    ],
+    "learning_outcomes": [
+      "Design factory floor layouts optimizing material flow from resin store to finished goods warehouse",
+      "Calculate connected power load (kVA) and cooling water chiller capacity for processing machinery",
+      "Apply for Consent to Establish (CTE) and Consent to Operate (CTO) under Water and Air Acts",
+      "Comply with Indian Factories Act 1948 safety requirements and machine guarding"
+    ],
+    "diagram_requirements": [
+      "Mermaid plant layout plan showing raw material store, machine bay, chiller room, ETP, and warehouse"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Connected Power Load & Transformer Sizing",
+      "formula": "Transformer_kVA = Total_Connected_kW / (Power_Factor * Load_Factor)",
+      "inputs": "Connected kW = 180 kW, Power Factor = 0.90, Load Factor = 0.75"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "Factories Act 1948 / State Pollution Control Board Consent Guidelines",
+      "CPCB Industry Classification Guidelines"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "medium",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 93
+  },
+  {
+    "sequence_number": 28,
+    "proposed_slug": "iso-10993-biocompatibility-testing-cytotoxicity-and-extractables",
+    "title": "ISO 10993 Biocompatibility Testing: Cytotoxicity, Hemocompatibility & Extractables",
+    "canonical_subject_id": "9fad76f4-4c41-4719-9698-df3d2c9b39eb",
+    "canonical_module_id": "9fad76f4-4c41-4719-9698-df3d2c900001",
+    "target_subject": "Medical Plastics & Biomaterials",
+    "target_module": "Module 1 — Biocompatibility Evaluation",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "International regulatory standards compliance framework for medical device grade polymers (ISO 10993 biological evaluation series).",
+    "gap_solved": "Missing international regulatory standards compliance framework for medical device grade polymers",
+    "prerequisites": [
+      "biocompatibility-iso-10993-and-the-science-of-safe-polymer-body-contact"
+    ],
+    "learning_outcomes": [
+      "Select required ISO 10993 evaluation matrix tests based on body contact nature and duration",
+      "Conduct in-vitro MEM elution cytotoxicity assays according to ISO 10993-5",
+      "Evaluate hemocompatibility, systemic toxicity, and intracutaneous reactivity testing",
+      "Comply with Indian CDSCO Medical Device Rules 2017 risk-based classification"
+    ],
+    "diagram_requirements": [
+      "Mermaid decision matrix flowchart for ISO 10993 biological evaluation testing pathway"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Cytotoxicity Cell Viability Calculation",
+      "formula": "% Viability = (Absorbance_sample / Absorbance_control) * 100",
+      "inputs": "Absorbance_sample = 0.84, Absorbance_control = 1.12"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ISO 10993-1:2018 / ISO 10993-5 — Biological evaluation of medical devices",
+      "CDSCO Medical Device Rules 2017 Guidelines"
+    ],
+    "source_risk": "medium",
+    "regulatory_risk": "high",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 95
+  },
+  {
+    "sequence_number": 29,
+    "proposed_slug": "medical-plastics-sterilization-compatibility-gamma-eto-autoclave",
+    "title": "Medical Plastics Sterilization Compatibility: Gamma, E-beam, EtO & Autoclave Physics",
+    "canonical_subject_id": "9fad76f4-4c41-4719-9698-df3d2c9b39eb",
+    "canonical_module_id": "9fad76f4-4c41-4719-9698-df3d2c900002",
+    "target_subject": "Medical Plastics & Biomaterials",
+    "target_module": "Module 2 — Sterilization Physics",
+    "target_level": "intermediate",
+    "why_this_requires_a_separate_lesson": "Technical analysis of polymer chain scission / yellowing during gamma radiation vs Ethylene Oxide (EtO) gas sterilization.",
+    "gap_solved": "Missing technical analysis of polymer degradation during gamma radiation vs EtO gas sterilization",
+    "prerequisites": [
+      "sterilization-methods-and-polymer-compatibility"
+    ],
+    "learning_outcomes": [
+      "Compare sterilization mechanisms: Gamma Cobalt-60 (25 kGy), E-beam, EtO gas, and steam autoclave",
+      "Evaluate radiation stability of polypropylene (yellowing/embrittlement) vs radiation-stabilized PP grades",
+      "Measure Ethylene Oxide gas residual aeration kinetics (EtO < 4 ppm limit according to ISO 10993-7)",
+      "Select steam-autoclavable high-temperature polymers (PESU, PEEK, PSU) for reusable instruments"
+    ],
+    "diagram_requirements": [
+      "Mermaid polymer degradation vs sterilization method compatibility matrix"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Gamma Radiation Absorbed Dose & Yellowing Index Calculation",
+      "formula": "Dose = Dose_rate * Exposure_time; Delta_YI = YI_final - YI_initial",
+      "inputs": "Dose rate = 2.5 kGy/hr, Time = 10 hrs, YI_initial = 1.2, YI_final = 8.5"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ISO 11137-1:2006 — Radiation Sterilization of Healthcare Products",
+      "ISO 10993-7 — Ethylene Oxide Sterilization Residuals"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "medium",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 91
+  },
+  {
+    "sequence_number": 30,
+    "proposed_slug": "polymeric-drug-delivery-systems-hydrogel-swelling-and-release",
+    "title": "Polymeric Drug Delivery Systems: Hydrogel Swelling Kinetics & Controlled Release",
+    "canonical_subject_id": "9fad76f4-4c41-4719-9698-df3d2c9b39eb",
+    "canonical_module_id": "9fad76f4-4c41-4719-9698-df3d2c900003",
+    "target_subject": "Medical Plastics & Biomaterials",
+    "target_module": "Module 3 — Controlled Release Hydrogels",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Quantitative drug release kinetics (Higuchi & Korsmeyer-Peppas models) from biodegradable hydrogels (PLGA, alginate).",
+    "gap_solved": "Missing quantitative drug release kinetics (Higuchi & Korsmeyer-Peppas models) from biodegradable hydrogels",
+    "prerequisites": [
+      "implantable-polymers-and-biodegradable-medical-devices"
+    ],
+    "learning_outcomes": [
+      "Formulate biodegradable PLGA microspheres and hydrogel networks for controlled drug release",
+      "Apply Higuchi equation (fraction released vs square root of time) for Fickian matrix diffusion",
+      "Determine diffusion exponent n in Korsmeyer-Peppas equation M_t / M_inf = k * t^n to identify anomalous transport",
+      "Evaluate enzymatic vs hydrolytic bulk erosion kinetics in bioresorbable implants"
+    ],
+    "diagram_requirements": [
+      "Mermaid drug release profile comparing Fickian diffusion vs bulk erosion vs zero-order constant release"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Higuchi Drug Release Rate Calculation",
+      "formula": "Q = sqrt(D * (2 * A - C_s) * C_s * t)",
+      "inputs": "D = 1.5e-11 cm^2/s, A = 100 mg/cm^3, C_s = 10 mg/cm^3, t = 86400 s (24 hrs)"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "USP <711> Dissolution Testing Standards",
+      "Peppas, N. A. Hydrogels in Medicine and Pharmacy"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "low",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 92
+  },
+  {
+    "sequence_number": 31,
+    "proposed_slug": "flame-retardants-in-polymers-halogen-free-organophosphorus-systems",
+    "title": "Flame Retardants in Polymers: Halogen-Free Organophosphorus & Intumescent Systems",
+    "canonical_subject_id": "3224e480-d92e-474f-90ba-2439596e0db9",
+    "canonical_module_id": "3224e480-d92e-474f-90ba-243959600001",
+    "target_subject": "Additives & Compounding",
+    "target_module": "Module 1 — Flame Retardants Mechanics",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Halogen-free flame retardant mechanisms (organophosphorus, intumescents), smoke/toxicity trade-offs, mechanical impact drop, and LOI/UL-94 testing.",
+    "gap_solved": "Missing halogen-free eco-friendly flame retardant mechanisms, smoke toxicity trade-offs, and UL-94 V-0 flame rating criteria",
+    "prerequisites": [
+      "flame-retardants-polymer-safety"
+    ],
+    "learning_outcomes": [
+      "Compare halogenated flame retardants (radical trap) vs halogen-free intumescent systems (char barrier)",
+      "Formulate intumescent triads: Acid donor (APP), Carbon donor (PER), and Blowing agent (MEL)",
+      "Determine Limiting Oxygen Index (LOI %) and UL-94 vertical burning classifications (V-0, V-1, V-2)",
+      "Evaluate trade-offs between high flame retardant loading levels (20%-30%) and impact strength drop"
+    ],
+    "diagram_requirements": [
+      "Mermaid char layer formation schematic of intumescent flame retardant under thermal heat flux"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Limiting Oxygen Index (LOI) Percentage Calculation",
+      "formula": "LOI = [O2] / ([O2] + [N2]) * 100",
+      "inputs": "O2 Flow = 4.2 L/min, N2 Flow = 13.8 L/min"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ISO 4589-2 / UL 94 — Tests for Flammability of Plastic Materials",
+      "Grand, A. F. Fire Retardancy of Polymeric Materials"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "low",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 93
+  },
+  {
+    "sequence_number": 32,
+    "proposed_slug": "antioxidants-and-thermal-stabilizers-synergy-in-polyolefins",
+    "title": "Antioxidants & Thermal Stabilizers Synergy in Polyolefin Compounding",
+    "canonical_subject_id": "3224e480-d92e-474f-90ba-2439596e0db9",
+    "canonical_module_id": "3224e480-d92e-474f-90ba-243959600002",
+    "target_subject": "Additives & Compounding",
+    "target_module": "Module 2 — Stabilization Chemistry",
+    "target_level": "intermediate",
+    "why_this_requires_a_separate_lesson": "Synergistic mechanism combining Primary Hindered Phenolic Antioxidants (radical scavengers) with Secondary Phosphite Antioxidants (hydroperoxide decomposers).",
+    "gap_solved": "Missing synergistic mechanism combining Primary Phenolic Antioxidants with Secondary Phosphite Antioxidants and OIT thermal testing",
+    "prerequisites": [
+      "antioxidants-polymer-stabilization"
+    ],
+    "learning_outcomes": [
+      "Explain autoxidation radical cycle: initiation, propagation, branching, and termination",
+      "Formulate 1:2 blend ratios of Primary (Irganox 1010) and Secondary (Irgafos 168) antioxidants",
+      "Measure Oxidative Induction Time (OIT minutes) via isothermal DSC at 200 deg C under oxygen flow",
+      "Prevent long-term thermal degradation and gas fading in polyolefin extrusion compounds"
+    ],
+    "diagram_requirements": [
+      "Mermaid autoxidation cycle diagram showing radical inhibition by primary vs secondary antioxidants"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Oxidative Induction Time (OIT) Determination",
+      "formula": "OIT = Time_exotherm_onset - Time_oxygen_switch",
+      "inputs": "Oxygen switch at t = 5.0 min, Exothermic oxidation onset at t = 42.5 min"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ISO 11357-6:2018 — DSC — Determination of oxidation induction time (isothermal OIT)",
+      "Zweifel, H. Plastics Additives Handbook, 6th Ed."
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 91
+  },
+  {
+    "sequence_number": 33,
+    "proposed_slug": "twin-screw-compounding-specific-energy-residence-time-and-scaleup",
+    "title": "Twin-Screw Compounding: Specific Energy, Residence Time and Scale-Up",
+    "canonical_subject_id": "3224e480-d92e-474f-90ba-2439596e0db9",
+    "canonical_module_id": "3224e480-d92e-474f-90ba-243959600003",
+    "target_subject": "Additives & Compounding",
+    "target_module": "Module 3 — Twin-Screw Compounding Mechanics",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Co-rotating twin-screw compounding design (kneading block stagger angles, Specific Energy Consumption SEC, residence time distribution RTD, volumetric scale-up).",
+    "gap_solved": "Missing compounding machine design principles, kneading element stagger angles, and Specific Energy Consumption (SEC) scaling",
+    "prerequisites": [
+      "twin-screw-compounding-masterbatch"
+    ],
+    "learning_outcomes": [
+      "Calculate Specific Energy Consumption SEC (kWh/kg) from motor power, torque %, and throughput Q",
+      "Design screw configurations combining conveying elements, kneading blocks (30/45/60/90 deg), and reverse blocks",
+      "Determine mean residence time (t_bar) and residence time distribution (RTD) using tracer response curves",
+      "Scale up compounding twin-screw extruders keeping SEC and shear rate constant (Q2/Q1 = (D2/D1)^3)"
+    ],
+    "diagram_requirements": [
+      "Mermaid screw profile diagram showing solids feeding, melting kneading zone, side-feeder filler injection, vacuum vent, and discharge"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Specific Energy Consumption (SEC) Calculation",
+      "formula": "SEC = (P_applied) / Q = (P_motor * %Torque * (N / N_max)) / Q",
+      "inputs": "Motor P = 110 kW, Torque = 78%, Speed N = 450 rpm (N_max = 600), Q = 350 kg/h"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "Kohlgrüber, K. Co-Rotating Twin-Screw Extruders: Fundamentals, Technology, and Applications",
+      "Steer Engineering Compounding Handbook"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 94
+  },
+  {
+    "sequence_number": 34,
+    "proposed_slug": "barrier-packaging-kinetics-otr-and-wvtr-permeation",
+    "title": "Barrier Packaging Kinetics: Oxygen & Water Vapor Transmission Rate (OTR / WVTR)",
+    "canonical_subject_id": "4b781aed-0252-411c-9e58-76a8155a1c74",
+    "canonical_module_id": "4b781aed-0252-411c-9e58-76a815500001",
+    "target_subject": "Plastic Packaging Engineering",
+    "target_module": "Module 1 — Barrier Kinetics & Permeation",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Mathematical permeation transport model (Fickian diffusion + Henry's solubility law P = D * S) specifying exact test conditions (thickness, T, RH, gas, area, units).",
+    "gap_solved": "Missing mathematical permeation transport model (Fickian diffusion + Henry's law) specifying exact test conditions and units",
+    "prerequisites": [
+      "barrier-properties-otr-wvtr"
+    ],
+    "learning_outcomes": [
+      "Derive gas permeability coefficient P = D * S from Fickian steady-state diffusion and Henry's solubility law",
+      "Calculate Oxygen Transmission Rate (OTR) and Water Vapor Transmission Rate (WVTR) under specified T and RH conditions",
+      "Evaluate humidity sensitivity of EVOH barrier layers (loss of barrier above 75% RH)",
+      "Standardize permeability unit conversions between SI (mol*m / m^2*s*Pa) and commercial (cc*mil / 100in^2*day*atm)"
+    ],
+    "diagram_requirements": [
+      "Mermaid permeation concentration profile across multi-layer barrier film boundary"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Film Permeability Coefficient and OTR Calculation",
+      "formula": "OTR = P_gas / Thickness; P_gas = OTR * Thickness",
+      "inputs": "Film thickness = 25 um (1 mil), Measured OTR = 2.5 cc / (m^2 * day * atm) at 23C / 0% RH"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ASTM D3985 — Coulometric Oxygen Gas Transmission Rate",
+      "Crank, J. The Mathematics of Diffusion"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 95
+  },
+  {
+    "sequence_number": 35,
+    "proposed_slug": "active-and-intelligent-packaging-systems-scavengers-and-indicators",
+    "title": "Active & Intelligent Packaging Systems: Oxygen Scavengers, Antimicrobials & Indicators",
+    "canonical_subject_id": "4b781aed-0252-411c-9e58-76a8155a1c74",
+    "canonical_module_id": "4b781aed-0252-411c-9e58-76a815500002",
+    "target_subject": "Plastic Packaging Engineering",
+    "target_module": "Module 2 — Active & Intelligent Packaging",
+    "target_level": "intermediate",
+    "why_this_requires_a_separate_lesson": "Smart packaging technologies extending shelf life (iron oxidation O2 scavengers, moisture absorbers, time-temperature freshness TTIs).",
+    "gap_solved": "Missing technical coverage of smart active packaging systems extending food shelf-life and freshness indicators",
+    "prerequisites": [
+      "active-intelligent-packaging"
+    ],
+    "learning_outcomes": [
+      "Formulate active iron-based and enzymatic oxygen scavenging masterbatches for bottle crowns and pouch films",
+      "Calculate required oxygen absorption capacity (cc O2 / g scavenger) for target shelf-life extension",
+      "Integrate Time-Temperature Indicators (TTIs) and freshness sensors for cold-chain monitoring",
+      "Evaluate migratory safety of active antimicrobial agents in compliance with food contact standards"
+    ],
+    "diagram_requirements": [
+      "Mermaid active packaging film schematic showing embedded scavenger particles absorbing headspace O2"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Required Oxygen Scavenger Capacity Calculation",
+      "formula": "Total_O2 = Headspace_O2 + Ingress_O2_over_shelflife",
+      "inputs": "Headspace Vol = 30 cc (21% O2), Film OTR = 1.2 cc/day, Target Shelf-life = 180 days"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ISO 22000 / IS 10146 — Polyethylene for safe use in contact with foodstuffs",
+      "Robertson, G. L. Food Packaging: Principles and Practice"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "low",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 89
+  },
+  {
+    "sequence_number": 36,
+    "proposed_slug": "flexible-barrier-laminates-coextrusion-vs-vacuum-metallization",
+    "title": "Flexible Barrier Laminates: Multi-layer Co-extrusion vs Vacuum Metallization Physics",
+    "canonical_subject_id": "4b781aed-0252-411c-9e58-76a8155a1c74",
+    "canonical_module_id": "4b781aed-0252-411c-9e58-76a815500003",
+    "target_subject": "Plastic Packaging Engineering",
+    "target_module": "Module 3 — Flexible Barrier Laminates",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Comparative physics of 7-layer EVOH/PA co-extrusion vs AlOx / metallized PET film vacuum deposition.",
+    "gap_solved": "Missing comparative physics of 7-layer EVOH co-extrusion vs vacuum metallized aluminum / AlOx barrier films",
+    "prerequisites": [
+      "multilayer-structures-coextrusion"
+    ],
+    "learning_outcomes": [
+      "Calculate total laminate barrier resistance 1 / P_total = sum(d_i / P_i) for multi-layer films",
+      "Compare vacuum aluminum deposition (Optical Density OD 2.0 - 2.8) vs transparent AlOx / SiOx coatings",
+      "Evaluate tie-layer maleic anhydride grafted (MAh-g-PE) adhesive bonding kinetics across polar/non-polar layers",
+      "Optimize heat-seal strength and hot-tack initiation temperature (SIT) of PE sealants"
+    ],
+    "diagram_requirements": [
+      "Mermaid cross-sectional diagram of 7-layer barrier laminate structure (PE / Tie / PA / EVOH / PA / Tie / PE)"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Multi-Layer Laminate Total Barrier Calculation",
+      "formula": "1 / P_total = (d1 / P1) + (d2 / P2) + (d3 / P3)",
+      "inputs": "Layer 1 PE (40 um, P1 = 100), Layer 2 EVOH (5 um, P2 = 0.5), Layer 3 PE (40 um, P3 = 100)"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ASTM F904 — Standard Test Method for Bond Strength of Similar Laminates",
+      "Mount, E. M. Coextrusion for Flexible Packaging"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 93
+  },
+  {
+    "sequence_number": 37,
+    "proposed_slug": "iso-14040-44-life-cycle-assessment-execution-and-lci",
+    "title": "ISO 14040/14044 Life Cycle Assessment Execution: Goal, Scope & Inventory (LCI)",
+    "canonical_subject_id": "cb4aeb63-104f-4427-9256-06ad9356e50f",
+    "canonical_module_id": "cb4aeb63-104f-4427-9256-06ad93500001",
+    "target_subject": "Life Cycle Assessment",
+    "target_module": "Module 1 — ISO 14040/44 Framework",
+    "target_level": "intermediate",
+    "why_this_requires_a_separate_lesson": "Product-system ISO 14040/44 LCA execution methodology (Goal & Scope, Functional Unit, System Boundaries, LCI matrix data collection).",
+    "gap_solved": "Missing standard ISO 14040/44 methodology framework for executing cradle-to-grave product LCA studies",
+    "prerequisites": [
+      "introduction-lca-plastic-footprint"
+    ],
+    "learning_outcomes": [
+      "Define Functional Unit (e.g. 1,000 liters of beverage delivered) and System Boundaries (cradle-to-gate vs cradle-to-grave)",
+      "Build Life Cycle Inventory (LCI) mass and energy balance tables for virgin vs recycled polymer resins",
+      "Apply allocation rules (mass vs economic allocation) for co-products in refinery and recycling processes",
+      "Evaluate Life Cycle Impact Assessment (LCIA) categories using ReCiPe and CML baseline methodologies"
+    ],
+    "diagram_requirements": [
+      "Mermaid ISO 14040 4-stage LCA process diagram: Goal & Scope -> Inventory Analysis -> Impact Assessment -> Interpretation"
+    ],
+    "worked_example_plan": {
+      "problem_type": "LCI Cumulative Energy Demand (CED) Calculation",
+      "formula": "CED_total = sum(Mass_input_i * Energy_intensity_i)",
+      "inputs": "Virgin HDPE = 1.0 kg (CED = 78 MJ/kg), Recycled HDPE = 1.0 kg (CED = 15 MJ/kg)"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ISO 14040:2006 & ISO 14044:2006 — Life Cycle Assessment Standards",
+      "Guinée, J. B. Handbook on Life Cycle Assessment"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 95
+  },
+  {
+    "sequence_number": 38,
+    "proposed_slug": "corporate-ghg-accounting-product-carbon-boundaries-and-cbam-overview",
+    "title": "Corporate GHG Accounting, Product Carbon Boundaries and CBAM Overview",
+    "canonical_subject_id": "cb4aeb63-104f-4427-9256-06ad9356e50f",
+    "canonical_module_id": "cb4aeb63-104f-4427-9256-06ad93500002",
+    "target_subject": "Life Cycle Assessment",
+    "target_module": "Module 2 — Carbon Footprinting",
+    "target_level": "intermediate",
+    "why_this_requires_a_separate_lesson": "Organizational GHG Protocol corporate accounting (Scope 1 direct, Scope 2 indirect electricity, Scope 3 supply chain) and EU Carbon Border Adjustment Mechanism (CBAM) trade reporting boundaries.",
+    "gap_solved": "Missing practical accounting methodology for Scope 1, 2, 3 GHG corporate emissions and CBAM trade reporting boundaries",
+    "prerequisites": [
+      "carbon-footprint-polymer-production"
+    ],
+    "learning_outcomes": [
+      "Calculate Scope 1 direct combustion emissions, Scope 2 purchased electricity emissions, and Scope 3 upstream supply chain carbon",
+      "Determine Product Carbon Footprint (PCF) in kg CO2-equivalent per kg of plastic product using IPCC AR6 GWP100 factors",
+      "Analyze EU CBAM regulatory embedded emissions reporting requirements for polymer exporters",
+      "Formulate carbon reduction roadmaps via renewable energy purchase agreements (PPAs) and circular feedstock substitution"
+    ],
+    "diagram_requirements": [
+      "Mermaid boundary diagram illustrating Scope 1, Scope 2, and Scope 3 emissions across polymer supply chain"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Scope 1 + Scope 2 Carbon Footprint Calculation",
+      "formula": "GHG_total = (Fuel_Liters * EF_fuel) + (Electricity_kWh * EF_grid)",
+      "inputs": "Diesel = 500 L (EF = 2.68 kg CO2/L), Grid Power = 12,000 kWh (EF = 0.82 kg CO2/kWh)"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "GHG Protocol Corporate Value Chain (Scope 3) Standard",
+      "EU CBAM Regulation 2023/956 Guidelines"
+    ],
+    "source_risk": "medium",
+    "regulatory_risk": "high",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 93
+  },
+  {
+    "sequence_number": 39,
+    "proposed_slug": "environmental-product-declarations-epd-and-pcr-compliance",
+    "title": "Environmental Product Declaration (EPD) Generation & PCR Compliance for Polymers",
+    "canonical_subject_id": "cb4aeb63-104f-4427-9256-06ad9356e50f",
+    "canonical_module_id": "cb4aeb63-104f-4427-9256-06ad93500003",
+    "target_subject": "Life Cycle Assessment",
+    "target_module": "Module 3 — Environmental Product Declarations",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Third-party verified Type III Environmental Product Declaration (EPD) reporting following Product Category Rules (PCR) under ISO 14025.",
+    "gap_solved": "Missing third-party verified EPD report generation workflow following Product Category Rules (PCR)",
+    "prerequisites": [
+      "introduction-lca-plastic-footprint"
+    ],
+    "learning_outcomes": [
+      "Select applicable Product Category Rules (PCR) for construction and packaging plastic products",
+      "Compile Type III Environmental Product Declaration (EPD) tables covering GWP, ODP, AP, EP, and POCP indicator metrics",
+      "Prepare background LCA reports for independent third-party verifier audit",
+      "Utilize EPD declarations for IGBC / LEED green building material points"
+    ],
+    "diagram_requirements": [
+      "Mermaid EPD creation workflow diagram: PCR Selection -> LCA Study -> EPD Report Drafting -> Independent Verification -> Registration"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Eutrophication & Acidification Potential Calculation",
+      "formula": "EP = sum(Mass_i * Characterization_Factor_i)",
+      "inputs": "PO4-equivalent mass = 0.045 kg, NOX mass = 0.12 kg (CF = 0.13)"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ISO 14025:2006 — Type III Environmental Declarations",
+      "EN 15804 — Sustainability of construction works — EPD"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "low",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 89
+  },
+  {
+    "sequence_number": 40,
+    "proposed_slug": "cielab-color-space-and-spectrophotometric-delta-e-matching",
+    "title": "CIELAB Color Space (L*a*b*) & Spectrophotometric Delta E* Color Matching",
+    "canonical_subject_id": "d4f2af9a-03a4-4771-8af8-9e1965c48182",
+    "canonical_module_id": "d4f2af9a-03a4-4771-8af8-9e1965c00001",
+    "target_subject": "Color Science & Masterbatches",
+    "target_module": "Module 1 — Color Space Kinetics",
+    "target_level": "intermediate",
+    "why_this_requires_a_separate_lesson": "Mathematical 3D color space representation (L* lightness, a* red-green, b* yellow-blue) and Delta E* ab / Delta E2000 color tolerance equations.",
+    "gap_solved": "Missing mathematical color space representation and Delta E* color tolerance calculation methods",
+    "prerequisites": [
+      "color-measurement-spectrophotometry-delta-e"
+    ],
+    "learning_outcomes": [
+      "Plot color coordinates in 3D CIELAB color space (L*, a*, b*, C*, h deg)",
+      "Calculate total color difference Delta E* ab = sqrt((delta L*)^2 + (delta a*)^2 + (delta b*)^2)",
+      "Apply CIE2000 Delta E00 formula for improved human visual perception correlation",
+      "Operate benchtop spectrophotometers under D65 illuminant and 10 deg standard observer settings"
+    ],
+    "diagram_requirements": [
+      "Mermaid 3D CIELAB color space sphere illustrating L* axis, a* axis, b* axis, chroma C*, and hue angle h"
+    ],
+    "worked_example_plan": {
+      "problem_type": "CIELAB Delta E* Total Color Difference Calculation",
+      "formula": "Delta_E = sqrt((L2 - L1)^2 + (a2 - a1)^2 + (b2 - b1)^2)",
+      "inputs": "Standard: L=65.2, a=22.4, b=14.8; Batch: L=66.0, a=21.8, b=15.5"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ISO 11664-4:2019 — Colorimetry — CIE 1976 L*a*b* Colour space",
+      "Billmeyer and Saltzman's Principles of Color Technology"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 94
+  },
+  {
+    "sequence_number": 41,
+    "proposed_slug": "pigment-dispersion-kinetics-and-pressure-filter-value-pfv-testing",
+    "title": "Pigment Dispersion Kinetics & Pressure Filter Value (PFV) Testing",
+    "canonical_subject_id": "d4f2af9a-03a4-4771-8af8-9e1965c48182",
+    "canonical_module_id": "d4f2af9a-03a4-4771-8af8-9e1965c00002",
+    "target_subject": "Color Science & Masterbatches",
+    "target_module": "Module 2 — Pigment Dispersion Testing",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Standardized quality control testing method (EN 13900-5) measuring masterbatch pigment agglomerate dispersion via Pressure Filter Value (PFV in bar/g).",
+    "gap_solved": "Missing quality control metric for masterbatch pigment agglomerate dispersion (PFV bar/g) and filter clogging kinetics",
+    "prerequisites": [
+      "masterbatch-formulation-manufacturing"
+    ],
+    "learning_outcomes": [
+      "Operate melt pump filter test rigs according to EN 13900-5 standards",
+      "Calculate Pressure Filter Value PFV = (P_max - P_start) / m_pigment in bar / g",
+      "Evaluate pigment wetting, deagglomeration, and stabilization steps during twin-screw compounding",
+      "Prevent spinneret filter clogging in synthetic fiber extrusion (PP/PET multifilament yarn)"
+    ],
+    "diagram_requirements": [
+      "Mermaid schematic of Pressure Filter Value test rig: Extruder -> Melt Pump -> Pressure Transducer -> Filter Mesh Pack"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Pressure Filter Value (PFV) Calculation",
+      "formula": "PFV = (P_max - P_0) / m_pigment",
+      "inputs": "P_0 = 45 bar, P_max = 82 bar, Masterbatch pigment mass passed m = 15.0 g"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "EN 13900-5:2014 — Pigments and extenders — Determination of filter pressure value",
+      "Herbst, W. Industrial Organic Pigments"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 92
+  },
+  {
+    "sequence_number": 42,
+    "proposed_slug": "special-effect-pigments-metallic-pearlescent-and-thermochromic",
+    "title": "Special Effect Pigments: Metallic, Interference Pearlescent & Thermochromic Masterbatches",
+    "canonical_subject_id": "d4f2af9a-03a4-4771-8af8-9e1965c48182",
+    "canonical_module_id": "d4f2af9a-03a4-4771-8af8-9e1965c00003",
+    "target_subject": "Color Science & Masterbatches",
+    "target_module": "Module 3 — Special Effect Masterbatches",
+    "target_level": "intermediate",
+    "why_this_requires_a_separate_lesson": "Optical physics treatment of flake orientation, thin-film interference in pearlescents, and thermochromic phase-change pigments.",
+    "gap_solved": "Missing optical physics treatment of flake alignment, pearlescent thin-film interference, and thermochromic color transitions",
+    "prerequisites": [
+      "special-effects-masterbatch-pearl-metallic"
+    ],
+    "learning_outcomes": [
+      "Explain Bragg's law thin-film interference in TiO2-coated mica pearlescent pigments",
+      "Formulate aluminum flake metallic masterbatches avoiding shear particle folding and weld-line defects",
+      "Evaluate thermochromic microencapsulated leuco-dye phase change transition temperatures",
+      "Operate multi-angle spectrophotometers (15 deg, 45 deg, 110 deg flop angles) to quantify color flop"
+    ],
+    "diagram_requirements": [
+      "Mermaid optical interference diagram showing light reflection off TiO2 coating and mica substrate layers"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Pearlescent Interference Wavelength Calculation",
+      "formula": "lambda = 2 * n_coating * d_coating * cos(theta_refracted)",
+      "inputs": "n_TiO2 = 2.50, Coating thickness d = 120 nm, Normal incidence theta = 0"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ASTM E2194 — Multiangle Color Measurement of Metal Flake Materials",
+      "Pfaff, G. Special Effect Pigments"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 90
+  },
+  {
+    "sequence_number": 43,
+    "proposed_slug": "non-newtonian-rheological-models-power-law-and-carreau-yasuda",
+    "title": "Non-Newtonian Rheological Models: Power-Law, Carreau-Yasuda & Cross Equations",
+    "canonical_subject_id": "0c8e6afa-b2b8-44a4-80bf-e0f1300f8d39",
+    "canonical_module_id": "0c8e6afa-b2b8-44a4-80bf-e0f130000001",
+    "target_subject": "Polymer Rheology",
+    "target_module": "Module 1 — Non-Newtonian Constitutive Models",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Mathematical non-Newtonian constitutive shear-thinning equations required for finite element melt flow simulation.",
+    "gap_solved": "Missing non-Newtonian constitutive shear-thinning equations required for finite element melt flow simulation",
+    "prerequisites": [
+      "shear-thinning-power-law-model"
+    ],
+    "learning_outcomes": [
+      "Fit steady shear viscosity vs shear rate experimental curves to Power-Law, Cross, and Carreau-Yasuda models",
+      "Calculate Power-Law flow behavior index n (pseudoplastic n < 1) and consistency index K",
+      "Determine zero-shear viscosity eta_0 and relaxation time lambda from Carreau model parameters",
+      "Supply rheological constitutive coefficients into Moldflow / Moldex3D simulation engines"
+    ],
+    "diagram_requirements": [
+      "Mermaid log-log plot of viscosity vs shear rate showing zero-shear plateau, power-law region, and infinite-shear plateau"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Power-Law Viscosity & Shear Stress Calculation",
+      "formula": "tau = K * (dot_gamma)^n; eta = K * (dot_gamma)^(n - 1)",
+      "inputs": "K = 15,000 Pa*s^n, n = 0.35, dot_gamma = 500 s^-1"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ISO 6721-10:2015 — Determination of dynamic mechanical properties — Complex shear viscosity",
+      "Bird, R. B. Dynamics of Polymeric Liquids, Vol 1"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 96
+  },
+  {
+    "sequence_number": 44,
+    "proposed_slug": "first-normal-stress-difference-recoverable-strain-and-melt-elasticity",
+    "title": "First Normal Stress Difference, Recoverable Strain and Melt Elasticity",
+    "canonical_subject_id": "0c8e6afa-b2b8-44a4-80bf-e0f1300f8d39",
+    "canonical_module_id": "0c8e6afa-b2b8-44a4-80bf-e0f130000002",
+    "target_subject": "Polymer Rheology",
+    "target_module": "Module 2 — Elasticity & Normal Stress",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Rheological science lesson explaining First Normal Stress Difference N1 = tau_xx - tau_yy, normal force measurements, elastic recoil, and Weissenberg effect.",
+    "gap_solved": "Missing fundamental rheological physics of First Normal Stress Difference N1, normal force measurements, and melt elasticity recoil",
+    "prerequisites": [
+      "viscoelasticity-polymer-melt-memory"
+    ],
+    "learning_outcomes": [
+      "Derive First Normal Stress Difference N1 = tau_xx - tau_yy in simple shear flow",
+      "Calculate First Normal Stress coefficient Psi_1 = N1 / (dot_gamma)^2",
+      "Relate recoverable shear strain S_r = N1 / (2 * tau_xy) to melt elastic memory and extrudate recoil",
+      "Measure normal force F_N using cone-and-plate rotational rheometry (N1 = 2 * F_N / (pi * R^2))"
+    ],
+    "diagram_requirements": [
+      "Mermaid cone-and-plate rheometer geometry diagram showing normal force F_N acting downward on platen"
+    ],
+    "worked_example_plan": {
+      "problem_type": "First Normal Stress Difference (N1) Calculation",
+      "formula": "N1 = (2 * F_N) / (pi * R^2)",
+      "inputs": "Normal Force F_N = 12.5 N, Cone Radius R = 0.025 m (25 mm)"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ASTM D4440 — Melt Rheology by Dynamic Mechanical Properties",
+      "Dealy, J. M. Melt Rheology and Its Role in Plastics Processing"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 94
+  },
+  {
+    "sequence_number": 45,
+    "proposed_slug": "time-temperature-superposition-wlf-shifts-and-rheological-master-curves",
+    "title": "Time–Temperature Superposition, WLF Shifts and Rheological Master Curves",
+    "canonical_subject_id": "0c8e6afa-b2b8-44a4-80bf-e0f1300f8d39",
+    "canonical_module_id": "0c8e6afa-b2b8-44a4-80bf-e0f130000003",
+    "target_subject": "Polymer Rheology",
+    "target_module": "Module 3 — Time-Temperature Superposition",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Replaces duplicate capillary correction lesson with Time-Temperature Superposition (TTS), WLF horizontal shift factors a_T, and construction of rheological master curves across 10 decades of frequency.",
+    "gap_solved": "Missing Time-Temperature Superposition (TTS) principle, Williams-Landel-Ferry (WLF) shift factors, and master curve construction",
+    "prerequisites": [
+      "viscoelasticity-polymer-melt-memory"
+    ],
+    "learning_outcomes": [
+      "Apply the Time-Temperature Superposition (TTS) principle to construct extended master curves",
+      "Calculate horizontal shift factor a_T using the WLF equation log(a_T) = -C1*(T - T_ref) / (C2 + T - T_ref)",
+      "Determine Arrhenius activation energy for viscous flow E_a above Tg + 100 deg C",
+      "Identify thermorheological simplicity vs complexity breakdown in immiscible polymer blends"
+    ],
+    "diagram_requirements": [
+      "Mermaid log-log master curve plot showing shifted G' and G'' curves across 10 decades of reduced frequency omega*a_T"
+    ],
+    "worked_example_plan": {
+      "problem_type": "WLF Shift Factor Calculation",
+      "formula": "log10(a_T) = (-C1 * (T - T_ref)) / (C2 + (T - T_ref))",
+      "inputs": "C1 = 17.44, C2 = 51.6 K, T_ref = 100 deg C (Tg), T = 130 deg C"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ISO 6721-4 — Determination of dynamic mechanical properties",
+      "Ferry, J. D. Viscoelastic Properties of Polymers, 3rd Ed."
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 93
+  },
+  {
+    "sequence_number": 46,
+    "proposed_slug": "extrusion-flow-instabilities-sharkskin-melt-fracture-and-gross-fracture",
+    "title": "Extrusion Flow Instabilities: Sharkskin Melt Fracture & Gross Melt Fracture Kinetics",
+    "canonical_subject_id": "0c8e6afa-b2b8-44a4-80bf-e0f1300f8d39",
+    "canonical_module_id": "0c8e6afa-b2b8-44a4-80bf-e0f130000004",
+    "target_subject": "Polymer Rheology",
+    "target_module": "Module 4 — Flow Instabilities",
+    "target_level": "advanced",
+    "why_this_requires_a_separate_lesson": "Physics of high shear rate extrudate surface defects (sharkskin melt fracture, stick-slip transition, gross melt fracture).",
+    "gap_solved": "Missing physics of high shear rate extrudate surface defects, critical wall shear stress thresholds, and PPA processing aid mechanisms",
+    "prerequisites": [
+      "melt-fracture-sharkskin-flow-instabilities"
+    ],
+    "learning_outcomes": [
+      "Identify critical wall shear stress thresholds (tau_crit = 0.1 to 0.15 MPa) for sharkskin onset",
+      "Differentiate surface sharkskin (die exit acceleration) from gross melt fracture (inlet entry flow instability)",
+      "Apply fluoropolymer Polymer Processing Aids (PPA) to induce controlled wall slip and suppress sharkskin",
+      "Construct processing window maps (throughput vs die temperature) avoiding unstable flow regimes"
+    ],
+    "diagram_requirements": [
+      "Mermaid extrusion flow instability map plotting die wall shear stress vs shear rate showing smooth, sharkskin, stick-slip, and gross fracture regimes"
+    ],
+    "worked_example_plan": {
+      "problem_type": "Critical Die Wall Shear Stress Calculation",
+      "formula": "tau_w = (Delta_P * R_die) / (2 * L_die)",
+      "inputs": "Delta_P = 12 MPa (1.2e7 Pa), R_die = 1.0 mm (0.001 m), L_die = 30 mm (0.030 m)"
+    },
+    "quiz_plan": {
+      "minimum_questions": 5,
+      "minimum_numericals": 2
+    },
+    "source_plan": [
+      "ASTM D3835 — Properties of Polymeric Materials by Capillary Rheometer",
+      "Larson, R. G. The Structure and Rheology of Complex Fluids"
+    ],
+    "source_risk": "low",
+    "regulatory_risk": "not_applicable",
+    "standards_verification_status": "verification_pending",
+    "priority_score": 95
+  }
+]

@@ -1,0 +1,1286 @@
+{
+  "metadata": {
+    "total_lessons": 148,
+    "existing_lessons": 102,
+    "new_lessons": 46,
+    "pathway_type": "Directed Acyclic Graph (DAG) for Sequential Learning"
+  },
+  "prerequisite_node_graph": [
+    {
+      "lesson_id": "77fded75-d843-4130-8c76-358da8f34f05",
+      "slug": "vulcanization-of-rubber-chemistry-systems-and-industrial-practice",
+      "title": "Vulcanization Chemistry, Accelerator Kinetics & Rheometer Cure Curves",
+      "subject": "Rubber Technology",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "5168dc33-583a-46dd-b264-52c5520cacd4",
+      "slug": "injection-moulding-process-parameters-and-defects",
+      "title": "Injection Moulding Parameters, Melt Dynamics & Defect Troubleshooting",
+      "subject": "Polymer Processing",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "b5e3b102-6830-4f0f-b828-9f2c5a90f8ce",
+      "slug": "gate-design-in-injection-moulds-types-location-and-selection",
+      "title": "Gate Design in Injection Moulds: Types, Location & Shear Kinetics",
+      "subject": "Mould Design",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "ef1a6503-0d78-4a98-80e1-3fde9fb442cc",
+      "slug": "melt-flow-index-mfi-measurement-significance-and-indian-standards",
+      "title": "Melt Flow Index (MFI / MFR): Testing, Significance & Standards (ISO 1133 / ASTM D1238 / IS 2530)",
+      "subject": "Polymer Testing",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "89ef1b60-8864-4f2b-97cc-eb36f6460158",
+      "slug": "extrusion-process-screw-design-and-die-types",
+      "title": "Extrusion Process: Screw Design, Flow Mechanics and Die Geometry",
+      "subject": "Polymer Processing",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "c01863b8-a188-49ea-85d4-5f75109369d7",
+      "slug": "polymer-blends-and-composites-combining-materials-for-better-performance",
+      "title": "Polymer Blends, Composites & Micromechanics (Voigt Rule of Mixtures)",
+      "subject": "Polymer Chemistry",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "0f574312-7451-407e-879f-21d458a58006",
+      "slug": "thermoforming-vacuum-pressure-and-twin-sheet-processes",
+      "title": "Thermoforming: Vacuum, Pressure & Twin-Sheet Forming Kinetics",
+      "subject": "Polymer Processing",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "29fb1fea-95c9-48b4-aad9-eff5a7d8ff98",
+      "slug": "polymerization-mechanisms-addition-vs-condensation",
+      "title": "Addition & Condensation Polymerization Reaction Mechanisms",
+      "subject": "Polymer Chemistry",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "d0abb704-b184-46f7-bbea-9f1b75e19ecf",
+      "slug": "thermoplastics-vs-thermosets-structure-and-behavior",
+      "title": "Thermoplastics vs Thermosets: Molecular Structure, Thermal Transitions & Recyclability",
+      "subject": "Polymer Chemistry",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "317a3ecb-f83e-4835-aafd-acdfdbdf7f17",
+      "slug": "compression-and-transfer-moulding-for-thermosets",
+      "title": "Compression and Transfer Moulding of Thermosetting Polymers",
+      "subject": "Polymer Processing",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "34151cea-223d-4722-9fdc-e60dc63d9bfe",
+      "slug": "extrusion-die-design-fundamentals",
+      "title": "Extrusion Die Design Fundamentals: Rheology, Pressure Drop & Land Geometry",
+      "subject": "Polymer Processing",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "ce773e15-16c2-4ac5-96d5-1ae9d7dfe84b",
+      "slug": "crystallinity-and-morphology-in-polymers",
+      "title": "Crystallinity, Lamellar Morphology & Density Characterization in Polymers",
+      "subject": "Polymer Chemistry",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "d1514efd-c93b-4b82-a2ea-edf0b1cd89f8",
+      "slug": "polymer-degradation-and-stabilization",
+      "title": "Polymer Degradation Pathways, Kinetics & Antioxidant Stabilization",
+      "subject": "Polymer Chemistry",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "86710bdd-a5cb-4c80-abfe-5564db94852b",
+      "slug": "introduction-to-polymer-structure-and-molecular-weight",
+      "title": "Polymer Structure, Molecular Weight Averages, Dispersity and SEC Characterization",
+      "subject": "Polymer Chemistry",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "2f6b3412-d5dc-4f44-aebb-de65106271c0",
+      "slug": "blow-moulding-extrusion-and-injection-blow-processes",
+      "title": "Blow Moulding: Extrusion Blow (EBM), Injection Blow (IBM) & ISBM Systems",
+      "subject": "Polymer Processing",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "5a82905c-60df-4894-b9af-71c8eeaaf078",
+      "slug": "thermal-analysis-dsc-tga-and-hdt-testing",
+      "title": "Thermal Analysis: DSC, TGA, and HDT Testing",
+      "subject": "Polymer Testing",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "92ca5cb7-600a-4870-a0dd-b8aaa9499c87",
+      "slug": "natural-rubber-vs-synthetic-rubber-sources-and-selection",
+      "title": "Natural Rubber vs Synthetic Rubber: Sources and Selection",
+      "subject": "Rubber Technology",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "19b4745d-e5c0-4526-b349-f0b3367894f9",
+      "slug": "rubber-compounding-fillers-carbon-black-and-additives",
+      "title": "Rubber Compounding: Fillers, Carbon Black, and Additives",
+      "subject": "Rubber Technology",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "34b6c5d9-e747-48d2-a967-d81c33127d96",
+      "slug": "latex-technology-processing-and-applications",
+      "title": "Latex Technology: Processing and Applications",
+      "subject": "Rubber Technology",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "4c6e7715-80a6-44f3-8e11-798700bf2467",
+      "slug": "rubber-processing-mixing-calendering-and-extrusion",
+      "title": "Rubber Processing: Mixing, Calendering, and Extrusion",
+      "subject": "Rubber Technology",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "5a31267f-8bc6-4892-b436-f2e48c597b8c",
+      "slug": "tyre-construction-from-components-to-finished-product",
+      "title": "Tyre Construction: From Components to Finished Product",
+      "subject": "Rubber Technology",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "161566a5-c027-4040-819b-3068ab5e9186",
+      "slug": "bioplastics-synthesis-compostability-and-standards",
+      "title": "Bioplastics: Synthesis, Compostability, and Standards",
+      "subject": "Sustainable Plastics & Bioplastics",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "9b5c8147-228d-4aed-99ce-99cfa8ea3db7",
+      "slug": "introduction-to-reinforced-polymer-composites",
+      "title": "Introduction to Reinforced Polymer Composites",
+      "subject": "Polymer Composites",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "b68a22be-4abc-469b-8baa-10faf8d764a7",
+      "slug": "introduction-to-mechanical-and-chemical-recycling",
+      "title": "Introduction to Mechanical and Chemical Recycling of Polymers",
+      "subject": "Recycling Technology",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "1e79ee72-7373-4223-bcd1-e724927e6b1d",
+      "slug": "runner-and-sprue-design-balancing-flow-to-multiple-cavities",
+      "title": "Injection Mould Runner Systems, Gate Design & Feed Balancing",
+      "subject": "Mould Design",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "e89889e6-05ea-4c59-a48f-ae81b89bc335",
+      "slug": "pla-pha-and-starch-based-polymers-in-packaging",
+      "title": "PLA, PHA, and Starch-Based Biopolymers in Packaging Engineering",
+      "subject": "Sustainable Plastics & Bioplastics",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "53359da3-f96f-4f1c-abb9-60956d478166",
+      "slug": "epr-extended-producer-responsibility-compliance-frameworks-in-india",
+      "title": "EPR (Extended Producer Responsibility) Compliance Frameworks in India",
+      "subject": "Recycling Technology",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "ea2e45fe-59bc-4568-8c41-eaa1856e07e2",
+      "slug": "rheological-testing-understanding-melt-flow-behavior",
+      "title": "Rheological Testing: MFR/MVR Limitations vs Rotational & Capillary Rheometry",
+      "subject": "Polymer Testing",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "20a3be88-7688-46c4-9f05-3c0a4ba82b63",
+      "slug": "hardness-testing-shore-a-and-shore-d-durometers",
+      "title": "Hardness Testing: Shore A & Shore D Durometer Mechanics & Viscoelastic Dwell Kinetics",
+      "subject": "Polymer Testing",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "e1640ee0-5fe9-47c7-bbe1-e861688b42c2",
+      "slug": "cooling-system-design-channels-layout-and-heat-transfer",
+      "title": "Cooling System Design in Moulds: Heat Transfer Kinetics, Turbulent Channels & Conformal Lines",
+      "subject": "Mould Design",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "b96e8691-dc3a-4d17-b021-5c03122112c7",
+      "slug": "draft-angles-and-shrinkage-allowance-in-mould-design",
+      "title": "Draft Angles & Volumetric Shrinkage Allowance in Injection Mould Design",
+      "subject": "Mould Design",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "8e5139c4-71b6-4060-9c76-fb9aa5214e77",
+      "slug": "mould-materials-and-surface-finish",
+      "title": "Mould Steel Metallurgy, Heat Treatment & International Surface Finish Standards",
+      "subject": "Mould Design",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "fdd3cd34-dac4-4b3b-81b2-5b9c79ee3317",
+      "slug": "impact-testing-izod-and-charpy-methods",
+      "title": "Impact Testing: Izod vs Charpy Pendulum Dynamics & Fracture Mechanics",
+      "subject": "Polymer Testing",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "b77fe980-bbda-46ae-8fa1-3aacaf5f20f7",
+      "slug": "manufacturing-of-glass-fibre-and-carbon-fibre-composites",
+      "title": "Manufacturing of Glass-Fibre and Carbon-Fibre Composites",
+      "subject": "Polymer Composites",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "3a2b13ae-ac15-4249-9303-c642f7e2bb78",
+      "slug": "capex-and-business-planning-for-plastics-processing",
+      "title": "CAPEX and Business Planning for Plastics Processing",
+      "subject": "Entrepreneurship in Plastics",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "b93938d0-1519-421d-a712-f98eee2de807",
+      "slug": "bis-compliance-raw-material-sourcing-and-government-schemes-in-india",
+      "title": "BIS Compliance, Raw Material Sourcing, and Government Schemes in India",
+      "subject": "Entrepreneurship in Plastics",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "0f6de6fe-86ee-40d1-a0ab-8673dea543c0",
+      "slug": "the-sustainable-plastics-landscape-bio-based-biodegradable-and-compostable",
+      "title": "The Sustainable Plastics Landscape: Bio-based, Biodegradable, and Compostable",
+      "subject": "Sustainable Plastics & Bioplastics",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "b157f23d-1d86-4c04-bfb9-4e51f45dae95",
+      "slug": "polylactic-acid-pla-synthesis-properties-and-commercial-reality",
+      "title": "Polylactic Acid (PLA): Synthesis, Properties, and Commercial Reality",
+      "subject": "Sustainable Plastics & Bioplastics",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "96941399-5f24-4da5-97fc-74808eb636d1",
+      "slug": "polyhydroxyalkanoates-pha-nature-s-true-bioplastic",
+      "title": "Polyhydroxyalkanoates (PHA): Nature's True Bioplastic",
+      "subject": "Sustainable Plastics & Bioplastics",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "ffcf1264-7534-42cf-bb2a-b3ced044066b",
+      "slug": "packaging-design-for-sustainability-mono-materials-and-recyclable-structures",
+      "title": "Packaging Design for Sustainability: Mono-materials and Recyclable Structures",
+      "subject": "Sustainable Plastics & Bioplastics",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "e5172afa-ad6d-4d6d-8cce-de2f41f7ec99",
+      "slug": "bio-pe-bio-pet-and-drop-in-bio-based-polymers",
+      "title": "Bio-PE, Bio-PET, and Drop-In Bio-based Polymers",
+      "subject": "Sustainable Plastics & Bioplastics",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "a51b78a7-1ebd-401d-8550-7a4318fdbd58",
+      "slug": "introduction-to-polymer-composites-matrix-reinforcement-and-interface",
+      "title": "Introduction to Polymer Composites: Matrix, Reinforcement, and Interface",
+      "subject": "Polymer Composites",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "072e944c-5f8c-4701-b405-1fa7830b7b57",
+      "slug": "glass-fibre-reinforced-plastics-gfrp-processing-and-applications",
+      "title": "Glass Fibre Reinforced Plastics (GFRP): Processing and Applications",
+      "subject": "Polymer Composites",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "b81f817c-2b69-4a76-ba58-74e452e9cc1c",
+      "slug": "carbon-fibre-reinforced-polymers-cfrp-aerospace-to-automotive",
+      "title": "Carbon Fibre Reinforced Polymers (CFRP): Aerospace to Automotive",
+      "subject": "Polymer Composites",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "caec9fd2-16de-4f7f-8ed7-7f28ea1d7d8c",
+      "slug": "introduction-to-the-plastics-recycling-landscape-why-it-matters-now",
+      "title": "Introduction to the Plastics Recycling Landscape: Why It Matters Now",
+      "subject": "Recycling Technology",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "dcba10b8-a201-4b5f-b5c6-bbbea455d2d4",
+      "slug": "mechanical-recycling-collection-sorting-and-reprocessing",
+      "title": "Mechanical Recycling: Collection, Sorting, and Reprocessing",
+      "subject": "Recycling Technology",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "fb9f1601-0b1b-4cf5-a426-136c236c8ea6",
+      "slug": "chemical-recycling-pyrolysis-depolymerization-and-solvolysis",
+      "title": "Chemical Recycling: Pyrolysis, Depolymerization, and Solvolysis",
+      "subject": "Recycling Technology",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "1c92c18d-be39-470f-85c0-d8980007ec47",
+      "slug": "enzymatic-and-biological-recycling-the-frontier-technology",
+      "title": "Enzymatic and Biological Recycling: The Frontier Technology",
+      "subject": "Recycling Technology",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "6d85a055-22e0-4c5b-9ae0-22542425bed6",
+      "slug": "extended-producer-responsibility-epr-and-regulatory-frameworks",
+      "title": "Extended Producer Responsibility (EPR) and Regulatory Frameworks",
+      "subject": "Recycling Technology",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "5cbe08ff-304c-43b2-81be-564b684f9d79",
+      "slug": "life-cycle-assessment-lca-and-the-circular-economy-framework",
+      "title": "Life Cycle Assessment (LCA) and the Circular Economy Framework",
+      "subject": "Recycling Technology",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "6711ddc9-b7dc-4d54-be15-2f1bdd55f819",
+      "slug": "the-future-of-sustainable-plastics-trends-investment-and-your-career",
+      "title": "The Future of Sustainable Plastics: Trends, Investment, and Your Career",
+      "subject": "Sustainable Plastics & Bioplastics",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "d214d779-1489-4ec9-8156-fb6365d2e316",
+      "slug": "short-fibre-reinforced-thermoplastics-injection-moulded-composites",
+      "title": "Short Fibre Reinforced Thermoplastics: Injection Moulded Composites",
+      "subject": "Polymer Composites",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "b67035d1-ef33-4bf7-9fa3-e3ab5ba2fb08",
+      "slug": "the-plastics-entrepreneurship-landscape-in-india-why-your-degree-is-the-moat",
+      "title": "The Plastics Entrepreneurship Landscape in India: Why Your Degree Is the Moat",
+      "subject": "Entrepreneurship in Plastics",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "8a3f8e9a-1267-4284-b78c-85dd149c4bdb",
+      "slug": "10-25-lakh-entry-tier-low-capex-manufacturing-businesses",
+      "title": "₹10–25 Lakh Entry Tier: Low-Capex Manufacturing Businesses",
+      "subject": "Entrepreneurship in Plastics",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "ad6b5192-ef6a-4a51-9b98-6397beb51360",
+      "slug": "uv-stabilizers-hals-benzotriazoles",
+      "title": "UV Stabilizers — HALS, Benzophenones, and Benzotriazoles",
+      "subject": "Additives & Compounding",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "10b66ba2-f3b3-42b2-a4df-c77c87e35f41",
+      "slug": "plasticizers-flexibility-pvc",
+      "title": "Plasticizers — Flexibility by Design",
+      "subject": "Additives & Compounding",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "142c5caf-428a-4e61-832d-d73606cfac3a",
+      "slug": "flame-retardants-polymer-safety",
+      "title": "Flame Retardants — Making Plastics Safe",
+      "subject": "Additives & Compounding",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "b853dc25-bdaf-4fc4-a665-dc07dc96d258",
+      "slug": "impact-modifiers-toughening-agents",
+      "title": "Impact Modifiers and Toughening Agents",
+      "subject": "Additives & Compounding",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "9d540ce5-d5e9-4f2d-b798-d5f6905604b7",
+      "slug": "fillers-nucleating-agents-processing-aids",
+      "title": "Fillers, Nucleating Agents, and Processing Aids",
+      "subject": "Additives & Compounding",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "e6cb0c04-f273-4537-9dbf-eab202407cbf",
+      "slug": "introduction-to-rheology-polymer-melts",
+      "title": "Polymer Melt Rheology, Viscosity & Shear Flow Fundamentals",
+      "subject": "Polymer Rheology",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "9372c69c-9099-40c0-be06-1b05a992f4e9",
+      "slug": "tensile-and-flexural-testing-measuring-mechanical-strength",
+      "title": "Tensile Properties & Mechanical Testing (ASTM D638 vs ISO 527)",
+      "subject": "Polymer Testing",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "8ba52746-9923-4b44-9dc8-7f4789be5f8a",
+      "slug": "25-75-lakh-growth-tier-higher-margin-technical-products",
+      "title": "₹25–75 Lakh Growth Tier: Higher-Margin Technical Plastics Manufacturing",
+      "subject": "Entrepreneurship in Plastics",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "a360c2e7-0803-4c15-aeae-334d90798913",
+      "slug": "natural-fibre-composites-jute-flax-coir-and-bamboo-reinforcement",
+      "title": "Natural Fibre Composites: Jute, Flax, Coir, and Bamboo Reinforcement",
+      "subject": "Polymer Composites",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "baa5a9d0-b2ef-4e13-96f1-581c6088c0ed",
+      "slug": "composite-design-failure-modes-and-testing",
+      "title": "Composite Design, Failure Modes, and Testing",
+      "subject": "Polymer Composites",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "159297e4-de81-4f5c-a666-e51a0a06a7b4",
+      "slug": "funding-government-schemes-and-project-report-basics",
+      "title": "Funding, Government Schemes, and Project Report Basics",
+      "subject": "Entrepreneurship in Plastics",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "62e4ae71-02e1-474b-b485-7b767897caff",
+      "slug": "running-a-plastics-business-quality-compliance-bis-certification-and-export",
+      "title": "Running a Plastics Business: Quality, Compliance, BIS Certification, and Export",
+      "subject": "Entrepreneurship in Plastics",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "d382d40d-ef33-4559-8cee-0e05fca3a4e8",
+      "slug": "introduction-to-medical-plastics-why-this-sector-demands-a-different-standard",
+      "title": "Introduction to Medical Plastics: Why This Sector Demands a Different Standard",
+      "subject": "Medical Plastics & Biomaterials",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "5083e592-8a99-417d-9440-a8f8b8c33e69",
+      "slug": "biocompatibility-iso-10993-and-the-science-of-safe-polymer-body-contact",
+      "title": "Biocompatibility: ISO 10993 and the Science of Safe Polymer-Body Contact",
+      "subject": "Medical Plastics & Biomaterials",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "7782e216-dbda-4b4b-b7a7-7e4cf0e9db63",
+      "slug": "key-medical-grade-polymers-properties-applications-and-selection",
+      "title": "Key Medical-Grade Polymers: Properties, Applications, and Selection",
+      "subject": "Medical Plastics & Biomaterials",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "ad7796a0-10e4-4d40-81a8-ccfb9af02e7e",
+      "slug": "sterilization-methods-and-polymer-compatibility",
+      "title": "Sterilization Methods and Polymer Compatibility",
+      "subject": "Medical Plastics & Biomaterials",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "88d8d393-8928-457d-b878-56bf6b8c9406",
+      "slug": "implantable-polymers-and-biodegradable-medical-devices",
+      "title": "Implantable Polymers and Biodegradable Medical Devices",
+      "subject": "Medical Plastics & Biomaterials",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "f32cd0f6-d49d-4615-a77f-e0cebaa8bc8e",
+      "slug": "cleanroom-manufacturing-iso-13485-and-building-a-medical-plastics-career",
+      "title": "Cleanroom Manufacturing, ISO 13485, and Building a Medical Plastics Career",
+      "subject": "Medical Plastics & Biomaterials",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "886aadaa-5eb3-412f-b517-19be2d25c9f3",
+      "slug": "shear-thinning-power-law-model",
+      "title": "Shear-Thinning and the Power Law Model",
+      "subject": "Polymer Rheology",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "626beda4-503b-40a3-bc9d-2b264081cfd4",
+      "slug": "viscoelasticity-polymer-melt-memory",
+      "title": "Viscoelasticity — The Memory of Polymer Melts",
+      "subject": "Polymer Rheology",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "06c36f37-378d-4a13-9817-4f2176dd66e4",
+      "slug": "capillary-rheometry-viscosity-measurement",
+      "title": "Capillary Rheometry and Viscosity Measurement",
+      "subject": "Polymer Rheology",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "1325dd8b-83e7-439d-bb69-86b78cd970d3",
+      "slug": "melt-fracture-sharkskin-flow-instabilities",
+      "title": "Melt Fracture, Sharkskin, and Flow Instabilities",
+      "subject": "Polymer Rheology",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "6abacf0d-cf2a-4157-8acc-7ae7cb273fff",
+      "slug": "rheology-in-practice-selecting-processing-grades",
+      "title": "Rheology in Practice — Selecting and Processing Polymer Grades",
+      "subject": "Polymer Rheology",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "f99dcfc7-7ef7-4f88-9fd8-59e5eb1e8ef6",
+      "slug": "introduction-polymer-additives",
+      "title": "Introduction to Polymer Additives — Why Pure Polymers Are Unusable",
+      "subject": "Additives & Compounding",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "b10dc57b-6f7d-48f3-9c41-a77f9472813f",
+      "slug": "antioxidants-polymer-stabilization",
+      "title": "Antioxidants — Protecting Polymers from Thermal and Oxidative Degradation",
+      "subject": "Additives & Compounding",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "02f21d40-3d2f-4e94-ba98-2589286cd654",
+      "slug": "twin-screw-compounding-masterbatch",
+      "title": "Twin-Screw Compounding — Masterbatch and Compound Manufacturing",
+      "subject": "Additives & Compounding",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "b1788ceb-8b4a-449b-a949-820061923839",
+      "slug": "introduction-plastic-packaging",
+      "title": "Introduction to Plastic Packaging — The Largest Sector in Plastics",
+      "subject": "Plastic Packaging Engineering",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "08bd9966-236b-4b4f-8ca4-9f5f216056ff",
+      "slug": "barrier-properties-otr-wvtr",
+      "title": "Barrier Properties — OTR, WVTR, and CO2 Transmission",
+      "subject": "Plastic Packaging Engineering",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "83b53214-8c4b-4888-9931-b8e29975a176",
+      "slug": "flexible-packaging-films",
+      "title": "Flexible Packaging Films — LDPE, LLDPE, BOPP, PET, and PA Films",
+      "subject": "Plastic Packaging Engineering",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "7011dccc-ebe5-490c-ae50-11c10e16d49b",
+      "slug": "multilayer-structures-coextrusion",
+      "title": "Multilayer Structures and Co-extrusion — Combining Polymers for Performance",
+      "subject": "Plastic Packaging Engineering",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "102a309e-43b9-4d86-bf0f-38161041962e",
+      "slug": "rigid-packaging-pet-hdpe-pp",
+      "title": "Rigid Packaging — PET Bottles, HDPE Containers, and PP Food Containers",
+      "subject": "Plastic Packaging Engineering",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "868a94d2-990e-4db9-8292-c5eac90fd845",
+      "slug": "food-contact-regulations-packaging",
+      "title": "Food Contact Regulations and Packaging Safety",
+      "subject": "Plastic Packaging Engineering",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "e9720098-9008-406e-93c6-340a1350e669",
+      "slug": "active-intelligent-packaging",
+      "title": "Active and Intelligent Packaging",
+      "subject": "Plastic Packaging Engineering",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "f135e404-b013-46d7-bc6e-b7bdb7adc885",
+      "slug": "sustainable-packaging-design-epr",
+      "title": "Sustainable Packaging Design — Mono-Materials, Recyclability, and EPR",
+      "subject": "Plastic Packaging Engineering",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "6be08f18-7387-4cec-a50b-fd127963a60d",
+      "slug": "introduction-lca-plastic-footprint",
+      "title": "Introduction to LCA — Measuring the True Cost of Plastic",
+      "subject": "Life Cycle Assessment",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "e0e91b18-3295-4f6c-9ca5-14ded95cbd7d",
+      "slug": "life-cycle-inventory-lci",
+      "title": "Life Cycle Inventory — Quantifying Inputs and Outputs",
+      "subject": "Life Cycle Assessment",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "ceeeaf96-a236-4388-b5d2-d955c221a647",
+      "slug": "lca-impact-assessment-categories",
+      "title": "Impact Assessment — Carbon Footprint, Water, and Eutrophication",
+      "subject": "Life Cycle Assessment",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "36870060-5246-4485-9ac2-f454c39f96bc",
+      "slug": "lca-packaging-plastic-vs-alternatives",
+      "title": "LCA of Packaging — Comparing Plastic vs. Alternatives",
+      "subject": "Life Cycle Assessment",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "dc4f0250-ca85-4587-b600-5025316cc912",
+      "slug": "carbon-footprint-polymer-production",
+      "title": "Carbon Footprint of Polymer Production — From Naphtha to Pellet",
+      "subject": "Life Cycle Assessment",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "6c5cbd16-3557-451e-855d-c75db0e05d7a",
+      "slug": "lca-practice-india-epr-esg",
+      "title": "LCA in Practice — How Indian Companies Use It for EPR and ESG Reporting",
+      "subject": "Life Cycle Assessment",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "bba0abc3-d6a6-4252-994f-920c4b26ffd0",
+      "slug": "introduction-color-plastics-pigments-dyes",
+      "title": "Introduction to Color in Plastics — Pigments vs. Dyes",
+      "subject": "Color Science & Masterbatches",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "97d9da35-0dcf-4c23-9018-2d6a2f9932ef",
+      "slug": "titanium-dioxide-plastics-pigment",
+      "title": "Titanium Dioxide — The Most Important Pigment in Plastics",
+      "subject": "Color Science & Masterbatches",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "60a64608-92fa-4d7d-a292-a79c733afd7b",
+      "slug": "organic-pigments-phthalocyanines-azo",
+      "title": "Organic Pigments — Phthalocyanines, Azo, and High-Performance Pigments",
+      "subject": "Color Science & Masterbatches",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "7040a0fa-595f-46e3-8871-76211a7f6d3e",
+      "slug": "color-measurement-spectrophotometry-delta-e",
+      "title": "Color Measurement and Matching — Spectrophotometry and Delta E",
+      "subject": "Color Science & Masterbatches",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "35440063-1424-4318-9d41-0755990363d7",
+      "slug": "masterbatch-formulation-manufacturing",
+      "title": "Masterbatch Formulation and Manufacturing",
+      "subject": "Color Science & Masterbatches",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "7c0296ad-7adb-471f-95fe-7a540fde2795",
+      "slug": "special-effects-masterbatch-pearl-metallic",
+      "title": "Special Effects — Pearl, Metallic, Fluorescent, and Thermochromic",
+      "subject": "Color Science & Masterbatches",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "c84dad6d-094a-41d9-a2f6-8e03d454d553",
+      "slug": "75-lakh-2-crore-scale-tier-extrusion-plants-recycling-and-processing-lines",
+      "title": "₹75 Lakh–₹2 Crore Scale Recycling & Extrusion Plants: Project Economics & Working Capital",
+      "subject": "Entrepreneurship in Plastics",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "lesson_id": "c306bbda-6f87-478e-ba64-017c19df74e7",
+      "slug": "ejection-systems-pins-sleeves-strippers-and-air-ejection",
+      "title": "Ejection Systems in Moulds: Mechanics, Pin/Sleeve Actuation & Stripper Mechanics",
+      "subject": "Mould Design",
+      "type": "EXISTING_LESSON",
+      "prerequisites": []
+    },
+    {
+      "backlog_id": "EXP-CHEM-01",
+      "slug": "ring-opening-polymerization-mechanics-industrial-nylon-6-polycaprolactone",
+      "title": "Ring-Opening Polymerization Mechanics: Industrial Nylon 6 & Polycaprolactone",
+      "subject": "Polymer Chemistry",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "introduction-to-polymer-structure-and-molecular-weight"
+      ]
+    },
+    {
+      "backlog_id": "EXP-CHEM-02",
+      "slug": "living-anionic-cationic-polymerization-narrow-polydispersity-block-copolymers",
+      "title": "Living Anionic & Cationic Polymerization: Narrow Polydispersity Block Copolymers",
+      "subject": "Polymer Chemistry",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "introduction-to-polymer-structure-and-molecular-weight"
+      ]
+    },
+    {
+      "backlog_id": "EXP-CHEM-03",
+      "slug": "polymer-solution-thermodynamics-flory-huggins-theory-phase-diagrams",
+      "title": "Polymer Solution Thermodynamics: Flory-Huggins Theory & Phase Diagrams",
+      "subject": "Polymer Chemistry",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "thermoplastics-vs-thermosets-structure-and-behavior"
+      ]
+    },
+    {
+      "backlog_id": "EXP-PROC-01",
+      "slug": "extrusion-die-swell-mechanics-viscoelastic-normal-stress-exit-flow-defects",
+      "title": "Extrusion Die Swell Mechanics: Viscoelastic Normal Stress & Exit Flow Defects",
+      "subject": "Polymer Processing",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "extrusion-process-screw-design-and-die-types"
+      ]
+    },
+    {
+      "backlog_id": "EXP-PROC-02",
+      "slug": "compression-transfer-moulding-physics-thermoset-smc-bmc-cure-kinetics",
+      "title": "Compression & Transfer Moulding Physics: Thermoset SMC/BMC Cure Kinetics",
+      "subject": "Polymer Processing",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "thermoplastics-vs-thermosets-structure-and-behavior"
+      ]
+    },
+    {
+      "backlog_id": "EXP-PROC-03",
+      "slug": "rotational-moulding-process-physics-powder-fusion-heating-kinetics-wall-uniformity",
+      "title": "Rotational Moulding Process Physics: Powder Fusion, Heating Kinetics & Wall Uniformity",
+      "subject": "Polymer Processing",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "extrusion-process-screw-design-and-die-types"
+      ]
+    },
+    {
+      "backlog_id": "EXP-MOLD-01",
+      "slug": "multi-cavity-runner-balancing-kinetics-pressure-drop-optimization",
+      "title": "Multi-Cavity Runner Balancing Kinetics & Pressure Drop Optimization",
+      "subject": "Mould Design",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "draft-angles-and-shrinkage-allowance-in-mould-design"
+      ]
+    },
+    {
+      "backlog_id": "EXP-MOLD-02",
+      "slug": "hot-runner-valve-gating-mechanics-sequential-injection-thermal-control",
+      "title": "Hot Runner Valve Gating Mechanics, Sequential Injection & Thermal Control",
+      "subject": "Mould Design",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "draft-angles-and-shrinkage-allowance-in-mould-design"
+      ]
+    },
+    {
+      "backlog_id": "EXP-MOLD-03",
+      "slug": "undercut-release-mechanics-side-cores-angular-cam-pins-slides-lifters",
+      "title": "Undercut Release Mechanics: Side Cores, Angular Cam Pins, Slides & Lifters",
+      "subject": "Mould Design",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "ejection-systems-pins-sleeves-strippers-and-air-ejection"
+      ]
+    },
+    {
+      "backlog_id": "EXP-TEST-01",
+      "slug": "differential-scanning-calorimetry-dsc-tg-tm-hf-crystallinity-kinetics",
+      "title": "Differential Scanning Calorimetry (DSC): Tg, Tm, Hf & Crystallinity Kinetics",
+      "subject": "Polymer Testing",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "hardness-testing-shore-a-and-shore-d-durometers"
+      ]
+    },
+    {
+      "backlog_id": "EXP-TEST-02",
+      "slug": "dynamic-mechanical-analysis-dma-storage-modulus-e-loss-modulus-e-tan-delta",
+      "title": "Dynamic Mechanical Analysis (DMA): Storage Modulus E', Loss Modulus E'' & Tan Delta",
+      "subject": "Polymer Testing",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "rheological-testing-understanding-melt-flow-behavior"
+      ]
+    },
+    {
+      "backlog_id": "EXP-TEST-03",
+      "slug": "gc-ms-ftir-spectroscopy-additive-identification-migratable-extractables-analysis",
+      "title": "GC-MS & FTIR Spectroscopy: Additive Identification & Migratable Extractables Analysis",
+      "subject": "Polymer Testing",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "hardness-testing-shore-a-and-shore-d-durometers"
+      ]
+    },
+    {
+      "backlog_id": "EXP-RUBB-01",
+      "slug": "moving-die-rheometer-mdr-cure-curve-analysis-ml-mh-ts2-t90-kinetic-modelling",
+      "title": "Moving Die Rheometer (MDR) Cure Curve Analysis: ML, MH, ts2 & t90 Kinetic Modelling",
+      "subject": "Rubber Technology",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "vulcanization-of-rubber-chemistry-systems-and-industrial-practice"
+      ]
+    },
+    {
+      "backlog_id": "EXP-RUBB-02",
+      "slug": "thermoplastic-elastomers-tpe-tpu-tpv-microphase-separation-processing",
+      "title": "Thermoplastic Elastomers (TPE, TPU, TPV): Microphase Separation & Processing",
+      "subject": "Rubber Technology",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "vulcanization-of-rubber-chemistry-systems-and-industrial-practice"
+      ]
+    },
+    {
+      "backlog_id": "EXP-RUBB-03",
+      "slug": "tyre-compound-design-silica-silane-reinforcement-rolling-resistance-wet-grip",
+      "title": "Tyre Compound Design: Silica-Silane Reinforcement, Rolling Resistance & Wet Grip",
+      "subject": "Rubber Technology",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "vulcanization-of-rubber-chemistry-systems-and-industrial-practice"
+      ]
+    },
+    {
+      "backlog_id": "EXP-RECY-01",
+      "slug": "super-cleaning-de-odourizing-technologies-for-food-grade-pet-po-recycling",
+      "title": "Super-Cleaning & De-odourizing Technologies for Food-Grade PET/PO Recycling",
+      "subject": "Recycling Technology",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "75-lakh-2-crore-scale-tier-extrusion-plants-recycling-and-processing-lines"
+      ]
+    },
+    {
+      "backlog_id": "EXP-RECY-02",
+      "slug": "chemical-recycling-of-polymers-glycolysis-pyrolysis-solvolysis-kinetics",
+      "title": "Chemical Recycling of Polymers: Glycolysis, Pyrolysis & Solvolysis Kinetics",
+      "subject": "Recycling Technology",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "75-lakh-2-crore-scale-tier-extrusion-plants-recycling-and-processing-lines"
+      ]
+    },
+    {
+      "backlog_id": "EXP-RECY-03",
+      "slug": "e-waste-plastics-recycling-density-separation-flame-retardant-removal",
+      "title": "E-Waste Plastics Recycling: Density Separation & Flame Retardant Removal",
+      "subject": "Recycling Technology",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "75-lakh-2-crore-scale-tier-extrusion-plants-recycling-and-processing-lines"
+      ]
+    },
+    {
+      "backlog_id": "EXP-SUST-01",
+      "slug": "biodegradation-standards-kinetics-iso-14855-compostability-disintegration",
+      "title": "Biodegradation Standards & Kinetics: ISO 14855 Compostability & Disintegration",
+      "subject": "Sustainable Plastics & Bioplastics",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "pla-pha-and-starch-based-polymers-in-packaging"
+      ]
+    },
+    {
+      "backlog_id": "EXP-SUST-02",
+      "slug": "polyhydroxyalkanoates-pha-biosynthesis-fermentation-thermal-processing",
+      "title": "Polyhydroxyalkanoates (PHA) Biosynthesis, Fermentation & Thermal Processing",
+      "subject": "Sustainable Plastics & Bioplastics",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "pla-pha-and-starch-based-polymers-in-packaging"
+      ]
+    },
+    {
+      "backlog_id": "EXP-SUST-03",
+      "slug": "bio-pet-bio-pe-renewable-drop-in-polymers-biomass-conversion-pathways",
+      "title": "Bio-PET, Bio-PE & Renewable Drop-In Polymers: Biomass Conversion Pathways",
+      "subject": "Sustainable Plastics & Bioplastics",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "pla-pha-and-starch-based-polymers-in-packaging"
+      ]
+    },
+    {
+      "backlog_id": "EXP-COMP-01",
+      "slug": "fiber-matrix-interfacial-shear-strength-single-fiber-fragmentation-testing",
+      "title": "Fiber-Matrix Interfacial Shear Strength & Single-Fiber Fragmentation Testing",
+      "subject": "Polymer Composites",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "short-and-long-fiber-reinforced-composites-mechanics"
+      ]
+    },
+    {
+      "backlog_id": "EXP-COMP-02",
+      "slug": "resin-transfer-moulding-rtm-vacuum-assisted-infusion-vari-hydraulics",
+      "title": "Resin Transfer Moulding (RTM) & Vacuum Assisted Infusion (VARI) Hydraulics",
+      "subject": "Polymer Composites",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "short-and-long-fiber-reinforced-composites-mechanics"
+      ]
+    },
+    {
+      "backlog_id": "EXP-COMP-03",
+      "slug": "carbon-fiber-reinforced-polymers-cfrp-autoclave-cure-kinetics-void-control",
+      "title": "Carbon Fiber Reinforced Polymers (CFRP): Autoclave Cure Kinetics & Void Control",
+      "subject": "Polymer Composites",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "short-and-long-fiber-reinforced-composites-mechanics"
+      ]
+    },
+    {
+      "backlog_id": "EXP-ENTR-01",
+      "slug": "bankable-detailed-project-report-dpr-preparation-debt-service-coverage-ratio-dscr",
+      "title": "Bankable Detailed Project Report (DPR) Preparation & Debt Service Coverage Ratio (DSCR)",
+      "subject": "Entrepreneurship in Plastics",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "25-75-lakh-growth-tier-higher-margin-technical-products"
+      ]
+    },
+    {
+      "backlog_id": "EXP-ENTR-02",
+      "slug": "working-capital-financing-operations-cash-credit-bill-discounting-lc-mechanics",
+      "title": "Working Capital Financing Operations: Cash Credit, Bill Discounting & LC Mechanics",
+      "subject": "Entrepreneurship in Plastics",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "25-75-lakh-growth-tier-higher-margin-technical-products"
+      ]
+    },
+    {
+      "backlog_id": "EXP-ENTR-03",
+      "slug": "plastics-factory-layout-osha-safety-pollution-control-board-pcb-consent-to-operate",
+      "title": "Plastics Factory Layout, OSHA Safety & Pollution Control Board (PCB) Consent to Operate",
+      "subject": "Entrepreneurship in Plastics",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "25-75-lakh-growth-tier-higher-margin-technical-products"
+      ]
+    },
+    {
+      "backlog_id": "EXP-MEDI-01",
+      "slug": "iso-10993-biocompatibility-testing-cytotoxicity-hemocompatibility-extractables",
+      "title": "ISO 10993 Biocompatibility Testing: Cytotoxicity, Hemocompatibility & Extractables",
+      "subject": "Medical Plastics & Biomaterials",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "biocompatible-polymers-medical-devices-and-implants"
+      ]
+    },
+    {
+      "backlog_id": "EXP-MEDI-02",
+      "slug": "medical-plastics-sterilization-compatibility-gamma-e-beam-eto-autoclave-physics",
+      "title": "Medical Plastics Sterilization Compatibility: Gamma, E-beam, EtO & Autoclave Physics",
+      "subject": "Medical Plastics & Biomaterials",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "biocompatible-polymers-medical-devices-and-implants"
+      ]
+    },
+    {
+      "backlog_id": "EXP-MEDI-03",
+      "slug": "polymeric-drug-delivery-systems-hydrogel-swelling-kinetics-controlled-release",
+      "title": "Polymeric Drug Delivery Systems: Hydrogel Swelling Kinetics & Controlled Release",
+      "subject": "Medical Plastics & Biomaterials",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "biocompatible-polymers-medical-devices-and-implants"
+      ]
+    },
+    {
+      "backlog_id": "EXP-ADDI-01",
+      "slug": "flame-retardants-in-polymers-halogen-free-organophosphorus-intumescent-systems",
+      "title": "Flame Retardants in Polymers: Halogen-Free Organophosphorus & Intumescent Systems",
+      "subject": "Additives & Compounding",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "plasticizers-stabilizers-and-flame-retardants-in-compounding"
+      ]
+    },
+    {
+      "backlog_id": "EXP-ADDI-02",
+      "slug": "antioxidants-thermal-stabilizers-synergy-in-polyolefin-compounding",
+      "title": "Antioxidants & Thermal Stabilizers Synergy in Polyolefin Compounding",
+      "subject": "Additives & Compounding",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "plasticizers-stabilizers-and-flame-retardants-in-compounding"
+      ]
+    },
+    {
+      "backlog_id": "EXP-ADDI-03",
+      "slug": "co-rotating-twin-screw-compounding-screw-element-design-devolatilization-mixing",
+      "title": "Co-Rotating Twin-Screw Compounding: Screw Element Design, Devolatilization & Mixing",
+      "subject": "Additives & Compounding",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "plasticizers-stabilizers-and-flame-retardants-in-compounding"
+      ]
+    },
+    {
+      "backlog_id": "EXP-PACK-01",
+      "slug": "barrier-packaging-kinetics-oxygen-water-vapor-transmission-rate-otr-wvtr",
+      "title": "Barrier Packaging Kinetics: Oxygen & Water Vapor Transmission Rate (OTR / WVTR)",
+      "subject": "Plastic Packaging Engineering",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "flexible-and-rigid-packaging-design-and-barrier-properties"
+      ]
+    },
+    {
+      "backlog_id": "EXP-PACK-02",
+      "slug": "active-intelligent-packaging-systems-oxygen-scavengers-antimicrobials-indicators",
+      "title": "Active & Intelligent Packaging Systems: Oxygen Scavengers, Antimicrobials & Indicators",
+      "subject": "Plastic Packaging Engineering",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "flexible-and-rigid-packaging-design-and-barrier-properties"
+      ]
+    },
+    {
+      "backlog_id": "EXP-PACK-03",
+      "slug": "flexible-barrier-laminates-multi-layer-co-extrusion-vs-vacuum-metallization-physics",
+      "title": "Flexible Barrier Laminates: Multi-layer Co-extrusion vs Vacuum Metallization Physics",
+      "subject": "Plastic Packaging Engineering",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "flexible-and-rigid-packaging-design-and-barrier-properties"
+      ]
+    },
+    {
+      "backlog_id": "EXP-LCA-01",
+      "slug": "iso-14040-14044-life-cycle-assessment-execution-goal-scope-inventory-lci",
+      "title": "ISO 14040/14044 Life Cycle Assessment Execution: Goal, Scope & Inventory (LCI)",
+      "subject": "Life Cycle Assessment",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "life-cycle-assessment-lca-of-polymeric-materials"
+      ]
+    },
+    {
+      "backlog_id": "EXP-LCA-02",
+      "slug": "scope-1-2-and-3-greenhouse-gas-accounting-in-plastics-manufacturing",
+      "title": "Scope 1, 2, and 3 Greenhouse Gas Accounting in Plastics Manufacturing",
+      "subject": "Life Cycle Assessment",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "life-cycle-assessment-lca-of-polymeric-materials"
+      ]
+    },
+    {
+      "backlog_id": "EXP-LCA-03",
+      "slug": "environmental-product-declaration-epd-generation-pcr-compliance-for-polymers",
+      "title": "Environmental Product Declaration (EPD) Generation & PCR Compliance for Polymers",
+      "subject": "Life Cycle Assessment",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "life-cycle-assessment-lca-of-polymeric-materials"
+      ]
+    },
+    {
+      "backlog_id": "EXP-COLO-01",
+      "slug": "cielab-color-space-l-a-b-spectrophotometric-delta-e-color-matching",
+      "title": "CIELAB Color Space (L*a*b*) & Spectrophotometric Delta E* Color Matching",
+      "subject": "Color Science & Masterbatches",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "color-matching-pigment-dispersion-and-masterbatches"
+      ]
+    },
+    {
+      "backlog_id": "EXP-COLO-02",
+      "slug": "pigment-dispersion-kinetics-pressure-filter-value-pfv-testing",
+      "title": "Pigment Dispersion Kinetics & Pressure Filter Value (PFV) Testing",
+      "subject": "Color Science & Masterbatches",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "color-matching-pigment-dispersion-and-masterbatches"
+      ]
+    },
+    {
+      "backlog_id": "EXP-COLO-03",
+      "slug": "special-effect-pigments-metallic-interference-pearlescent-thermochromic-masterbatches",
+      "title": "Special Effect Pigments: Metallic, Interference Pearlescent & Thermochromic Masterbatches",
+      "subject": "Color Science & Masterbatches",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "color-matching-pigment-dispersion-and-masterbatches"
+      ]
+    },
+    {
+      "backlog_id": "EXP-RHEO-01",
+      "slug": "non-newtonian-rheological-models-power-law-carreau-yasuda-cross-equations",
+      "title": "Non-Newtonian Rheological Models: Power-Law, Carreau-Yasuda & Cross Equations",
+      "subject": "Polymer Rheology",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "rheological-testing-understanding-melt-flow-behavior"
+      ]
+    },
+    {
+      "backlog_id": "EXP-RHEO-02",
+      "slug": "melt-elasticity-first-normal-stress-difference-n1-die-swell-weissenberg-effect",
+      "title": "Melt Elasticity & First Normal Stress Difference (N1): Die Swell & Weissenberg Effect",
+      "subject": "Polymer Rheology",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "rheological-testing-understanding-melt-flow-behavior"
+      ]
+    },
+    {
+      "backlog_id": "EXP-RHEO-03",
+      "slug": "capillary-rheometry-corrections-bagley-pressure-drop-weissenberg-rabinowitsch-shear-rate",
+      "title": "Capillary Rheometry Corrections: Bagley Pressure Drop & Weissenberg-Rabinowitsch Shear Rate",
+      "subject": "Polymer Rheology",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "rheological-testing-understanding-melt-flow-behavior"
+      ]
+    },
+    {
+      "backlog_id": "EXP-RHEO-04",
+      "slug": "extrusion-flow-instabilities-sharkskin-melt-fracture-gross-melt-fracture-kinetics",
+      "title": "Extrusion Flow Instabilities: Sharkskin Melt Fracture & Gross Melt Fracture Kinetics",
+      "subject": "Polymer Rheology",
+      "type": "PROPOSED_EXPANSION_LESSON",
+      "prerequisites": [
+        "rheological-testing-understanding-melt-flow-behavior"
+      ]
+    }
+  ]
+}

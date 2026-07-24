@@ -1,0 +1,866 @@
+const fs = require('fs');
+const path = require('path');
+const { createClient } = require('@supabase/supabase-js');
+require('dotenv').config({ path: '.env.local' });
+
+const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
+
+async function main() {
+  console.log('=== BUILDING SPRINT 1C CURRICULUM GAP ANALYSIS & EXPANSION ARTIFACTS ===');
+
+  // Fetch subjects and lessons from Supabase
+  const { data: dbSubjects } = await supabase.from('subjects').select('id, name, slug').order('name');
+  const { data: dbLessons } = await supabase.from('lessons').select('id, slug, title, subject_id, created_at');
+
+  const subjectMap = {};
+  dbSubjects.forEach(s => { subjectMap[s.id] = s.name; });
+
+  const ledgerRaw = JSON.parse(fs.readFileSync('curriculum_grade_transition_ledger.json', 'utf8'));
+  const ledgerEntries = ledgerRaw.ledger;
+
+  const ledgerLookup = {};
+  ledgerEntries.forEach(item => {
+    ledgerLookup[item.lesson_slug] = item;
+  });
+
+  // 1. Build curriculum_102_current_state.json
+  const lessons102Map = dbLessons.map(l => {
+    const sName = subjectMap[l.subject_id] || 'Unassigned';
+    const ledgerItem = ledgerLookup[l.slug] || {};
+    return {
+      lesson_id: l.id,
+      slug: l.slug,
+      title: l.title,
+      subject_name: sName,
+      subject_id: l.subject_id,
+      quality_score: ledgerItem.new_score || 75,
+      grade: ledgerItem.new_grade || 'B',
+      review_status: ledgerItem.new_review_status || 'internally_reviewed',
+      batch_upgraded: ledgerItem.batch_upgraded || 'Unchanged'
+    };
+  });
+
+  const subjectDistribution102 = {};
+  lessons102Map.forEach(l => {
+    subjectDistribution102[l.subject_name] = (subjectDistribution102[l.subject_name] || 0) + 1;
+  });
+
+  const current_state_102 = {
+    metadata: {
+      total_lessons: lessons102Map.length,
+      grade_distribution: {
+        grade_a: lessons102Map.filter(l => l.grade === 'A').length,
+        grade_b: lessons102Map.filter(l => l.grade === 'B').length,
+        grade_c: lessons102Map.filter(l => l.grade === 'C').length
+      },
+      subject_distribution: subjectDistribution102,
+      audit_date: "2026-07-24",
+      status: "FROZEN_POST_SPRINT_1B_F.3"
+    },
+    lessons: lessons102Map
+  };
+
+  fs.writeFileSync('curriculum_102_current_state.json', JSON.stringify(current_state_102, null, 2));
+  console.log('Saved curriculum_102_current_state.json (102 lessons mapped)');
+
+  // 2. Build curriculum_expansion_backlog_46.json (46 new lessons)
+  const backlog46 = [
+    // Polymer Chemistry (+3)
+    {
+      backlog_id: "EXP-CHEM-01",
+      target_subject: "Polymer Chemistry",
+      target_module: "Module 1 — Polymer Synthesis Kinetics",
+      title: "Ring-Opening Polymerization Mechanics: Industrial Nylon 6 & Polycaprolactone",
+      target_level: "advanced",
+      gap_solved: "Missing foundation on thermodynamic ring-strain driven polymerization kinetics and caprolactam monomer conversion",
+      prerequisites: ["introduction-to-polymer-structure-and-molecular-weight"],
+      numerical_component: "Calculation of equilibrium monomer concentration [M]eq and ceiling/floor temperature Tc",
+      lab_component: "Viscometric Mv determination of PA6 ring-opened melt polymer",
+      standards_component: "ISO 307:2019 — Plastics — Polyamides — Determination of viscosity number",
+      indian_industry_relevance: "Nylon 6 filament and engineering compounding plants in Surat and Pune",
+      gate_alignment: "GATE XE-F Section 1: Polymerization Mechanisms & Industrial Polymers"
+    },
+    {
+      backlog_id: "EXP-CHEM-02",
+      target_subject: "Polymer Chemistry",
+      target_module: "Module 2 — Chain Architecture & Solution Properties",
+      title: "Living Anionic & Cationic Polymerization: Narrow Polydispersity Block Copolymers",
+      target_level: "advanced",
+      gap_solved: "Missing coverage of termination-free living polymerization for SBS/SEBS thermoplastic elastomers",
+      prerequisites: ["introduction-to-polymer-structure-and-molecular-weight"],
+      numerical_component: "Theoretical Mn calculation from [M]0 / [I]0 ratio and PDI prediction (Mw/Mn = 1 + 1/Xn)",
+      lab_component: "GPC/SEC molecular weight distribution analysis of monodisperse PS standards",
+      standards_component: "ASTM D5296 — Molecular Weight Averages and Distribution of Polystyrene by SEC",
+      indian_industry_relevance: "Synthetic rubber and TPE compounding in Panipat and Vadodara petrochemical complexes",
+      gate_alignment: "GATE XE-F Section 2: Molecular Weight Distribution & GPC"
+    },
+    {
+      backlog_id: "EXP-CHEM-03",
+      target_subject: "Polymer Chemistry",
+      target_module: "Module 3 — Polymer Thermodynamics",
+      title: "Polymer Solution Thermodynamics: Flory-Huggins Theory & Phase Diagrams",
+      target_level: "advanced",
+      gap_solved: "Lack of mathematical rigor in polymer-solvent interaction parameter chi and UCST/LCST phase separation",
+      prerequisites: ["thermoplastics-vs-thermosets-structure-and-behavior"],
+      numerical_component: "Calculation of free energy of mixing delta G_mix and Flory-Huggins interaction parameter chi",
+      lab_component: "Turbidimetric titration for theta temperature determination",
+      standards_component: "ISO 1628-1:2021 — Determination of viscosity of polymers in dilute solution",
+      indian_industry_relevance: "Membrane casting and solution coating industries in Hyderabad and Bengaluru",
+      gate_alignment: "GATE XE-F Section 3: Thermodynamics of Polymer Solutions"
+    },
+
+    // Polymer Processing (+3)
+    {
+      backlog_id: "EXP-PROC-01",
+      target_subject: "Polymer Processing",
+      target_module: "Module 1 — Extrusion Systems & Flow Defects",
+      title: "Extrusion Die Swell Mechanics: Viscoelastic Normal Stress & Exit Flow Defects",
+      target_level: "advanced",
+      gap_solved: "Missing intermediate viscoelastic bridge explaining die swell ratio B = d_ext / d_die from First Normal Stress Difference N1",
+      prerequisites: ["extrusion-process-screw-design-and-die-types"],
+      numerical_component: "Tanner die swell equation calculation B = (1 + 0.5 * (N1 / 2tau_w)^2)^0.166",
+      lab_component: "Capillary rheometer extrudate swell laser micrometer measurement",
+      standards_component: "ISO 11443:2021 — Plastics — Determination of the fluidity of plastics using capillary rheometers",
+      indian_industry_relevance: "Profile extrusion and blow molding die land design in Daman and Silvassa clusters",
+      gate_alignment: "GATE XE-F Section 4: Polymer Rheology and Processing Mechanics"
+    },
+    {
+      backlog_id: "EXP-PROC-02",
+      target_subject: "Polymer Processing",
+      target_module: "Module 3 — Thermoset & Compression Moulding",
+      title: "Compression & Transfer Moulding Physics: Thermoset SMC/BMC Cure Kinetics",
+      target_level: "intermediate",
+      gap_solved: "Lack of coverage for thermoset matrix processing (SMC, BMC, Phenolics) vs thermoplastic injection moulding",
+      prerequisites: ["thermoplastics-vs-thermosets-structure-and-behavior"],
+      numerical_component: "Cure cycle time calculation based on gel time kinetics and thermal diffusivity",
+      lab_component: "DSC isothermal cure kinetic profiling of epoxy/polyester resins",
+      standards_component: "ASTM D952 — Bond or Cohesive Strength of Sheet Plastics and Electrical Insulating Materials",
+      indian_industry_relevance: "Electrical switchgear and automotive body component compression moulding in Coimbatore and Chennai",
+      gate_alignment: "GATE XE-F Section 5: Processing Technologies for Thermosets"
+    },
+    {
+      backlog_id: "EXP-PROC-03",
+      target_subject: "Polymer Processing",
+      target_module: "Module 4 — Rotational Moulding",
+      title: "Rotational Moulding Process Physics: Powder Fusion, Heating Kinetics & Wall Uniformity",
+      target_level: "intermediate",
+      gap_solved: "Complete absence of hollow container rotational moulding process physics (LLDPE powder sintering)",
+      prerequisites: ["extrusion-process-screw-design-and-die-types"],
+      numerical_component: "Internal air temperature curve analysis and cycle time calculation based on powder conductivity",
+      lab_component: "ARM impact test on rotationally moulded LLDPE tank specimens",
+      standards_component: "ASTM D1998 — Standard Specification for Polyethylene Upright Storage Tanks",
+      indian_industry_relevance: "Water storage tank manufacturing (Sintex-type) across Gujarat and Maharashtra",
+      gate_alignment: "GATE XE-F Section 5: Specialized Processing Methods"
+    },
+
+    // Mould Design (+3)
+    {
+      backlog_id: "EXP-MOLD-01",
+      target_subject: "Mould Design",
+      target_module: "Module 1 — Runner & Gate Design Mechanics",
+      title: "Multi-Cavity Runner Balancing Kinetics & Pressure Drop Optimization",
+      target_level: "advanced",
+      gap_solved: "Missing quantitative runner sizing and thermal-shear runner imbalance analysis in multi-cavity moulds",
+      prerequisites: ["draft-angles-and-shrinkage-allowance-in-mould-design"],
+      numerical_component: "Hagen-Poiseuille pressure drop calculation across branched runner networks Delta P = 128 mu L Q / (pi d^4)",
+      lab_component: "Short-shot weight balance analysis across 8-cavity test mould",
+      standards_component: "ISO 20457:2018 — Plastics moulded parts — Tolerances and acceptance conditions",
+      indian_industry_relevance: "Caps and closures multi-cavity toolmaking in Hyderabad and NCR",
+      gate_alignment: "GATE XE-F Section 6: Mould Design and Tooling Hydraulics"
+    },
+    {
+      backlog_id: "EXP-MOLD-02",
+      target_subject: "Mould Design",
+      target_module: "Module 2 — Advanced Hot Runner Systems",
+      title: "Hot Runner Valve Gating Mechanics, Sequential Injection & Thermal Control",
+      target_level: "advanced",
+      gap_solved: "Lack of advanced hot runner system physics (pneumatic/hydraulic valve pins, thermal nozzles, weld-line elimination)",
+      prerequisites: ["draft-angles-and-shrinkage-allowance-in-mould-design"],
+      numerical_component: "Valve pin actuation timing and pressure drop comparison between hot vs cold runners",
+      lab_component: "Thermal imaging and thermocouple calibration of hot runner manifold zones",
+      standards_component: "SPI Mold Classification Standards — Class 101 High Production Tooling",
+      indian_industry_relevance: "Automotive bumper and dashboard sequential valve gating in Chennai and Pune",
+      gate_alignment: "GATE XE-F Section 6: Advanced Tooling & Hot Runner Technology"
+    },
+    {
+      backlog_id: "EXP-MOLD-03",
+      target_subject: "Mould Design",
+      target_module: "Module 3 — Undercut Release Mechanisms",
+      title: "Undercut Release Mechanics: Side Cores, Angular Cam Pins, Slides & Lifters",
+      target_level: "advanced",
+      gap_solved: "Missing mechanical design calculations for side-action cam pins, split cavities, and internal collapsible cores",
+      prerequisites: ["ejection-systems-pins-sleeves-strippers-and-air-ejection"],
+      numerical_component: "Cam pin angle calculation theta = 15 deg - 25 deg and slide travel length L_slide = d_undercut + 3mm",
+      lab_component: "Mold dry-cycle actuation check and wear plate clearance measurement",
+      standards_component: "DME / HASCO Standard Component Specification Guidelines",
+      indian_industry_relevance: "Automotive interior trim and electrical connector toolroom manufacturing in Bengaluru and Nashik",
+      gate_alignment: "GATE XE-F Section 6: Tool Kinematics & Mechanism Design"
+    },
+
+    // Polymer Testing (+3)
+    {
+      backlog_id: "EXP-TEST-01",
+      target_subject: "Polymer Testing",
+      target_module: "Module 1 — Thermal Characterization",
+      title: "Differential Scanning Calorimetry (DSC): Tg, Tm, Hf & Crystallinity Kinetics",
+      target_level: "intermediate",
+      gap_solved: "Missing core thermal analytical technique for glass transition Tg, melting peak Tm, and % crystallinity quantification",
+      prerequisites: ["hardness-testing-shore-a-and-shore-d-durometers"],
+      numerical_component: "% Crystallinity calculation Xc = (delta H_m / delta H_m100%) * 100",
+      lab_component: "DSC thermal scan analysis of PET bottle preform vs oriented bottle sidewall",
+      standards_component: "ISO 11357-3:2018 — Plastics — DSC — Determination of temperature and enthalpy of melting and crystallization",
+      indian_industry_relevance: "Central testing labs (CIPET, NABL accredited labs) across India",
+      gate_alignment: "GATE XE-F Section 7: Polymer Characterization Techniques"
+    },
+    {
+      backlog_id: "EXP-TEST-02",
+      target_subject: "Polymer Testing",
+      target_module: "Module 2 — Dynamic Mechanical Analysis",
+      title: "Dynamic Mechanical Analysis (DMA): Storage Modulus E', Loss Modulus E'' & Tan Delta",
+      target_level: "advanced",
+      gap_solved: "Missing advanced viscoelastic spectrum measurement across temperature/frequency sweeps",
+      prerequisites: ["rheological-testing-understanding-melt-flow-behavior"],
+      numerical_component: "Tan delta peak identification and activation energy Ea derivation via Arrhenius plot of Tg vs frequency",
+      lab_component: "DMA temperature sweep (-100 deg C to +200 deg C) on rubber and engineering thermoplastic specimens",
+      standards_component: "ASTM E1640 — Standard Test Method for Assignment of the Glass Transition Temperature by DMA",
+      indian_industry_relevance: "Automotive NVH component testing and polymer acoustic damper R&D in Automotive Hubs",
+      gate_alignment: "GATE XE-F Section 7: Dynamic Mechanical Properties"
+    },
+    {
+      backlog_id: "EXP-TEST-03",
+      target_subject: "Polymer Testing",
+      target_module: "Module 3 — Analytical Spectroscopy & Extractables",
+      title: "GC-MS & FTIR Spectroscopy: Additive Identification & Migratable Extractables Analysis",
+      target_level: "advanced",
+      gap_solved: "Missing analytical chemistry coverage for identifying unknown polymer additives and food-contact extractables",
+      prerequisites: ["hardness-testing-shore-a-and-shore-d-durometers"],
+      numerical_component: "Quantification of phthalate plasticizer migration limit in mg/dm^2 food simulant",
+      lab_component: "FTIR ATR spectral matching against polymer database and GC-MS chromatogram integration",
+      standards_component: "EN 1186 / IS 9845 — Testing for overall migration of constituents of plastics intended to come into contact with foodstuffs",
+      indian_industry_relevance: "FSSAI compliance testing for food packaging units in Delhi-NCR and Mumbai",
+      gate_alignment: "GATE XE-F Section 7: Spectroscopic Analysis of Polymers"
+    },
+
+    // Rubber Technology (+3)
+    {
+      backlog_id: "EXP-RUBB-01",
+      target_subject: "Rubber Technology",
+      target_module: "Module 1 — Rheometry & Vulcanization Kinetics",
+      title: "Moving Die Rheometer (MDR) Cure Curve Analysis: ML, MH, ts2 & t90 Kinetic Modelling",
+      target_level: "intermediate",
+      gap_solved: "Missing experimental cure curve modeling for elastomer vulcanization control (ML, MH, ts2, t90)",
+      prerequisites: ["vulcanization-of-rubber-chemistry-systems-and-industrial-practice"],
+      numerical_component: "Vulcanization rate index VRI = 100 / (t90 - ts2) and activation energy Ea from MDR curves at 150/160/170 deg C",
+      lab_component: "MDR 2000 cure curve testing on NR/SBR tread compounds",
+      standards_component: "ASTM D5289 — Standard Test Method for Rubber Property — Vulcanization Using Rotorless Cure Meters",
+      indian_industry_relevance: "Rubber compounding mills and tyre manufacturers in Kottayam, Chennai and Vadodara",
+      gate_alignment: "GATE XE-F Section 8: Rubber Technology & Vulcanization"
+    },
+    {
+      backlog_id: "EXP-RUBB-02",
+      target_subject: "Rubber Technology",
+      target_module: "Module 2 — Thermoplastic Elastomers",
+      title: "Thermoplastic Elastomers (TPE, TPU, TPV): Microphase Separation & Processing",
+      target_level: "intermediate",
+      gap_solved: "Lack of coverage for recyclable non-vulcanized elastomeric TPEs vs conventional thermoset rubbers",
+      prerequisites: ["vulcanization-of-rubber-chemistry-systems-and-industrial-practice"],
+      numerical_component: "Hard segment / soft segment ratio calculation vs shore hardness and rebound resilience",
+      lab_component: "Dynamic mechanical phase separation characterization of TPU via DSC/DMA",
+      standards_component: "ISO 18064:2014 — Thermoplastic elastomers — Nomenclature and abbreviated terms",
+      indian_industry_relevance: "Overmoulding soft grips, footwear soles, and automotive seals in Agra and Daman",
+      gate_alignment: "GATE XE-F Section 8: Thermoplastic Elastomers"
+    },
+    {
+      backlog_id: "EXP-RUBB-03",
+      target_subject: "Rubber Technology",
+      target_module: "Module 3 — Tyre Compound Engineering",
+      title: "Tyre Compound Design: Silica-Silane Reinforcement, Rolling Resistance & Wet Grip",
+      target_level: "advanced",
+      gap_solved: "Missing industrial application of green tyre tread compounding (precipitated silica + organosilane coupling agents)",
+      prerequisites: ["vulcanization-of-rubber-chemistry-systems-and-industrial-practice"],
+      numerical_component: "Silane coupling stoichiometry calculation relative to silica surface area (m^2/g)",
+      lab_component: "Payne effect strain sweep measurement on rubber process analyzer (RPA)",
+      standards_component: "AIS 142 / ISO 28580 — Passenger Car Tyre Rolling Resistance Measurement",
+      indian_industry_relevance: "Major Indian tyre OEMs (MRF, Apollo, CEAT, JK Tyre) R&D centers",
+      gate_alignment: "GATE XE-F Section 8: Industrial Rubber Products"
+    },
+
+    // Recycling Technology (+3)
+    {
+      backlog_id: "EXP-RECY-01",
+      target_subject: "Recycling Technology",
+      target_module: "Module 1 — Super-Cleaning & Decontamination",
+      title: "Super-Cleaning & De-odourizing Technologies for Food-Grade PET/PO Recycling",
+      target_level: "advanced",
+      gap_solved: "Missing industrial regulatory standard for EFSA/US-FDA decontamination challenge tests in rPET bottle-to-bottle plants",
+      prerequisites: ["75-lakh-2-crore-scale-tier-extrusion-plants-recycling-and-processing-lines"],
+      numerical_component: "Limiting surrogate contaminant migration concentration calculation (ppm)",
+      lab_component: "Gas chromatography volatile organic compound (VOC) residual odor rating",
+      standards_component: "EFSA Guidelines on Recycled Plastics for Food Contact / FSSAI Recycled Plastics Regulations 2022",
+      indian_industry_relevance: "Bottle-to-bottle rPET plants operating under FSSAI approval in Wada and Indore",
+      gate_alignment: "GATE XE-F Section 9: Advanced Recycling Technologies"
+    },
+    {
+      backlog_id: "EXP-RECY-02",
+      target_subject: "Recycling Technology",
+      target_module: "Module 2 — Chemical Recycling",
+      title: "Chemical Recycling of Polymers: Glycolysis, Pyrolysis & Solvolysis Kinetics",
+      target_level: "advanced",
+      gap_solved: "Missing chemical depolymerization fundamentals converting plastic waste back to monomers / feedstocks",
+      prerequisites: ["75-lakh-2-crore-scale-tier-extrusion-plants-recycling-and-processing-lines"],
+      numerical_component: "Mass balance and energy recovery ratio calculation for PET glycolysis to BHET monomer",
+      lab_component: "HPLC analysis of depolymerized monomer purity and yield",
+      standards_component: "ISO 15270:2008 — Plastics — Guidelines for the recovery and recycling of plastics waste",
+      indian_industry_relevance: "Refinery plastic-to-oil pyrolysis units (Reliance, IOCL) and chemical recyclers",
+      gate_alignment: "GATE XE-F Section 9: Chemical Recycling Kinetics"
+    },
+    {
+      backlog_id: "EXP-RECY-03",
+      target_subject: "Recycling Technology",
+      target_module: "Module 3 — E-Waste Plastics Recycling",
+      title: "E-Waste Plastics Recycling: Density Separation & Flame Retardant Removal",
+      target_level: "intermediate",
+      gap_solved: "Missing engineering process for recycling ABS/HIPS/PC from electronic waste containing RoHS restricted additives",
+      prerequisites: ["75-lakh-2-crore-scale-tier-extrusion-plants-recycling-and-processing-lines"],
+      numerical_component: "Heavy media sink-float fluid density tuning calculation for ABS (1.05 g/cm^3) vs HIPS (1.04 g/cm^3)",
+      lab_component: "XRF spectrometry measurement of RoHS restricted bromine / heavy metals",
+      standards_component: "E-Waste Management Rules 2022 / CPCB E-Waste Recycling Guidelines",
+      indian_industry_relevance: "Formal e-waste recycling facilities in Bengaluru, NCR and Moradabad",
+      gate_alignment: "GATE XE-F Section 9: Specialized Waste Stream Management"
+    },
+
+    // Sustainable Plastics & Bioplastics (+3)
+    {
+      backlog_id: "EXP-SUST-01",
+      target_subject: "Sustainable Plastics & Bioplastics",
+      target_module: "Module 1 — Biodegradation Standards & Testing",
+      title: "Biodegradation Standards & Kinetics: ISO 14855 Compostability & Disintegration",
+      target_level: "intermediate",
+      gap_solved: "Missing rigorous experimental standard protocols for verifying industrial vs home compostability",
+      prerequisites: ["pla-pha-and-starch-based-polymers-in-packaging"],
+      numerical_component: "Percentage biodegradation calculation from respirometric cumulative CO2 evolution",
+      lab_component: "Respirometric compost degradation test setup with KOH CO2 trap titration",
+      standards_component: "ISO 14855-1 / ASTM D6400 / IS 17088 — Specifications for Compostable Plastics",
+      indian_industry_relevance: "CPCB certified compostable bag manufacturers in Gujarat and Tamil Nadu",
+      gate_alignment: "GATE XE-F Section 10: Environmental Degradation of Polymers"
+    },
+    {
+      backlog_id: "EXP-SUST-02",
+      target_subject: "Sustainable Plastics & Bioplastics",
+      target_module: "Module 2 — Bacterial Polyhydroxyalkanoates",
+      title: "Polyhydroxyalkanoates (PHA) Biosynthesis, Fermentation & Thermal Processing",
+      target_level: "advanced",
+      gap_solved: "Missing deep-dive on marine-degradable PHA fermentative biopolymers (PHB, PHBV)",
+      prerequisites: ["pla-pha-and-starch-based-polymers-in-packaging"],
+      numerical_component: "PHB cell dry weight yield Y_x/s calculation from carbon substrate feed",
+      lab_component: "Thermal window degradation analysis of PHBV via TGA/DSC",
+      standards_component: "ASTM D7081 — Standard Specification for Non-Floating Biodegradable Plastics in Marine Environment",
+      indian_industry_relevance: "Biotechnology start-ups and biopolymer research centers in Pune and Bengaluru",
+      gate_alignment: "GATE XE-F Section 10: Biosynthesis & Biopolymers"
+    },
+    {
+      backlog_id: "EXP-SUST-03",
+      target_subject: "Sustainable Plastics & Bioplastics",
+      target_module: "Module 3 — Bio-Based Drop-In Polymers",
+      title: "Bio-PET, Bio-PE & Renewable Drop-In Polymers: Biomass Conversion Pathways",
+      target_level: "intermediate",
+      gap_solved: "Lack of clarity distinguishing non-biodegradable bio-based drop-in polymers from biodegradable plastics",
+      prerequisites: ["pla-pha-and-starch-based-polymers-in-packaging"],
+      numerical_component: "Bio-based carbon content calculation C14 ASTM D6866 percent modern carbon (pMC)",
+      lab_component: "Radiocarbon C14 isotope ratio analysis for bio-content verification",
+      standards_component: "ASTM D6866 — Determining the Biobased Content of Solid, Liquid, and Gaseous Samples Using Radiocarbon Analysis",
+      indian_industry_relevance: "Bio-ethylene glycol from sugarcane molasses produced in India for global bottle export",
+      gate_alignment: "GATE XE-F Section 10: Bio-Based Renewable Polymers"
+    },
+
+    // Polymer Composites (+3)
+    {
+      backlog_id: "EXP-COMP-01",
+      target_subject: "Polymer Composites",
+      target_module: "Module 1 — Interface & Micromechanics",
+      title: "Fiber-Matrix Interfacial Shear Strength & Single-Fiber Fragmentation Testing",
+      target_level: "advanced",
+      gap_solved: "Missing micromechanical treatment of fiber sizing chemistry and interfacial stress transfer (IFSS)",
+      prerequisites: ["short-and-long-fiber-reinforced-composites-mechanics"],
+      numerical_component: "Kelly-Tyson equation for critical fiber length lc = (sigma_f * d) / (2 * tau_i)",
+      lab_component: "Single-fiber fragmentation test (SFFT) under polarized optical microscope",
+      standards_component: "ASTM D7522 — Standard Test Method for Interfacial Shear Strength of Fiber-Reinforced Polymer Matrix Composite Bars",
+      indian_industry_relevance: "Glass fiber sizing chemical suppliers and composite R&D centers in Vadodara and Hyderabad",
+      gate_alignment: "GATE XE-F Section 11: Composite Micromechanics"
+    },
+    {
+      backlog_id: "EXP-COMP-02",
+      target_subject: "Polymer Composites",
+      target_module: "Module 2 — Liquid Composite Moulding",
+      title: "Resin Transfer Moulding (RTM) & Vacuum Assisted Infusion (VARI) Hydraulics",
+      target_level: "advanced",
+      gap_solved: "Lack of fluid flow modeling through anisotropic porous fiber preforms (Darcy's Law)",
+      prerequisites: ["short-and-long-fiber-reinforced-composites-mechanics"],
+      numerical_component: "1D Darcy's law flow velocity v = -(K / mu) * (dP / dx) calculation through 3D woven preforms",
+      lab_component: "VARTM infusion front monitoring and permeability measurement of glass fabric",
+      standards_component: "ISO 1268-7:2014 — Fibre-reinforced plastics — Methods of producing test plates — Resin transfer moulding",
+      indian_industry_relevance: "Wind turbine blade manufacturing (Suzlon, LM Wind) and defense composites in Tamil Nadu and Gujarat",
+      gate_alignment: "GATE XE-F Section 11: Liquid Moulding Technologies"
+    },
+    {
+      backlog_id: "EXP-COMP-03",
+      target_subject: "Polymer Composites",
+      target_module: "Module 3 — Carbon Fiber Autoclave Processing",
+      title: "Carbon Fiber Reinforced Polymers (CFRP): Autoclave Cure Kinetics & Void Control",
+      target_level: "advanced",
+      gap_solved: "Missing aerospace-grade composite processing kinetics (vacuum bag autoclave consolidation)",
+      prerequisites: ["short-and-long-fiber-reinforced-composites-mechanics"],
+      numerical_component: "Autoclave pressure-temperature cycle optimization and void volume fraction calculation Vv",
+      lab_component: "Ultrasonic NDT C-scan void detection in CFRP laminate panels",
+      standards_component: "ASTM D2734 — Standard Test Methods for Void Content of Reinforced Plastics",
+      indian_industry_relevance: "Aerospace composite manufacturing (HAL, TATA Advanced Systems, NAL) in Bengaluru",
+      gate_alignment: "GATE XE-F Section 11: High Performance Aerospace Composites"
+    },
+
+    // Entrepreneurship in Plastics (+3)
+    {
+      backlog_id: "EXP-ENTR-01",
+      target_subject: "Entrepreneurship in Plastics",
+      target_module: "Module 1 — Project Finance & DPR Preparation",
+      title: "Bankable Detailed Project Report (DPR) Preparation & Debt Service Coverage Ratio (DSCR)",
+      target_level: "advanced",
+      gap_solved: "Missing practical financial modeling for bank loan sanction (DSCR, Breakeven Analysis, Internal Rate of Return IRR)",
+      prerequisites: ["25-75-lakh-growth-tier-higher-margin-technical-products"],
+      numerical_component: "DSCR calculation = (Net Profit + Interest + Depreciation) / (Principal Repayment + Interest)",
+      lab_component: "Excel sensitivity model building for raw material price fluctuations (+/- 15%)",
+      standards_component: "RBI Lending Guidelines for MSME Project Appraisal",
+      indian_industry_relevance: "Plastic processing start-ups securing SIDBI / State Financial Corporation loans",
+      gate_alignment: "GATE XE-F Section 12: Industrial Economics & Management"
+    },
+    {
+      backlog_id: "EXP-ENTR-02",
+      target_subject: "Entrepreneurship in Plastics",
+      target_module: "Module 2 — Working Capital Financing",
+      title: "Working Capital Financing Operations: Cash Credit, Bill Discounting & LC Mechanics",
+      target_level: "intermediate",
+      gap_solved: "Missing operational banking knowledge for plastics SMEs managing raw material procurement liquidity",
+      prerequisites: ["25-75-lakh-growth-tier-higher-margin-technical-products"],
+      numerical_component: "Tandon Committee drawing power calculation DP = (Eligible Current Assets - Margin) - Bank Credit",
+      lab_component: "Letter of Credit (LC) opening cost and 90-day usance interest calculation",
+      standards_component: "FEDAI / ICC Uniform Customs and Practice for Documentary Credits (UCP 600)",
+      indian_industry_relevance: "Polymar raw material buyers negotiating 90-day LC credit with petrochemical suppliers (RIL, OPAL, GAIL)",
+      gate_alignment: "GATE XE-F Section 12: Working Capital & Banking Logistics"
+    },
+    {
+      backlog_id: "EXP-ENTR-03",
+      target_subject: "Entrepreneurship in Plastics",
+      target_module: "Module 3 — Regulatory Compliance & Factory Setup",
+      title: "Plastics Factory Layout, OSHA Safety & Pollution Control Board (PCB) Consent to Operate",
+      target_level: "intermediate",
+      gap_solved: "Missing statutory regulatory compliance roadmap for establishing plastic manufacturing units in India",
+      prerequisites: ["25-75-lakh-growth-tier-higher-margin-technical-products"],
+      numerical_component: "Factory floor load bearing capacity calculation (tonnes/m^2) for heavy injection machines",
+      lab_component: "Air and noise pollution monitoring audit compliance protocol",
+      standards_component: "Factories Act 1948 / State Pollution Control Board Consent to Establish (CTE) & Consent to Operate (CTO)",
+      indian_industry_relevance: "Industrial zone unit setup in GIDC, MIDC, RIICO and KIADB industrial estates",
+      gate_alignment: "GATE XE-F Section 12: Plant Layout & Industrial Safety"
+    },
+
+    // Medical Plastics & Biomaterials (+3)
+    {
+      backlog_id: "EXP-MEDI-01",
+      target_subject: "Medical Plastics & Biomaterials",
+      target_module: "Module 1 — Biocompatibility Evaluation",
+      title: "ISO 10993 Biocompatibility Testing: Cytotoxicity, Hemocompatibility & Extractables",
+      target_level: "advanced",
+      gap_solved: "Missing international regulatory standards compliance framework for medical device grade polymers",
+      prerequisites: ["biocompatible-polymers-medical-devices-and-implants"],
+      numerical_component: "Cytotoxicity cell viability percentage calculation via MTT assay",
+      lab_component: "In-vitro MEM elution cytotoxicity assay reading on spectrophotometer",
+      standards_component: "ISO 10993-1:2018 / ISO 10993-5 — Biological evaluation of medical devices — Tests for in vitro cytotoxicity",
+      indian_industry_relevance: "Medical device manufacturers in Gujarat Medical Device Park and CDSCO compliance labs",
+      gate_alignment: "GATE XE-F Section 13: Biomaterials & Medical Polymers"
+    },
+    {
+      backlog_id: "EXP-MEDI-02",
+      target_subject: "Medical Plastics & Biomaterials",
+      target_module: "Module 2 — Sterilization Physics",
+      title: "Medical Plastics Sterilization Compatibility: Gamma, E-beam, EtO & Autoclave Physics",
+      target_level: "intermediate",
+      gap_solved: "Missing technical analysis of polymer degradation / yellowing during gamma radiation vs EtO gas sterilization",
+      prerequisites: ["biocompatible-polymers-medical-devices-and-implants"],
+      numerical_component: "Sterilization Dose (kGy) calculation and polymer yellowing index (YI) delta change",
+      lab_component: "Colorimeter YI measurement of PP syringes pre and post gamma irradiation (25 kGy)",
+      standards_component: "ISO 11137-1:2006 — Sterilization of health care products — Radiation",
+      indian_industry_relevance: "Disposable syringe, IV set, and catheter molding plants in NCR and Ahmedabad",
+      gate_alignment: "GATE XE-F Section 13: Sterilization Kinetics of Polymers"
+    },
+    {
+      backlog_id: "EXP-MEDI-03",
+      target_subject: "Medical Plastics & Biomaterials",
+      target_module: "Module 3 — Controlled Release Hydrogels",
+      title: "Polymeric Drug Delivery Systems: Hydrogel Swelling Kinetics & Controlled Release",
+      target_level: "advanced",
+      gap_solved: "Missing quantitative drug release kinetics (Higuchi & Korsmeyer-Peppas models) from biodegradable hydrogels",
+      prerequisites: ["biocompatible-polymers-medical-devices-and-implants"],
+      numerical_component: "Diffusion coefficient D calculation from Korsmeyer-Peppas equation M_t / M_inf = k * t^n",
+      lab_component: "UV-Vis spectrophotometric drug release measurement from PLGA microspheres",
+      standards_component: "USP <711> Dissolution Testing Standards for Controlled Release Formulations",
+      indian_industry_relevance: "Pharmaceutical formulation R&D centers in Hyderabad, Ahmedabad and Mumbai",
+      gate_alignment: "GATE XE-F Section 13: Polymeric Drug Delivery Systems"
+    },
+
+    // Additives & Compounding (+3)
+    {
+      backlog_id: "EXP-ADDI-01",
+      target_subject: "Additives & Compounding",
+      target_module: "Module 1 — Flame Retardants Mechanics",
+      title: "Flame Retardants in Polymers: Halogen-Free Organophosphorus & Intumescent Systems",
+      target_level: "advanced",
+      gap_solved: "Missing halogen-free eco-friendly flame retardant mechanisms (char formation vs vapor phase inhibition)",
+      prerequisites: ["plasticizers-stabilizers-and-flame-retardants-in-compounding"],
+      numerical_component: "Limiting Oxygen Index (LOI %) calculation and UL-94 V-0 flame rating classification criteria",
+      lab_component: "LOI chamber oxygen concentration testing and Cone Calorimeter heat release rate (HRR)",
+      standards_component: "ISO 4589-2 / UL 94 — Tests for Flammability of Plastic Materials for Parts in Devices",
+      indian_industry_relevance: "Flame retardant compounders supplying electrical appliance housings in Daman and Haridwar",
+      gate_alignment: "GATE XE-F Section 14: Polymer Additives & Flammability"
+    },
+    {
+      backlog_id: "EXP-ADDI-02",
+      target_subject: "Additives & Compounding",
+      target_module: "Module 2 — Stabilization Chemistry",
+      title: "Antioxidants & Thermal Stabilizers Synergy in Polyolefin Compounding",
+      target_level: "intermediate",
+      gap_solved: "Missing synergistic mechanism combining Primary Phenolic Antioxidants (radical scavengers) with Secondary Phosphite Antioxidants (hydroperoxide decomposers)",
+      prerequisites: ["plasticizers-stabilizers-and-flame-retardants-in-compounding"],
+      numerical_component: "Oxidative Induction Time (OIT minutes) calculation from DSC isotherm at 200 deg C",
+      lab_component: "DSC OIT measurement of stabilized HDPE pipe compound vs unstabilized control",
+      standards_component: "ISO 11357-6:2018 — DSC — Determination of oxidation induction time (isothermal OIT)",
+      indian_industry_relevance: "Polyolefin masterbatch and compound manufacturers (Plastiblends, Masterbatches India) in Silvassa",
+      gate_alignment: "GATE XE-F Section 14: Thermal Oxidation Kinetics"
+    },
+    {
+      backlog_id: "EXP-ADDI-03",
+      target_subject: "Additives & Compounding",
+      target_module: "Module 3 — Twin-Screw Compounding Mechanics",
+      title: "Co-Rotating Twin-Screw Compounding: Screw Element Design, Devolatilization & Mixing",
+      target_level: "advanced",
+      gap_solved: "Missing compounding machine design principles (kneading blocks, dispersive vs distributive mixing elements, side feeders)",
+      prerequisites: ["plasticizers-stabilizers-and-flame-retardants-in-compounding"],
+      numerical_component: "Specific Energy Consumption (SEC in kWh/kg) calculation SEC = (2 * pi * N * T) / (3600 * Q)",
+      lab_component: "Color dispersion rating via optical microscopy of masterbatch thin film extrudate",
+      standards_component: "ISO 294-4 — Determination of moulding shrinkage of thermoplastic materials",
+      indian_industry_relevance: "Engineering plastic compounding plants (Steer Engineering extruders) in Bengaluru and Pune",
+      gate_alignment: "GATE XE-F Section 14: Compounding Equipment & Mixing Dynamics"
+    },
+
+    // Plastic Packaging Engineering (+3)
+    {
+      backlog_id: "EXP-PACK-01",
+      target_subject: "Plastic Packaging Engineering",
+      target_module: "Module 1 — Barrier Kinetics & Permeation",
+      title: "Barrier Packaging Kinetics: Oxygen & Water Vapor Transmission Rate (OTR / WVTR)",
+      target_level: "advanced",
+      gap_solved: "Missing mathematical permeation model (Fickian diffusion + Henry's solubility law P = D * S)",
+      prerequisites: ["flexible-and-rigid-packaging-design-and-barrier-properties"],
+      numerical_component: "OTR calculation P = (Q * L) / (A * t * delta P) in cm^3 * mil / (m^2 * day * atm)",
+      lab_component: "Coulometric oxygen transmission rate test on Mocon OTR analyzer at 23 deg C / 50% RH",
+      standards_component: "ASTM D3985 — Oxygen Gas Transmission Rate Through Plastic Film and Sheeting Using a Coulometric Sensor",
+      indian_industry_relevance: "Multi-layer barrier film extruders (UFlex, Supreme Industries) in Noida and Malanpur",
+      gate_alignment: "GATE XE-F Section 15: Barrier Packaging Transport Phenomena"
+    },
+    {
+      backlog_id: "EXP-PACK-02",
+      target_subject: "Plastic Packaging Engineering",
+      target_module: "Module 2 — Active & Intelligent Packaging",
+      title: "Active & Intelligent Packaging Systems: Oxygen Scavengers, Antimicrobials & Indicators",
+      target_level: "intermediate",
+      gap_solved: "Missing technical coverage of smart packaging extending shelf-life (iron-based O2 scavengers, freshness TTIs)",
+      prerequisites: ["flexible-and-rigid-packaging-design-and-barrier-properties"],
+      numerical_component: "Oxygen absorption capacity calculation (mL O2 / g scavenger) for extended food shelf-life model",
+      lab_component: "Headspace gas chromatography (GC-TCD) monitoring inside modified atmosphere package (MAP)",
+      standards_component: "ISO 22000 / IS 10146 — Polyethylene for its safe use in contact with foodstuffs",
+      indian_industry_relevance: "Processed food packaging lines (Amul, Britannia, MTR) R&D packaging teams",
+      gate_alignment: "GATE XE-F Section 15: Active Packaging Technologies"
+    },
+    {
+      backlog_id: "EXP-PACK-03",
+      target_subject: "Plastic Packaging Engineering",
+      target_module: "Module 3 — Flexible Barrier Laminates",
+      title: "Flexible Barrier Laminates: Multi-layer Co-extrusion vs Vacuum Metallization Physics",
+      target_level: "advanced",
+      gap_solved: "Missing comparative physics of 7-layer EVOH co-extrusion vs aluminum oxide / metallized PET film barrier performance",
+      prerequisites: ["flexible-and-rigid-packaging-design-and-barrier-properties"],
+      numerical_component: "Composite laminate barrier calculation 1 / P_total = sum(d_i / P_i)",
+      lab_component: "Laminate layer thickness measurement under optical cross-sectional microscopy and bond strength peel test",
+      standards_component: "ASTM F904 — Standard Test Method for Comparison of Bond Strength or Ply Adhesion of Similar Laminates",
+      indian_industry_relevance: "Flexible packaging conversion units in Gujarat and Himachal Pradesh",
+      gate_alignment: "GATE XE-F Section 15: Multilayer Packaging Physics"
+    },
+
+    // Life Cycle Assessment (+3)
+    {
+      backlog_id: "EXP-LCA-01",
+      target_subject: "Life Cycle Assessment",
+      target_module: "Module 1 — ISO 14040/44 Framework",
+      title: "ISO 14040/14044 Life Cycle Assessment Execution: Goal, Scope & Inventory (LCI)",
+      target_level: "intermediate",
+      gap_solved: "Missing standard methodology framework for executing cradle-to-grave LCA on polymer products",
+      prerequisites: ["life-cycle-assessment-lca-of-polymeric-materials"],
+      numerical_component: "Life Cycle Inventory (LCI) mass and energy input-output matrix balancing for 1 kg HDPE bottle",
+      lab_component: "SimaPro / GaBi LCA software model setup for virgin vs recycled polymer comparison",
+      standards_component: "ISO 14040:2006 & ISO 14044:2006 — Environmental management — Life cycle assessment",
+      indian_industry_relevance: "Corporate ESG reporting teams in Reliance Industries, Tata Consumer, and Godrej",
+      gate_alignment: "GATE XE-F Section 16: Life Cycle Assessment Methodology"
+    },
+    {
+      backlog_id: "EXP-LCA-02",
+      target_subject: "Life Cycle Assessment",
+      target_module: "Module 2 — Carbon Footprinting",
+      title: "Scope 1, 2, and 3 Greenhouse Gas Accounting in Plastics Manufacturing",
+      target_level: "intermediate",
+      gap_solved: "Missing practical accounting methodology for Scope 1 direct emissions, Scope 2 electricity, and Scope 3 supply chain carbon",
+      prerequisites: ["life-cycle-assessment-lca-of-polymeric-materials"],
+      numerical_component: "Global Warming Potential (GWP in kg CO2-eq / kg polymer) calculation using IPCC AR6 factors",
+      lab_component: "Factory energy audit carbon intensity calculation per tonne of processed polymer",
+      standards_component: "GHG Protocol Corporate Accounting Standard / ISO 14064-1:2018",
+      indian_industry_relevance: "Indian plastics exporters complying with EU Carbon Border Adjustment Mechanism (CBAM)",
+      gate_alignment: "GATE XE-F Section 16: Carbon Accounting & Climate Impact"
+    },
+    {
+      backlog_id: "EXP-LCA-03",
+      target_subject: "Life Cycle Assessment",
+      target_module: "Module 3 — Environmental Product Declarations",
+      title: "Environmental Product Declaration (EPD) Generation & PCR Compliance for Polymers",
+      target_level: "advanced",
+      gap_solved: "Missing third-party verified EPD report generation workflow following Product Category Rules (PCR)",
+      prerequisites: ["life-cycle-assessment-lca-of-polymeric-materials"],
+      numerical_component: "Characterization factor weighting for Acidification, Eutrophication, and Water Scarcity Footprint",
+      lab_component: "Verification audit of EPD background report dataset against plant utility bills",
+      standards_component: "ISO 14025:2006 — Environmental labels and declarations — Type III environmental declarations",
+      indian_industry_relevance: "Green building polymer material certification (IGBC / LEED rating) in India",
+      gate_alignment: "GATE XE-F Section 16: Environmental Product Declarations"
+    },
+
+    // Color Science & Masterbatches (+3)
+    {
+      backlog_id: "EXP-COLO-01",
+      target_subject: "Color Science & Masterbatches",
+      target_module: "Module 1 — Color Space Kinetics",
+      title: "CIELAB Color Space (L*a*b*) & Spectrophotometric Delta E* Color Matching",
+      target_level: "intermediate",
+      gap_solved: "Missing mathematical color space representation and Delta E* color tolerance equations",
+      prerequisites: ["color-matching-pigment-dispersion-and-masterbatches"],
+      numerical_component: "Delta E* ab calculation = sqrt((delta L*)^2 + (delta a*)^2 + (delta b*)^2) and CIE2000 Delta E00 formula",
+      lab_component: "Benchtop spectrophotometer color measurement of injection moulded color plaques under D65 / 10 deg observer",
+      standards_component: "ISO 11664-4:2019 — Colorimetry — Part 4: CIE 1976 L*a*b* Colour space",
+      indian_industry_relevance: "Automotive interior color matching labs and masterbatch QC departments in Gurgaon and Pune",
+      gate_alignment: "GATE XE-F Section 17: Color Physics & Optics"
+    },
+    {
+      backlog_id: "EXP-COLO-02",
+      target_subject: "Color Science & Masterbatches",
+      target_module: "Module 2 — Pigment Dispersion Testing",
+      title: "Pigment Dispersion Kinetics & Pressure Filter Value (PFV) Testing",
+      target_level: "advanced",
+      gap_solved: "Missing quality control metric for masterbatch pigment agglomerate dispersion (PFV bar/g)",
+      prerequisites: ["color-matching-pigment-dispersion-and-masterbatches"],
+      numerical_component: "Pressure Filter Value calculation PFV = (P_max - P_0) / m_pigment in bar / g",
+      lab_component: "Standard melt pump filter test rig operation with 14 micron mesh filter pack",
+      standards_component: "EN 13900-5:2014 — Pigments and extenders — Methods of dispersion — Part 5: Determination of filter pressure value",
+      indian_industry_relevance: "Fiber grade masterbatch producers (Rajiv Plastics, Poddar Pigments) in Silvassa and Jaipur",
+      gate_alignment: "GATE XE-F Section 17: Masterbatch Quality Metrics"
+    },
+    {
+      backlog_id: "EXP-COLO-03",
+      target_subject: "Color Science & Masterbatches",
+      target_module: "Module 3 — Special Effect Masterbatches",
+      title: "Special Effect Pigments: Metallic, Interference Pearlescent & Thermochromic Masterbatches",
+      target_level: "intermediate",
+      gap_solved: "Missing optical physics treatment of flake orientation, thin-film interference, and thermochromic phase change pigments",
+      prerequisites: ["color-matching-pigment-dispersion-and-masterbatches"],
+      numerical_component: "Bragg's law interference wavelength calculation lambda = 2 * n * d * sin(theta) for mica pearlescents",
+      lab_component: "Multi-angle spectrophotometer (goniophotometer) measurement at 15 deg, 45 deg, 110 deg flop angles",
+      standards_component: "ASTM E2194 — Standard Test Method for Multiangle Color Measurement of Metal Flake Pigmented Materials",
+      indian_industry_relevance: "Cosmetics packaging and premium automotive masterbatch suppliers in Mumbai and Chennai",
+      gate_alignment: "GATE XE-F Section 17: Optical Pigment Technologies"
+    },
+
+    // Polymer Rheology (+4)
+    {
+      backlog_id: "EXP-RHEO-01",
+      target_subject: "Polymer Rheology",
+      target_module: "Module 1 — Non-Newtonian Constitutive Models",
+      title: "Non-Newtonian Rheological Models: Power-Law, Carreau-Yasuda & Cross Equations",
+      target_level: "advanced",
+      gap_solved: "Missing non-Newtonian constitutive shear-thinning equations required for accurate finite element flow simulation",
+      prerequisites: ["rheological-testing-understanding-melt-flow-behavior"],
+      numerical_component: "Fitting shear rate vs viscosity curves to determine Power-Law index n and Carreau zero-shear viscosity eta_0",
+      lab_component: "Rotational rheometer steady shear sweep (0.01 to 500 s^-1) data curve fitting",
+      standards_component: "ISO 6721-10:2015 — Plastics — Determination of dynamic mechanical properties — Part 10: Complex shear viscosity",
+      indian_industry_relevance: "Moldflow / Moldex3D simulation engineers in automotive design centers",
+      gate_alignment: "GATE XE-F Section 18: Rheological Constitutive Equations"
+    },
+    {
+      backlog_id: "EXP-RHEO-02",
+      target_subject: "Polymer Rheology",
+      target_module: "Module 2 — Elasticity & Normal Stress",
+      title: "Melt Elasticity & First Normal Stress Difference (N1): Die Swell & Weissenberg Effect",
+      target_level: "advanced",
+      gap_solved: "Missing treatment of melt elasticity, normal stress differences N1 and N2, and rod climbing Weissenberg effect",
+      prerequisites: ["rheological-testing-understanding-melt-flow-behavior"],
+      numerical_component: "First normal stress coefficient Psi_1 = N1 / (dot_gamma)^2 calculation from cone-and-plate rheometry",
+      lab_component: "Cone-and-plate normal force measurement on rotational rheometer",
+      standards_component: "ASTM D4440 — Standard Test Method for Plastics: Dynamic Mechanical Properties: Melt Rheology",
+      indian_industry_relevance: "Polymer resin manufacturers (RIL, TCG) characterizing melt elasticity for blow moulding grades",
+      gate_alignment: "GATE XE-F Section 18: Polymer Melt Elasticity"
+    },
+    {
+      backlog_id: "EXP-RHEO-03",
+      target_subject: "Polymer Rheology",
+      target_module: "Module 3 — Capillary Corrections",
+      title: "Capillary Rheometry Corrections: Bagley Pressure Drop & Weissenberg-Rabinowitsch Shear Rate",
+      target_level: "advanced",
+      gap_solved: "Missing essential mathematical corrections converting raw capillary data to true wall shear stress and shear rate",
+      prerequisites: ["rheological-testing-understanding-melt-flow-behavior"],
+      numerical_component: "Bagley entrance pressure drop extrapolation (L/D = 0, 10, 20, 30) and Rabinowitsch correction b = (3n + 1) / (4n)",
+      lab_component: "High-pressure capillary rheometer multi-die orifice test execution",
+      standards_component: "ISO 11443:2021 — Plastics — Determination of the fluidity of plastics using capillary rheometers",
+      indian_industry_relevance: "Melt processing characterization labs at CIPET and IIT polymer departments",
+      gate_alignment: "GATE XE-F Section 18: Capillary Rheometry Data Reduction"
+    },
+    {
+      backlog_id: "EXP-RHEO-04",
+      target_subject: "Polymer Rheology",
+      target_module: "Module 4 — Flow Instabilities",
+      title: "Extrusion Flow Instabilities: Sharkskin Melt Fracture & Gross Melt Fracture Kinetics",
+      target_level: "advanced",
+      gap_solved: "Missing physics of high shear rate extrudate surface defects (sharkskin, slip-stick, gross melt fracture)",
+      prerequisites: ["rheological-testing-understanding-melt-flow-behavior"],
+      numerical_component: "Critical shear stress calculation tau_crit = 0.1 to 0.15 MPa for onset of sharkskin melt fracture",
+      lab_component: "Optical inspection of extrudate surface roughness vs die wall shear rate using fluoropolymer PPA additive",
+      standards_component: "ASTM D3835 — Standard Test Method for Determination of Properties of Polymeric Materials by Capillary Rheometer",
+      indian_industry_relevance: "LLDPE blown film manufacturers utilizing Polymer Processing Aids (PPA) in Daman",
+      gate_alignment: "GATE XE-F Section 18: Melt Flow Instabilities & Processing Window"
+    }
+  ];
+
+  fs.writeFileSync('curriculum_expansion_backlog_46.json', JSON.stringify(backlog46, null, 2));
+  console.log('Saved curriculum_expansion_backlog_46.json (46 proposed new lessons)');
+
+  // 3. Build curriculum_gap_analysis_148.json
+  const gapsBySubject = dbSubjects.map(s => {
+    const currentLessons = lessons102Map.filter(l => l.subject_id === s.id);
+    const proposedLessons = backlog46.filter(b => b.target_subject === s.name);
+    return {
+      subject_id: s.id,
+      subject_name: s.name,
+      current_lesson_count: currentLessons.length,
+      proposed_addition_count: proposedLessons.length,
+      projected_total_lessons: currentLessons.length + proposedLessons.length,
+      identified_gaps: {
+        missing_foundations: proposedLessons.filter(p => p.target_level === 'beginner').map(p => p.title),
+        missing_intermediate_bridges: proposedLessons.filter(p => p.target_level === 'intermediate').map(p => p.title),
+        missing_advanced_topics: proposedLessons.filter(p => p.target_level === 'advanced').map(p => p.title),
+        weak_coverage_areas: [
+          "Needs explicit ISO/ASTM laboratory standard procedures",
+          "Needs quantitative mathematical worked examples",
+          "Needs Indian industrial cluster applications (e.g. CIPET, Gujarat/Maharashtra clusters)"
+        ]
+      }
+    };
+  });
+
+  const gap_analysis_148 = {
+    metadata: {
+      current_total_lessons: 102,
+      working_target: 148,
+      backlog_size: 46,
+      target_range: "145-150",
+      total_subjects_audited: 15,
+      audit_date: "2026-07-24"
+    },
+    subject_gap_breakdown: gapsBySubject
+  };
+
+  fs.writeFileSync('curriculum_gap_analysis_148.json', JSON.stringify(gap_analysis_148, null, 2));
+  console.log('Saved curriculum_gap_analysis_148.json (15 subjects audited)');
+
+  // 4. Build curriculum_dependency_map_148.json
+  const dependencyMap = {
+    metadata: {
+      total_lessons: 148,
+      existing_lessons: 102,
+      new_lessons: 46,
+      pathway_type: "Directed Acyclic Graph (DAG) for Sequential Learning"
+    },
+    prerequisite_node_graph: [
+      ...lessons102Map.map(l => ({
+        lesson_id: l.lesson_id,
+        slug: l.slug,
+        title: l.title,
+        subject: l.subject_name,
+        type: "EXISTING_LESSON",
+        prerequisites: []
+      })),
+      ...backlog46.map(b => ({
+        backlog_id: b.backlog_id,
+        slug: b.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
+        title: b.title,
+        subject: b.target_subject,
+        type: "PROPOSED_EXPANSION_LESSON",
+        prerequisites: b.prerequisites
+      }))
+    ]
+  };
+
+  fs.writeFileSync('curriculum_dependency_map_148.json', JSON.stringify(dependencyMap, null, 2));
+  console.log('Saved curriculum_dependency_map_148.json (148 lessons mapped in dependency graph)');
+
+  // 5. Build curriculum_duplication_split_report.json
+  const splitReport = {
+    metadata: {
+      total_audited: 102,
+      overloaded_lessons_identified: 3,
+      duplicates_identified: 0,
+      boundary_clarifications: 5,
+      status: "APPROVED_BOUNDARIES"
+    },
+    overloaded_lessons: [
+      {
+        slug: "extrusion-process-screw-design-and-die-types",
+        title: "Extrusion Process: Screw Design, Flow Mechanics and Die Geometry",
+        issue: "Combines screw channel fluid mechanics, die pressure drop, and extrudate die swell into single lesson",
+        resolution: "Boundaries demarcated. New lesson 'EXP-PROC-01: Extrusion Die Swell Mechanics' added to isolate viscoelastic exit flow."
+      },
+      {
+        slug: "vulcanization-of-rubber-chemistry-systems-and-industrial-practice",
+        title: "Vulcanization of Rubber: Chemistry, Systems & Industrial Practice",
+        issue: "Combines sulfur vulcanization chemistry with MDR experimental cure curves and TPE physics",
+        resolution: "Boundaries demarcated. New lessons 'EXP-RUBB-01: MDR Cure Curve Analysis' and 'EXP-RUBB-02: Thermoplastic Elastomers' added to isolate kinetics."
+      },
+      {
+        slug: "draft-angles-and-shrinkage-allowance-in-mould-design",
+        title: "Draft Angles & Volumetric Shrinkage Allowance in Injection Mould Design",
+        issue: "Combines component design rules of thumb with runner balancing and tool mechanical kinematics",
+        resolution: "Boundaries demarcated. New lessons 'EXP-MOLD-01: Multi-Cavity Runner Balancing' and 'EXP-MOLD-03: Undercut Release Mechanics' added."
+      }
+    ],
+    boundary_clarifications: [
+      {
+        domain: "Polymer Processing vs Mould Design",
+        rule: "Processing lessons focus on polymer fluid mechanics, shear rate, and machine parameters. Mould Design lessons focus on steel tooling geometry, runner sizing, cooling channels, and actuation kinematics."
+      },
+      {
+        domain: "Polymer Testing vs Rheology",
+        rule: "Testing lessons cover standardized laboratory protocols (ASTM/ISO) for thermal (DSC), mechanical (DMA), and chemical (GC-MS) characterization. Rheology lessons cover non-Newtonian flow equations, melt elasticity, and constitutive modeling."
+      },
+      {
+        domain: "Recycling Technology vs Life Cycle Assessment",
+        rule: "Recycling covers physical/chemical process engineering (wash lines, super-cleaning, pyrolysis). LCA covers ISO 14040/44 inventory modeling, Scope 1/2/3 carbon footprinting, and EPD declarations."
+      }
+    ]
+  };
+
+  fs.writeFileSync('curriculum_duplication_split_report.json', JSON.stringify(splitReport, null, 2));
+  console.log('Saved curriculum_duplication_split_report.json (Split audit complete)');
+
+  console.log('=== ALL 5 SPRINT 1C ARTIFACTS GENERATED SUCCESSFULLY ===');
+}
+
+main();

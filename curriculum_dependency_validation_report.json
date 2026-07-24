@@ -1,0 +1,97 @@
+{
+  "metadata": {
+    "generated_at": "2026-07-24T13:40:00Z",
+    "validation_mode": "Automated Topological Sort & Reference Audit",
+    "target_nodes": 148
+  },
+  "validation_metrics": {
+    "node_count": 148,
+    "existing_nodes": 102,
+    "proposed_nodes": 46,
+    "edge_count": 50,
+    "cycle_count": 0,
+    "self_dependency_count": 0,
+    "missing_reference_count": 0,
+    "duplicate_slug_count": 0,
+    "duplicate_node_id_count": 0,
+    "orphan_lesson_count": 64,
+    "status": "passed"
+  },
+  "subject_node_counts": [
+    {
+      "subject_name": "Polymer Chemistry",
+      "subject_id": "25503bc3-fb0e-4991-a226-1d7b464e2946",
+      "total_lessons": 9
+    },
+    {
+      "subject_name": "Polymer Processing",
+      "subject_id": "09931597-70cc-4cab-905c-336a4d6dde09",
+      "total_lessons": 9
+    },
+    {
+      "subject_name": "Mould Design",
+      "subject_id": "868f5116-d18d-4f4c-a0cc-109c87d09f3e",
+      "total_lessons": 9
+    },
+    {
+      "subject_name": "Polymer Testing",
+      "subject_id": "256350b6-84d6-4ebe-b0ff-e951f00956db",
+      "total_lessons": 9
+    },
+    {
+      "subject_name": "Rubber Technology",
+      "subject_id": "b9399968-d0df-4953-9bec-1f07d61de8ab",
+      "total_lessons": 9
+    },
+    {
+      "subject_name": "Recycling Technology",
+      "subject_id": "12f8a381-2a68-47ea-bcc9-74cd4fe7ab8b",
+      "total_lessons": 11
+    },
+    {
+      "subject_name": "Sustainable Plastics & Bioplastics",
+      "subject_id": "251160d3-705f-4563-9468-483a86bba730",
+      "total_lessons": 11
+    },
+    {
+      "subject_name": "Polymer Composites",
+      "subject_id": "4b71f8bf-c3c9-4a27-8a18-7af831b9ec25",
+      "total_lessons": 11
+    },
+    {
+      "subject_name": "Entrepreneurship in Plastics",
+      "subject_id": "eb5250fe-360a-4fc4-bd74-b5f65bebcea5",
+      "total_lessons": 11
+    },
+    {
+      "subject_name": "Medical Plastics & Biomaterials",
+      "subject_id": "9fad76f4-4c41-4719-9698-df3d2c9b39eb",
+      "total_lessons": 9
+    },
+    {
+      "subject_name": "Additives & Compounding",
+      "subject_id": "3224e480-d92e-474f-90ba-2439596e0db9",
+      "total_lessons": 11
+    },
+    {
+      "subject_name": "Plastic Packaging Engineering",
+      "subject_id": "4b781aed-0252-411c-9e58-76a8155a1c74",
+      "total_lessons": 11
+    },
+    {
+      "subject_name": "Life Cycle Assessment",
+      "subject_id": "cb4aeb63-104f-4427-9256-06ad9356e50f",
+      "total_lessons": 9
+    },
+    {
+      "subject_name": "Color Science & Masterbatches",
+      "subject_id": "d4f2af9a-03a4-4771-8af8-9e1965c48182",
+      "total_lessons": 9
+    },
+    {
+      "subject_name": "Polymer Rheology",
+      "subject_id": "0c8e6afa-b2b8-44a4-80bf-e0f1300f8d39",
+      "total_lessons": 10
+    }
+  ]
+}

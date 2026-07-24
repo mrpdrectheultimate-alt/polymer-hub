@@ -1,0 +1,116 @@
+{
+  "metadata": {
+    "total_new_lessons": 46,
+    "total_grade_b_upgrades": 15,
+    "total_expansion_batches": 5,
+    "dual_track_model": "Simultaneous 46 New Grade A Lessons + 15 Existing Grade B Upgrades to Grade A"
+  },
+  "batches": [
+    {
+      "batch_id": "Batch 1",
+      "new_lessons_count": 10,
+      "grade_b_upgrades_count": 3,
+      "new_lesson_slugs": [
+        "ring-opening-polymerization-nylon-6-and-polycaprolactone",
+        "living-and-controlled-ionic-polymerization",
+        "polymer-solution-thermodynamics-flory-huggins-theory",
+        "extrusion-die-swell-drawdown-and-dimensional-control",
+        "smc-and-bmc-process-engineering-charge-pattern-cure-control",
+        "rotational-moulding-process-physics-powder-fusion-and-heating",
+        "multi-cavity-runner-balancing-kinetics-and-pressure-drop",
+        "hot-runner-valve-gating-mechanics-and-sequential-injection",
+        "undercut-release-mechanics-side-cores-slides-and-lifters",
+        "dsc-thermal-analysis-tg-tm-hf-and-crystallinity"
+      ],
+      "grade_b_upgrade_candidates": [
+        "injection-moulding-process-parameters-and-defects",
+        "gate-design-in-injection-moulds-types-location-and-selection",
+        "melt-flow-index-mfi-measurement-significance-and-indian-standards"
+      ]
+    },
+    {
+      "batch_id": "Batch 2",
+      "new_lessons_count": 10,
+      "grade_b_upgrades_count": 3,
+      "new_lesson_slugs": [
+        "dma-dynamic-mechanical-analysis-modulus-and-tan-delta",
+        "gc-ms-screening-of-polymer-extractables-and-leachables",
+        "rubber-mixing-and-internal-mixer-process-control",
+        "thermoplastic-elastomers-tpe-tpu-tpv-structure-and-processing",
+        "tyre-compound-design-silica-silane-reinforcement-and-rolling-resistance",
+        "food-contact-rpet-super-cleaning-challenge-testing-and-regulatory-evaluation",
+        "advanced-chemical-recycling-pyrolysis-and-solvolysis-pathways",
+        "e-waste-plastics-recycling-density-separation-and-flame-retardants",
+        "controlled-composting-biodegradation-by-co2-respirometry",
+        "polyhydroxyalkanoates-pha-biosynthesis-fermentation-and-processing"
+      ],
+      "grade_b_upgrade_candidates": [
+        "polymer-blends-and-composites-combining-materials-for-better-performance",
+        "polymerization-mechanisms-addition-vs-condensation",
+        "compression-and-transfer-moulding-for-thermosets"
+      ]
+    },
+    {
+      "batch_id": "Batch 3",
+      "new_lessons_count": 10,
+      "grade_b_upgrades_count": 3,
+      "new_lesson_slugs": [
+        "biobased-carbon-content-by-radiocarbon-analysis",
+        "fiber-matrix-interfacial-shear-strength-and-fragmentation-testing",
+        "resin-transfer-moulding-rtm-and-vacuum-infusion-vari-hydraulics",
+        "carbon-fiber-reinforced-polymers-autoclave-cure-kinetics",
+        "bankable-detailed-project-report-dpr-preparation-and-dscr",
+        "working-capital-financing-cash-credit-bill-discounting-and-lcs",
+        "plastics-factory-layout-utilities-and-spcb-pcc-consent-management",
+        "iso-10993-biocompatibility-testing-cytotoxicity-and-extractables",
+        "medical-plastics-sterilization-compatibility-gamma-eto-autoclave",
+        "polymeric-drug-delivery-systems-hydrogel-swelling-and-release"
+      ],
+      "grade_b_upgrade_candidates": [
+        "extrusion-die-design-fundamentals",
+        "crystallinity-and-morphology-in-polymers",
+        "thermal-analysis-dsc-tga-and-hdt-testing"
+      ]
+    },
+    {
+      "batch_id": "Batch 4",
+      "new_lessons_count": 8,
+      "grade_b_upgrades_count": 3,
+      "new_lesson_slugs": [
+        "flame-retardants-in-polymers-halogen-free-organophosphorus-systems",
+        "antioxidants-and-thermal-stabilizers-synergy-in-polyolefins",
+        "twin-screw-compounding-specific-energy-residence-time-and-scaleup",
+        "barrier-packaging-kinetics-otr-and-wvtr-permeation",
+        "active-and-intelligent-packaging-systems-scavengers-and-indicators",
+        "flexible-barrier-laminates-coextrusion-vs-vacuum-metallization",
+        "iso-14040-44-life-cycle-assessment-execution-and-lci",
+        "corporate-ghg-accounting-product-carbon-boundaries-and-cbam-overview"
+      ],
+      "grade_b_upgrade_candidates": [
+        "natural-rubber-vs-synthetic-rubber-sources-and-selection",
+        "rubber-compounding-fillers-carbon-black-and-additives",
+        "latex-technology-processing-and-applications"
+      ]
+    },
+    {
+      "batch_id": "Batch 5",
+      "new_lessons_count": 8,
+      "grade_b_upgrades_count": 3,
+      "new_lesson_slugs": [
+        "environmental-product-declarations-epd-and-pcr-compliance",
+        "cielab-color-space-and-spectrophotometric-delta-e-matching",
+        "pigment-dispersion-kinetics-and-pressure-filter-value-pfv-testing",
+        "special-effect-pigments-metallic-pearlescent-and-thermochromic",
+        "non-newtonian-rheological-models-power-law-and-carreau-yasuda",
+        "first-normal-stress-difference-recoverable-strain-and-melt-elasticity",
+        "time-temperature-superposition-wlf-shifts-and-rheological-master-curves",
+        "extrusion-flow-instabilities-sharkskin-melt-fracture-and-gross-fracture"
+      ],
+      "grade_b_upgrade_candidates": [
+        "bioplastics-synthesis-compostability-and-standards",
+        "introduction-to-reinforced-polymer-composites",
+        "introduction-to-mechanical-and-chemical-recycling"
+      ]
+    }
+  ]
+}

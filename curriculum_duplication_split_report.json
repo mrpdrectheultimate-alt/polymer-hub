@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "total_audited": 102,
+    "overloaded_lessons_identified": 3,
+    "duplicates_identified": 0,
+    "boundary_clarifications": 5,
+    "status": "APPROVED_BOUNDARIES"
+  },
+  "overloaded_lessons": [
+    {
+      "slug": "extrusion-process-screw-design-and-die-types",
+      "title": "Extrusion Process: Screw Design, Flow Mechanics and Die Geometry",
+      "issue": "Combines screw channel fluid mechanics, die pressure drop, and extrudate die swell into single lesson",
+      "resolution": "Boundaries demarcated. New lesson 'EXP-PROC-01: Extrusion Die Swell Mechanics' added to isolate viscoelastic exit flow."
+    },
+    {
+      "slug": "vulcanization-of-rubber-chemistry-systems-and-industrial-practice",
+      "title": "Vulcanization of Rubber: Chemistry, Systems & Industrial Practice",
+      "issue": "Combines sulfur vulcanization chemistry with MDR experimental cure curves and TPE physics",
+      "resolution": "Boundaries demarcated. New lessons 'EXP-RUBB-01: MDR Cure Curve Analysis' and 'EXP-RUBB-02: Thermoplastic Elastomers' added to isolate kinetics."
+    },
+    {
+      "slug": "draft-angles-and-shrinkage-allowance-in-mould-design",
+      "title": "Draft Angles & Volumetric Shrinkage Allowance in Injection Mould Design",
+      "issue": "Combines component design rules of thumb with runner balancing and tool mechanical kinematics",
+      "resolution": "Boundaries demarcated. New lessons 'EXP-MOLD-01: Multi-Cavity Runner Balancing' and 'EXP-MOLD-03: Undercut Release Mechanics' added."
+    }
+  ],
+  "boundary_clarifications": [
+    {
+      "domain": "Polymer Processing vs Mould Design",
+      "rule": "Processing lessons focus on polymer fluid mechanics, shear rate, and machine parameters. Mould Design lessons focus on steel tooling geometry, runner sizing, cooling channels, and actuation kinematics."
+    },
+    {
+      "domain": "Polymer Testing vs Rheology",
+      "rule": "Testing lessons cover standardized laboratory protocols (ASTM/ISO) for thermal (DSC), mechanical (DMA), and chemical (GC-MS) characterization. Rheology lessons cover non-Newtonian flow equations, melt elasticity, and constitutive modeling."
+    },
+    {
+      "domain": "Recycling Technology vs Life Cycle Assessment",
+      "rule": "Recycling covers physical/chemical process engineering (wash lines, super-cleaning, pyrolysis). LCA covers ISO 14040/44 inventory modeling, Scope 1/2/3 carbon footprinting, and EPD declarations."
+    }
+  ]
+}

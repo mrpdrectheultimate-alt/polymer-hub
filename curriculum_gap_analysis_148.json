@@ -1,0 +1,339 @@
+{
+  "metadata": {
+    "current_total_lessons": 102,
+    "working_target": 148,
+    "backlog_size": 46,
+    "target_range": "145-150",
+    "total_subjects_audited": 15,
+    "audit_date": "2026-07-24"
+  },
+  "subject_gap_breakdown": [
+    {
+      "subject_id": "3224e480-d92e-474f-90ba-2439596e0db9",
+      "subject_name": "Additives & Compounding",
+      "current_lesson_count": 8,
+      "proposed_addition_count": 3,
+      "projected_total_lessons": 11,
+      "identified_gaps": {
+        "missing_foundations": [],
+        "missing_intermediate_bridges": [
+          "Antioxidants & Thermal Stabilizers Synergy in Polyolefin Compounding"
+        ],
+        "missing_advanced_topics": [
+          "Flame Retardants in Polymers: Halogen-Free Organophosphorus & Intumescent Systems",
+          "Co-Rotating Twin-Screw Compounding: Screw Element Design, Devolatilization & Mixing"
+        ],
+        "weak_coverage_areas": [
+          "Needs explicit ISO/ASTM laboratory standard procedures",
+          "Needs quantitative mathematical worked examples",
+          "Needs Indian industrial cluster applications (e.g. CIPET, Gujarat/Maharashtra clusters)"
+        ]
+      }
+    },
+    {
+      "subject_id": "d4f2af9a-03a4-4771-8af8-9e1965c48182",
+      "subject_name": "Color Science & Masterbatches",
+      "current_lesson_count": 6,
+      "proposed_addition_count": 3,
+      "projected_total_lessons": 9,
+      "identified_gaps": {
+        "missing_foundations": [],
+        "missing_intermediate_bridges": [
+          "CIELAB Color Space (L*a*b*) & Spectrophotometric Delta E* Color Matching",
+          "Special Effect Pigments: Metallic, Interference Pearlescent & Thermochromic Masterbatches"
+        ],
+        "missing_advanced_topics": [
+          "Pigment Dispersion Kinetics & Pressure Filter Value (PFV) Testing"
+        ],
+        "weak_coverage_areas": [
+          "Needs explicit ISO/ASTM laboratory standard procedures",
+          "Needs quantitative mathematical worked examples",
+          "Needs Indian industrial cluster applications (e.g. CIPET, Gujarat/Maharashtra clusters)"
+        ]
+      }
+    },
+    {
+      "subject_id": "eb5250fe-360a-4fc4-bd74-b5f65bebcea5",
+      "subject_name": "Entrepreneurship in Plastics",
+      "current_lesson_count": 8,
+      "proposed_addition_count": 3,
+      "projected_total_lessons": 11,
+      "identified_gaps": {
+        "missing_foundations": [],
+        "missing_intermediate_bridges": [
+          "Working Capital Financing Operations: Cash Credit, Bill Discounting & LC Mechanics",
+          "Plastics Factory Layout, OSHA Safety & Pollution Control Board (PCB) Consent to Operate"
+        ],
+        "missing_advanced_topics": [
+          "Bankable Detailed Project Report (DPR) Preparation & Debt Service Coverage Ratio (DSCR)"
+        ],
+        "weak_coverage_areas": [
+          "Needs explicit ISO/ASTM laboratory standard procedures",
+          "Needs quantitative mathematical worked examples",
+          "Needs Indian industrial cluster applications (e.g. CIPET, Gujarat/Maharashtra clusters)"
+        ]
+      }
+    },
+    {
+      "subject_id": "cb4aeb63-104f-4427-9256-06ad9356e50f",
+      "subject_name": "Life Cycle Assessment",
+      "current_lesson_count": 6,
+      "proposed_addition_count": 3,
+      "projected_total_lessons": 9,
+      "identified_gaps": {
+        "missing_foundations": [],
+        "missing_intermediate_bridges": [
+          "ISO 14040/14044 Life Cycle Assessment Execution: Goal, Scope & Inventory (LCI)",
+          "Scope 1, 2, and 3 Greenhouse Gas Accounting in Plastics Manufacturing"
+        ],
+        "missing_advanced_topics": [
+          "Environmental Product Declaration (EPD) Generation & PCR Compliance for Polymers"
+        ],
+        "weak_coverage_areas": [
+          "Needs explicit ISO/ASTM laboratory standard procedures",
+          "Needs quantitative mathematical worked examples",
+          "Needs Indian industrial cluster applications (e.g. CIPET, Gujarat/Maharashtra clusters)"
+        ]
+      }
+    },
+    {
+      "subject_id": "9fad76f4-4c41-4719-9698-df3d2c9b39eb",
+      "subject_name": "Medical Plastics & Biomaterials",
+      "current_lesson_count": 6,
+      "proposed_addition_count": 3,
+      "projected_total_lessons": 9,
+      "identified_gaps": {
+        "missing_foundations": [],
+        "missing_intermediate_bridges": [
+          "Medical Plastics Sterilization Compatibility: Gamma, E-beam, EtO & Autoclave Physics"
+        ],
+        "missing_advanced_topics": [
+          "ISO 10993 Biocompatibility Testing: Cytotoxicity, Hemocompatibility & Extractables",
+          "Polymeric Drug Delivery Systems: Hydrogel Swelling Kinetics & Controlled Release"
+        ],
+        "weak_coverage_areas": [
+          "Needs explicit ISO/ASTM laboratory standard procedures",
+          "Needs quantitative mathematical worked examples",
+          "Needs Indian industrial cluster applications (e.g. CIPET, Gujarat/Maharashtra clusters)"
+        ]
+      }
+    },
+    {
+      "subject_id": "868f5116-d18d-4f4c-a0cc-109c87d09f3e",
+      "subject_name": "Mould Design",
+      "current_lesson_count": 6,
+      "proposed_addition_count": 3,
+      "projected_total_lessons": 9,
+      "identified_gaps": {
+        "missing_foundations": [],
+        "missing_intermediate_bridges": [],
+        "missing_advanced_topics": [
+          "Multi-Cavity Runner Balancing Kinetics & Pressure Drop Optimization",
+          "Hot Runner Valve Gating Mechanics, Sequential Injection & Thermal Control",
+          "Undercut Release Mechanics: Side Cores, Angular Cam Pins, Slides & Lifters"
+        ],
+        "weak_coverage_areas": [
+          "Needs explicit ISO/ASTM laboratory standard procedures",
+          "Needs quantitative mathematical worked examples",
+          "Needs Indian industrial cluster applications (e.g. CIPET, Gujarat/Maharashtra clusters)"
+        ]
+      }
+    },
+    {
+      "subject_id": "4b781aed-0252-411c-9e58-76a8155a1c74",
+      "subject_name": "Plastic Packaging Engineering",
+      "current_lesson_count": 8,
+      "proposed_addition_count": 3,
+      "projected_total_lessons": 11,
+      "identified_gaps": {
+        "missing_foundations": [],
+        "missing_intermediate_bridges": [
+          "Active & Intelligent Packaging Systems: Oxygen Scavengers, Antimicrobials & Indicators"
+        ],
+        "missing_advanced_topics": [
+          "Barrier Packaging Kinetics: Oxygen & Water Vapor Transmission Rate (OTR / WVTR)",
+          "Flexible Barrier Laminates: Multi-layer Co-extrusion vs Vacuum Metallization Physics"
+        ],
+        "weak_coverage_areas": [
+          "Needs explicit ISO/ASTM laboratory standard procedures",
+          "Needs quantitative mathematical worked examples",
+          "Needs Indian industrial cluster applications (e.g. CIPET, Gujarat/Maharashtra clusters)"
+        ]
+      }
+    },
+    {
+      "subject_id": "25503bc3-fb0e-4991-a226-1d7b464e2946",
+      "subject_name": "Polymer Chemistry",
+      "current_lesson_count": 6,
+      "proposed_addition_count": 3,
+      "projected_total_lessons": 9,
+      "identified_gaps": {
+        "missing_foundations": [],
+        "missing_intermediate_bridges": [],
+        "missing_advanced_topics": [
+          "Ring-Opening Polymerization Mechanics: Industrial Nylon 6 & Polycaprolactone",
+          "Living Anionic & Cationic Polymerization: Narrow Polydispersity Block Copolymers",
+          "Polymer Solution Thermodynamics: Flory-Huggins Theory & Phase Diagrams"
+        ],
+        "weak_coverage_areas": [
+          "Needs explicit ISO/ASTM laboratory standard procedures",
+          "Needs quantitative mathematical worked examples",
+          "Needs Indian industrial cluster applications (e.g. CIPET, Gujarat/Maharashtra clusters)"
+        ]
+      }
+    },
+    {
+      "subject_id": "4b71f8bf-c3c9-4a27-8a18-7af831b9ec25",
+      "subject_name": "Polymer Composites",
+      "current_lesson_count": 8,
+      "proposed_addition_count": 3,
+      "projected_total_lessons": 11,
+      "identified_gaps": {
+        "missing_foundations": [],
+        "missing_intermediate_bridges": [],
+        "missing_advanced_topics": [
+          "Fiber-Matrix Interfacial Shear Strength & Single-Fiber Fragmentation Testing",
+          "Resin Transfer Moulding (RTM) & Vacuum Assisted Infusion (VARI) Hydraulics",
+          "Carbon Fiber Reinforced Polymers (CFRP): Autoclave Cure Kinetics & Void Control"
+        ],
+        "weak_coverage_areas": [
+          "Needs explicit ISO/ASTM laboratory standard procedures",
+          "Needs quantitative mathematical worked examples",
+          "Needs Indian industrial cluster applications (e.g. CIPET, Gujarat/Maharashtra clusters)"
+        ]
+      }
+    },
+    {
+      "subject_id": "09931597-70cc-4cab-905c-336a4d6dde09",
+      "subject_name": "Polymer Processing",
+      "current_lesson_count": 6,
+      "proposed_addition_count": 3,
+      "projected_total_lessons": 9,
+      "identified_gaps": {
+        "missing_foundations": [],
+        "missing_intermediate_bridges": [
+          "Compression & Transfer Moulding Physics: Thermoset SMC/BMC Cure Kinetics",
+          "Rotational Moulding Process Physics: Powder Fusion, Heating Kinetics & Wall Uniformity"
+        ],
+        "missing_advanced_topics": [
+          "Extrusion Die Swell Mechanics: Viscoelastic Normal Stress & Exit Flow Defects"
+        ],
+        "weak_coverage_areas": [
+          "Needs explicit ISO/ASTM laboratory standard procedures",
+          "Needs quantitative mathematical worked examples",
+          "Needs Indian industrial cluster applications (e.g. CIPET, Gujarat/Maharashtra clusters)"
+        ]
+      }
+    },
+    {
+      "subject_id": "0c8e6afa-b2b8-44a4-80bf-e0f1300f8d39",
+      "subject_name": "Polymer Rheology",
+      "current_lesson_count": 6,
+      "proposed_addition_count": 4,
+      "projected_total_lessons": 10,
+      "identified_gaps": {
+        "missing_foundations": [],
+        "missing_intermediate_bridges": [],
+        "missing_advanced_topics": [
+          "Non-Newtonian Rheological Models: Power-Law, Carreau-Yasuda & Cross Equations",
+          "Melt Elasticity & First Normal Stress Difference (N1): Die Swell & Weissenberg Effect",
+          "Capillary Rheometry Corrections: Bagley Pressure Drop & Weissenberg-Rabinowitsch Shear Rate",
+          "Extrusion Flow Instabilities: Sharkskin Melt Fracture & Gross Melt Fracture Kinetics"
+        ],
+        "weak_coverage_areas": [
+          "Needs explicit ISO/ASTM laboratory standard procedures",
+          "Needs quantitative mathematical worked examples",
+          "Needs Indian industrial cluster applications (e.g. CIPET, Gujarat/Maharashtra clusters)"
+        ]
+      }
+    },
+    {
+      "subject_id": "256350b6-84d6-4ebe-b0ff-e951f00956db",
+      "subject_name": "Polymer Testing",
+      "current_lesson_count": 6,
+      "proposed_addition_count": 3,
+      "projected_total_lessons": 9,
+      "identified_gaps": {
+        "missing_foundations": [],
+        "missing_intermediate_bridges": [
+          "Differential Scanning Calorimetry (DSC): Tg, Tm, Hf & Crystallinity Kinetics"
+        ],
+        "missing_advanced_topics": [
+          "Dynamic Mechanical Analysis (DMA): Storage Modulus E', Loss Modulus E'' & Tan Delta",
+          "GC-MS & FTIR Spectroscopy: Additive Identification & Migratable Extractables Analysis"
+        ],
+        "weak_coverage_areas": [
+          "Needs explicit ISO/ASTM laboratory standard procedures",
+          "Needs quantitative mathematical worked examples",
+          "Needs Indian industrial cluster applications (e.g. CIPET, Gujarat/Maharashtra clusters)"
+        ]
+      }
+    },
+    {
+      "subject_id": "12f8a381-2a68-47ea-bcc9-74cd4fe7ab8b",
+      "subject_name": "Recycling Technology",
+      "current_lesson_count": 8,
+      "proposed_addition_count": 3,
+      "projected_total_lessons": 11,
+      "identified_gaps": {
+        "missing_foundations": [],
+        "missing_intermediate_bridges": [
+          "E-Waste Plastics Recycling: Density Separation & Flame Retardant Removal"
+        ],
+        "missing_advanced_topics": [
+          "Super-Cleaning & De-odourizing Technologies for Food-Grade PET/PO Recycling",
+          "Chemical Recycling of Polymers: Glycolysis, Pyrolysis & Solvolysis Kinetics"
+        ],
+        "weak_coverage_areas": [
+          "Needs explicit ISO/ASTM laboratory standard procedures",
+          "Needs quantitative mathematical worked examples",
+          "Needs Indian industrial cluster applications (e.g. CIPET, Gujarat/Maharashtra clusters)"
+        ]
+      }
+    },
+    {
+      "subject_id": "b9399968-d0df-4953-9bec-1f07d61de8ab",
+      "subject_name": "Rubber Technology",
+      "current_lesson_count": 6,
+      "proposed_addition_count": 3,
+      "projected_total_lessons": 9,
+      "identified_gaps": {
+        "missing_foundations": [],
+        "missing_intermediate_bridges": [
+          "Moving Die Rheometer (MDR) Cure Curve Analysis: ML, MH, ts2 & t90 Kinetic Modelling",
+          "Thermoplastic Elastomers (TPE, TPU, TPV): Microphase Separation & Processing"
+        ],
+        "missing_advanced_topics": [
+          "Tyre Compound Design: Silica-Silane Reinforcement, Rolling Resistance & Wet Grip"
+        ],
+        "weak_coverage_areas": [
+          "Needs explicit ISO/ASTM laboratory standard procedures",
+          "Needs quantitative mathematical worked examples",
+          "Needs Indian industrial cluster applications (e.g. CIPET, Gujarat/Maharashtra clusters)"
+        ]
+      }
+    },
+    {
+      "subject_id": "251160d3-705f-4563-9468-483a86bba730",
+      "subject_name": "Sustainable Plastics & Bioplastics",
+      "current_lesson_count": 8,
+      "proposed_addition_count": 3,
+      "projected_total_lessons": 11,
+      "identified_gaps": {
+        "missing_foundations": [],
+        "missing_intermediate_bridges": [
+          "Biodegradation Standards & Kinetics: ISO 14855 Compostability & Disintegration",
+          "Bio-PET, Bio-PE & Renewable Drop-In Polymers: Biomass Conversion Pathways"
+        ],
+        "missing_advanced_topics": [
+          "Polyhydroxyalkanoates (PHA) Biosynthesis, Fermentation & Thermal Processing"
+        ],
+        "weak_coverage_areas": [
+          "Needs explicit ISO/ASTM laboratory standard procedures",
+          "Needs quantitative mathematical worked examples",
+          "Needs Indian industrial cluster applications (e.g. CIPET, Gujarat/Maharashtra clusters)"
+        ]
+      }
+    }
+  ]
+}
