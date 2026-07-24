@@ -38,7 +38,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 94
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 2,
@@ -79,7 +91,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 92
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 3,
@@ -120,7 +144,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 90
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 4,
@@ -161,7 +197,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 95
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 5,
@@ -203,7 +251,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 91
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 6,
@@ -244,7 +304,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 89
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 7,
@@ -285,7 +357,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 93
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 8,
@@ -326,7 +410,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 91
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 9,
@@ -367,7 +463,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 92
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 10,
@@ -408,7 +516,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 96
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 11,
@@ -449,7 +569,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 93
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 12,
@@ -490,7 +622,19 @@
     "source_risk": "medium",
     "regulatory_risk": "high",
     "standards_verification_status": "verification_pending",
-    "priority_score": 91
+    "priority_score": 90,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": -4,
+      "final_priority_score": 90
+    }
   },
   {
     "sequence_number": 13,
@@ -532,7 +676,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 94
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 14,
@@ -573,7 +729,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 90
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 15,
@@ -615,7 +783,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 92
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 16,
@@ -657,7 +837,19 @@
     "source_risk": "medium",
     "regulatory_risk": "high",
     "standards_verification_status": "verification_pending",
-    "priority_score": 95
+    "priority_score": 90,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": -4,
+      "final_priority_score": 90
+    }
   },
   {
     "sequence_number": 17,
@@ -698,7 +890,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 91
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 18,
@@ -739,7 +943,19 @@
     "source_risk": "low",
     "regulatory_risk": "low",
     "standards_verification_status": "verification_pending",
-    "priority_score": 89
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 19,
@@ -780,7 +996,19 @@
     "source_risk": "low",
     "regulatory_risk": "medium",
     "standards_verification_status": "verification_pending",
-    "priority_score": 94
+    "priority_score": 92,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": -2,
+      "final_priority_score": 92
+    }
   },
   {
     "sequence_number": 20,
@@ -821,7 +1049,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 91
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 21,
@@ -862,7 +1102,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 90
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 22,
@@ -903,7 +1155,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 93
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 23,
@@ -944,7 +1208,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 91
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 24,
@@ -985,7 +1261,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 92
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 25,
@@ -1026,7 +1314,19 @@
     "source_risk": "low",
     "regulatory_risk": "low",
     "standards_verification_status": "verification_pending",
-    "priority_score": 95
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 26,
@@ -1067,7 +1367,19 @@
     "source_risk": "low",
     "regulatory_risk": "low",
     "standards_verification_status": "verification_pending",
-    "priority_score": 91
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 27,
@@ -1108,7 +1420,19 @@
     "source_risk": "low",
     "regulatory_risk": "medium",
     "standards_verification_status": "verification_pending",
-    "priority_score": 93
+    "priority_score": 92,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": -2,
+      "final_priority_score": 92
+    }
   },
   {
     "sequence_number": 28,
@@ -1149,7 +1473,19 @@
     "source_risk": "medium",
     "regulatory_risk": "high",
     "standards_verification_status": "verification_pending",
-    "priority_score": 95
+    "priority_score": 90,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": -4,
+      "final_priority_score": 90
+    }
   },
   {
     "sequence_number": 29,
@@ -1190,7 +1526,19 @@
     "source_risk": "low",
     "regulatory_risk": "medium",
     "standards_verification_status": "verification_pending",
-    "priority_score": 91
+    "priority_score": 92,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": -2,
+      "final_priority_score": 92
+    }
   },
   {
     "sequence_number": 30,
@@ -1231,7 +1579,19 @@
     "source_risk": "low",
     "regulatory_risk": "low",
     "standards_verification_status": "verification_pending",
-    "priority_score": 92
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 31,
@@ -1272,7 +1632,19 @@
     "source_risk": "low",
     "regulatory_risk": "low",
     "standards_verification_status": "verification_pending",
-    "priority_score": 93
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 32,
@@ -1313,7 +1685,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 91
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 33,
@@ -1354,7 +1738,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 94
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 34,
@@ -1395,7 +1791,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 95
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 35,
@@ -1436,7 +1844,19 @@
     "source_risk": "low",
     "regulatory_risk": "low",
     "standards_verification_status": "verification_pending",
-    "priority_score": 89
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 36,
@@ -1477,7 +1897,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 93
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 37,
@@ -1518,7 +1950,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 95
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 38,
@@ -1559,7 +2003,19 @@
     "source_risk": "medium",
     "regulatory_risk": "high",
     "standards_verification_status": "verification_pending",
-    "priority_score": 93
+    "priority_score": 90,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": -4,
+      "final_priority_score": 90
+    }
   },
   {
     "sequence_number": 39,
@@ -1600,7 +2056,19 @@
     "source_risk": "low",
     "regulatory_risk": "low",
     "standards_verification_status": "verification_pending",
-    "priority_score": 89
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 40,
@@ -1641,7 +2109,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 94
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 41,
@@ -1682,7 +2162,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 92
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 42,
@@ -1723,7 +2215,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 90
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 43,
@@ -1764,7 +2268,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 96
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 44,
@@ -1805,7 +2321,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 94
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 45,
@@ -1846,7 +2374,19 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 93
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   },
   {
     "sequence_number": 46,
@@ -1887,6 +2427,18 @@
     "source_risk": "low",
     "regulatory_risk": "not_applicable",
     "standards_verification_status": "verification_pending",
-    "priority_score": 95
+    "priority_score": 94,
+    "priority_score_breakdown": {
+      "curriculum_necessity": 10,
+      "prerequisite_importance": 9,
+      "industrial_relevance": 10,
+      "university_gate_alignment": 9,
+      "numerical_value": 10,
+      "laboratory_value": 9,
+      "source_availability": 9,
+      "duplication_penalty": 0,
+      "regulatory_risk_penalty": 0,
+      "final_priority_score": 94
+    }
   }
 ]
