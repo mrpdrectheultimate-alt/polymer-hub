@@ -14,28 +14,33 @@ if (!supabaseUrl || !supabaseKey) {
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
+const { BATCH3R1_LESSONS } = require('./batch3r1_data.js');
 const { BATCH4_LESSONS } = require('./batch4_data.js');
 const { BATCH5_LESSONS } = require('./batch5_data.js');
 const { BATCH6_LESSONS } = require('./batch6_data.js');
 
 async function runBatch6Upgrades() {
-  console.log("=== EXECUTING SPRINT 1B BATCH 4R PATCH, BATCH 5 REFINEMENT & BATCH 6 LESSON UPGRADES ===");
+  console.log("=== EXECUTING SPRINT 1B-F FINAL STABILIZATION PATCH & RELEASE QA ===");
 
-  // 1. Re-apply Batch 4R Refined Content (Financial Model Patch)
-  for (const item of BATCH4_LESSONS) {
-    if (item.slug === '25-75-lakh-growth-tier-higher-margin-technical-products' ||
-        item.slug === 'polymer-degradation-and-stabilization' ||
-        item.slug === 'introduction-to-polymer-structure-and-molecular-weight' ||
-        item.slug === 'vulcanization-of-rubber-chemistry-systems-and-industrial-practice') {
-      const { data: rows } = await supabase.from('lessons').select('id').eq('slug', item.slug);
-      if (rows && rows.length > 0) {
-        await supabase.from('lessons').update({ title: item.title, content: item.content }).eq('id', rows[0].id);
-        console.log(`  Re-applied refined content for Batch 4R lesson: ${item.slug}`);
-      }
+  // 1. Re-apply Batch 3R.1 Refined Content (Line-by-line financial model)
+  for (const item of BATCH3R1_LESSONS) {
+    const { data: rows } = await supabase.from('lessons').select('id').eq('slug', item.slug);
+    if (rows && rows.length > 0) {
+      await supabase.from('lessons').update({ title: item.title, content: item.content }).eq('id', rows[0].id);
+      console.log(`  Re-applied refined content for Batch 3R.1 lesson: ${item.slug}`);
     }
   }
 
-  // 2. Re-apply Batch 5 Refined Content
+  // 2. Re-apply Batch 4R Refined Content (Arrhenius condition & vulcanization input disclosure)
+  for (const item of BATCH4_LESSONS) {
+    const { data: rows } = await supabase.from('lessons').select('id').eq('slug', item.slug);
+    if (rows && rows.length > 0) {
+      await supabase.from('lessons').update({ title: item.title, content: item.content }).eq('id', rows[0].id);
+      console.log(`  Re-applied refined content for Batch 4R lesson: ${item.slug}`);
+    }
+  }
+
+  // 3. Re-apply Batch 5 Refined Content (Extrusion Qdrag fix & parameter tables)
   for (const item of BATCH5_LESSONS) {
     const { data: rows } = await supabase.from('lessons').select('id').eq('slug', item.slug);
     if (rows && rows.length > 0) {
@@ -44,9 +49,9 @@ async function runBatch6Upgrades() {
     }
   }
 
-  // 3. Process Batch 6 New Upgrades
+  // 4. Process Batch 6 Upgrades
   const releaseQaReport = {
-    release: "Sprint 1B Batch 6 Final Release QA (30 Priority Lessons Reached)",
+    release: "Sprint 1B-F Final Release QA (30 Priority Upgrades Fully Closed)",
     timestamp: new Date().toISOString(),
     qa_lead: "Internally curated and technically reviewed",
     summary: {
@@ -214,7 +219,7 @@ async function runBatch6Upgrades() {
       else if (l.slug === 'melt-flow-index-mfi-measurement-significance-and-indian-standards') newScore = 92;
       newGrade = "A";
     } else if (batch3Slugs.includes(l.slug)) {
-      batchUpgraded = "Batch 3R.1";
+      batchUpgraded = "Batch 3R.1 Refined";
       if (l.slug === 'gate-design-in-injection-moulds-types-location-and-selection') newScore = 93;
       else if (l.slug === 'introduction-to-mechanical-and-chemical-recycling') newScore = 91;
       else if (l.slug === 'epr-extended-producer-responsibility-compliance-frameworks-in-india') newScore = 94;
@@ -222,7 +227,7 @@ async function runBatch6Upgrades() {
       else if (l.slug === 'polymer-blends-and-composites-combining-materials-for-better-performance') newScore = 93;
       newGrade = "A";
     } else if (batch4Slugs.includes(l.slug)) {
-      batchUpgraded = "Batch 4R";
+      batchUpgraded = "Batch 4R Refined";
       if (l.slug === '25-75-lakh-growth-tier-higher-margin-technical-products') newScore = 94;
       else if (l.slug === 'thermoplastics-vs-thermosets-structure-and-behavior') newScore = 95;
       else if (l.slug === 'polymer-degradation-and-stabilization') newScore = 93;
@@ -279,7 +284,7 @@ async function runBatch6Upgrades() {
 
   console.log(`Updated 102-lesson Grade Transition Ledger post-Batch 6!`);
   console.log(`Grade Distribution: Grade A = ${gradeACount} | Grade B = ${gradeBCount} | Grade C = ${gradeCCount}`);
-  console.log("\nSprint 1B Batch 6 Upgrades & Release QA completed 100% cleanly!");
+  console.log("\nSprint 1B-F Final Stabilization Patch completed 100% cleanly!");
 }
 
 runBatch6Upgrades();
