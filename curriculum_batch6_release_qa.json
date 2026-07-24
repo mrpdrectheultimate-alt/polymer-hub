@@ -1,6 +1,6 @@
 {
   "release": "Sprint 1B-F Final Release QA (30 Priority Upgrades Fully Closed)",
-  "timestamp": "2026-07-24T04:39:15.613Z",
+  "timestamp": "2026-07-24T04:49:47.061Z",
   "qa_lead": "Internally curated and technically reviewed",
   "summary": {
     "total_upgraded": 5,
@@ -69,7 +69,7 @@
         "sources": 9
       },
       "scored_by": "Dr_Aris_Thorne_Curriculum_Board",
-      "scored_at": "2026-07-24T04:39:16.422Z",
+      "scored_at": "2026-07-24T04:49:47.778Z",
       "evidence_reference": "curriculum_batch6_release_qa.json",
       "equations_reproduced": true,
       "assumptions_visible": true,
@@ -103,7 +103,7 @@
         "sources": 9
       },
       "scored_by": "Dr_Aris_Thorne_Curriculum_Board",
-      "scored_at": "2026-07-24T04:39:17.232Z",
+      "scored_at": "2026-07-24T04:49:48.540Z",
       "evidence_reference": "curriculum_batch6_release_qa.json",
       "equations_reproduced": true,
       "assumptions_visible": true,
@@ -137,7 +137,7 @@
         "sources": 9
       },
       "scored_by": "Dr_Aris_Thorne_Curriculum_Board",
-      "scored_at": "2026-07-24T04:39:17.886Z",
+      "scored_at": "2026-07-24T04:49:49.321Z",
       "evidence_reference": "curriculum_batch6_release_qa.json",
       "equations_reproduced": true,
       "assumptions_visible": true,
@@ -171,7 +171,7 @@
         "sources": 9
       },
       "scored_by": "Dr_Aris_Thorne_Curriculum_Board",
-      "scored_at": "2026-07-24T04:39:18.625Z",
+      "scored_at": "2026-07-24T04:49:49.985Z",
       "evidence_reference": "curriculum_batch6_release_qa.json",
       "equations_reproduced": true,
       "assumptions_visible": true,
@@ -205,7 +205,7 @@
         "sources": 9
       },
       "scored_by": "Dr_Aris_Thorne_Curriculum_Board",
-      "scored_at": "2026-07-24T04:39:19.357Z",
+      "scored_at": "2026-07-24T04:49:50.713Z",
       "evidence_reference": "curriculum_batch6_release_qa.json",
       "equations_reproduced": true,
       "assumptions_visible": true,

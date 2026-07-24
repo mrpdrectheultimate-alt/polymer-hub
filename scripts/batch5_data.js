@@ -24,12 +24,12 @@ const BATCH5_LESSONS = [
     content: `# Extrusion Process: Screw Design, Flow Mechanics and Die Geometry
 
 ## 1. Why This Topic Matters
-Extrusion is the continuous polymer processing method used to manufacture pipes, films, sheets, profiles, and wire insulation. The single-screw extruder converts solid polymer pellets into a homogeneous melt via three functional screw zones: **Feed Zone**, **Compression/Melting Zone**, and **Metering Zone**. Understanding screw $L/D$ ratio, compression ratio, drag flow ($Q_d$), pressure backflow ($Q_p$), and die design principles governs throughput stability, melt temperature uniformity, and dimensional tolerances.
+Extrusion is the continuous polymer processing method used to manufacture pipes, films, sheets, profiles, and wire insulation. The single-screw extruder converts solid polymer pellets into a homogeneous melt via three functional screw zones: **Feed Zone**, **Compression/Melting Zone**, and **Metering Zone**. Understanding screw $L/D$ ratio, compression ratio, drag flow ($Q_{drag}$), pressure backflow ($Q_{pressure}$), and die design principles governs throughput stability, melt temperature uniformity, and dimensional tolerances.
 
 ## 2. Learning Objectives
 By completing this lesson, you will be able to:
 - **Analyze** the 3 functional zones of a single-screw extruder ($L/D = 24:1 - 30:1$).
-- **Calculate** net volumetric throughput ($Q_{net} = Q_d - Q_p$) combining drag flow and pressure flow.
+- **Calculate** net volumetric throughput ($Q_{net} = Q_{drag} - Q_{pressure} - Q_{leakage}$) combining drag flow, pressure backflow, and leakage flow.
 - **Compare** coat-hanger film dies, spiral mandrel blown film dies, and annular pipe dies.
 - **Diagnose** melt fracture, sharkskin, and surge instability defects.
 
@@ -46,17 +46,19 @@ graph TD
 
 ## 4. Equations & Net Throughput Calculation
 
-### 4.1 Idealized Metering-Zone Flow Model
-The net volumetric flow rate $Q_{net}$ in the metering section equals drag flow $Q_d$ minus pressure backflow $Q_p$:
+### 4.1 Screw-Channel Fluid Mechanics Model
+The net volumetric flow rate $Q_{net}$ in the metering section equals drag flow $Q_{drag}$ minus pressure backflow $Q_{pressure}$ minus flight clearance leakage $Q_{leakage}$:
 
-$$Q_{net} = Q_d - Q_p - Q_l$$
+$$Q_{net} = Q_{drag} - Q_{pressure} - Q_{leakage}$$
 
-$$\\text{Drag Flow: } Q_d = \\frac{1}{2} \\pi^2 D^2 N h \\sin\\phi \\cos\\phi$$
+$$\text{Drag Flow: } Q_{drag} = \frac{1}{2} \pi^2 D^2 N h \sin\phi \cos\phi$$
 
-$$\\text{Pressure Flow: } Q_p = \\frac{\\pi D h^3 \\Delta P}{12 \\mu L}$$
+$$\text{Pressure Flow: } Q_{pressure} = \frac{\pi D h^3 \Delta P}{12 \mu L_{axial}}$$
+
+$$\text{Dimensional Units Check: } [\text{m}^3/\text{s}] = \frac{[\text{m}] \cdot [\text{m}^3] \cdot [\text{N}/\text{m}^2]}{[\text{N}\cdot\text{s}/\text{m}^2] \cdot [\text{m}]} = \frac{\text{m}^3}{\text{s}}$$
 
 > [!NOTE]
-> **Model Assumptions & Limitations**: This flow balance represents an **idealized metering-zone flow model** for isothermal, Newtonian melt behavior. Leakage backflow $Q_l$ across screw flight clearances is assumed negligible for new unworn screws. Pseudoplastic non-Newtonian shear-thinning requires replacing constant melt viscosity $\mu$ with power-law effective viscosity $\mu_{eff} = K \dot{\gamma}^{n-1}$.
+> **Model Assumptions & Limitations**: This flow balance represents a single-coordinate metering-zone model for isothermal, Newtonian melt behavior. Pseudoplastic non-Newtonian shear-thinning requires replacing constant melt viscosity $\mu$ with power-law effective viscosity $\mu_{eff} = K \dot{\gamma}^{n-1}$.
 
 ### Explicit Input Parameter Table for Reproduction
 
@@ -65,24 +67,25 @@ $$\\text{Pressure Flow: } Q_p = \\frac{\\pi D h^3 \\Delta P}{12 \\mu L}$$
 | **Screw Diameter** | $D$ | $0.060$ | $\text{m}$ | $60\text{ mm}$ outer screw diameter |
 | **Metering Channel Depth** | $h$ | $0.0025$ | $\text{m}$ | $2.5\text{ mm}$ metering flight depth |
 | **Screw Rotational Speed** | $N$ | $1.50$ | $\text{rev/s}$ | $90\text{ rpm}$ rotational speed |
-| **Helix Flight Angle** | $\phi$ | $17.65^\circ$ | Degrees | Square-pitched screw ($\sin\phi\cos\phi = 0.2887$) |
-| **Metering Zone Length** | $L$ | $0.60$ | $\text{m}$ | Metering section length |
-| **Die Head Backpressure** | $\Delta P$ | $15.0 \times 10^6$ | $\text{Pa}$ | $15.0\text{ MPa}$ die head pressure drop |
+| **Helix Flight Angle** | $\phi$ | $17.65^\circ$ | Degrees | Square-pitched screw ($\sin\phi\cos\phi = 0.2889$) |
+| **Metering Zone Axial Length**| $L_{axial}$ | $0.60$ | $\text{m}$ | $600\text{ mm}$ metering section length |
+| **Die Head Backpressure** | $\Delta P$ | $8.0 \times 10^6$ | $\text{Pa}$ | $8.0\text{ MPa}$ ($80\text{ bar}$) die head pressure drop |
 | **Melt Dynamic Viscosity** | $\mu$ | $300$ | $\text{Pa}\cdot\text{s}$ | Dynamic viscosity at processing shear rate |
+| **Flight Clearance Leakage** | $Q_{leakage}$ | $0.32 \times 10^{-6}$| $\text{m}^3/\text{s}$ | $0.32\text{ cm}^3/\text{s}$ flight clearance leakage flow |
 
 #### Worked Numerical Example:
-**Problem:** Calculate drag flow $Q_d$, pressure backflow $Q_p$, and net volumetric throughput $Q_{net}$ using the explicit input parameter table above.
+**Problem:** Calculate drag flow $Q_{drag}$, pressure backflow $Q_{pressure}$, and net volumetric throughput $Q_{net}$ using the explicit input parameter table above.
 
 **Solution:**
-1. Calculate Drag Flow ($Q_d$):
-$$Q_d = \\frac{1}{2} \\times \\pi^2 \\times (0.060)^2 \\times 1.50 \\times 0.0025 \\times 0.2887$$
-$$Q_d = 0.5 \\times 9.8696 \\times 0.0036 \\times 1.50 \\times 0.0025 \\times 0.2887 = 3.844 \\times 10^{-5}\\text{ m}^3/\\text{s} = 38.44\\text{ cm}^3/\\text{s}$$
+1. Calculate Drag Flow ($Q_{drag}$):
+$$Q_{drag} = \frac{1}{2} \times \pi^2 \times (0.060)^2 \times 1.50 \times 0.0025 \times 0.2889$$
+$$Q_{drag} = 0.5 \times 9.8696 \times 0.0036 \times 1.50 \times 0.0025 \times 0.2889 = 1.923 \times 10^{-5}\text{ m}^3/\text{s} = \mathbf{19.23\text{ cm}^3/\text{s}}$$
 
-2. Calculate Pressure Backflow ($Q_p$):
-$$Q_p = \\frac{\\pi \\times 0.060 \\times (0.0025)^3 \\times (1.50 \\times 10^7)}{12 \\times 300 \\times 0.60} = \\frac{0.1885 \\times 1.5625 \\times 10^{-8} \\times 1.50 \\times 10^7}{2160} = 2.045 \\times 10^{-5}\\text{ m}^3/\\text{s} = 20.45\\text{ cm}^3/\\text{s}$$
+2. Calculate Pressure Backflow ($Q_{pressure}$):
+$$Q_{pressure} = \frac{\pi \times 0.060 \times (0.0025)^3 \times (8.0 \times 10^6)}{12 \times 300 \times 0.60} = \frac{0.1885 \times 1.5625 \times 10^{-8} \times 8.0 \times 10^6}{2160} = \frac{0.02356}{2160} = 1.091 \times 10^{-5}\text{ m}^3/\text{s} = \mathbf{10.91\text{ cm}^3/\text{s}}$$
 
 3. Calculate Net Throughput ($Q_{net}$):
-$$Q_{net} = 38.44 - 20.45 = 17.99\\text{ cm}^3/\\text{s}$$
+$$Q_{net} = 19.23 - 10.91 - 0.32 = \mathbf{8.00\text{ cm}^3/\text{s}} \quad (28.8\text{ L/hr} \approx 25.9\text{ kg/hr})$$
 
 ## 5. Industrial Applications
 - **HDPE Water Pipe Extrusion**: Annular basket-die extrusion in Vadodara cluster. *(Illustrative Indian industry scenario based on BIS certified pipe manufacturing).*
@@ -122,7 +125,7 @@ $$Q_{net} = 38.44 - 20.45 = 17.99\\text{ cm}^3/\\text{s}$$
     content: `# Blow Moulding: Extrusion Blow (EBM), Injection Blow (IBM) & ISBM Systems
 
 ## 1. Why This Topic Matters
-Blow moulding is the primary manufacturing method for hollow thermoplastic containers, ranging from small pharmaceutical bottles ($10\\text{ mL}$) to fuel tanks and large industrial drums ($220\\text{ L}$). The three main variants are **Extrusion Blow Moulding (EBM)**, **Injection Blow Moulding (IBM)**, and **Injection Stretch Blow Moulding (ISBM)**. Understanding parison programming, blow ratio ($BR$), wall thickness distribution, and biaxial orientation is critical for light-weighting and burst-strength optimization.
+Blow moulding is the primary manufacturing method for hollow thermoplastic containers, ranging from small pharmaceutical bottles ($10\text{ mL}$) to fuel tanks and large industrial drums ($220\text{ L}$). The three main variants are **Extrusion Blow Moulding (EBM)**, **Injection Blow Moulding (IBM)**, and **Injection Stretch Blow Moulding (ISBM)**. Understanding parison programming, blow ratio ($BR$), wall thickness distribution, and biaxial orientation is critical for light-weighting and burst-strength optimization.
 
 ## 2. Learning Objectives
 By completing this lesson, you will be able to:
@@ -148,11 +151,11 @@ graph TD
 ### 4.1 Blow Expansion Ratio & Wall Thickness Qualification
 The **Blow Expansion Ratio ($BR$)** measures circumferential stretching from parison diameter $d_p$ to mold cavity diameter $D_c$:
 
-$$BR = \\frac{D_c}{d_p}$$
+$$BR = \frac{D_c}{d_p}$$
 
 Assuming constant polymer volume, the average final container wall thickness $t_{avg}$ is estimated from initial parison wall thickness $t_p$:
 
-$$t_{avg} \\approx \\frac{t_p}{BR} = t_p \\left( \\frac{d_p}{D_c} \\right)$$
+$$t_{avg} \approx \frac{t_p}{BR} = t_p \left( \frac{d_p}{D_c} \right)$$
 
 > [!NOTE]
 > **Idealized Constant-Volume Qualification**: The calculated average wall thickness $t_{avg}$ represents an **idealized uniform-thinning estimate under constant-volume assumptions**. Real container wall thickness distribution is non-uniform due to parison sag, die swell, dynamic wall thickness programming, axial draw, and corner stretching.
@@ -164,16 +167,16 @@ For Injection Stretch Blow Moulding (ISBM), stretching is biaxial:
 - **Total Area Stretch Ratio ($SR_{area}$)**: $SR_{area} = SR_{hoop} \times SR_{axial}$ ($8.0 - 12.0\times$)
 
 #### Worked Numerical Example:
-**Problem:** An HDPE milk jug is produced via EBM using an extruded parison of outer diameter $d_p = 40.0\\text{ mm}$ and wall thickness $t_p = 3.20\\text{ mm}$. The cylindrical mold cavity has a diameter of $D_c = 120.0\\text{ mm}$. Calculate:
+**Problem:** An HDPE milk jug is produced via EBM using an extruded parison of outer diameter $d_p = 40.0\text{ mm}$ and wall thickness $t_p = 3.20\text{ mm}$. The cylindrical mold cavity has a diameter of $D_c = 120.0\text{ mm}$. Calculate:
 1. Blow expansion ratio ($BR$)
 2. Estimated average container wall thickness ($t_{avg}$)
 
 **Solution:**
 1. Blow Expansion Ratio ($BR$):
-$$BR = \\frac{120.0\\text{ mm}}{40.0\\text{ mm}} = 3.00$$
+$$BR = \frac{120.0\text{ mm}}{40.0\text{ mm}} = 3.00$$
 
 2. Estimated Average Wall Thickness ($t_{avg}$):
-$$t_{avg} = \\frac{3.20\\text{ mm}}{3.00} = 1.067\\text{ mm}$$
+$$t_{avg} = \frac{3.20\text{ mm}}{3.00} = 1.067\text{ mm}$$
 
 ## 5. Industrial Applications
 - **PET Carbonated Soft Drink Bottles**: 2-stage stretch blow moulding in Silvassa plant. *(Illustrative Indian industry scenario based on beverage packaging operations).*
@@ -198,7 +201,7 @@ $$t_{avg} = \\frac{3.20\\text{ mm}}{3.00} = 1.067\\text{ mm}$$
     component_scores: {
       technical_accuracy: 24,
       conceptual_depth: 19,
-      clarity: 14,
+      clarity: 15,
       diagrams: 9,
       industry_relevance: 9,
       assessment: 9,
@@ -244,25 +247,25 @@ graph TD
 ### 4.2 Area Draw Ratio ($DR$) & Uniform Thinning Qualification
 The Area Draw Ratio ($DR$) compares total 3D surface area of the formed part ($A_{part}$) to initial flat sheet area covering the mold aperture ($A_{sheet}$):
 
-$$DR = \\frac{A_{part}}{A_{sheet}}$$
+$$DR = \frac{A_{part}}{A_{sheet}}$$
 
 Average final part wall thickness $t_{final}$ from initial sheet thickness $t_{initial}$ is:
 
-$$t_{final} = \\frac{t_{initial}}{DR}$$
+$$t_{final} = \frac{t_{initial}}{DR}$$
 
 *Qualification:* This formula represents an **idealized uniform-thinning estimate**. Actual thermoformed components exhibit thinner deep corners, plug-contact chill marks, and anisotropic shrinkage.
 
 #### Worked Numerical Example:
-**Problem:** A rectangular HIPS food container tray with flat aperture area $A_{sheet} = 200\\text{ cm}^2$ is thermoformed from a sheet of initial thickness $t_{initial} = 1.50\\text{ mm}$. The total internal 3D surface area of the finished formed tray is $A_{part} = 450\\text{ cm}^2$. Calculate:
+**Problem:** A rectangular HIPS food container tray with flat aperture area $A_{sheet} = 200\text{ cm}^2$ is thermoformed from a sheet of initial thickness $t_{initial} = 1.50\text{ mm}$. The total internal 3D surface area of the finished formed tray is $A_{part} = 450\text{ cm}^2$. Calculate:
 1. Area Draw Ratio ($DR$)
 2. Estimated average final wall thickness ($t_{final}$)
 
 **Solution:**
 1. Area Draw Ratio ($DR$):
-$$DR = \\frac{450\\text{ cm}^2}{200\\text{ cm}^2} = 2.25$$
+$$DR = \frac{450\text{ cm}^2}{200\text{ cm}^2} = 2.25$$
 
 2. Estimated Average Final Wall Thickness ($t_{final}$):
-$$t_{final} = \\frac{1.50\\text{ mm}}{2.25} = 0.667\\text{ mm}$$
+$$t_{final} = \frac{1.50\text{ mm}}{2.25} = 0.667\text{ mm}$$
 
 ## 5. Industrial Applications
 - **Refrigerator Door Liners**: Heavy-gauge HIPS pressure thermoforming in Pune appliance plant. *(Illustrative Indian industry scenario based on consumer appliance manufacturing).*
@@ -326,7 +329,7 @@ graph TD
 ### 4.1 Theoretical Cooling Time Equation ($t_c$)
 For a flat plate component of wall thickness $h$, cooling time $t_c$ assumes 1D thermal conduction across isothermal mold surfaces:
 
-$$t_c = \\frac{h^2}{\\pi^2 \\alpha} \\ln\\left[ \\frac{8}{\\pi^2} \\left( \\frac{T_{melt} - T_{mold}}{T_{eject} - T_{mold}} \\right) \\right]$$
+$$t_c = \frac{h^2}{\pi^2 \alpha} \ln\left[ \frac{8}{\pi^2} \left( \frac{T_{melt} - T_{mold}}{T_{eject} - T_{mold}} \right) \right]$$
 
 ### Explicit Input Parameter Table for Reproduction
 
@@ -343,13 +346,13 @@ $$t_c = \\frac{h^2}{\\pi^2 \\alpha} \\ln\\left[ \\frac{8}{\\pi^2} \\left( \\frac
 
 **Solution:**
 1. Calculate temperature ratio term:
-$$\\text{Ratio} = \\frac{8}{\\pi^2} \\left( \\frac{230 - 40}{90 - 40} \\right) = 0.81057 \\times \\left( \\frac{190}{50} \\right) = 0.81057 \\times 3.80 = 3.08016$$
+$$\text{Ratio} = \frac{8}{\pi^2} \left( \frac{230 - 40}{90 - 40} \right) = 0.81057 \times \left( \frac{190}{50} \right) = 0.81057 \times 3.80 = 3.08016$$
 
 2. Calculate Natural Logarithm:
-$$\\ln(3.08016) = 1.1250$$
+$$\ln(3.08016) = 1.1250$$
 
 3. Calculate $t_c$:
-$$t_c = \\frac{(0.0030)^2}{\\pi^2 \\times (8.50 \\times 10^{-8})} \\times 1.1250 = \\frac{9.0 \\times 10^{-6}}{8.389 \\times 10^{-7}} \\times 1.1250 = 10.728 \\times 1.1250 = 12.07\\text{ seconds}$$
+$$t_c = \frac{(0.0030)^2}{\pi^2 \times (8.50 \times 10^{-8})} \times 1.1250 = \frac{9.0 \times 10^{-6}}{8.389 \times 10^{-7}} \times 1.1250 = 10.728 \times 1.1250 = 12.07\text{ seconds}$$
 
 ## 5. Industrial Applications
 - **Conformal Cooling in Automotive Lens Moulds**: 3D printed DMLS tool steel inserts reducing cycle time by 32%. *(Illustrative Indian industry scenario based on automotive lighting tooling).*
@@ -417,7 +420,7 @@ graph TD
 ### 4.1 Simplified Shrink-Grip Friction Model
 The ejection force required to overcome friction caused by thermal shrinkage onto a core pin of contact area $A_{contact}$ is:
 
-$$F_{eject} = \\frac{E \\cdot \\alpha \\cdot \\Delta T \\cdot A_{contact} \\cdot \\mu}{1 - \\nu}$$
+$$F_{eject} = \frac{E \cdot \alpha \cdot \Delta T \cdot A_{contact} \cdot \mu}{1 - \nu}$$
 
 > [!NOTE]
 > **Model Assumptions & Scope**: This equation represents a **simplified shrink-grip friction model** for a cylindrical part shrinking around a smooth core. Real ejection forces are further influenced by core draft angle, surface texture, holding pressure, ribs/bosses, vacuum resistance, and uneven cooling shrinkage.
@@ -438,13 +441,13 @@ $$F_{eject} = \\frac{E \\cdot \\alpha \\cdot \\Delta T \\cdot A_{contact} \\cdot
 
 **Solution:**
 1. Calculate Numerator:
-$$\\text{Num} = (1.20 \\times 10^9) \\times (6.5 \\times 10^{-5}) \\times 50 \\times 0.0050 \\times 0.30 = 5,850\\text{ N}$$
+$$\text{Num} = (1.20 \times 10^9) \times (6.5 \times 10^{-5}) \times 50 \times 0.0050 \times 0.30 = 5,850\text{ N}$$
 
-2. Calculate Denominator ($1 - \\nu$):
+2. Calculate Denominator ($1 - \nu$):
 $$1 - 0.38 = 0.62$$
 
 3. Calculate Total Ejection Force ($F_{eject}$):
-$$F_{eject} = \\frac{5,850\\text{ N}}{0.62} = 9,435.5\\text{ N} \\quad (9.44\\text{ kN})$$
+$$F_{eject} = \frac{5,850\text{ N}}{0.62} = 9,435.5\text{ N} \quad (9.44\text{ kN})$$
 
 ## 5. Industrial Applications
 - **Thin-Walled Container Moulds**: Stripper plate ejection in high-speed packaging tools. *(Illustrative Indian industry scenario based on food container moulding).*

@@ -28,7 +28,7 @@ By completing this lesson, you will be able to:
 - **Structure** CAPEX and working capital across Conservative, Base, and Optimistic scenarios.
 - **Calculate** yield-adjusted feedstock costs and itemized variable OPEX per kg.
 - **Derive** line-by-line full manufacturing production costs per kg.
-- **Calculate** scenario-specific net working capital, total project investment, and payback periods.
+- **Differentiate** Average Operating Working Capital vs Peak Design Working Capital requirements.
 
 ## 3. Core Setup Architecture
 
@@ -41,7 +41,7 @@ graph TD
     E --> F["Net Contribution Margin (₹11.22/kg)"]
 \`\`\`
 
-## 4. Line-by-Line Cost Derivations & 3-Scenario Financial Model
+## 4. Line-by-Line Cost Derivations & Scenario Financial Model
 
 ### 4.1 Fixed CAPEX Breakdown (₹140.00 Lakhs)
 - **Extrusion & Recycling Machinery**: ₹95.00 Lakhs ($500\text{ kg/hr}$ twin-screw degassing extruder + hot washer + pelletizer)
@@ -52,7 +52,7 @@ graph TD
 
 ### 4.2 Operating Schedule & Capacity Basis
 - **Scheduled Capacity**: $300\text{ operating days/year} \times 20\text{ scheduled hours/day} = 6,000\text{ scheduled operating hours/year}$.
-- **Hourly Feed Rate**: $500\text{ kg/hour}$ raw PET bottle bales.
+- **Hourly Feed Rate**: $500\text{ kg/hour}$ raw PET bottle bales ($8,000\text{ kg/day}$ peak load).
 - **Staffing**: 8 Plant Technicians across 2 shifts ($8 \times \text{₹}22,000/\text{month} \times 12 = \text{₹}21.12\text{ Lakhs/year}$).
 - **Fixed Annual OPEX (₹36.87 Lakhs/yr)**: Factory Rent (₹12.00L) + Technician Salaries (₹21.12L) + Maintenance & Insurance (₹3.75L).
 
@@ -74,25 +74,36 @@ $$\text{Full Manufacturing Cost/kg} = \text{Yield-Adjusted Flake Cost (₹59.78)
 - *Base ($2,208,000\text{ kg/yr}$)*: Allocated Fixed OPEX = $\frac{\text{₹}36.87\text{L}}{2,208,000\text{ kg}} = \text{₹}1.67/\text{kg} \implies \mathbf{\text{₹}68.45/\text{kg}}$.
 - *Optimistic ($2,484,000\text{ kg/yr}$)*: Allocated Fixed OPEX = $\frac{\text{₹}36.87\text{L}}{2,484,000\text{ kg}} = \text{₹}1.48/\text{kg} \implies \mathbf{\text{₹}68.26/\text{kg}}$.
 
-### 4.5 3-Scenario Recalculated Financial Summary
+### 4.5 Base-Case Working Capital Breakdown: Average vs Peak Design Basis
+
+| Base Scenario Working Capital Line Item | Average Operating Basis (80% Schedule) | Peak Design Load Basis (100% Capacity) |
+|---|:---:|:---:|
+| **Daily Raw Bales Feed** | $7,360\text{ kg/day}$ | $8,000\text{ kg/day}$ |
+| **Daily Saleable RPET Output** | $6,771.2\text{ kg/day}$ | $7,360.0\text{ kg/day}$ |
+| **7-Day Raw Flake Stock (@ ₹55/kg)** | ₹28.34 Lakhs | ₹30.80 Lakhs |
+| **7-Day Finished Goods Stock (@ Cost ₹68.45/kg)** | ₹32.44 Lakhs | ₹35.27 Lakhs |
+| **15-Day Receivables (@ Selling Price ₹78/kg)** | ₹79.22 Lakhs | ₹86.11 Lakhs |
+| **Less 15-Day Supplier Credit (@ ₹55/kg)** | -₹60.72 Lakhs | -₹66.00 Lakhs |
+| **Net Working Capital (NWC)** | **₹79.28 Lakhs** | **₹86.18 Lakhs** |
+| **Fixed Equipment & Utility CAPEX** | ₹140.00 Lakhs | ₹140.00 Lakhs |
+| **Total Initial Project Investment** | **₹219.28 Lakhs** | **₹226.18 Lakhs** |
+| **Simplified Post-Tax Cash Flow (25% tax)** | **₹158.15 Lakhs/year** | **₹158.15 Lakhs/year** |
+| **Recalculated Project Payback Period** | **1.387 Years (16.6 Months)** | **1.430 Years (17.2 Months)** |
+
+### 4.6 3-Scenario Summary Table (Average Operating Basis)
 
 | Financial & Operating Metric | Conservative Scenario | Base Scenario | Optimistic Scenario |
 |---|:---:|:---:|:---:|
 | **Operating Utilization (6,000 hrs)** | $60\%$ | $80\%$ | $90\%$ |
-| **Annual Feed Processing (kg)** | $1,800,000\text{ kg}$ | $2,400,000\text{ kg}$ | $2,700,000\text{ kg}$ |
 | **Annual Saleable RPET Output (kg)** | $1,656,000\text{ kg}$ | $2,208,000\text{ kg}$ | $2,484,000\text{ kg}$ |
 | **Full Manufacturing Cost per kg** | **₹69.01/kg** | **₹68.45/kg** | **₹68.26/kg** |
-| **Raw Material Stock (7 Days @ ₹55/kg)** | ₹21.25 Lakhs | ₹28.34 Lakhs (or ₹30.80L peak) | ₹31.88 Lakhs |
-| **Finished Goods Stock (7 Days @ Cost)** | ₹24.53 Lakhs | ₹32.44 Lakhs (or ₹35.27L peak) | ₹36.40 Lakhs |
-| **Receivables (15 Days Credit @ ₹78/kg)** | ₹59.42 Lakhs | ₹79.22 Lakhs (or ₹86.11L peak) | ₹89.13 Lakhs |
-| **Less Supplier Payables (15 Days @ ₹55/kg)**| -₹45.54 Lakhs | -₹60.72 Lakhs (or -₹66.00L peak) | -₹68.31 Lakhs |
-| **Net Working Capital (NWC)** | **₹59.66 Lakhs** | **₹86.18 Lakhs** | **₹89.10 Lakhs** |
+| **Net Working Capital (Average Basis)** | **₹59.66 Lakhs** | **₹79.28 Lakhs** | **₹89.10 Lakhs** |
 | **Fixed Equipment CAPEX** | ₹140.00 Lakhs | ₹140.00 Lakhs | ₹140.00 Lakhs |
-| **Total Initial Project Cost** | **₹199.66 Lakhs** | **₹226.18 Lakhs** | **₹229.10 Lakhs** |
+| **Total Initial Project Cost (Average Basis)** | **₹199.66 Lakhs** | **₹219.28 Lakhs** | **₹229.10 Lakhs** |
 | **Annual Gross Contribution (₹11.22/kg)** | ₹185.80 Lakhs | ₹247.74 Lakhs | ₹278.70 Lakhs |
 | **Pre-Tax Operating Profit** | ₹148.93 Lakhs | ₹210.87 Lakhs | ₹241.83 Lakhs |
 | **Simplified Post-Tax Cash Flow (25% tax)**| **₹111.70 Lakhs/yr** | **₹158.15 Lakhs/yr** | **₹181.37 Lakhs/yr** |
-| **Recalculated Project Payback Period** | **1.787 Years (21.4 Mos)** | **1.430 Years (17.2 Mos)** | **1.263 Years (15.2 Mos)** |
+| **Recalculated Payback (Average Basis)** | **1.787 Years (21.4 Mos)** | **1.387 Years (16.6 Mos)** | **1.263 Years (15.2 Mos)** |
 
 ## 5. Industrial Applications
 - **RPET Granules for Textile & Packaging**: Plant setup in Gujarat recycling cluster supplying fiber extruders and sheet plants. *(Illustrative Indian industry scenario based on PET recycling operations).*
