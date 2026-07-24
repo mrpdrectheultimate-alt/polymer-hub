@@ -71,15 +71,16 @@ graph TD
 $$\text{Full Manufacturing Cost/kg} = \text{Yield-Adjusted Flake Cost (₹59.78)} + \text{Variable OPEX (₹7.00)} + \text{Allocated Fixed OPEX/kg}$$
 
 - *Base ($2,208,000\text{ kg/yr}$)*: Allocated Fixed OPEX = $\frac{\text{₹}36.87\text{L}}{2,208,000\text{ kg}} = \text{₹}1.67/\text{kg} \implies \mathbf{\text{₹}68.45/\text{kg}}$.
+- *Peak Capacity ($2,760,000\text{ kg/yr}$)*: Allocated Fixed OPEX = $\frac{\text{₹}36.87\text{L}}{2,760,000\text{ kg}} = \text{₹}1.34/\text{kg} \implies \mathbf{\text{₹}68.12/\text{kg}}$.
 
 ### 4.5 Working Capital Comparison: 80% Base Operating vs 100% Peak Design Basis
 
 | Working Capital & Investment Line Item | 80% Base Operating Basis | 100% Peak Design Load Basis |
 |---|:---:|:---:|
-| **Daily Raw Bales Feed Throughput** | **8,000 kg/day** | **10,000 kg/day** |
+| **Daily Raw Bales Feed Throughput** | **8,000 kg/day** ($16\text{ hrs/day}$) | **10,000 kg/day** ($20\text{ hrs/day}$) |
 | **Daily Saleable Output (92% Yield)** | **7,360 kg/day** | **9,200 kg/day** |
 | **7-Day Raw Flake Inventory (@ ₹55/kg)** | ₹30.80 Lakhs | ₹38.50 Lakhs |
-| **7-Day Finished Goods Stock (@ Cost ₹68.45/kg)** | ₹35.27 Lakhs | ₹44.08 Lakhs |
+| **7-Day Finished Goods Stock** | ₹35.27 Lakhs (@ ₹68.45/kg) | ₹44.08 Lakhs (Conservative peak valuation @ ₹68.45/kg) |
 | **15-Day Receivables (@ Selling Price ₹78/kg)** | ₹86.11 Lakhs | ₹107.64 Lakhs |
 | **Less 15-Day Supplier Credit (@ ₹55/kg)** | -₹66.00 Lakhs | -₹82.50 Lakhs |
 | **Net Working Capital (NWC)** | **₹86.18 Lakhs** | **₹107.72 Lakhs** |
@@ -88,7 +89,7 @@ $$\text{Full Manufacturing Cost/kg} = \text{Yield-Adjusted Flake Cost (₹59.78)
 | **Annual Post-Tax Operating Cash Flow** | **₹158.15 Lakhs/year** | **₹204.60 Lakhs/year** (Full Peak) |
 | **Recalculated Project Payback Period** | **1.430 Years (17.2 Months)** | **1.211 Years (14.5 Months)** |
 
-*Note on Peak Funding:* Under peak funding (₹247.72L) evaluated against base operating cash flow (₹158.15L/yr), the conservative peak payback is $1.566\text{ years}$ ($18.8\text{ months}$).
+*Conservative Peak Funding Comparison:* Peak funding (₹247.72L) evaluated against base operating cash flow (₹158.15L/yr) yields a conservative payback of **1.566 Years (18.8 Months)**.
 
 ## 5. Industrial Applications
 - **RPET Granules for Textile & Packaging**: Plant setup in Gujarat recycling cluster supplying fiber extruders and sheet plants. *(Illustrative Indian industry scenario based on PET recycling operations).*

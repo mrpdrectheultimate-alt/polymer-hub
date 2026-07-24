@@ -30,7 +30,7 @@ Extrusion is the continuous polymer processing method used to manufacture pipes,
 By completing this lesson, you will be able to:
 - **Analyze** the 3 functional zones of a single-screw extruder ($L/D = 24:1 - 30:1$).
 - **Calculate** net volumetric throughput ($Q_{net} = Q_{drag} - Q_{pressure} - Q_{leakage}$) combining drag flow, pressure backflow, and leakage flow.
-- **Derive** flight-clearance leakage flow ($Q_{leakage}$) from radial clearance and pressure gradient per turn.
+- **Derive** flight-clearance leakage flow ($Q_{leakage}$) from radial clearance and geometry-supported 10 metering flight turns.
 - **Compare** coat-hanger film dies, spiral mandrel blown film dies, and annular pipe dies.
 
 ## 3. Core Theory & Extruder Architecture
@@ -58,7 +58,7 @@ $$\text{Pressure Flow: } Q_{pressure} = \frac{\pi D h^3 \Delta P}{12 \mu L_{axia
 $$\text{Flight Clearance Leakage Flow: } Q_{leakage} = \frac{\pi D \delta^3 \Delta P_{turn}}{12 \mu e} \cdot N_{turns}$$
 
 > [!NOTE]
-> **Leakage Flow Fluid Mechanics Derivation**: Flight clearance leakage $Q_{leakage}$ occurs across the radial clearance gap $\delta = 0.10\text{ mm}$ between the top of the flight land (width $e = 5.0\text{ mm}$) and the barrel wall due to the pressure difference per flight turn $\Delta P_{turn} = \Delta P / N_{turns} = 8.0\text{ MPa} / 10\text{ turns} = 8.0 \times 10^5\text{ Pa/turn}$. Because leakage flows backward from the high-pressure pushing face to the trailing face of the preceding flight turn, it directly opposes forward net throughput.
+> **Leakage Flow Geometry & Fluid Mechanics Derivation**: For a standard square-pitched screw ($D = 60\text{ mm}$, pitch $p = 60\text{ mm/turn}$), the $600\text{ mm}$ axial metering length contains exactly $N_{turns} = 600 / 60 = 10\text{ turns}$. The pressure drop per flight turn is $\Delta P_{turn} = 8.0\text{ MPa} / 10\text{ turns} = 8.0 \times 10^5\text{ Pa/turn}$. Per-turn leakage across radial clearance $\delta = 0.10\text{ mm}$ over flight land width $e = 5.0\text{ mm}$ is $Q_{leak,turn} = 8.378 \times 10^{-9}\text{ m}^3/\text{s}$. Total leakage across all 10 metering turns is $Q_{leakage} = 10 \times 8.378 \times 10^{-9} = 8.378 \times 10^{-8}\text{ m}^3/\text{s} = \mathbf{0.0838\text{ cm}^3/\text{s}}$. Because leakage flows backward from pushing face to trailing face across radial clearance, it opposes forward net throughput.
 
 ### Explicit Input Parameter Table for Reproduction
 
@@ -69,13 +69,14 @@ $$\text{Flight Clearance Leakage Flow: } Q_{leakage} = \frac{\pi D \delta^3 \Del
 | **Screw Rotational Speed** | $N$ | $1.50$ | $\text{rev/s}$ | $90\text{ rpm}$ rotational speed |
 | **Helix Flight Angle** | $\phi$ | $17.65^\circ$ | Degrees | Square-pitched screw ($\sin\phi\cos\phi = 0.2889$) |
 | **Metering Zone Axial Length**| $L_{axial}$ | $0.60$ | $\text{m}$ | $600\text{ mm}$ metering section length |
+| **Metering Flight Turns** | $N_{turns}$ | $10$ | Turns | $L_{axial} / \text{pitch} = 600 / 60 = 10\text{ turns}$ |
 | **Die Head Backpressure** | $\Delta P$ | $8.0 \times 10^6$ | $\text{Pa}$ | $8.0\text{ MPa}$ ($80\text{ bar}$) die head pressure drop |
 | **Melt Dynamic Viscosity** | $\mu$ | $300$ | $\text{Pa}\cdot\text{s}$ | Dynamic viscosity at processing shear rate |
 | **Radial Flight Clearance** | $\delta$ | $0.00010$ | $\text{m}$ | $0.10\text{ mm}$ radial clearance gap |
 | **Flight Land Width** | $e$ | $0.0050$ | $\text{m}$ | $5.0\text{ mm}$ axial flight land width |
 
 #### Worked Numerical Example:
-**Problem:** Calculate drag flow $Q_{drag}$, pressure backflow $Q_{pressure}$, flight leakage $Q_{leakage}$, and net volumetric throughput $Q_{net}$ using the parameter table above.
+**Problem:** Calculate drag flow $Q_{drag}$, pressure backflow $Q_{pressure}$, flight leakage $Q_{leakage}$, net volumetric throughput $Q_{net}$, and HDPE mass output $\dot{m}$ ($\rho = 0.90\text{ g/cm}^3$) using the parameter table above.
 
 **Solution:**
 1. Calculate Drag Flow ($Q_{drag}$):
@@ -85,12 +86,13 @@ $$Q_{drag} = \frac{1}{2} \times \pi^2 \times (0.060)^2 \times 1.50 \times 0.0025
 $$Q_{pressure} = \frac{\pi \times 0.060 \times (0.0025)^3 \times (8.0 \times 10^6)}{12 \times 300 \times 0.60} = \frac{0.02356}{2160} = 1.091 \times 10^{-5}\text{ m}^3/\text{s} = \mathbf{10.91\text{ cm}^3/\text{s}}$$
 
 3. Calculate Flight Leakage Flow ($Q_{leakage}$):
-$$Q_{leakage, turn} = \frac{\pi \times 0.060 \times (0.00010)^3 \times (8.0 \times 10^5)}{12 \times 300 \times 0.0050} = \frac{1.508 \times 10^{-7}}{18} = 8.378 \times 10^{-9}\text{ m}^3/\text{s}$$
-Across 38 active metering turns:
-$$Q_{leakage} = 38 \times 8.378 \times 10^{-9} = 3.18 \times 10^{-7}\text{ m}^3/\text{s} = \mathbf{0.32\text{ cm}^3/\text{s}}$$
+$$Q_{leak, turn} = \frac{\pi \times 0.060 \times (0.00010)^3 \times (8.0 \times 10^5)}{12 \times 300 \times 0.0050} = \frac{1.508 \times 10^{-7}}{18} = 8.378 \times 10^{-9}\text{ m}^3/\text{s}$$
+Across 10 geometry-supported metering turns:
+$$Q_{leakage} = 10 \times 8.378 \times 10^{-9} = 8.378 \times 10^{-8}\text{ m}^3/\text{s} = \mathbf{0.0838\text{ cm}^3/\text{s}}$$
 
-4. Calculate Net Throughput ($Q_{net}$):
-$$Q_{net} = 19.23 - 10.91 - 0.32 = \mathbf{8.00\text{ cm}^3/\text{s}} \quad (28.8\text{ L/hr} \approx 25.9\text{ kg/hr})$$
+4. Calculate Net Throughput ($Q_{net}$) and HDPE Mass Output ($\dot{m}$):
+$$Q_{net} = 19.23 - 10.91 - 0.0838 = \mathbf{8.236\text{ cm}^3/\text{s}}$$
+$$\dot{m} = 8.236\text{ cm}^3/\text{s} \times 3,600\text{ s/hr} \times 0.90\text{ g/cm}^3 = 26,684.6\text{ g/hr} = \mathbf{26.69\text{ kg/hr}}$$
 
 ## 5. Industrial Applications
 - **HDPE Water Pipe Extrusion**: Annular basket-die extrusion in Vadodara cluster. *(Illustrative Indian industry scenario based on BIS certified pipe manufacturing).*
@@ -205,8 +207,8 @@ $$t_{avg} = \frac{3.20\text{ mm}}{3.00} = 1.067\text{ mm}$$
     previous_score: 74,
     component_scores: {
       technical_accuracy: 24,
-      conceptual_depth: 20,
-      clarity: 15,
+      conceptual_depth: 19,
+      clarity: 14,
       diagrams: 9,
       industry_relevance: 9,
       assessment: 9,
